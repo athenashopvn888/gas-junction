@@ -136,7 +136,7 @@ function ItemCard({ title, accent, items, hiIdx, preset }: {
 const TICKER_SLIDES = [
   "🔥 Gas Junction Cannabis — 2813 Dundas St W, Toronto",
   "200+ Strains In Stock",
-  "Open 24 Hours",
+  "Open Daily: 09:00 AM - 02:00 AM",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
   "🎮 Play Games at gasjunctioncannabis.com/games",
