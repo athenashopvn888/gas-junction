@@ -128,7 +128,7 @@ export default function PostContent() {
 
         <div className={styles.cta}>
           <p>
-            <strong>Gas Junction Cannabis</strong> — 2813 Dundas St W, Toronto · Open 24 Hours · (437) 535-7027
+            <strong>Gas Junction Cannabis</strong> — 2813 Dundas St W, Toronto · Open Daily: 09:00 AM - 02:00 AM · (437) 535-7027
           </p>
           <Link href="/exotic" className={styles.ctaBtn}>Browse Our Menu</Link>
         </div>

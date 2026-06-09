@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Gas Junction Cannabis",
   },
   description:
-    "Shop 200+ premium cannabis strains at Gas Junction Cannabis. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2813 Dundas St W. Open 24 Hours.",
+    "Shop 200+ premium cannabis strains at Gas Junction Cannabis. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2813 Dundas St W. Open Daily: 09:00 AM - 02:00 AM.",
   keywords: [
     "cannabis dispensary Toronto",
     "weed store Toronto",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Gas Junction Cannabis",
     title: "Gas Junction Cannabis — Premium Toronto Cannabis Dispensary",
     description:
-      "200+ strains from $3/g. Exotic to Budget. Toronto's uplifting dispensary at 2813 Dundas St W. Open 24 Hours.",
+      "200+ strains from $3/g. Exotic to Budget. Toronto's uplifting dispensary at 2813 Dundas St W. Open Daily: 09:00 AM - 02:00 AM.",
     images: [
       {
         url: "https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Gas Junction Cannabis — Toronto's Uplifting Dispensary",
-    description: "200+ strains from $3/g. Open 24 Hours at 2813 Dundas St W, Toronto.",
+    description: "200+ strains from $3/g. Open Daily: 09:00 AM - 02:00 AM at 2813 Dundas St W, Toronto.",
     images: ["https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
   robots: {
@@ -75,7 +75,7 @@ const jsonLd = {
   additionalType: "https://schema.org/Store",
   "@id": "https://gasjunctioncannabis.com",
   name: "Gas Junction Cannabis",
-  description: "Cannabis dispensary at 2813 Dundas St W in Toronto, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open 24 Hours.",
+  description: "Cannabis dispensary at 2813 Dundas St W in Toronto, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open Daily: 09:00 AM - 02:00 AM.",
   url: "https://gasjunctioncannabis.com",
   telephone: "+14375357027",
   image: "https://gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
@@ -94,13 +94,21 @@ const jsonLd = {
     longitude: -79.4630600,
   },
   openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
+  {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "09:00",
+    "closes": "02:00"
+  }
+],
   sameAs: [
     "https://gasjunctioncannabis.com/",
     "https://gasjunctioncannabis.com/",
