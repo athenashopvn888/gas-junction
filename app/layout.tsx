@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AgeGate from "./components/AgeGate";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gasjunctioncannabis.com"),
@@ -150,6 +151,18 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6BF78FQ8EC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6BF78FQ8EC');
+          `}
+        </Script>
         {children}
         <AgeGate />
       </body>
