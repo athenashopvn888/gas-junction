@@ -24,7 +24,7 @@ export const gbpLocation = {
     "Accessories"
   ],
   menuUrl: "/",
-  directionsUrl: "https://gasjunctioncannabis.com/",
+  directionsUrl: "https://www.google.com/maps/search/?api=1&query=2813%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6P%201Y6",
   mapEmbedUrl: "https://maps.google.com/maps?q=Gas%20Junction%20Cannabis%202813%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6P%201Y6&t=&z=15&ie=UTF8&iwloc=&output=embed",
   latitude: "43.6651700",
   longitude: "-79.4630600",
