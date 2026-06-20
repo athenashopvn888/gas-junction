@@ -17,20 +17,6 @@ export default function Footer() {
               Open: Open Daily: 09:00 AM - 02:00 AM.
             </p>
             <div className={styles.buttons}>
-              <a
-                href="tel:+14375357027"
-                className={styles.btnPrimary}
-              >
-                Call Now
-              </a>
-              <a
-                href="https://gasjunctioncannabis.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.btnSecondary}
-              >
-                Get Directions
-              </a>
             </div>
           </div>
 

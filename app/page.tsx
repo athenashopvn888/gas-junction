@@ -306,7 +306,7 @@ export default function HomePage() {
               Welcome to <strong>Gas Junction Cannabis</strong>, Toronto's premier cannabis destination at 2813 Dundas St W. We carry an electrifying selection of top-shelf strains — from ultra-rare exotics to solid everyday budget picks.
             </p>
             <p className={styles.seoPanelText}>
-              We are open Open Daily: 09:00 AM - 02:00 AM — Gas Junction Cannabis is here to serve you. Our live menu is constantly refreshed with the freshest drops, premium prerolls, artisan edibles, and everything in between. Whether you're winding down or stocking up for the weekend, our knowledgeable staff is always here for you.
+              We are open Open Daily: 09:00 AM - 02:00 AM — Gas Junction Cannabis is here to serve you. Our live menu is constantly refreshed with the freshest drops, premium prerolls, artisan edibles, and everything in between. Whether you're winding down or stocking up for the weekend, our knowledgeable staff can help during listed store hours.
             </p>
             <p className={styles.seoPanelText}>
               Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis is your go-to destination for premium flower, potent prerolls, and artisan edibles. Our six-tier pricing system means quality cannabis at every budget level — starting from just $3/g.
@@ -367,14 +367,6 @@ export default function HomePage() {
           </div>
 
           <div className={styles.reviewCtaRow}>
-            <a
-              href="https://gasjunctioncannabis.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.reviewsWrite}
-            >
-              ✍ Write a Google Review
-            </a>
           </div>
         </div>
       </section>
@@ -406,14 +398,6 @@ export default function HomePage() {
                 <br />
                 Toronto, ON M6P 1Y6
                 <br />
-                <a
-                  href="https://gasjunctioncannabis.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.storeLink}
-                >
-                  Get Directions →
-                </a>
               </p>
             </div>
             <div className={styles.storeCard}>
@@ -438,16 +422,6 @@ export default function HomePage() {
 
           {/* Map wrapper */}
           <div className={styles.mapWrap}>
-            <iframe
-              src="https://maps.google.com/maps?q=2813%20Dundas%20St%20W,+Toronto,+ON+M6P%201Y6&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="350"
-              style={{ border: 0, display: "block" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Gas Junction Cannabis — 2813 Dundas St W, Toronto"
-            ></iframe>
           </div>
         </div>
       </section>

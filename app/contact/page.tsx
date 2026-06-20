@@ -44,14 +44,6 @@ export default function ContactPage() {
                 <br />
                 <span className={styles.infoMuted}>2813 Dundas St W & Nearby Expressway</span>
               </p>
-              <a
-                href="https://gasjunctioncannabis.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.infoBtn}
-              >
-                Get Directions →
-              </a>
             </div>
 
             {/* Hours */}
@@ -107,16 +99,6 @@ export default function ContactPage() {
 
           {/* Map */}
           <div className={styles.mapSection}>
-            <iframe
-              src="https://maps.google.com/maps?q=2813%20Dundas%20St%20W,+Toronto,+ON+M6P%201Y6&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Gas Junction Cannabis — 2813 Dundas St W, Toronto"
-            ></iframe>
           </div>
         </div>
       </section>
