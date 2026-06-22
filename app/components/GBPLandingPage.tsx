@@ -95,6 +95,39 @@ export function GBPLandingPage() {
         </div>
       </section>
 
+      {/* Local Facts Section */}
+      <section className={styles.section}>
+        <h2 className={styles.h2}>Local Store Facts</h2>
+        <p className={styles.infoText}>
+          {gbpLocation.storeName} is a Toronto cannabis dispensary local page for adults 19+. This page helps shoppers find the store address, contact details, and menu/category links before visiting.
+        </p>
+        <div className={styles.napDetails}>
+          <div className={styles.napItem}>
+            <span className={styles.napLabel}>Address</span>
+            <span>{gbpLocation.address}</span>
+          </div>
+          <div className={styles.napItem}>
+            <span className={styles.napLabel}>City</span>
+            <span>{gbpLocation.city}</span>
+          </div>
+          <div className={styles.napItem}>
+            <span className={styles.napLabel}>Menu/category focus</span>
+            <span>Flower, pre-rolls, edibles, vapes, concentrates, CBD, and accessories.</span>
+          </div>
+          {gbpLocation.hours && gbpLocation.hours.length > 0 && (
+            <div className={styles.napItem}>
+              <span className={styles.napLabel}>Hours</span>
+              {gbpLocation.hours.map((line) => (
+                <span key={line} style={{ fontSize: "0.95rem" }}>{line}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <p className={styles.infoText}>
+          For current store details, shoppers should check this local page or contact the store directly before visiting.
+        </p>
+      </section>
+
       {/* Location & NAP Section */}
       <section className={styles.section}>
         <h2 className={styles.h2}>Visit {gbpLocation.storeName} in {gbpLocation.city}</h2>
@@ -172,31 +205,29 @@ export function GBPLandingPage() {
             <p className={styles.faqAnswer}>{gbpLocation.storeName} is located at {gbpLocation.address}.</p>
           </div>
           <div className={styles.faqItem}>
-            <h3 className={styles.faqQuestion}>Is {gbpLocation.storeName} a weed dispensary in {gbpLocation.city}?</h3>
+            <h3 className={styles.faqQuestion}>What can customers check before visiting {gbpLocation.storeName}?</h3>
             <p className={styles.faqAnswer}>
-              Yes, {gbpLocation.storeName} is a fully licensed local weed dispensary in {gbpLocation.city} serving cannabis customers aged 19 and older with valid identification.
+              Customers can use this local page to review the store address, contact details, hours shown on the page, and menu/category links before visiting.
             </p>
           </div>
           <div className={styles.faqItem}>
-            <h3 className={styles.faqQuestion}>What products does {gbpLocation.storeName} carry?</h3>
+            <h3 className={styles.faqQuestion}>Does this page show the local menu?</h3>
             <p className={styles.faqAnswer}>
-              We carry a complete line of weed products including premium flower, pre-rolls, THC edibles, concentrates, shatter, THC vape cartridges, CBD oils, and accessories.
+              This page links to the store website and menu/category areas where shoppers can browse store content. Product availability can change, so customers should check current store information before visiting.
             </p>
           </div>
           <div className={styles.faqItem}>
-            <h3 className={styles.faqQuestion}>Do I need to be 19+ to shop at {gbpLocation.storeName}?</h3>
+            <h3 className={styles.faqQuestion}>What product categories are usually shown?</h3>
             <p className={styles.faqAnswer}>
-              Yes, to visit our cannabis store or order from our menu, you must be at least 19 years of age. Valid government-issued photo ID is required for verification.
+              The store website may show categories such as flower, pre-rolls, edibles, vapes, concentrates, CBD, and accessories.
             </p>
           </div>
-          {gbpLocation.neighborhood && (
-            <div className={styles.faqItem}>
-              <h3 className={styles.faqQuestion}>Is {gbpLocation.storeName} near {gbpLocation.neighborhood}?</h3>
-              <p className={styles.faqAnswer}>
-                Yes, {gbpLocation.storeName} is located near {gbpLocation.neighborhood} and serves customers from nearby landmarks like {gbpLocation.localLandmarks.join(", ")}.
-              </p>
-            </div>
-          )}
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>How should customers confirm current hours?</h3>
+            <p className={styles.faqAnswer}>
+              Customers should use the hours shown on the current store page or contact the store directly before visiting.
+            </p>
+          </div>
         </div>
       </section>
     </div>
