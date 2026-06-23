@@ -160,13 +160,13 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   EDIBLES: {
     banner: "/banners/edibles_prerolls_more_banner.webp",
     name: "Edibles", slug: "edibles", color: "#f97316", icon: "🍬",
-    seoTitle: "Cannabis Edibles Toronto — Gummies, Chocolates & Drinks",
-    seoIntro: "Browse the full cannabis edibles menu at Gas Junction Cannabis on Toronto St, Toronto. We carry THC gummies, chocolates, drinks, and more from top Canadian brands.",
-    seoDescription: "Looking for cannabis edibles in Toronto? Gas Junction Cannabis stocks a wide range of THC-infused gummies, chocolates, beverages, and baked goods. Our edibles range from micro-dose options for beginners to high-potency products for experienced consumers. All products are lab-tested and sourced from licensed Canadian producers. Visit us at 2813 Dundas St W — we are Open Daily: 09:00 AM - 02:00 AM.",
+    seoTitle: "Cannabis Edibles in Toronto | Gas Junction Cannabis",
+    seoIntro: "Browse edibles category information at Gas Junction Cannabis in Toronto.",
+    seoDescription: "Review edible-related menu categories at Gas Junction Cannabis in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
     faqs: [
-      { q: "What cannabis edibles do you carry?", a: "We stock THC gummies, chocolates, beverages, capsules, and baked goods from top Canadian brands. Potencies range from 10mg to 1000mg+ THC." },
-      { q: "How long do edibles take to kick in?", a: "Cannabis edibles typically take 30-90 minutes to take effect. Start with a low dose (5-10mg) and wait at least 2 hours before consuming more." },
-      { q: "Can I buy edibles at Gas Junction Cannabis?", a: "Yes! Visit us at 2813 Dundas St W, Toronto. We're open daily from 09:00 AM to 02:00 AM with a full edibles selection in store." },
+      { q: "What edible information can shoppers review?", a: "Customers can review edible-related category information and confirm current menu details before visiting Gas Junction Cannabis." },
+      { q: "Does this page guarantee current edible availability?", a: "No. This page is for general category browsing; customers should confirm current menu details before visiting." },
+      { q: "How does this page help Toronto shoppers?", a: "It helps shoppers find the Gas Junction Cannabis edibles category and review store/menu information in one place." },
     ],
   },
   "VAPE PENS": {
