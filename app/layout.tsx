@@ -6,11 +6,11 @@ import Script from "next/script";
 export const metadata: Metadata = {
   metadataBase: new URL("https://gasjunctioncannabis.com"),
   title: {
-    default: "Gas Junction Cannabis — Premium Cannabis Dispensary, Toronto",
+    default: "Gas Junction Cannabis | The Junction Dispensary",
     template: "%s | Gas Junction Cannabis",
   },
   description:
-    "Shop 200+ premium cannabis strains at Gas Junction Cannabis. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2813 Dundas St W. Open Daily: 09:00 AM - 02:00 AM.",
+    "Gas Junction Cannabis is a Toronto dispensary on Dundas St W in The Junction with flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ info. Open Daily: 09:00 AM - 02:00 AM.",
   keywords: [
     "cannabis dispensary Toronto",
     "weed store Toronto",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: "https://gasjunctioncannabis.com",
     siteName: "Gas Junction Cannabis",
-    title: "Gas Junction Cannabis — Premium Toronto Cannabis Dispensary",
+    title: "Gas Junction Cannabis | The Junction Dispensary",
     description:
-      "200+ strains from $3/g. Exotic to Budget. Toronto's uplifting dispensary at 2813 Dundas St W. Open Daily: 09:00 AM - 02:00 AM.",
+      "Gas Junction Cannabis is a Toronto dispensary on Dundas St W in The Junction with flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ info. Open Daily: 09:00 AM - 02:00 AM.",
     images: [
       {
         url: "https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gas Junction Cannabis — Toronto's Uplifting Dispensary",
-    description: "200+ strains from $3/g. Open Daily: 09:00 AM - 02:00 AM at 2813 Dundas St W, Toronto.",
+    title: "Gas Junction Cannabis | The Junction Dispensary",
+    description: "Gas Junction Cannabis is a Toronto dispensary on Dundas St W in The Junction with flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ info. Open Daily: 09:00 AM - 02:00 AM.",
     images: ["https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
   robots: {
