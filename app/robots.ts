@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://gasjunctioncannabis.com/sitemap.xml",
+    sitemap: "https://www.gasjunctioncannabis.com/sitemap.xml",
   };
 }

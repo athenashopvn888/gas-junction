@@ -25,7 +25,7 @@ export const STORE_BLOG_CONFIG = {
   storeCode: "GJC01",
   storeName: "Gas Junction Cannabis",
   city: "Toronto",
-  domain: "gasjunctioncannabis.com",
+  domain: "www.gasjunctioncannabis.com",
   storePath: "/weed-dispensary-toronto",
 };
 
