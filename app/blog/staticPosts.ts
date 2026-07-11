@@ -31,286 +31,129 @@ export const STORE_BLOG_CONFIG = {
 
 export const STATIC_POSTS: StaticBlogPost[] = [
   {
-    slug: "gas-junction-cannabis-toronto-store-guide",
-    title: "Gas Junction Cannabis Local Store Guide for Adults 19+",
-    seoTitle: "Gas Junction Cannabis Guide | Toronto Adult 19+",
-    seo_title: "Gas Junction Cannabis Guide | Toronto Adult 19+",
-    metaDescription: "Adult 19+ guide to Gas Junction Cannabis around The Junction, with local store-page checks, menu-category context, and safe visit planning.",
-    meta_description: "Adult 19+ guide to Gas Junction Cannabis around The Junction, with local store-page checks, menu-category context, and safe visit planning.",
-    h1: "Gas Junction Cannabis Local Store Guide for Adults 19+",
-    excerpt: "Gas Junction Cannabis guide for adults 19+ reviewing store information around The Junction.",
-    author: "The Gas Junction Cannabis Team",
-    date: "2026-07-02",
-    category: "Store Guide",
-    readTime: "4 min",
-    content: `## Gas Junction Cannabis Local Store Guide for Adults 19+
-
-Gas Junction Cannabis serves adults 19+ looking for store information around The Junction. Use this guide to get oriented, compare the store page with menu categories, and choose the most useful next step before visiting.
-
-The focus is practical and store-specific: confirm the right storefront, browse helpful category links, and use the store page for directions, contact options, and visit planning.
-
-## Why Local Context Helps
-
-Gas Junction Cannabis is tied to The Junction and Dundas St W context in Toronto. Useful local content should make the page easier for shoppers to understand by connecting the store to nearby streets, neighbourhood language, and visit-planning details already supported by the site.
-
-Searchers often want to confirm that they are looking at the right storefront before they visit. A concise guide can support that decision by explaining the local context and the most helpful next steps.
-
-## Plan A Better Visit
-
-Start with the official Gas Junction Cannabis store page, then use the menu/category links to browse what the site makes easy to compare. Shoppers can confirm the right storefront, directions, contact options, and local visit details in one place.
-
-If you need a quick answer before heading out, check the store page first and contact the store directly for help from staff.
-
-## Browse Menu Categories With Confidence
-
-Menu category labels help adults 19+ move quickly from general store research to the product areas they care about. Use them to compare the sections already shown on the site, such as flower, pre-rolls, vapes, edibles, concentrates, accessories, or other store categories.
-
-That makes the page easier to scan and gives shoppers a cleaner path from local research to the right store page.
-
-## Adult 19+ Visit Basics
-
-Adults 19+ should bring valid government identification, confirm the store page before leaving, and use the menu/category links to narrow down what they want to ask about in-store.
-
-The goal is simple: help real shoppers feel confident they are on the right store site and know where to find the next useful page.
-
-## FAQ
-
-### Is this guide for Gas Junction Cannabis only?
-
-Yes. This guide is written for Gas Junction Cannabis and the local Toronto context connected to this website.
-
-### How can shoppers check current menu details?
-
-Use the store page and menu/category links before visiting, then ask staff if you need help comparing options.
-
-### Who can use this guide?
-
-This guide is for adults 19+ who want to understand the store page before visiting.
-
-### What is the best next step after reading?
-
-Open the store page, browse the available menu/category sections, and use the contact or directions options when you are ready to plan your visit.`,
-    faq: "",
-    internal_links_used: "[Gas Junction Cannabis Toronto store page](/weed-dispensary-toronto)\\n[Gas Junction Cannabis homepage](/)\\n[More Gas Junction Cannabis guides](/blog)",
-    relatedLinks: [
+    "slug": "gas-junction-cannabis-toronto-store-guide",
+    "title": "How to Shop the Gas Junction Cannabis Menu Like a Pro",
+    "seoTitle": "Gas Junction Cannabis Menu Guide | Toronto Cannabis Shopping Tips",
+    "seo_title": "Gas Junction Cannabis Menu Guide | Toronto Cannabis Shopping Tips",
+    "metaDescription": "A relaxed Gas Junction Cannabis menu guide for shoppers comparing flower, pre-rolls, edibles, THC vapes, concentrates, and value options in Toronto.",
+    "meta_description": "A relaxed Gas Junction Cannabis menu guide for shoppers comparing flower, pre-rolls, edibles, THC vapes, concentrates, and value options in Toronto.",
+    "h1": "How to Shop the Gas Junction Cannabis Menu Like a Pro",
+    "excerpt": "A plain-spoken guide to shopping the Gas Junction Cannabis menu without getting lost in every category at once.",
+    "author": "The Gas Junction Cannabis Team",
+    "date": "2026-07-11",
+    "category": "Menu Guide",
+    "readTime": "5 min",
+    "content": "If you searched for a weed dispensary in The Junction, do not make the menu harder than it has to be. Open Gas Junction Cannabis, pick the lane that matches the visit, and compare from there. That is the whole move.\n\nThe menu is not one giant mystery box. Flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarette options all solve different shopping problems. Treat them that way and the page gets easier fast.\n\n## Start With The Store Page\n\nBefore you compare strains or categories, make sure you are on the right Gas Junction Cannabis page. That page is where shoppers should confirm the store name, directions, contact options, listed hours, and the main menu path before heading over.\n\nThis matters because menu pages can change. A blog should help you shop smarter, not pretend it knows what is sitting on the shelf this minute. When timing or one exact product matters, check the current menu or ask staff before leaving.\n\n## Pick One Category First\n\nThe fastest shoppers usually start with one product type. If you want flower, go to flower. If you want pre-rolls, do not get pulled into edibles first. If THC vapes are the mission, compare vape listings and item notes before bouncing around the whole site.\n\nThat simple habit keeps the visit clean. It also helps anyone looking for a cannabis dispensary in Toronto compare real menu options without turning the whole thing into homework.\n\n## Use The Flower Tiers The Right Way\n\nFlower shoppers should start with the tier that matches the budget and mood of the visit. Exotic flower and premium flower are there when you want the higher shelf lanes first. AAA+, AA, and Budget are there when you want to compare value with less noise.\n\nIf cheap weed, budget weed, or affordable weed is the plan, start in Budget and AA before drifting upward. If you already know you want something louder, start higher and compare the current names, weights, and notes inside that lane.\n\n## Compare What Is Current\n\nOnce you pick the category, compare the details that are actually useful: product name, format, weight or package size, posted price, and item notes. If something is unclear, ask staff. That is faster than guessing and better than memorizing an old example from a blog post.\n\nThe good shopper move is simple: use the guide for the method, use the live menu for the current details, and use staff when the final call needs a human answer. Shoppers comparing Native smokes can also use the resources section for carton-style cigarette notes and brand names like Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, and Canadian Classics Original.\n\n## Keep The Visit Easy\n\nGas Junction Cannabis serves shoppers around The Junction, Dundas St W, Keele, High Park North. If you are looking for a weed store near The Junction, keep the page open while you compare categories, then use the store page when you are ready for directions or contact options.\n\nNo stiff lecture needed. Pick the lane, compare the details, and make the visit clean.",
+    "faq": "",
+    "internal_links_used": "[Gas Junction Cannabis store page](/weed-dispensary-toronto)\n[Gas Junction Cannabis resources](/resources)\n[Flower guide](/resources/flower-guide)\n[Gas Junction Cannabis blog](/blog)",
+    "relatedLinks": [
       {
-            "title": "Gas Junction Cannabis Toronto store page",
-            "url": "https://gasjunctioncannabis.com/weed-dispensary-toronto",
-            "description": "Primary store-specific destination for current store details after reading the guide."
+        "title": "Gas Junction Cannabis store page",
+        "url": "/weed-dispensary-toronto",
+        "description": "Use this first for directions, contact options, listed hours, and the current menu path."
       },
       {
-            "title": "Gas Junction Cannabis homepage",
-            "url": "https://gasjunctioncannabis.com/",
-            "description": "Store-scoped general navigation for adults 19+."
+        "title": "Gas Junction Cannabis resources",
+        "url": "/resources",
+        "description": "Menu-shopping notes, flower tips, value notes, and local visit resources."
       },
       {
-            "title": "More Gas Junction Cannabis guides",
-            "url": "https://gasjunctioncannabis.com/blog",
-            "description": "Store-scoped blog index for future approved posts."
-      }
-],
-  },
-  {
-    slug: "gas-junction-cannabis-price-flower-tier-guide",
-    title: "Gas Junction Cannabis Price and Flower Tier Guide",
-    seoTitle: "Gas Junction Cannabis Price Tier Guide",
-    seo_title: "Gas Junction Cannabis Price Tier Guide",
-    metaDescription: "Gas Junction Cannabis guide to flower tiers, weight choices, unit value, and store visit planning in Toronto.",
-    meta_description: "Gas Junction Cannabis guide to flower tiers, weight choices, unit value, and store visit planning in Toronto.",
-    h1: "Gas Junction Cannabis Price and Flower Tier Guide",
-    excerpt: "A simple guide to Gas Junction Cannabis flower tiers, weights, and unit value.",
-    author: "The Gas Junction Cannabis Team",
-    date: "2026-07-09",
-    category: "Price Guide",
-    readTime: "4 min",
-    content: `## Gas Junction Cannabis Price and Flower Tier Guide
-
-Gas Junction Cannabis makes flower shopping easier by organizing the menu into clear tiers. Start with the tier that matches the kind of flower you want, then choose the weight that fits your budget and visit.
-
-The simple idea is: pick the grade, compare the weight, and use the live menu before you head in. Larger weights usually improve unit value, so both the total price and the price per gram are worth checking.
-
-## Start With A Tier
-
-Use these tier pages when you want to compare the menu directly:
-
-- [Exotic flower](/exotic): a top-shelf lane for shoppers who want the highest tier first.
-- [Premium flower](/premium): a strong middle-to-top lane for shoppers balancing quality and value.
-- [AAA+ flower](/aaa): a simple quality lane with easy weight comparisons.
-- [AA flower](/aa): a value-focused lane for straightforward everyday browsing.
-- [Budget flower](/budget): the clearest low-cost lane when price is the main priority.
-
-Once the tier feels right, the live menu helps shoppers compare the current strains and weights inside that tier.
-
-## How The Weight Ladder Helps Value
-
-Moving up in weight usually improves the unit value. That means the shopper can look beyond the total price and see how the price per gram changes as the amount gets larger.
-
-Current tier examples commonly shown across the store menu include:
-
-- Exotic flower: 1g at $20/g; 3g at $40, about $13.33/g; 6g at $60, about $10/g.
-- Premium flower: 1g at $15/g; 3g at $30, about $10/g; 6g at $45, about $7.50/g.
-- AAA+ flower: 1g at $10/g; 3g at $20, about $6.67/g; 6g at $30, about $5/g.
-- AA flower: a simple value tier around $4/g where listed on the menu.
-- Budget flower: a low-cost lane around $3/g or $10/3g where listed on the menu.
-
-That structure keeps the buying path easy: choose the grade, choose the weight, and compare the unit value before visiting.
-
-## Match The Visit To The Budget
-
-If the goal is the smallest spend, start with the smaller weight options. If you already know the tier you like, compare the next weight step and see how much the unit value improves. If you want a stronger flower lane, stay in Premium or Exotic and compare from there.
-
-This is why a tiered menu works well for local storefront shopping. It keeps the decision organized, makes value easier to understand, and gives shoppers better questions to ask staff when they visit.
-
-## Use The Live Menu Before Visiting
-
-For the smoothest visit, open the Gas Junction Cannabis menu before heading out. The live menu is the best place to compare current flower tiers, weights, and store-specific options. The store page is also useful for directions, contact details, and visit planning.
-
-If you are comparing flower tiers in Toronto, use this page as the simple guide, then use the live menu for the current selection.
-
-## Helpful Next Steps
-
-- Compare [Exotic flower](/exotic), [Premium flower](/premium), [AAA+ flower](/aaa), [AA flower](/aa), and [Budget flower](/budget).
-- Open the Gas Junction Cannabis store page for directions, contact details, and visit planning.
-- Use the blog index for more store-specific guides.
-
-## FAQ
-
-### How do I choose the right flower tier?
-
-Start with the grade that fits the visit, then compare the weight options inside that tier. This makes it easier to balance quality, amount, and budget.
-
-### Why does unit value matter?
-
-Unit value shows the approximate price per gram at different weights. It helps shoppers see how value changes as they move from 1g to larger options like 3g or 6g.
-
-### Why link to each tier page?
-
-Each tier page gives shoppers a faster path to the exact flower lane they want instead of forcing everyone through the full menu first.
-
-### Where should shoppers check current strains?
-
-Use the live menu for current store-specific selection, then use the store page for directions, contact details, and visit planning.`,
-    faq: "",
-    internal_links_used: "[Exotic flower](/exotic)\\n[Premium flower](/premium)\\n[AAA+ flower](/aaa)\\n[AA flower](/aa)\\n[Budget flower](/budget)\\n[Gas Junction Cannabis store page](/weed-dispensary-toronto)",
-    relatedLinks: [
-      {
-        title: "Exotic flower",
-        url: "https://gasjunctioncannabis.com/exotic",
-        description: "Top-shelf flower tier for quick comparison."
-      },
-      {
-        title: "Premium flower",
-        url: "https://gasjunctioncannabis.com/premium",
-        description: "Premium flower tier for quality and value comparison."
-      },
-      {
-        title: "AAA+ flower",
-        url: "https://gasjunctioncannabis.com/aaa",
-        description: "AAA+ flower tier for easy weight comparisons."
-      },
-      {
-        title: "AA flower",
-        url: "https://gasjunctioncannabis.com/aa",
-        description: "AA flower tier for straightforward value browsing."
-      },
-      {
-        title: "Budget flower",
-        url: "https://gasjunctioncannabis.com/budget",
-        description: "Budget flower tier for low-cost browsing."
-      },
-      {
-        title: "Gas Junction Cannabis store page",
-        url: "https://gasjunctioncannabis.com/weed-dispensary-toronto",
-        description: "Store-specific page for directions, contact details, and visit planning."
+        "title": "Gas Junction Cannabis blog",
+        "url": "/blog",
+        "description": "More store-specific shopper guides written for this location."
       }
     ]
   },
   {
-    slug: "gas-junction-cannabis-local-visit-guide-2026",
-    title: "Gas Junction Cannabis Local Visit Guide for Adults 19+",
-    seoTitle: "Gas Junction Cannabis Local Visit Guide | Toronto Adult 19+",
-    seo_title: "Gas Junction Cannabis Local Visit Guide | Toronto Adult 19+",
-    metaDescription: "Plan a visit to Gas Junction Cannabis in Toronto with adult 19+ store-page checks, menu-category paths, and local directions context.",
-    meta_description: "Plan a visit to Gas Junction Cannabis in Toronto with adult 19+ store-page checks, menu-category paths, and local directions context.",
-    h1: "Gas Junction Cannabis Local Visit Guide for Adults 19+",
-    excerpt: "Gas Junction Cannabis guide for adults 19+ checking local context, store pages, and menu-category paths around The Junction.",
-    author: "The Gas Junction Cannabis Team",
-    date: "2026-07-09",
-    category: "Local Guide",
-    readTime: "5 min",
-    content: `Use this guide to confirm the right Gas Junction Cannabis storefront around The Junction, understand nearby street context, and choose the most useful store page or menu path before visiting.
-
-For current details, start with the official store page or contact staff before leaving.
-
-## Confirm The Right Storefront
-
-Gas Junction Cannabis is tied to The Junction, Dundas West, west Toronto, nearby local roads. Local shoppers often compare several nearby search results, so the first job of this page is to make the store identity, area context, and next click easy to understand.
-
-That matters for local SEO because the page is not just repeating a city name. It gives adults 19+ a practical way to recognize the correct store and move from search intent to the right owned page.
-
-## Use The Menu Before Visiting
-
-The store page and menu/category links are the cleanest starting point when a shopper wants to compare broad sections before visiting. Use them for category browsing, then contact the store or ask staff if a specific product question matters.
-
-For item-specific questions, shoppers should use the current menu experience where available, contact the store, or ask staff before visiting. The guide helps them find the right path and understand the store context.
-
-## What To Check Before You Go
-
-- The exact store page and map destination.
-- Current hours, directions, and contact options.
-- Menu categories you want to compare before asking staff.
-- Valid adult 19+ identification for the visit.
-
-## Why The Local Context Matters
-
-Searches near The Junction usually come from shoppers who already have a real-world route in mind. Mentioning nearby streets, neighbourhood language, and local travel context helps the page match how people actually search without inventing claims.
-
-It also gives the store a useful internal link target for Google and for real shoppers. The page connects the homepage, blog, and store page instead of sitting as an orphaned direct URL.
-
-## Helpful Next Steps
-
-- Open the Gas Junction Cannabis store page: [https://www.gasjunctioncannabis.com/weed-dispensary-toronto](https://www.gasjunctioncannabis.com/weed-dispensary-toronto)
-- Browse more local guides from the blog: [https://www.gasjunctioncannabis.com/blog](https://www.gasjunctioncannabis.com/blog)
-- Confirm store-specific details before heading out.
-
-## FAQ
-
-### Is this guide only for Gas Junction Cannabis?
-
-Yes. This page is written for Gas Junction Cannabis and the The Junction area.
-
-### How can shoppers check current product details?
-
-Use the current menu experience where available or contact the store before visiting. This guide helps with local planning and points shoppers to the current store path.
-
-### What should shoppers check first?
-
-Start with the official store page, confirm the location context, then use category links or staff help for product questions.
-
-### Why mention nearby streets and areas?
-
-Local shoppers search with neighbourhood and street language. Clear local context helps them confirm they are looking at the right store.`,
-    faq: "Adult 19+ visit planning, store-page checks, menu-category browsing, and local area context.",
-    internal_links_used: "/weed-dispensary-toronto, /blog, /blog/gas-junction-cannabis-local-visit-guide-2026",
-    relatedLinks:     [
-          {
-                "title": "Gas Junction Cannabis store page",
-                "url": "https://www.gasjunctioncannabis.com/weed-dispensary-toronto",
-                "description": "Official Gas Junction Cannabis page for local visit planning."
-          },
-          {
-                "title": "Gas Junction Cannabis homepage",
-                "url": "https://www.gasjunctioncannabis.com/",
-                "description": "Start from the Gas Junction Cannabis homepage."
-          },
-          {
-                "title": "More Gas Junction Cannabis guides",
-                "url": "https://www.gasjunctioncannabis.com/blog",
-                "description": "Browse more store-specific guides and updates."
-          }
-    ],
+    "slug": "gas-junction-cannabis-price-flower-tier-guide",
+    "title": "How to Compare Gas Junction Cannabis Flower Without Guessing",
+    "seoTitle": "Gas Junction Cannabis Flower Guide | Exotic, Premium, Budget Weed",
+    "seo_title": "Gas Junction Cannabis Flower Guide | Exotic, Premium, Budget Weed",
+    "metaDescription": "Compare exotic flower, premium flower, cheap weed, budget weed, and affordable weed at Gas Junction Cannabis with a cleaner shopping method.",
+    "meta_description": "Compare exotic flower, premium flower, cheap weed, budget weed, and affordable weed at Gas Junction Cannabis with a cleaner shopping method.",
+    "h1": "How to Compare Gas Junction Cannabis Flower Without Guessing",
+    "excerpt": "A flower-focused guide for shoppers who want to compare tiers, value, and current menu notes without overthinking it.",
+    "author": "The Gas Junction Cannabis Team",
+    "date": "2026-07-11",
+    "category": "Flower Guide",
+    "readTime": "5 min",
+    "content": "Flower shopping gets messy when every jar looks like it is fighting for the spotlight. The better move at Gas Junction Cannabis is to start with the tier, then compare the current listings inside that lane.\n\nThat works whether you are chasing exotic flower, checking premium flower, or trying to keep the spend low with budget weed. The menu becomes easier when you stop treating every category like the same errand.\n\n## Start With The Lane\n\nUse the flower tiers like a shortcut. Exotic is the higher shelf lane. Premium is for shoppers who want a strong flower option without jumping straight into every top-end listing. AAA+, AA, and Budget give you cleaner ways to compare price and value.\n\nIf you searched for cheap weed in Toronto, start with Budget and AA. If you searched for a weed dispensary in The Junction because you want something more special, start with Premium or Exotic and compare from there.\n\n## Compare The Details That Matter\n\nInside the tier, look at the posted product name, format, weight, price, and item notes. That is where the decision actually happens. The tier gets you close; the current menu details help you choose.\n\nDo not let an old price example make the decision for you. Menus move. Names rotate. The clean habit is to use this guide for the shopping method and the live menu or staff for what is current today.\n\n## Keep Value In Plain View\n\nAffordable weed does not mean shopping blind. It means knowing which lane to open first. Budget and AA are where value-minded shoppers should start. AAA+ can be a good middle lane when you want to step up without jumping all the way into Exotic.\n\nIf the price looks right but the product notes are thin, ask staff. If the name looks right but the format is not what you wanted, switch lanes. Simple.\n\n## Keep Flower Separate From Everything Else\n\nFlower is flower. Pre-rolls, edibles, THC vapes, concentrates, and accessories each deserve their own comparison. Mixing every format into one decision usually slows the visit down.\n\nStart with flower, finish the flower decision, then move to the next category if you still want to browse. That is how you shop Gas Junction Cannabis without turning a quick stop into a guessing game.\n\n## Best Next Move\n\nOpen the flower tier that fits the visit, compare the current details, and use the Gas Junction Cannabis store page when you are ready for directions or contact options.",
+    "faq": "",
+    "internal_links_used": "[Exotic flower](/exotic)\n[Premium flower](/premium)\n[AAA+ flower](/aaa)\n[AA flower](/aa)\n[Budget flower](/budget)\n[Flower guide](/resources/flower-guide)",
+    "relatedLinks": [
+      {
+        "title": "Exotic flower",
+        "url": "/exotic",
+        "description": "Open the exotic flower lane when you want to compare the highest shelf category first."
+      },
+      {
+        "title": "Premium flower",
+        "url": "/premium",
+        "description": "Use the premium flower lane when you want a strong middle-to-upper shelf comparison."
+      },
+      {
+        "title": "AAA+ flower",
+        "url": "/aaa",
+        "description": "Use AAA+ when you want a clear flower tier without starting at the top shelf."
+      },
+      {
+        "title": "AA flower",
+        "url": "/aa",
+        "description": "Use AA for a straight value-minded flower browse."
+      },
+      {
+        "title": "Budget flower",
+        "url": "/budget",
+        "description": "Use Budget when cheap weed or affordable weed is the mission."
+      },
+      {
+        "title": "Flower guide",
+        "url": "/resources/flower-guide",
+        "description": "A cleaner way to compare flower tiers before checking the current menu."
+      }
+    ]
   },
+  {
+    "slug": "gas-junction-cannabis-local-visit-guide-2026",
+    "title": "Gas Junction Cannabis Local Visit Guide for The Junction",
+    "seoTitle": "Gas Junction Cannabis Local Visit Guide | Weed Store Near The Junction",
+    "seo_title": "Gas Junction Cannabis Local Visit Guide | Weed Store Near The Junction",
+    "metaDescription": "Plan a Gas Junction Cannabis visit around The Junction with practical menu tips for flower, pre-rolls, edibles, THC vapes, concentrates, and Native smokes where listed.",
+    "meta_description": "Plan a Gas Junction Cannabis visit around The Junction with practical menu tips for flower, pre-rolls, edibles, THC vapes, concentrates, and Native smokes where listed.",
+    "h1": "Gas Junction Cannabis Local Visit Guide for The Junction",
+    "excerpt": "A practical local guide for shoppers who want the right store page, the right menu lane, and fewer surprises before visiting.",
+    "author": "The Gas Junction Cannabis Team",
+    "date": "2026-07-11",
+    "category": "Local Guide",
+    "readTime": "5 min",
+    "content": "A good visit starts before you leave. If you are looking for a weed store near The Junction or a cannabis dispensary in Toronto, start with the Gas Junction Cannabis store page, then open the category that matches the visit.\n\nThat sounds basic, but it saves time. The store page keeps the practical details together. The menu categories help you compare flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and other supported sections without bouncing all over the site.\n\n## Confirm The Store Page First\n\nUse the store page to confirm the right Gas Junction Cannabis listing, directions, contact options, and listed hours. If one item decides the whole trip, check the current menu or ask staff before heading over.\n\nThis is especially useful around The Junction, Dundas St W, Keele, High Park North, where shoppers may compare more than one local result before choosing where to go. The right page keeps the trip pointed at the right storefront.\n\n## Make The Menu Do Some Work\n\nPick one menu lane before you browse. Flower shoppers should compare flower tiers. Pre-roll shoppers should stay in pre-rolls. Edible shoppers should compare edible names, package details, and posted notes. Vape and concentrate shoppers should use those categories directly.\n\nThat keeps the visit moving. It also lets natural keywords do their job without making the copy sound weird: weed dispensary in The Junction, cannabis dispensary in Toronto, cheap weed, budget weed, premium flower, pre-rolls, edibles, THC vapes, and concentrates all belong in normal shopping sentences when the page is actually useful.\n\n## Use Staff For The Final Call\n\nBlogs can explain how to shop the menu. Staff and the current menu handle the details that change. If a product note is unclear, if the package size matters, or if you are deciding between two similar listings, ask before choosing.\n\nThat is not overthinking it. That is how real shoppers keep the visit smooth.\n\n## Keep The Local Search Simple\n\nWhen you are ready, open the Gas Junction Cannabis store page. Use it for directions and contact options, then keep the menu open if you are comparing categories on the way.\n\nThe whole point is a cleaner visit: right store, right lane, right question for staff if you need one.",
+    "faq": "",
+    "internal_links_used": "[Gas Junction Cannabis store page](/weed-dispensary-toronto)\n[Menu guide](/resources/menu-guide)\n[Value guide](/resources/value-guide)\n[Gas Junction Cannabis blog](/blog)",
+    "relatedLinks": [
+      {
+        "title": "Gas Junction Cannabis store page",
+        "url": "/weed-dispensary-toronto",
+        "description": "Use this page for directions, contact options, listed hours, and the main store path."
+      },
+      {
+        "title": "Menu guide",
+        "url": "/resources/menu-guide",
+        "description": "Use this resource when you want a cleaner way to choose categories."
+      },
+      {
+        "title": "Value guide",
+        "url": "/resources/value-guide",
+        "description": "Use this when price, budget weed, and affordable weed are part of the visit."
+      },
+      {
+        "title": "Gas Junction Cannabis blog",
+        "url": "/blog",
+        "description": "More local shopper guides for this store."
+      }
+    ]
+  }
 ];
+
 export function getStaticPost(slug: string) {
   return STATIC_POSTS.find((post) => post.slug === slug);
 }

@@ -139,7 +139,6 @@ const TICKER_SLIDES = [
   "Open Daily: 09:00 AM - 02:00 AM",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
-  "🎮 Play Games at gasjunctioncannabis.com/games",
 ];
 
 function VerticalTicker() {
