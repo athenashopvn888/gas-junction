@@ -1,4 +1,4 @@
-﻿// Auto-generated Google Business Profile Local SEO Landing Page Component
+// Auto-generated Google Business Profile Local SEO Landing Page Component
 import Link from "next/link";
 import styles from "./GBPLandingPage.module.css";
 import { gbpLocation } from "../lib/gbp-location";
@@ -135,7 +135,7 @@ export function GBPLandingPage() {
         </p>
         <p className={styles.infoText}>
           For a fuller local overview, read the{" "}
-          <Link href="/blog/gas-junction-cannabis-toronto-store-guide">Gas Junction store guide</Link>.
+          <Link href="/resources">Resources</Link>.
         </p>
         <div className={styles.btnRow}>
           <Link href={gbpLocation.menuUrl} className={`${styles.btn} ${styles.btnPrimary}`}>
