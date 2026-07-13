@@ -38,8 +38,8 @@ export default function NotFound() {
             lineHeight: 1.6,
           }}
         >
-          This page doesn&apos;t exist — but our shelves are fully stocked.
-          Browse 200+ strains at Toronto&apos;s most fire dispensary.
+          This page doesn&apos;t exist — but the current menu and store details are still ready.
+          Browse Gas Junction Cannabis before visiting The Junction shop.
         </p>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
           <Link

@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:copy": "node scripts/verify-copy-hygiene.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.4",

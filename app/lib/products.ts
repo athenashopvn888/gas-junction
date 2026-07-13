@@ -174,7 +174,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     name: "THC Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
     seoTitle: "Vape Pens Toronto — THC & Nicotine Cartridges",
     seoIntro: "Shop THC and nicotine vape pens at Gas Junction Cannabis, Toronto. Cartridges, 510-thread batteries, and premium vape brands — all in stock.",
-    seoDescription: "Gas Junction Cannabis carries a curated selection of vape pens and cartridges in Toronto. From 510-thread THC cartridges to nicotine vape pods, we stock the most popular brands and flavours. Our knowledgeable budtenders can help you choose the right cartridge and battery setup. Visit us at 2813 Dundas St W for the best vape selection in ByWard Market.",
+    seoDescription: "Gas Junction Cannabis carries a curated selection of vape pen category information in Toronto. From 510-thread THC cartridge details to nicotine vape category browsing, shoppers can review menu information before visiting 2813 Dundas St W in The Junction.",
     faqs: [
       { q: "What vape pens do you sell?", a: "We carry 510-thread THC cartridges, nicotine vape pods, disposable vapes, and compatible batteries from top Canadian brands." },
       { q: "Do you sell vape batteries?", a: "Yes! We stock 510-thread batteries and pod systems that pair with our cartridge selection." },
@@ -236,12 +236,12 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     banner: "/banners/06_Cigarettes.webp",
     name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
     seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Gas Junction Cannabis",
-    seoIntro: "Discount native cigarettes at Gas Junction Cannabis, Toronto. Premium and value brands at the best prices on Toronto St.",
-    seoDescription: "Gas Junction Cannabis is your go-to source for affordable native cigarettes in Toronto. We carry a wide selection of premium and value tobacco brands at competitive prices. Located at 2813 Dundas St W in the heart of 2813 Dundas St W & Nearby Expressway, we're Open Daily: 09:00 AM - 02:00 AM.",
+    seoIntro: "Native cigarette category information at Gas Junction Cannabis, Toronto.",
+    seoDescription: "Gas Junction Cannabis includes cigarette category information for Toronto shoppers. Located at 2813 Dundas St W in The Junction, the store is open daily from 09:00 AM to 02:00 AM.",
     faqs: [
       { q: "Do you sell cigarettes at Gas Junction Cannabis?", a: "Yes! We carry a wide selection of native cigarette brands at competitive prices." },
       { q: "What cigarette brands do you carry?", a: "We stock a variety of premium and value native cigarette brands. Visit us to see our full in-store selection." },
-      { q: "Are your cigarette prices competitive?", a: "Absolutely. We offer some of the best cigarette prices in the 2813 Dundas St W & Nearby Expressway area of Toronto." },
+      { q: "Are your cigarette prices competitive?", a: "Check current in-store pricing before visiting, since cigarette selection and pricing can change." },
     ],
   },
 };

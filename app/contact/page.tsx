@@ -42,7 +42,7 @@ export default function ContactPage() {
                 <br />
                 Toronto, ON M6P 1Y6
                 <br />
-                <span className={styles.infoMuted}>2813 Dundas St W & Nearby Expressway</span>
+                <span className={styles.infoMuted}>The Junction, Toronto</span>
               </p>
             </div>
 
@@ -79,11 +79,11 @@ export default function ContactPage() {
               <div className={styles.featureList}>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>
-                  200+ strains in stock
+                  Flower tiers and menu categories
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>
-                  Lab-tested &amp; safe
+                  Current details before you visit
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>

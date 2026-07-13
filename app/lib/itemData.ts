@@ -15,8 +15,8 @@ export function getItemData(category: string, name: string): ItemEffects {
         { emoji: "😌", label: "Body High" },
         { emoji: "🍬", label: "Flavorful" },
       ],
-      description: `${name} is a premium cannabis edible available at Gas Junction Cannabis. Made with high-quality distillate or full-spectrum extract, it provides a consistent, long-lasting, and discreet experience. Perfect for those who prefer not to smoke while still enjoying the full benefits of cannabis.`,
-      metaDescription: `Buy ${name} cannabis edibles in Toronto at Gas Junction Cannabis. Consistent, discreet, and long-lasting effects. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+      description: `${name} appears in the edibles category at Gas Junction Cannabis. Review the current menu details before visiting, because product availability and potency can change.`,
+      metaDescription: `Review ${name} cannabis edible information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
       consume: "Start low and go slow. We recommend starting with 5-10mg of THC. Edibles can take 45 to 120 minutes to take full effect. Wait at least 2 hours before consuming more.",
     };
   }
@@ -28,8 +28,8 @@ export function getItemData(category: string, name: string): ItemEffects {
         { emoji: "⚡", label: "Potent" },
         { emoji: "🤫", label: "Discreet" },
       ],
-      description: `${name} is a high-quality vape product available at Gas Junction Cannabis. Designed for convenience and discretion, this vape delivers smooth, flavorful vapor and rapid effects. Engineered for reliability, it ensures a premium experience from the first pull to the last.`,
-      metaDescription: `Shop ${name} vape pens and cartridges in Toronto at Gas Junction Cannabis. Fast-acting and potent. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+      description: `${name} appears in the vape category at Gas Junction Cannabis. Review current menu details before visiting, because product formats, flavours, and availability can change.`,
+      metaDescription: `Review ${name} vape information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
       consume: "Take 1-2 small puffs and wait 10-15 minutes to gauge the effects before consuming more. Do not chain-vape to avoid burning the coil.",
     };
   }
@@ -41,8 +41,8 @@ export function getItemData(category: string, name: string): ItemEffects {
         { emoji: "⚡", label: "Fast Acting" },
         { emoji: "💎", label: "Pure" },
       ],
-      description: `${name} is a premium cannabis concentrate known for its exceptional purity and potency. Crafted using advanced extraction techniques, it preserves the rich terpene profile of the original strain for maximum flavor and effect. Available now at Gas Junction Cannabis.`,
-      metaDescription: `Buy ${name} cannabis concentrate in Toronto at Gas Junction Cannabis. Highly potent and pure extracts. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+      description: `${name} appears in the concentrates category at Gas Junction Cannabis. Confirm current product details, format, and availability before visiting.`,
+      metaDescription: `Review ${name} cannabis concentrate information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
       consume: "Best consumed using a dab rig, concentrate pen, or by sprinkling a small amount over flower. Due to its high potency, start with an extremely small amount (the size of a grain of rice).",
     };
   }
@@ -54,8 +54,8 @@ export function getItemData(category: string, name: string): ItemEffects {
         { emoji: "⏱️", label: "Quick Onset" },
         { emoji: "🤝", label: "Shareable" },
       ],
-      description: `${name} is a ready-to-smoke pre-roll made from premium cannabis flower. Perfectly ground and expertly rolled for a smooth, even burn every time. Skip the rolling and enjoy a high-quality smoke straight out of the tube.`,
-      metaDescription: `Get ${name} pre-rolled joints in Toronto at Gas Junction Cannabis. Premium flower, perfectly rolled. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+      description: `${name} appears in the pre-roll category at Gas Junction Cannabis. Check current menu details before visiting, since strain, pack size, and availability can change.`,
+      metaDescription: `Review ${name} pre-roll information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
       consume: "Light the end evenly while rotating the joint to prevent canoeing. Take smooth, slow inhales. Wait 10-15 minutes after a few puffs to gauge the effects.",
     };
   }
@@ -67,8 +67,8 @@ export function getItemData(category: string, name: string): ItemEffects {
         { emoji: "🧠", label: "Mind Expanding" },
         { emoji: "✨", label: "Euphoric" },
       ],
-      description: `${name} is a premium specialty product curated for quality and consistency. Whether you are careful use for mental clarity or exploring a deeper journey, this product delivers a reliable and profound experience.`,
-      metaDescription: `Shop ${name} specialty specialty items in Toronto at Gas Junction Cannabis. High quality and consistent. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+      description: `${name} appears in the specialty category at Gas Junction Cannabis. Confirm current product details and follow all package directions before use.`,
+      metaDescription: `Review ${name} specialty item information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
       consume: "For careful use, consume 0.1g - 0.3g. For a full experience, start with 1g - 2g. Always consume in a safe, comfortable environment. Effects can take 30-90 minutes to onset.",
     };
   }
@@ -79,8 +79,8 @@ export function getItemData(category: string, name: string): ItemEffects {
       { emoji: "⭐", label: "Premium Quality" },
       { emoji: "✅", label: "Reliable" },
     ],
-    description: `${name} is a top-quality product available right now at Gas Junction Cannabis. We source only the best products to ensure our customers are fully satisfied.`,
-    metaDescription: `Buy ${name} in Toronto at Gas Junction Cannabis. Premium quality and best prices. Walk-ins welcome. Open Daily: 09:00 AM - 02:00 AM.`,
+    description: `${name} appears in the Gas Junction Cannabis menu. Confirm current product details and availability before visiting the Toronto store.`,
+    metaDescription: `Review ${name} information in Toronto at Gas Junction Cannabis. Walk-ins welcome during posted store hours.`,
     consume: "Use as directed on the packaging.",
   };
 }
