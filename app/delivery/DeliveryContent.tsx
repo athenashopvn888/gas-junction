@@ -82,13 +82,13 @@ export default function DeliveryContent() {
         <div className={styles.infoGrid}>
           <div className={styles.infoCard}>
             <span className={styles.infoIcon}>📦</span>
-            <h3 className={styles.infoTitle}>Same-Day Delivery</h3>
-            <p className={styles.infoDesc}>Order before 6 PM, delivered same day across Toronto.</p>
+            <h3 className={styles.infoTitle}>Delivery Updates</h3>
+            <p className={styles.infoDesc}>Watch this page for local availability updates before planning delivery.</p>
           </div>
           <div className={styles.infoCard}>
             <span className={styles.infoIcon}>🌉</span>
-            <h3 className={styles.infoTitle}>Toronto & Gatineau</h3>
-            <p className={styles.infoDesc}>Serving the entire National Capital Region.</p>
+            <h3 className={styles.infoTitle}>The Junction / Dundas St W</h3>
+            <p className={styles.infoDesc}>Built around Gas Junction Cannabis at 2813 Dundas St W.</p>
           </div>
           <div className={styles.infoCard}>
             <span className={styles.infoIcon}>💰</span>

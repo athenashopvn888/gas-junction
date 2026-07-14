@@ -132,7 +132,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Gas Junction Cannabis resource pages for The Junction shoppers, with local visit planning, menu guidance, flower tier pricing, value shopping, pre-roll tips, and Native smokes prices.",
     eyebrow: "The Junction Resource Hub",
     intro:
-      "A useful stop before the stop. These Gas Junction Cannabis resources keep The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles shoppers pointed at the right menu lane.",
+      "A useful stop before the stop. These Gas Junction Cannabis resources keep The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles shoppers pointed at the right product category.",
     cards: hubCards,
     sections: [
       {
@@ -182,7 +182,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Address Anchor",
         body:
-          "Gas Junction Cannabis is listed at 2813 Dundas St W, Toronto, ON M6P 1Y6. Keep that address as the anchor, then use the menu lanes to decide whether this trip is about flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes.",
+          "Gas Junction Cannabis is listed at 2813 Dundas St W, Toronto, ON M6P 1Y6. Keep that address as the anchor, then use the menu categories to decide whether this trip is about flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes.",
       },
       {
         heading: "Neighborhood Search Paths",

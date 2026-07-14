@@ -66,7 +66,7 @@ const EXPLORE_CATEGORIES = [
   { name: "Games Arcade", slug: "games", banner: "/banners/10_Games.webp", icon: "🎮" },
 ];
 
-/* ── Local FAQs for Jane St ── */
+/* ── Local FAQs ── */
 const LOCAL_FAQS = [
   {
     q: "What are the hours for Gas Junction Cannabis?",
@@ -74,15 +74,15 @@ const LOCAL_FAQS = [
   },
   {
     q: "What cannabis products do you carry?",
-    a: "We carry five tiers of premium flower: Exotic ($10-$12/g), Premium ($7-$10/g), AAA+ ($5-$6/g), AA ($4/g), and Budget ($3/g), plus a wide variety of edibles, prerolls, vapes, and concentrates.",
+    a: "The site organizes menu categories for flower tiers, edibles, pre-rolls, vapes, concentrates, accessories, and cigarettes. Confirm current product details before visiting.",
   },
   {
     q: "Where is Gas Junction Cannabis located?",
-    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at (437) 535-7027. Free evening street parking is available.",
+    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at (437) 535-7027. Check posted signs or the map listing for parking details.",
   },
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",
-    a: "Our budget flower starts at just $3/g. We also offer AA daily drivers from $4/g and AAA+ heavy hitters from $5-$6/g. View our budget menu for our latest deals.",
+    a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and availability on the menu before visiting.",
   },
 ];
 
@@ -228,7 +228,7 @@ export default function HomePage() {
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
-            <p className={styles.brandSub}>Premium Cannabis Dispensary</p>
+            <p className={styles.brandSub}>The Junction Cannabis Dispensary</p>
             <div className={styles.brandBadge}>Open Daily: 09:00 AM - 02:00 AM</div>
           </div>
 
@@ -294,7 +294,7 @@ export default function HomePage() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Featured Strains</h2>
             <p className={styles.sectionSubtitle}>
-              Staff picks and top sellers dynamically updated from our real-time stock sheet.
+              Featured menu items pulled from the current store data.
             </p>
           </div>
 
@@ -312,15 +312,15 @@ export default function HomePage() {
       <section className={styles.seoSection}>
         <div className={styles.container}>
           <div className={styles.seoPanel}>
-            <h2 className={styles.seoPanelTitle}>2813 Dundas St W & Nearby Expressway's Premier Cannabis Dispensary — Open Daily: 09:00 AM - 02:00 AM</h2>
+            <h2 className={styles.seoPanelTitle}>The Junction Cannabis Dispensary - Gas Junction Cannabis</h2>
             <p className={styles.seoPanelText}>
-              Welcome to <strong>Gas Junction Cannabis</strong>, Toronto's premier cannabis destination at 2813 Dundas St W. We carry an electrifying selection of top-shelf strains — from ultra-rare exotics to solid everyday budget picks.
+              Welcome to <strong>Gas Junction Cannabis</strong>, a Toronto cannabis destination at 2813 Dundas St W in The Junction. Browse flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories before you visit.
             </p>
             <p className={styles.seoPanelText}>
-              We are open Open Daily: 09:00 AM - 02:00 AM — Gas Junction Cannabis is here to serve you. Our live menu is constantly refreshed with the freshest drops, premium prerolls, artisan edibles, and everything in between. Whether you're winding down or stocking up for the weekend, our knowledgeable staff can help during listed store hours.
+              Gas Junction Cannabis is open daily from 09:00 AM to 02:00 AM. Product details and availability can change, so use the current menu as your source of truth before heading over.
             </p>
             <p className={styles.seoPanelText}>
-              Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis is your go-to destination for premium flower, potent prerolls, and artisan edibles. Our six-tier pricing system means quality cannabis at every budget level — starting from just $3/g.
+              Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis gives west Toronto shoppers a straightforward place to compare categories and find the right lane for their budget.
             </p>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function HomePage() {
               <div className={styles.reviewsLoading}>Loading customer feedback...</div>
             ) : reviews.length === 0 ? (
               <div className={styles.reviewsLoading}>
-                Customer feedback is unavailable right now.
+                Customer feedback is currently unavailable.
               </div>
             ) : (
               reviews.map((rv, idx) => (
@@ -428,7 +428,7 @@ export default function HomePage() {
               <p className={styles.storeCardText}>
                 No appointment needed
                 <br />
-                <span className={styles.storeHighlight}>2813 Dundas St W & Nearby Expressway, Toronto</span>
+                <span className={styles.storeHighlight}>The Junction, Toronto</span>
               </p>
             </div>
           </div>

@@ -87,7 +87,7 @@ export function GBPLandingPage() {
       {/* Hero Header */}
       <header className={styles.hero}>
         <h1 className={styles.h1}>{gbpLocation.storeName} - Weed Dispensary in {gbpLocation.city}</h1>
-        <p className={styles.heroTagline}>Serving {gbpLocation.city} & Nearby Neighborhoods</p>
+        <p className={styles.heroTagline}>2813 Dundas St W in {gbpLocation.city}</p>
       </header>
 
       {/* Call to Actions */}
@@ -102,15 +102,15 @@ export function GBPLandingPage() {
 
       {/* Intro Section */}
       <section className={styles.section}>
-        <h2 className={styles.h2}>Your Trusted Local Weed Dispensary</h2>
+        <h2 className={styles.h2}>Local Weed Dispensary Information</h2>
         <p className={styles.introText}>{gbpLocation.introVariant}</p>
       </section>
 
       {/* Product Section */}
       <section className={styles.section}>
-        <h2 className={styles.h2}>Weed and Cannabis Products Available</h2>
+        <h2 className={styles.h2}>Weed and Cannabis Menu Categories</h2>
         <p className={styles.infoText}>
-          At {gbpLocation.storeName}, we offer a curated selection of weed and cannabis products for adults 19+ in {gbpLocation.city}. Enjoy some of Ontario&apos;s finest quality and value in the following categories:
+          At {gbpLocation.storeName}, adults 19+ can review the main menu categories before visiting {gbpLocation.city}. Confirm current product details before making a special trip.
         </p>
         <div className={styles.productGrid}>
           {gbpLocation.products.map((p) => {

@@ -30,10 +30,10 @@ export const gbpLocation = {
   longitude: "-79.4630600",
   hours: ["Open Daily: 09:00 AM - 02:00 AM"],
   seoTitle: "Gas Junction Cannabis | Weed Dispensary in Toronto",
-  metaDescription: "Gas Junction Cannabis is a local weed dispensary in Toronto offering flower, pre-rolls, edibles, vapes, concentrates, CBD, and service for adults 19+.",
+  metaDescription: "Gas Junction Cannabis is a local weed dispensary in Toronto with flower, pre-roll, edible, vape, concentrate, accessory, and cigarette category information for adults 19+.",
   localLandmarks: ["The Junction", "Dundas St W", "Keele"],
-  introVariant: "If you are searching for a reliable weed dispensary in Toronto, Gas Junction Cannabis at 2813 Dundas St W is your go-to destination. We serve adults 19+ with a vast selection of weed products including cannabis flower, pre-rolls, edibles, THC vapes, shatter, and CBD oils. Serving customers near The Junction and surrounding communities like Dundas St W, our cannabis store and weed shop is focused on quality and convenience.",
-  neighborhoodDescription: "Located in the vibrant The Junction district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
+  introVariant: "Gas Junction Cannabis is listed at 2813 Dundas St W in Toronto. Adults 19+ can use this page to review store details, menu categories, hours, and contact information before visiting The Junction location.",
+  neighborhoodDescription: "Gas Junction Cannabis is located in The Junction area of Toronto near Dundas St W and Keele.",
   parkingNote: "Street parking and nearby parking options may be available around Dundas St W. Please check posted signs when visiting.",
   transitNote: "Gas Junction Cannabis is accessible by local TTC routes serving Dundas St W, Keele, and Toronto’s Junction area.",
   sectionTitle: "Serving Customers Near The Junction and Dundas St W"

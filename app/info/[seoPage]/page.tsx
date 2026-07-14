@@ -1,11 +1,11 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { SEO_PAGES, getSeoPageBySlug } from "../../lib/seoPages";
+import { SEO_PAGES, getLegacySeoRedirect, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
 
@@ -21,14 +21,15 @@ export async function generateMetadata({
   params: Promise<{ seoPage: string }>;
 }): Promise<Metadata> {
   const { seoPage: slug } = await params;
-  const page = getSeoPageBySlug(slug);
+  const replacementSlug = getLegacySeoRedirect(slug);
+  const page = getSeoPageBySlug(replacementSlug || slug);
   if (!page) return {};
 
   return {
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://gasjunctioncannabis.com/info/${slug}`,
+      canonical: `https://gasjunctioncannabis.com/info/${replacementSlug || slug}`,
     },
   };
 }
@@ -40,6 +41,9 @@ export default async function SeoLandingPage({
   params: Promise<{ seoPage: string }>;
 }) {
   const { seoPage: slug } = await params;
+  const replacementSlug = getLegacySeoRedirect(slug);
+  if (replacementSlug) redirect(`/info/${replacementSlug}`);
+
   const page = getSeoPageBySlug(slug);
   if (!page) notFound();
 

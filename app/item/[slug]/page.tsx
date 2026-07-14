@@ -56,7 +56,6 @@ function getJsonLd(item: ItemProduct) {
     "@type": "Offer",
     url: `https://gasjunctioncannabis.com/item/${item.slug}`,
     priceCurrency: "CAD",
-    availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: "Gas Junction Cannabis" },
     hasMerchantReturnPolicy: {
@@ -254,7 +253,7 @@ export default async function ItemPage({
               </div>
 
               <div className={styles.visitCta}>
-                <p>Available in-store &middot; Walk-in welcome &middot; No appointment needed</p>
+                <p>Confirm current menu details &middot; Walk-in welcome &middot; No appointment needed</p>
               </div>
             </div>
           </div>
