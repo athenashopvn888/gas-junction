@@ -66,7 +66,7 @@ const EXPLORE_CATEGORIES = [
   { name: "Games Arcade", slug: "games", banner: "/banners/10_Games.webp", icon: "🎮" },
 ];
 
-/* ── Local FAQs for Jane St ── */
+/* ── Local FAQs ── */
 const LOCAL_FAQS = [
   {
     q: "What are the hours for Gas Junction Cannabis?",
@@ -74,15 +74,15 @@ const LOCAL_FAQS = [
   },
   {
     q: "What cannabis products do you carry?",
-    a: "We carry five tiers of premium flower: Exotic ($10-$12/g), Premium ($7-$10/g), AAA+ ($5-$6/g), AA ($4/g), and Budget ($3/g), plus a wide variety of edibles, prerolls, vapes, and concentrates.",
+    a: "The site organizes menu categories for flower tiers, edibles, pre-rolls, vapes, concentrates, accessories, and cigarettes. Confirm current product details before visiting.",
   },
   {
     q: "Where is Gas Junction Cannabis located?",
-    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at (437) 535-7027. Free evening street parking is available.",
+    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at (437) 535-7027. Check posted signs or the map listing for parking details.",
   },
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",
-    a: "Our budget flower starts at just $3/g. We also offer AA daily drivers from $4/g and AAA+ heavy hitters from $5-$6/g. View our budget menu for our latest deals.",
+    a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and availability on the menu before visiting.",
   },
 ];
 
@@ -228,7 +228,7 @@ export default function HomePage() {
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
-            <p className={styles.brandSub}>Premium Cannabis Dispensary</p>
+            <p className={styles.brandSub}>The Junction Cannabis Dispensary</p>
             <div className={styles.brandBadge}>Open Daily: 09:00 AM - 02:00 AM</div>
           </div>
 
@@ -349,7 +349,7 @@ export default function HomePage() {
               <div className={styles.reviewsLoading}>Loading customer feedback...</div>
             ) : reviews.length === 0 ? (
               <div className={styles.reviewsLoading}>
-                Customer feedback is unavailable right now.
+                Customer feedback is currently unavailable.
               </div>
             ) : (
               reviews.map((rv, idx) => (

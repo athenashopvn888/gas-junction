@@ -32,7 +32,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Flower Tiers for Different Budgets",
         body:
-          "The menu is organized into clear flower tiers so shoppers can compare everyday value options, familiar favourites, and higher-end picks without guessing where each strain sits. Availability, pricing, and product details can change, so the current menu is the best place to confirm what is available before coming in.",
+          "The menu is organized into clear flower tiers so shoppers can compare everyday value options, familiar favourites, and higher-end picks by tier. Availability, pricing, and product details can change, so use the current menu to confirm what is available before coming in.",
       },
       {
         heading: "Easy to Reach on Dundas St W",

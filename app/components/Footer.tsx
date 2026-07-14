@@ -13,7 +13,7 @@ export default function Footer() {
             </div>
             <p className={styles.desc}>
               Your Local Cannabis Dispensary At 2813 Dundas St W, Toronto. Visit
-              Gas Junction Cannabis For Premium Flower, Edibles, Vapes &amp; More.
+              Gas Junction Cannabis For Flower Tiers, Edibles, Vapes &amp; More.
               Open daily from 09:00 AM to 02:00 AM.
             </p>
             <div className={styles.buttons}>

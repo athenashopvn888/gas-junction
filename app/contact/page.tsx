@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Gas Junction Cannabis — Toronto Dispensary",
     description:
-      "2813 Dundas St W, Toronto. We are open daily from 09:00 AM to 02:00 AM. Premium cannabis, always fire.",
+      "2813 Dundas St W, Toronto. Open daily from 09:00 AM to 02:00 AM. Check current menu categories before visiting.",
   },
 };
 

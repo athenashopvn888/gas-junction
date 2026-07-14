@@ -76,7 +76,7 @@ export function getItemData(category: string, name: string): ItemEffects {
   // Fallback for Add-Ons, Cigarettes, etc.
   return {
     effects: [
-      { emoji: "⭐", label: "Premium Quality" },
+      { emoji: "⭐", label: "Product Info" },
       { emoji: "✅", label: "Reliable" },
     ],
     description: `${name} appears in the Gas Junction Cannabis menu. Confirm current product details and availability before visiting the Toronto store.`,
