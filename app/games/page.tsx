@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Cannabis Arcade Games — Gas Junction Cannabis | Toronto",
   description: "Play free online cannabis-themed games like Flappy Bud and Snake Munchies while you wait at Gas Junction Cannabis.",
   alternates: {
-    canonical: "https://gasjunctioncannabis.com/games",
+    canonical: "https://www.gasjunctioncannabis.com/games",
   },
 };
 

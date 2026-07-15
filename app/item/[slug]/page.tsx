@@ -29,7 +29,7 @@ export async function generateMetadata({
     title: `${item.name} | ${item.category} | Gas Junction Cannabis Toronto`,
     description: itemData.metaDescription,
     alternates: {
-      canonical: `https://gasjunctioncannabis.com/item/${slug}`,
+      canonical: `https://www.gasjunctioncannabis.com/item/${slug}`,
     },
     openGraph: {
       title: `${item.name} | Gas Junction Cannabis`,
@@ -54,7 +54,7 @@ function getJsonLd(item: ItemProduct) {
 
   const offers: any = {
     "@type": "Offer",
-    url: `https://gasjunctioncannabis.com/item/${item.slug}`,
+    url: `https://www.gasjunctioncannabis.com/item/${item.slug}`,
     priceCurrency: "CAD",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: "Gas Junction Cannabis" },
@@ -73,7 +73,7 @@ function getJsonLd(item: ItemProduct) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: item.name,
-    image: item.image ? [item.image.startsWith('http') ? item.image : `https://gasjunctioncannabis.com${item.image.startsWith('/') ? '' : '/'}${item.image}`] : undefined,
+    image: item.image ? [item.image.startsWith('http') ? item.image : `https://www.gasjunctioncannabis.com${item.image.startsWith('/') ? '' : '/'}${item.image}`] : undefined,
     description: itemData.description,
     brand: { "@type": "Brand", name: "Gas Junction Cannabis" },
     sku: cleanSku(item.sku || item.slug),
@@ -92,19 +92,19 @@ function getBreadcrumbJsonLd(item: ItemProduct) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://gasjunctioncannabis.com"
+        "item": "https://www.gasjunctioncannabis.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": item.category,
-        "item": `https://gasjunctioncannabis.com/items/${catSlug}`
+        "item": `https://www.gasjunctioncannabis.com/items/${catSlug}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": item.name,
-        "item": `https://gasjunctioncannabis.com/item/${item.slug}`
+        "item": `https://www.gasjunctioncannabis.com/item/${item.slug}`
       }
     ]
   };
@@ -213,7 +213,7 @@ export default async function ItemPage({
                 </div>
               </div>
 
-              {/* Effects */}
+              {/* Menu notes */}
               <div className={styles.effectsRow}>
                 {itemData.effects.map((e) => (
                   <span key={e.label} className={styles.effectPill}>
@@ -246,9 +246,9 @@ export default async function ItemPage({
                 <p className={styles.descText}>{itemData.description}</p>
               </div>
 
-              {/* -- How to consume -- */}
+              {/* -- Item details -- */}
               <div className={styles.descSection} style={{ marginTop: '24px' }}>
-                <h2 className={styles.descTitle}>How to Consume</h2>
+                <h2 className={styles.descTitle}>Item Details</h2>
                 <p className={styles.descText}>{itemData.consume}</p>
               </div>
 

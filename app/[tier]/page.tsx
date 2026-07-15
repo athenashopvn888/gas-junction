@@ -34,7 +34,7 @@ export async function generateMetadata({
     title: seo?.seoTitle || `${tierInfo.config.name} Cannabis Flower — ${flowers.length} Strains`,
     description: seo?.seoIntro || `Shop ${flowers.length} ${tierInfo.config.name.toLowerCase()} cannabis strains at Gas Junction Cannabis.`,
     alternates: {
-      canonical: `https://gasjunctioncannabis.com/${tierSlug}`,
+      canonical: `https://www.gasjunctioncannabis.com/${tierSlug}`,
     },
     openGraph: {
       title: `${tierInfo.config.name} Flower | Gas Junction Cannabis`,

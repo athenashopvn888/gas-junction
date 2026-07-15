@@ -31,7 +31,7 @@ export async function generateMetadata({
     title: `${flower.name} | ${tierName} ${flower.type === "indica" ? "Indica" : flower.type === "sativa" ? "Sativa" : "Hybrid"} | THC ${flower.thc} | Gas Junction Cannabis Toronto`,
     description: strainData.metaDescription,
     alternates: {
-      canonical: `https://gasjunctioncannabis.com/flower/${slug}`,
+      canonical: `https://www.gasjunctioncannabis.com/flower/${slug}`,
     },
     openGraph: {
       title: `${flower.name} | Gas Junction Cannabis`,
@@ -60,7 +60,7 @@ function getJsonLd(flower: FlowerProduct) {
 
   const offers: any = {
     "@type": "Offer",
-    url: `https://gasjunctioncannabis.com/flower/${flower.slug}`,
+    url: `https://www.gasjunctioncannabis.com/flower/${flower.slug}`,
     priceCurrency: "CAD",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: "Gas Junction Cannabis" },
@@ -79,7 +79,7 @@ function getJsonLd(flower: FlowerProduct) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: flower.name,
-    image: flower.image ? [flower.image.startsWith('http') ? flower.image : `https://gasjunctioncannabis.com${flower.image.startsWith('/') ? '' : '/'}${flower.image}`] : undefined,
+    image: flower.image ? [flower.image.startsWith('http') ? flower.image : `https://www.gasjunctioncannabis.com${flower.image.startsWith('/') ? '' : '/'}${flower.image}`] : undefined,
     description: strainData.description,
     brand: { "@type": "Brand", name: "Gas Junction Cannabis" },
     sku: cleanSku(flower.sku || flower.slug),
@@ -100,19 +100,19 @@ function getBreadcrumbJsonLd(flower: FlowerProduct) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://gasjunctioncannabis.com"
+        "item": "https://www.gasjunctioncannabis.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": tierName,
-        "item": `https://gasjunctioncannabis.com/${tierSlug}`
+        "item": `https://www.gasjunctioncannabis.com/${tierSlug}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": flower.name,
-        "item": `https://gasjunctioncannabis.com/flower/${flower.slug}`
+        "item": `https://www.gasjunctioncannabis.com/flower/${flower.slug}`
       }
     ]
   };
@@ -235,7 +235,7 @@ export default async function FlowerPage({
                 </div>
               </div>
 
-              {/* Effects */}
+              {/* Menu notes */}
               <div className={styles.effectsRow}>
                 {strainData.effects.map((e) => (
                   <span key={e.label} className={styles.effectPill}>

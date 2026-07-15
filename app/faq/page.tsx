@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Frequently asked questions about Gas Junction Cannabis in Toronto. Hours, location, products, pricing, bundle offers, and everything you need to know before visiting.",
   alternates: {
-    canonical: "https://gasjunctioncannabis.com/faq",
+    canonical: "https://www.gasjunctioncannabis.com/faq",
   },
 };
 

@@ -62,7 +62,7 @@ export default function Footer() {
               <Link href="/weed-dispensary-toronto/">Gas Junction Cannabis Weed Dispensary in Toronto</Link>
               <Link href="/contact">Contact Us</Link>
               <a
-                href="https://gasjunctioncannabis.com/"
+                href="https://www.gasjunctioncannabis.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -75,7 +75,7 @@ export default function Footer() {
         <div className={styles.bottom}>
           <p>
             © {new Date().getFullYear()} Gas Junction Cannabis. Must be 19+ to
-            enter. Please consume responsibly.
+            enter.
           </p>
         </div>
       </div>

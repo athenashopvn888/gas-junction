@@ -1,7 +1,7 @@
 // Auto-generated Google Business Profile Local SEO Location Configuration
 export const gbpLocation = {
   storeName: "Gas Junction Cannabis",
-  domain: "gasjunctioncannabis.com",
+  domain: "www.gasjunctioncannabis.com",
   city: "Toronto",
   province: "ON",
   country: "CA",

@@ -4,7 +4,7 @@ import AgeGate from "./components/AgeGate";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gasjunctioncannabis.com"),
+  metadataBase: new URL("https://www.gasjunctioncannabis.com"),
   title: {
     default: "Gas Junction Cannabis | The Junction Dispensary",
     template: "%s | Gas Junction Cannabis",
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://gasjunctioncannabis.com",
+    url: "https://www.gasjunctioncannabis.com",
     siteName: "Gas Junction Cannabis",
     title: "Gas Junction Cannabis | The Junction Dispensary",
     description:
       "Gas Junction Cannabis is a Toronto dispensary on Dundas St W in The Junction with flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ info. Open Daily: 09:00 AM - 02:00 AM.",
     images: [
       {
-        url: "https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
+        url: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
         width: 1200,
         height: 630,
         alt: "Gas Junction Cannabis - The Junction cannabis dispensary",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Gas Junction Cannabis | The Junction Dispensary",
     description: "Gas Junction Cannabis is a Toronto dispensary on Dundas St W in The Junction with flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ info. Open Daily: 09:00 AM - 02:00 AM.",
-    images: ["https://gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
+    images: ["https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
   robots: {
     index: true,
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://gasjunctioncannabis.com",
+    canonical: "https://www.gasjunctioncannabis.com",
   },
   verification: {
     // google: "your-google-verification-code",
@@ -74,12 +74,12 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Store",
   additionalType: "https://schema.org/Store",
-  "@id": "https://gasjunctioncannabis.com",
+  "@id": "https://www.gasjunctioncannabis.com",
   name: "Gas Junction Cannabis",
   description: "Cannabis dispensary at 2813 Dundas St W in Toronto, ON. Browse flower tiers plus edibles, pre-rolls, vapes, concentrates, accessories, and cigarettes. Open Daily: 09:00 AM - 02:00 AM.",
-  url: "https://gasjunctioncannabis.com",
+  url: "https://www.gasjunctioncannabis.com",
   telephone: "+14375357027",
-  image: "https://gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
+  image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
   priceRange: "$3 - $12/g",
   address: {
     "@type": "PostalAddress",
@@ -111,10 +111,10 @@ const jsonLd = {
   }
 ],
   sameAs: [
-    "https://gasjunctioncannabis.com/",
-    "https://gasjunctioncannabis.com/",
+    "https://www.gasjunctioncannabis.com/",
+    "https://www.gasjunctioncannabis.com/",
   ],
-  hasMap: "https://gasjunctioncannabis.com/",
+  hasMap: "https://www.gasjunctioncannabis.com/",
   areaServed: {
     "@type": "City",
     name: "Toronto",

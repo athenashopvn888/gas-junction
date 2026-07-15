@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Visit Gas Junction Cannabis at 2813 Dundas St W, Toronto, ON M6P 1Y6. We are open daily from 09:00 AM to 02:00 AM. Walk-ins welcome.",
   alternates: {
-    canonical: "https://gasjunctioncannabis.com/contact",
+    canonical: "https://www.gasjunctioncannabis.com/contact",
   },
   openGraph: {
     title: "Contact Gas Junction Cannabis — Toronto Dispensary",
@@ -74,7 +74,7 @@ export default function ContactPage() {
                 <br />
                 Just walk in and our staff will
                 <br />
-                help you find the perfect strain.
+                help you browse the menu categories.
               </p>
               <div className={styles.featureList}>
                 <div className={styles.featureItem}>

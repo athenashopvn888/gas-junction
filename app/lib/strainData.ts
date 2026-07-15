@@ -36,7 +36,7 @@ export function getStrainData(
   name: string,
   type: "indica" | "sativa" | "hybrid",
   tier: string,
-  thc: string
+  _thc: string
 ): StrainEffects {
   const typeLabel =
     type === "indica" ? "Indica" : type === "sativa" ? "Sativa" : "Hybrid";
@@ -48,13 +48,9 @@ export function getStrainData(
       ? SATIVA_EFFECTS
       : HYBRID_EFFECTS;
 
-  const description = `${name} is listed as a ${tierDesc} ${typeLabel} flower option${
-    thc ? ` with a posted THC value of ${thc}` : ""
-  }. Product details, pricing, and availability can change, so confirm the current menu before visiting Gas Junction Cannabis in Toronto.`;
+  const description = `${name} is listed as a ${tierDesc} ${typeLabel} flower option. Product details and pricing can change, so confirm the current menu before visiting Gas Junction Cannabis in Toronto.`;
 
-  const metaDescription = `${name} - ${tierDesc} ${typeLabel}${
-    thc ? ` with posted ${thc} THC` : ""
-  }. Confirm current menu details before visiting Gas Junction Cannabis Toronto.`;
+  const metaDescription = `${name} - ${tierDesc} ${typeLabel}. Confirm current menu details before visiting Gas Junction Cannabis Toronto.`;
 
   return { effects, description, metaDescription };
 }

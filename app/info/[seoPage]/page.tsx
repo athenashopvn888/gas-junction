@@ -29,7 +29,7 @@ export async function generateMetadata({
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://gasjunctioncannabis.com/info/${replacementSlug || slug}`,
+      canonical: `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
     },
   };
 }
