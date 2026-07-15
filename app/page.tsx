@@ -83,7 +83,7 @@ const LOCAL_FAQS = [
   },
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",
-    a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and availability on the menu before visiting.",
+    a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and listings on the menu before visiting.",
   },
 ];
 
@@ -319,7 +319,7 @@ export default function HomePage() {
               Welcome to <strong>Gas Junction Cannabis</strong>, a Toronto cannabis destination at 2813 Dundas St W in The Junction. Browse flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories before you visit.
             </p>
             <p className={styles.seoPanelText}>
-              Gas Junction Cannabis is open daily from 09:00 AM to 02:00 AM. Product details and availability can change, so use the current menu as your source of truth before heading over.
+              Gas Junction Cannabis is open daily from 09:00 AM to 02:00 AM. Product details and listings can change, so use the current menu as your source of truth before heading over.
             </p>
             <p className={styles.seoPanelText}>
               Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis gives west Toronto shoppers a straightforward place to compare categories and find the right lane for their budget.

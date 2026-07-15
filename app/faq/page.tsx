@@ -26,9 +26,9 @@ const FAQ_CATEGORIES = [
   {
     title: "🌿 Products & Menu",
     faqs: [
-      { q: "What products do you carry?", a: "The site includes category information for cannabis flower tiers, edibles, vape pens, disposable vapes, concentrates, pre-rolled joints, native cigarettes, and accessories. Current availability can change." },
+      { q: "What products do you carry?", a: "The site includes category information for cannabis flower tiers, edibles, vape pens, disposable vapes, concentrates, pre-rolled joints, native cigarettes, and accessories. Current listings can change." },
       { q: "Do you have a menu online?", a: "Yes. You can browse menu and category information online before visiting. Confirm current details before making a special trip." },
-      { q: "What are your flower tiers?", a: "The flower menu is organized into tiers such as Exotic, Premium, AAA+, AA, and Budget so shoppers can compare product levels more easily. Current pricing and availability should be confirmed on the menu." },
+      { q: "What are your flower tiers?", a: "The flower menu is organized into tiers such as Exotic, Premium, AAA+, AA, and Budget so shoppers can compare product levels more easily. Current pricing and listings should be confirmed on the menu." },
       { q: "Do you sell edibles?", a: "The site includes an edibles category. Check current category details before visiting for a specific edible product." },
       { q: "Do you sell vapes?", a: "The site includes THC Vape and Nic Vape categories. Check current category pages for listed items." },
       { q: "Do you sell native cigarettes?", a: "The site includes a cigarettes category. Check the current brand mix before visiting Dundas St W." },
@@ -37,7 +37,7 @@ const FAQ_CATEGORIES = [
   {
     title: "💰 Pricing & Bundle Offers",
     faqs: [
-      { q: "What is the cheapest weed you sell?", a: "Budget-oriented flower options are listed in the menu when available. Check current pricing and availability before visiting." },
+      { q: "What is the cheapest weed you sell?", a: "Budget-oriented flower options are listed in the menu when listed. Check current pricing and listings before visiting." },
       { q: "What bundle pricing do you offer?", a: "Flower bundle pricing includes a 3g total option — the 3g total is shown clearly before purchase. Our Exotic, Premium, and AAA+ tiers also offer 6g bundle pricing, with 6g total pricing." },
       { q: "Do you have ounce deals?", a: "Ounce and bundle details can change as stock rotates. Check the current menu for the latest pricing information." },
       { q: "How does bundle pricing work?", a: "The 3g bundle pricing is shown by tier. The 6g bundle pricing is shown for Exotic, Premium, and AAA+ tiers where listed." },

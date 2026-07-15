@@ -162,10 +162,10 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     name: "Edibles", slug: "edibles", color: "#f97316", icon: "🍬",
     seoTitle: "Cannabis Edibles in Toronto | Gas Junction Cannabis",
     seoIntro: "Browse edibles category information at Gas Junction Cannabis in Toronto.",
-    seoDescription: "Review edible-related menu categories at Gas Junction Cannabis in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
+    seoDescription: "Review edible-related menu categories at Gas Junction Cannabis in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product listings.",
     faqs: [
       { q: "What edible information can shoppers review?", a: "Customers can review edible-related category information and confirm current menu details before visiting Gas Junction Cannabis." },
-      { q: "Does this page guarantee current edible availability?", a: "No. This page is for general category browsing; customers should confirm current menu details before visiting." },
+      { q: "Does this page guarantee current edible listings?", a: "No. This page is for general category browsing; customers should confirm current menu details before visiting." },
       { q: "How does this page help Toronto shoppers?", a: "It helps shoppers find the Gas Junction Cannabis edibles category and review store/menu information in one place." },
     ],
   },
@@ -177,7 +177,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     seoDescription: "Gas Junction Cannabis carries a curated selection of vape pen category information in Toronto. From 510-thread THC cartridge details to nicotine vape category browsing, shoppers can review menu information before visiting 2813 Dundas St W in The Junction.",
     faqs: [
       { q: "What vape pen information can shoppers review?", a: "Visitors can review THC vape and nicotine vape category information, then confirm current menu details before visiting Gas Junction Cannabis." },
-      { q: "Does this page guarantee vape availability?", a: "No. Vape category details can change, so customers should confirm the current menu before visiting." },
+      { q: "Does this page guarantee vape listings?", a: "No. Vape category details can change, so customers should confirm the current menu before visiting." },
     ],
   },
   "VAPE DISPOSABLE": {
@@ -185,10 +185,10 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     name: "Nic Vape", slug: "vape-disposables", color: "#a78bfa", icon: "💨",
     seoTitle: "Disposable Vapes Toronto — THC Disposable Pens",
     seoIntro: "Review disposable vape category information at Gas Junction Cannabis in Toronto.",
-    seoDescription: "Gas Junction Cannabis includes disposable vape category information for Toronto shoppers. Product details and availability can change, so confirm the current menu before visiting 2813 Dundas St W in The Junction.",
+    seoDescription: "Gas Junction Cannabis includes disposable vape category information for Toronto shoppers. Product details and listings can change, so confirm the current menu before visiting 2813 Dundas St W in The Junction.",
     faqs: [
       { q: "What disposable vape information can shoppers review?", a: "Visitors can use this page to review disposable vape category information and then confirm current menu details before visiting." },
-      { q: "Does disposable vape availability change?", a: "Yes. Product selection can change, so shoppers should use the current menu before making a special trip." },
+      { q: "Does disposable vape listings change?", a: "Yes. Product selection can change, so shoppers should use the current menu before making a special trip." },
     ],
   },
   CONCENTRATES: {
@@ -196,10 +196,10 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     name: "Concentrates", slug: "concentrates", color: "#f59e0b", icon: "💎",
     seoTitle: "Cannabis Concentrates in Toronto | Gas Junction Cannabis",
     seoIntro: "Browse concentrates category information at Gas Junction Cannabis in Toronto.",
-    seoDescription: "Review concentrate-related menu categories at Gas Junction Cannabis in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
+    seoDescription: "Review concentrate-related menu categories at Gas Junction Cannabis in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product listings.",
     faqs: [
       { q: "What concentrate information can shoppers review?", a: "Visitors can use this page to review concentrates category information and then confirm current menu details before visiting Gas Junction Cannabis." },
-      { q: "Does this page guarantee current concentrate availability?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
+      { q: "Does this page guarantee current concentrate listings?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
     ],
   },
   PREROLLS: {
@@ -209,7 +209,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     seoDescription: "Gas Junction Cannabis includes pre-roll category information for Toronto shoppers. Review the category, confirm current menu details, and visit 2813 Dundas St W during posted store hours.",
     faqs: [
       { q: "What pre-roll information can shoppers review?", a: "Visitors can review pre-roll category information and then confirm current menu details before visiting Gas Junction Cannabis." },
-      { q: "Does this page guarantee current pre-roll availability?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
+      { q: "Does this page guarantee current pre-roll listings?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
     ],
   },
   "ADD ONS": {
@@ -225,11 +225,11 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   "MAGIC & OTHERS": {
     name: "Magic Stuff", slug: "magic", color: "#64748b", icon: "*",
     seoTitle: "Magic Stuff - Specialty Items",
-    seoIntro: "Browse current menu for available specialty products. Availability may vary by store.",
-    seoDescription: "Specialty items are listed when they are carried on the menu. Product availability may vary by store and by day. Check current category details before visiting.",
+    seoIntro: "Browse current menu for listed specialty products. Listings may vary by store.",
+    seoDescription: "Specialty items are listed when they are carried on the menu. Product listings may vary by store and by day. Check current category details before visiting.",
     faqs: [
-      { q: "What specialty items are available?", a: "Selection varies by store and by day. Check the current menu for available specialty products." },
-      { q: "Does availability vary by location?", a: "Yes. Specialty item availability may vary by store, so please check the current menu for this location." },
+      { q: "What specialty items are listed?", a: "Selection varies by store and by day. Check the current menu for listed specialty products." },
+      { q: "Do listings vary by location?", a: "Yes. Specialty item listings may vary by store, so please check the current menu for this location." },
     ],
   },
   CIGARETTES: {

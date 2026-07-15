@@ -226,7 +226,7 @@ export function GBPLandingPage() {
               />
             ) : (
               <div style={{ padding: "40px", textAlign: "center", color: "var(--text-muted)" }}>
-                Map preview not available.
+                Map preview not listed.
               </div>
             )}
           </div>
@@ -252,7 +252,7 @@ export function GBPLandingPage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>Helpful Category Links Before You Visit</h2>
         <p className={styles.infoText}>
-          These internal links are provided as planning shortcuts for adults 19+ who want to understand the main menu sections before visiting {gbpLocation.storeName}. They do not confirm live product availability, pricing, or checkout details.
+          These category links help adults 19+ browse the main menu sections before visiting {gbpLocation.storeName}. Check the current menu for listed item details and prices.
         </p>
         <div className={styles.productGrid}>
           {categoryGuideLinks.map((item) => (
@@ -292,7 +292,7 @@ export function GBPLandingPage() {
           <div className={styles.faqItem}>
             <h3 className={styles.faqQuestion}>Does this page show the local menu?</h3>
             <p className={styles.faqAnswer}>
-              This page links to the store website and menu/category areas where shoppers can browse store content. Product availability can change, so customers should check current store information before visiting.
+              This page links to the store website and menu/category areas where shoppers can browse store content. Product listings can change, so customers should check current store information before visiting.
             </p>
           </div>
           <div className={styles.faqItem}>

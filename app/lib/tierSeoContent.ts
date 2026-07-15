@@ -11,12 +11,12 @@ export const TIER_SEO: Record<string, TierSeoData> = {
   EXOTIC: {
     seoTitle: "Exotic Cannabis Flower Toronto | Gas Junction Cannabis",
     seoIntro:
-      "Browse Exotic flower category information at Gas Junction Cannabis in Toronto. Confirm current strains, pricing, and availability on the menu before visiting 2813 Dundas St W in The Junction.",
+      "Browse Exotic flower category information at Gas Junction Cannabis in Toronto. Confirm current strains, pricing, and listings on the menu before visiting 2813 Dundas St W in The Junction.",
     sections: [
       {
         heading: "What Makes Exotic Flower Different?",
         body:
-          "The Exotic tier is used for higher-end flower options on the Gas Junction Cannabis menu. Product details can rotate, so shoppers should confirm current strain names, pricing, and availability before visiting.",
+          "The Exotic tier is used for higher-end flower options on the Gas Junction Cannabis menu. Product details can rotate, so shoppers should confirm current strain names, pricing, and listings before visiting.",
       },
       {
         heading: "The Junction Location",
@@ -27,7 +27,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     faqs: [
       {
         q: "What is Exotic cannabis flower?",
-        a: "Exotic is a higher-end flower tier on the menu. Current strain details and availability can change.",
+        a: "Exotic is a higher-end flower tier on the menu. Current strain details and listings can change.",
       },
       {
         q: "How do I check current Exotic options?",
@@ -44,7 +44,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
       {
         heading: "Premium Flower Category",
         body:
-          "The Premium tier helps shoppers compare higher-quality flower options without mixing them into value categories. Availability and pricing can change as stock rotates.",
+          "The Premium tier helps shoppers compare higher-quality flower options without mixing them into value categories. Listings and pricing can change as stock rotates.",
       },
       {
         heading: "Built for Easier Menu Browsing",
@@ -72,7 +72,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
       {
         heading: "AAA+ Flower Category",
         body:
-          "AAA+ is one of the flower tiers used to help shoppers compare product levels on the Gas Junction Cannabis menu. Current strain availability and pricing can change.",
+          "AAA+ is one of the flower tiers used to help shoppers compare product levels on the Gas Junction Cannabis menu. Current strain listings and pricing can change.",
       },
       {
         heading: "Compare Before You Visit",
@@ -86,8 +86,8 @@ export const TIER_SEO: Record<string, TierSeoData> = {
         a: "AAA+ is a flower tier on the Gas Junction Cannabis menu. It helps organize products by category level.",
       },
       {
-        q: "Does availability change?",
-        a: "Yes. Flower availability can rotate, so check the current menu before visiting.",
+        q: "Do listings change?",
+        a: "Yes. Flower listings can rotate, so check the current menu before visiting.",
       },
     ],
   },
@@ -111,7 +111,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     faqs: [
       {
         q: "What is AA cannabis flower?",
-        a: "AA is a flower tier used for menu organization. Check current products and availability before visiting.",
+        a: "AA is a flower tier used for menu organization. Check current products and listings before visiting.",
       },
       {
         q: "Can I walk in?",
@@ -123,12 +123,12 @@ export const TIER_SEO: Record<string, TierSeoData> = {
   BUDGET: {
     seoTitle: "Budget Cannabis Toronto | Gas Junction Cannabis",
     seoIntro:
-      "Browse budget flower category information at Gas Junction Cannabis in Toronto. Confirm current value options and availability before visiting.",
+      "Browse budget flower category information at Gas Junction Cannabis in Toronto. Confirm current value options and listings before visiting.",
     sections: [
       {
         heading: "Budget Flower Category",
         body:
-          "The Budget tier helps shoppers find value-oriented flower options when they are available. Product details, pricing, and availability can change as stock rotates.",
+          "The Budget tier helps shoppers find value-oriented flower options when they are listed. Product details, pricing, and listings can change as stock rotates.",
       },
       {
         heading: "Check Current Value Options",

@@ -38,7 +38,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title: `${tierInfo.config.name} Flower | Gas Junction Cannabis`,
-      description: `${flowers.length} listed ${tierInfo.config.name.toLowerCase()} flower entries. Confirm current pricing and availability before visiting Gas Junction Cannabis.`,
+      description: `${flowers.length} listed ${tierInfo.config.name.toLowerCase()} flower entries. Confirm current pricing and listings before visiting Gas Junction Cannabis.`,
     },
   };
 }

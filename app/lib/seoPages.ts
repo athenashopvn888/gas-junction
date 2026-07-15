@@ -27,12 +27,12 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "A Toronto Dispensary in The Junction",
         body:
-          "Gas Junction Cannabis is located at 2813 Dundas St W, Toronto, ON M6P 1Y6, serving adult 19+ shoppers in The Junction and nearby west Toronto neighbourhoods. The store carries flower, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes, with menu details available online before you visit.",
+          "Gas Junction Cannabis is located at 2813 Dundas St W, Toronto, ON M6P 1Y6, serving adult 19+ shoppers in The Junction and nearby west Toronto neighbourhoods. The store carries flower, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes, with menu details listed online before you visit.",
       },
       {
         heading: "Flower Tiers for Different Budgets",
         body:
-          "The menu is organized into clear flower tiers so shoppers can compare everyday value options, familiar favourites, and higher-end picks by tier. Availability, pricing, and product details can change, so use the current menu to confirm what is available before coming in.",
+          "The menu is organized into clear flower tiers so shoppers can compare everyday value options, familiar favourites, and higher-end picks by tier. Listings, pricing, and product details can change, so use the current menu to confirm what is listed before coming in.",
       },
       {
         heading: "Easy to Reach on Dundas St W",
@@ -51,7 +51,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "What products does Gas Junction Cannabis carry?",
-        a: "The site includes category information for flower, pre-rolls, vapes, edibles, concentrates, accessories, cigarettes, and other menu sections. Current availability should be confirmed on the menu before visiting.",
+        a: "The site includes category information for flower, pre-rolls, vapes, edibles, concentrates, accessories, cigarettes, and other menu sections. Current listings should be confirmed on the menu before visiting.",
       },
       {
         q: "Can I walk in?",
@@ -64,7 +64,7 @@ export const SEO_PAGES: SeoPageData[] = [
     slug: "cheap-weed-toronto",
     title: "Cheap Weed Toronto | Gas Junction Cannabis",
     metaDescription:
-      "Compare budget cannabis options at Gas Junction Cannabis in Toronto. Visit 2813 Dundas St W in The Junction and confirm current flower pricing and availability before shopping.",
+      "Compare budget cannabis options at Gas Junction Cannabis in Toronto. Visit 2813 Dundas St W in The Junction and confirm current flower pricing and listings before shopping.",
     h1: "Cheap Weed Toronto",
     icon: "$",
     heroTagline:
@@ -79,7 +79,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Check Current Pricing Before You Visit",
         body:
-          "Cannabis pricing and availability can change as stock rotates. Use the current menu to confirm product details, bundle information, and category availability before heading to the store at 2813 Dundas St W.",
+          "Cannabis pricing and listings can change as stock rotates. Use the current menu to confirm product details, bundle information, and category listings before heading to the store at 2813 Dundas St W.",
       },
       {
         heading: "Convenient for West Toronto Shoppers",
@@ -117,7 +117,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Cigarettes and Cannabis in One Stop",
         body:
-          "Gas Junction Cannabis includes a cigarette category alongside cannabis flower, pre-rolls, vapes, edibles, concentrates, and accessories. Selection can rotate, so current cigarette availability should be confirmed in store.",
+          "Gas Junction Cannabis includes a cigarette category alongside cannabis flower, pre-rolls, vapes, edibles, concentrates, and accessories. Selection can rotate, so current cigarette listings should be confirmed in store.",
       },
       {
         heading: "The Junction Location",
@@ -133,7 +133,7 @@ export const SEO_PAGES: SeoPageData[] = [
     faqs: [
       {
         q: "Does Gas Junction Cannabis sell cigarettes?",
-        a: "The website includes a cigarette category. Current in-store selection and availability should be confirmed before visiting.",
+        a: "The website includes a cigarette category. Current in-store selection and listings should be confirmed before visiting.",
       },
       {
         q: "Where is the store?",
@@ -165,7 +165,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Browse Before You Head Over",
         body:
-          "Use the site to review cannabis categories and menu information before visiting. The menu can include flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories, with current availability subject to change.",
+          "Use the site to review cannabis categories and menu information before visiting. The menu can include flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories, with current listings subject to change.",
       },
       {
         heading: "Open Daily Store Hours",
@@ -184,7 +184,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "Can I check products online?",
-        a: "You can browse category and menu information online. Confirm current availability before visiting.",
+        a: "You can browse category and menu information online. Confirm current listings before visiting.",
       },
     ],
   },
@@ -208,7 +208,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Products and Categories",
         body:
-          "Gas Junction Cannabis includes category pages for flower, edibles, vapes, concentrates, pre-rolls, accessories, cigarettes, and more. Product availability changes, so current menu details should be confirmed before you make the trip.",
+          "Gas Junction Cannabis includes category pages for flower, edibles, vapes, concentrates, pre-rolls, accessories, cigarettes, and more. Product listings changes, so current menu details should be confirmed before you make the trip.",
       },
       {
         heading: "Hours, Address, and Contact",

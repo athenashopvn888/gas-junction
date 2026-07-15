@@ -258,7 +258,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Use Current Product Pages",
         body:
-          "This guide explains the shelf math. Product names, strain notes, and availability can move, so the final check should always happen on the current tier page or at the counter.",
+          "This guide explains the shelf math. Product names, strain notes, and listings can move, so the final check should always happen on the current tier page or at the counter.",
       },
     ],
   },
