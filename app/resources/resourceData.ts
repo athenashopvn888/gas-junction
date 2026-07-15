@@ -30,7 +30,7 @@ const hubCards: ResourceCard[] = [
   {
     title: "Menu Guide",
     href: "/resources/menu-guide",
-    text: "Use a category-first path for flower, pre-rolls, edibles, vapes, concentrates, and accessories.",
+    text: "Use a category-guided path for flower, pre-rolls, edibles, vapes, concentrates, and accessories.",
   },
   {
     title: "Flower Tier Guide",
@@ -66,9 +66,9 @@ const menuCards: ResourceCard[] = [
     text: "Open the live cigarette category for the current brand list.",
   },
   {
-    title: "GBP Store Page",
+    title: "Store Visit Page",
     href: "/weed-dispensary-toronto",
-    text: "Use the protected local landing page for address, hours, and visit context.",
+    text: "Use the store visit page for address, hours, and visit context.",
   },
 ];
 
@@ -138,9 +138,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Built Around The Junction Shopper",
         body:
-          "Gas Junction Cannabis sits at 2813 Dundas St W, so the resource section is organized around how local shoppers actually move: check the GBP landing page, pick the category, compare the right shelf, then head in with fewer tabs open.",
+          "Gas Junction Cannabis sits at 2813 Dundas St W, so the resource section is organized around how local shoppers actually move: check the store visit page, pick the category, compare the right shelf, then head in with fewer tabs open.",
         bullets: [
-          "Use /weed-dispensary-toronto for the protected local landing page.",
+          "Use /weed-dispensary-toronto for the store visit page.",
           "Use /resources/menu-guide when you are choosing between categories.",
           "Use /resources/native-smokes when cigarettes, Backwoods, grabba, or pouches are part of the same stop.",
         ],
@@ -163,7 +163,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Use this page when the search starts local: weed dispensary in The Junction, cannabis near Dundas St W and Keele, or a late stop near High Park North, Junction Triangle, Runnymede, Annette, Bloor West, Dundas West, or Roncesvalles.",
     cards: [
       {
-        title: "Local Landing Page",
+        title: "Store Visit Page",
         href: "/weed-dispensary-toronto",
         text: "The main GBP-connected page with address, hours, and visit planning.",
       },
@@ -185,19 +185,19 @@ export const RESOURCE_PAGES: ResourcePage[] = [
           "Gas Junction Cannabis is listed at 2813 Dundas St W, Toronto, ON M6P 1Y6. Keep that address as the anchor, then use the menu categories to decide whether this trip is about flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes.",
       },
       {
-        heading: "Neighborhood Search Paths",
+        heading: "Neighborhood Shopping Notes",
         body:
-          "The Junction page should catch shoppers who describe the area in different ways. This guide naturally supports searches around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles without turning the page into a keyword wall.",
+          "The Junction page should catch shoppers who describe the area in different ways. This guide naturally helps shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles without turning the page into a keyword wall.",
         bullets: [
           "The Junction and Dundas St W for the core local search.",
           "Keele and High Park North for nearby direction-based searches.",
-          "Junction Triangle, Runnymede, Bloor West, and Roncesvalles for nearby shopper paths.",
+          "Junction Triangle, Runnymede, Bloor West, and Roncesvalles for nearby shopping trips.",
         ],
       },
       {
         heading: "Best First Click",
         body:
-          "If you are not sure what to buy yet, do not start deep inside an item page. Start with the menu guide, then choose the shelf. If the visit is mostly about current store details, use the local landing page first.",
+          "If you are not sure what to buy yet, do not start deep inside an item page. Start with the menu guide, then choose the shelf. If the visit is mostly about current store details, use the store visit page first.",
       },
     ],
   },
@@ -206,10 +206,10 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     title: "Gas Junction Cannabis Menu Guide",
     seoTitle: "Gas Junction Cannabis Menu Guide | Flower, Vapes, Edibles, Pre-Rolls",
     description:
-      "A category-first menu guide for Gas Junction Cannabis shoppers comparing flower tiers, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes.",
+      "A category-guided menu guide for Gas Junction Cannabis shoppers comparing flower tiers, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes.",
     eyebrow: "Menu Guide",
     intro:
-      "The cleanest way to shop the Gas Junction Cannabis menu is to choose the lane first. Flower shoppers need tier logic. Pre-roll shoppers need format logic. Cigarette shoppers need brand and price notes. Treat each category like its own shelf.",
+      "The cleanest way to shop the Gas Junction Cannabis menu is to choose the section first. Flower shoppers need tier logic. Pre-roll shoppers need format logic. Cigarette shoppers need brand and price notes. Treat each category like its own shelf.",
     cards: menuCards,
     sections: [
       {
@@ -225,7 +225,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Use The Local Page For The Store Details",
         body:
-          "The menu guide is for deciding what to shop. The GBP landing page is for address, hours, and local visit planning. Keeping those jobs separate helps protect the important local SEO page while making the resources more useful.",
+          "The menu guide is for deciding what to shop. The store visit page is for address, hours, and local visit planning. Keeping those jobs separate helps protect the important local SEO page while making the resources more useful.",
       },
     ],
   },
@@ -267,7 +267,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     title: "Gas Junction Value Weed Guide",
     seoTitle: "Gas Junction Value Weed Guide | Cheap Weed Near The Junction",
     description:
-      "A value shopping guide for Gas Junction Cannabis near The Junction, covering Budget, AA, AAA+, 6g deals, and affordable weed menu paths.",
+      "A value shopping guide for Gas Junction Cannabis near The Junction, covering Budget, AA, AAA+, 6g deals, and affordable weed menu sections.",
     eyebrow: "Value Guide",
     intro:
       "Value shopping does not have to mean scrolling the whole store. At Gas Junction Cannabis, start with Budget, AA, and AAA+ if the search is cheap weed, budget weed, or affordable flower near The Junction.",
@@ -432,19 +432,19 @@ export const RESOURCE_PAGES: ResourcePage[] = [
   },
   {
     slug: "resource-centre-launch",
-    title: "Gas Junction Resource Centre Update",
-    seoTitle: "Gas Junction Resource Centre Update | Local Menu Guides",
+    title: "Gas Junction Resource Guide Refresh",
+    seoTitle: "Gas Junction Resource Guide Refresh | Local Menu Guides",
     description:
-      "Gas Junction Cannabis resource centre update with local Junction visit planning, menu guide pages, flower tier pricing, value shopping, and Native smokes prices.",
+      "Gas Junction Cannabis resource guide refresh with local Junction visit planning, menu guide pages, flower tier pricing, value shopping, and Native smokes prices.",
     eyebrow: "Resource Update",
     intro:
-      "The resource centre has been rebuilt around real shopper paths: local visit planning, category-first menu browsing, flower tier math, value shopping, quick pre-roll trips, and cigarette price notes.",
+      "The resource centre has been rebuilt around real shopping trips: local visit planning, category-guided menu browsing, flower tier math, value shopping, quick pre-roll trips, and cigarette price notes.",
     cards: hubCards,
     sections: [
       {
         heading: "What Changed",
         body:
-          "The resources are now specific to Gas Junction Cannabis and The Junction instead of reading like a copied store template. They support the GBP landing page, menu categories, flower tiers, and cigarette category without replacing any of those pages.",
+          "The resources are now specific to Gas Junction Cannabis and The Junction instead of reading like a copied store template. They support the store visit page, menu categories, flower tiers, and cigarette category without replacing any of those pages.",
       },
       {
         heading: "What Stayed Protected",
