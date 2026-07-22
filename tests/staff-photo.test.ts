@@ -124,3 +124,13 @@ test("client source does not contain server secret names or PIN formula", () => 
   assert.equal(client.includes("createHmac"), false);
   assert.equal(client.includes("DAILY_PIN_SECRET"), false);
 });
+
+test("deployment cleanup is scheduled and keeps separate cron authorization", () => {
+  const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
+  assert.deepEqual(config.crons, [{ path: "/api/staff-photo/maintenance/cleanup", schedule: "15 11 * * *" }]);
+  const route = readFileSync(new URL("../app/api/staff-photo/maintenance/cleanup/route.ts", import.meta.url), "utf8");
+  assert.match(route, /export async function GET/);
+  assert.match(route, /process\.env\.CRON_SECRET/);
+  assert.match(route, /export async function POST/);
+  assert.match(route, /GJC_STAFF_CLEANUP_TOKEN/);
+});

@@ -12,9 +12,10 @@ This is an isolated, upload-only staff mailbox for Gas Junction. It does not con
    - `GJC_STAFF_SESSION_SECRET` (at least 32 random characters)
    - `GJC_STAFF_RETRIEVAL_TOKEN` (at least 32 random characters)
    - `GJC_STAFF_CLEANUP_TOKEN` (optional separate token; retrieval token is fallback)
+   - `CRON_SECRET` (at least 32 random characters; used only by Vercel Cron)
    - `GJC_STAFF_PIN_BOUNDARY_HOUR` (optional, defaults to `6` in Toronto)
    - `GJC_STAFF_PREVIOUS_PIN_GRACE_MINUTES` (optional, defaults to `0`; enabling grace eases shift handoff but delays removal from the prior Signal group)
-3. Schedule an authenticated `POST /api/staff-photo/maintenance/cleanup` at least hourly. No cron or live resource is created by this branch.
+3. Deploying `vercel.json` registers a once-daily cleanup on every Vercel plan. Vercel calls `GET /api/staff-photo/maintenance/cleanup` with `CRON_SECRET`. The collector may also trigger authenticated cleanup with `POST` and `GJC_STAFF_CLEANUP_TOKEN`.
 
 ## Daily PIN contract
 
@@ -35,7 +36,7 @@ All collector routes require `Authorization: Bearer <GJC_STAFF_RETRIEVAL_TOKEN>`
 - `GET /api/staff-photo/collector/media/{uuid}`: streams a private photo or issue attachment; no public or signed bucket URL is exposed.
 - `POST /api/staff-photo/collector/ack`: body `{ "kind": "submission", "id": "...", "state": "retrieved|invalid|posted", "deleteObject": true, "note": "..." }`, or kind `issue` with state `retrieved`.
 
-`deleteObject: true` is accepted only as part of a durable acknowledgement. Metadata remains for reporting while the private object is removed. Media access is denied at the exact 24-hour expiry even if the scheduled physical cleanup has not run yet; cleanup removes the inaccessible object on its next run. Statuses describe processing only; this site does not claim to validate or post to GBP.
+`deleteObject: true` is accepted only as part of a durable acknowledgement. Metadata remains for reporting while the private object is removed. Media access is denied at the exact 24-hour expiry even if the daily physical cleanup has not run yet; cleanup removes the inaccessible object on its next run. Statuses describe processing only; this site does not claim to validate or post to GBP.
 
 ## Staff UX
 

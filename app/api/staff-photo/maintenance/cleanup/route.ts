@@ -3,9 +3,7 @@ import { STAFF_BUCKET, publicError, staffDb } from "@/app/lib/staffPhotoDb";
 
 export const runtime = "nodejs";
 
-export async function POST(request: Request) {
-  const token = process.env.GJC_STAFF_CLEANUP_TOKEN || process.env.GJC_STAFF_RETRIEVAL_TOKEN;
-  if (!verifyBearer(request, token)) return Response.json({ ok: false }, { status: 401 });
+async function runCleanup() {
   try {
     const db = staffDb();
     const now = new Date().toISOString();
@@ -35,4 +33,15 @@ export async function POST(request: Request) {
     await db.from("staff_photo_login_attempts").delete().lt("created_at", new Date(Date.now() - 24 * 60 * 60_000).toISOString());
     return Response.json({ ok: true, removedObjects: paths.length, expiredSubmissions: submissionIds.length, expiredIssueAttachments: issueIds.length });
   } catch (error) { return publicError(error); }
+}
+
+export async function GET(request: Request) {
+  if (!verifyBearer(request, process.env.CRON_SECRET)) return Response.json({ ok: false }, { status: 401 });
+  return runCleanup();
+}
+
+export async function POST(request: Request) {
+  const token = process.env.GJC_STAFF_CLEANUP_TOKEN || process.env.GJC_STAFF_RETRIEVAL_TOKEN;
+  if (!verifyBearer(request, token)) return Response.json({ ok: false }, { status: 401 });
+  return runCleanup();
 }
