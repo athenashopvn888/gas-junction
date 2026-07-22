@@ -81,6 +81,27 @@ alter table public.staff_photo_issues enable row level security;
 alter table public.staff_photo_random_checks enable row level security;
 -- Deliberately no anon/authenticated policies. The server-only service role is the sole caller.
 
+-- RLS bypass does not grant PostgreSQL table privileges. Grant only the operations
+-- used by the server routes, and keep browser roles explicitly unprivileged.
+grant usage on schema public to service_role;
+
+revoke all on table public.staff_photo_settings from anon, authenticated;
+revoke all on table public.staff_photo_pin_audit from anon, authenticated;
+revoke all on table public.staff_photo_login_attempts from anon, authenticated;
+revoke all on table public.staff_photo_submissions from anon, authenticated;
+revoke all on table public.staff_photo_issues from anon, authenticated;
+revoke all on table public.staff_photo_random_checks from anon, authenticated;
+
+grant select on table public.staff_photo_settings to service_role;
+grant select, insert, delete on table public.staff_photo_login_attempts to service_role;
+grant select, insert, update on table public.staff_photo_submissions to service_role;
+grant select, insert, update on table public.staff_photo_issues to service_role;
+grant select, insert, update on table public.staff_photo_random_checks to service_role;
+
+revoke all on sequence public.staff_photo_login_attempts_id_seq from anon, authenticated;
+revoke all on sequence public.staff_photo_pin_audit_id_seq from anon, authenticated;
+grant usage, select on sequence public.staff_photo_login_attempts_id_seq to service_role;
+
 create or replace function public.rotate_staff_photo_pin()
 returns integer
 language plpgsql

@@ -134,3 +134,15 @@ test("deployment cleanup is scheduled and keeps separate cron authorization", ()
   assert.match(route, /export async function POST/);
   assert.match(route, /GJC_STAFF_CLEANUP_TOKEN/);
 });
+
+test("Supabase setup grants least-privilege server access and no browser access", () => {
+  const sql = readFileSync(new URL("../supabase/staff-photo-pilot.sql", import.meta.url), "utf8");
+  assert.match(sql, /grant select on table public\.staff_photo_settings to service_role;/);
+  assert.match(sql, /grant select, insert, delete on table public\.staff_photo_login_attempts to service_role;/);
+  assert.match(sql, /grant select, insert, update on table public\.staff_photo_submissions to service_role;/);
+  assert.match(sql, /grant select, insert, update on table public\.staff_photo_issues to service_role;/);
+  assert.match(sql, /grant select, insert, update on table public\.staff_photo_random_checks to service_role;/);
+  assert.match(sql, /grant usage, select on sequence public\.staff_photo_login_attempts_id_seq to service_role;/);
+  assert.match(sql, /revoke all on table public\.staff_photo_settings from anon, authenticated;/);
+  assert.doesNotMatch(sql, /create policy/i);
+});
