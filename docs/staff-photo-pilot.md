@@ -17,6 +17,8 @@ This is an isolated, upload-only staff mailbox for Gas Junction. It does not con
    - `GJC_STAFF_PREVIOUS_PIN_GRACE_MINUTES` (optional, defaults to `0`; enabling grace eases shift handoff but delays removal from the prior Signal group)
 3. Deploying `vercel.json` registers a once-daily cleanup on every Vercel plan. Vercel calls `GET /api/staff-photo/maintenance/cleanup` with `CRON_SECRET`. The collector may also trigger authenticated cleanup with `POST` and `GJC_STAFF_CLEANUP_TOKEN`.
 
+The setup SQL explicitly grants the server-side `service_role` only the table and sequence operations used by these routes. RLS remains enabled with no `anon` or `authenticated` policies. If collector calls return PostgreSQL `42501`, rerun the latest grant section as the project owner; never weaken RLS or add browser policies.
+
 ## Daily PIN contract
 
 The 4-digit PIN is derived only on the server from HMAC-SHA256 over the secret, `GJC01`, operational date, and private generation version. It rotates automatically at 06:00 Toronto time. Staff sessions contain neither the PIN nor secret, are bound to the operational date and generation version, and expire at the next 06:00 boundary.
