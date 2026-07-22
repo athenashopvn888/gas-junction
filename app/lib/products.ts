@@ -237,7 +237,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
     seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Gas Junction Cannabis",
     seoIntro: "Native cigarette category information at Gas Junction Cannabis, Toronto.",
-    seoDescription: "Gas Junction Cannabis includes cigarette category information for Toronto shoppers. Located at 2813 Dundas St W in The Junction, the store is open daily from 09:00 AM to 02:00 AM.",
+    seoDescription: "Gas Junction Cannabis includes cigarette category information for Toronto shoppers. Located at 2813 Dundas St W in The Junction, the store is open 24 hours daily.",
     faqs: [
       { q: "Do you sell cigarettes at Gas Junction Cannabis?", a: "The site includes a cigarettes category for Gas Junction Cannabis shoppers." },
       { q: "What cigarette brands do you carry?", a: "Brand mix can change. Check the current menu or contact the store before visiting for a specific cigarette brand." },

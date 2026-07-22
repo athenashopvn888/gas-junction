@@ -21,7 +21,7 @@ export const SEO_PAGES: SeoPageData[] = [
     h1: "Toronto Weed Dispensary - Gas Junction Cannabis",
     icon: "\u2728",
     heroTagline:
-      "2813 Dundas St W in The Junction | Open daily from 09:00 AM to 02:00 AM | Walk-ins welcome",
+      "2813 Dundas St W in The Junction | Open 24 hours daily | Walk-ins welcome",
     banner: "",
     sections: [
       {
@@ -47,7 +47,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "What are the hours for Gas Junction Cannabis?",
-        a: "The listed store hours are open daily from 09:00 AM to 02:00 AM.",
+        a: "The listed store hours are 24 hours daily.",
       },
       {
         q: "What products does Gas Junction Cannabis carry?",
@@ -68,7 +68,7 @@ export const SEO_PAGES: SeoPageData[] = [
     h1: "Cheap Weed Toronto",
     icon: "$",
     heroTagline:
-      "Budget-friendly flower options | The Junction, Toronto | Open daily from 09:00 AM to 02:00 AM",
+      "Budget-friendly flower options | The Junction, Toronto | Open 24 hours daily",
     banner: "",
     sections: [
       {
@@ -98,7 +98,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "Is Gas Junction Cannabis open late?",
-        a: "The listed hours are open daily from 09:00 AM to 02:00 AM.",
+        a: "The listed hours are 24 hours daily.",
       },
     ],
   },
@@ -141,7 +141,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "What are the listed hours?",
-        a: "The listed hours are open daily from 09:00 AM to 02:00 AM.",
+        a: "The listed hours are 24 hours daily.",
       },
     ],
   },
@@ -168,9 +168,9 @@ export const SEO_PAGES: SeoPageData[] = [
           "Use the site to review cannabis categories and menu information before visiting. The menu can include flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories, with current listings subject to change.",
       },
       {
-        heading: "Open Daily Store Hours",
+        heading: "Open 24 Hours Daily",
         body:
-          "The listed store hours are open daily from 09:00 AM to 02:00 AM. Walk in during posted hours or call (437) 535-7027 for store questions.",
+          "The listed store hours are 24 hours daily. Walk in anytime or call (437) 535-7027 for store questions.",
       },
     ],
     faqs: [
@@ -197,7 +197,7 @@ export const SEO_PAGES: SeoPageData[] = [
     h1: "Cannabis Dispensary Near Me - Toronto",
     icon: "+",
     heroTagline:
-      "The Junction dispensary | 2813 Dundas St W | Open daily from 09:00 AM to 02:00 AM",
+      "The Junction dispensary | 2813 Dundas St W | Open 24 hours daily",
     banner: "",
     sections: [
       {
@@ -213,7 +213,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Hours, Address, and Contact",
         body:
-          "The listed hours are open daily from 09:00 AM to 02:00 AM. Visit 2813 Dundas St W, Toronto, ON M6P 1Y6, or call (437) 535-7027 for store questions.",
+          "The listed hours are 24 hours daily. Visit 2813 Dundas St W, Toronto, ON M6P 1Y6, or call (437) 535-7027 for store questions.",
       },
     ],
     faqs: [

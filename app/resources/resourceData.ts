@@ -148,7 +148,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Hours And Local Intent",
         body:
-          "The listed store hours are Open Daily: 09:00 AM - 02:00 AM. That makes the resource hub useful for daytime errands, after-work shopping, and later Junction-area searches for a weed dispensary near Dundas and Keele.",
+          "The listed store hours are 24 hours daily. That makes the resource hub useful for Junction-area visit planning at any time of day.",
       },
     ],
   },

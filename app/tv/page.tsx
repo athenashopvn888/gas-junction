@@ -673,7 +673,7 @@ function AddOnsCard({ items, hiIdx }: { items: Item[]; hiIdx: number }) {
 const TICKER_SLIDES = [
   "🔥 Gas Junction Cannabis — 2813 Dundas St W, Toronto",
   "Flower Tiers, Edibles, Vapes, Concentrates",
-  "Open Daily: 09:00 AM - 02:00 AM",
+  "Open 24 Hours Daily",
   "ALL SALES ARE FINAL",
   "🎮 Play Games at www.gasjunctioncannabis.com/games",
 ];

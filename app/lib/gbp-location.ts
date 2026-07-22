@@ -28,7 +28,7 @@ export const gbpLocation = {
   mapEmbedUrl: "",
   latitude: "43.6651700",
   longitude: "-79.4630600",
-  hours: ["Open Daily: 09:00 AM - 02:00 AM"],
+  hours: ["Open 24 Hours Daily"],
   seoTitle: "Gas Junction Cannabis | Weed Dispensary in Toronto",
   metaDescription: "Gas Junction Cannabis is a local weed dispensary in Toronto with flower, pre-roll, edible, vape, concentrate, accessory, and cigarette category information for adults 19+.",
   localLandmarks: ["The Junction", "Dundas St W", "Keele"],
