@@ -105,7 +105,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
       {
         heading: "Local Store Details",
         body:
-          "Gas Junction Cannabis is located in The Junction at 2813 Dundas St W, Toronto, ON M6P 1Y6. The listed hours are open daily from 09:00 AM to 02:00 AM.",
+          "Gas Junction Cannabis is located in The Junction at 2813 Dundas St W, Toronto, ON M6P 1Y6. The listed hours are 24 hours daily.",
       },
     ],
     faqs: [

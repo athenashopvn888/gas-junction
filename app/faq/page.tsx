@@ -17,7 +17,7 @@ const FAQ_CATEGORIES = [
     title: "📍 Location & Hours",
     faqs: [
       { q: "Where is Gas Junction Cannabis located?", a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6, in The Junction area." },
-      { q: "What are your hours?", a: "We are open daily from 09:00 AM to 02:00 AM. Walk in anytime — no appointment needed." },
+      { q: "What are your hours?", a: "We are open 24 hours daily. Walk in anytime — no appointment needed." },
       { q: "Is there parking nearby?", a: "For parking or transit details, use the current map listing or contact the store before visiting." },
       { q: "What nearby areas do you serve?", a: "The Junction location is useful for shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and nearby west Toronto neighbourhoods." },
       { q: "What's the best way to get to Gas Junction Cannabis?", a: "We're accessible by car, local transit, or on foot from nearby Junction streets. Confirm your route before visiting if you are coming from outside the neighbourhood." },
@@ -47,7 +47,7 @@ const FAQ_CATEGORIES = [
   {
     title: "🛒 Shopping & Experience",
     faqs: [
-      { q: "Do I need an appointment?", a: "No! Gas Junction Cannabis is walk-in only. Just show up anytime — we are open daily from 09:00 AM to 02:00 AM." },
+      { q: "Do I need an appointment?", a: "No! Gas Junction Cannabis is walk-in only. Just show up anytime — we are open 24 hours daily." },
       { q: "Can I order online?", a: "Currently, Gas Junction Cannabis is an in-store shopping experience. You can browse menu and category information online before visiting." },
       { q: "Do you offer delivery?", a: "Delivery information is being prepared. Visit the delivery page for updates." },
       { q: "What payment methods do you accept?", a: "We accept cash and debit. No credit cards at this time." },

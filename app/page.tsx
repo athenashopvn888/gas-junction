@@ -71,7 +71,7 @@ const EXPLORE_CATEGORIES = [
 const LOCAL_FAQS = [
   {
     q: "What are the hours for Gas Junction Cannabis?",
-    a: "Gas Junction Cannabis at 2813 Dundas St W, Toronto is open daily from 09:00 AM to 02:00 AM. Walk in anytime — no appointment needed.",
+    a: "Gas Junction Cannabis at 2813 Dundas St W, Toronto is open 24 hours daily. Walk in anytime — no appointment needed.",
   },
   {
     q: "What cannabis products do you carry?",
@@ -231,7 +231,7 @@ export default function HomePage() {
             <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary</p>
-            <div className={styles.brandBadge}>Open Daily: 09:00 AM - 02:00 AM</div>
+            <div className={styles.brandBadge}>Open 24 Hours Daily</div>
           </div>
 
           {/* Bento Grid */}
@@ -319,7 +319,7 @@ export default function HomePage() {
               Welcome to <strong>Gas Junction Cannabis</strong>, a Toronto cannabis destination at 2813 Dundas St W in The Junction. Browse flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories before you visit.
             </p>
             <p className={styles.seoPanelText}>
-              Gas Junction Cannabis is open daily from 09:00 AM to 02:00 AM. Product details and listings can change, so use the current menu as your source of truth before heading over.
+              Gas Junction Cannabis is open 24 hours daily. Product details and listings can change, so use the current menu as your source of truth before heading over.
             </p>
             <p className={styles.seoPanelText}>
               Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis gives west Toronto shoppers a straightforward place to compare categories and find the right lane for their budget.
@@ -421,7 +421,7 @@ export default function HomePage() {
               <p className={styles.storeCardText}>
                 Open 7 Days a Week
                 <br />
-                <span className={styles.storeHighlight}>Open Daily: 09:00 AM - 02:00 AM</span>
+                <span className={styles.storeHighlight}>Open 24 Hours Daily</span>
               </p>
             </div>
             <div className={styles.storeCard}>

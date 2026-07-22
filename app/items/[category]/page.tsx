@@ -128,7 +128,7 @@ export default async function ItemsCategoryPage({
           <div className={styles.visitCta}>
             <h3 className={styles.visitTitle}>Visit Gas Junction Cannabis</h3>
             <p className={styles.visitText}>
-              2813 Dundas St W, Toronto, ON M6P 1Y6 · Open Daily: 09:00 AM - 02:00 AM
+              2813 Dundas St W, Toronto, ON M6P 1Y6 · Open 24 Hours Daily
             </p>
           </div>
         </div>
