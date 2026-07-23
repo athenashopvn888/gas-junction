@@ -135,14 +135,42 @@ test("deployment cleanup is scheduled and keeps separate cron authorization", ()
   assert.match(route, /GJC_STAFF_CLEANUP_TOKEN/);
 });
 
-test("Supabase setup grants least-privilege server access and no browser access", () => {
-  const sql = readFileSync(new URL("../supabase/staff-photo-pilot.sql", import.meta.url), "utf8");
-  assert.match(sql, /grant select on table public\.staff_photo_settings to service_role;/);
-  assert.match(sql, /grant select, insert, delete on table public\.staff_photo_login_attempts to service_role;/);
-  assert.match(sql, /grant select, insert, update on table public\.staff_photo_submissions to service_role;/);
-  assert.match(sql, /grant select, insert, update on table public\.staff_photo_issues to service_role;/);
-  assert.match(sql, /grant select, insert, update on table public\.staff_photo_random_checks to service_role;/);
-  assert.match(sql, /grant usage, select on sequence public\.staff_photo_login_attempts_id_seq to service_role;/);
-  assert.match(sql, /revoke all on table public\.staff_photo_settings from anon, authenticated;/);
-  assert.doesNotMatch(sql, /create policy/i);
+test("private Vercel Blob state uses fresh reads and optimistic concurrency", () => {
+  const store = readFileSync(new URL("../app/lib/staffPhotoStore.ts", import.meta.url), "utf8");
+  assert.match(store, /STAFF_STATE_PATH = "staff-photo\/state\/v1\.json"/);
+  assert.match(store, /access: "private"/);
+  assert.match(store, /useCache: false/);
+  assert.match(store, /BlobPreconditionFailedError/);
+  assert.match(store, /ifMatch: etag/);
+  assert.doesNotMatch(store, /NEXT_PUBLIC_/);
+});
+
+test("staff-photo runtime and package have no Supabase dependency", () => {
+  const packageJson = readFileSync(new URL("../package.json", import.meta.url), "utf8");
+  const runtimeFiles = [
+    "../app/lib/staffPhotoAuth.ts",
+    "../app/lib/staffPhotoStore.ts",
+    "../app/api/staff-photo/auth/route.ts",
+    "../app/api/staff-photo/status/route.ts",
+    "../app/api/staff-photo/submissions/route.ts",
+    "../app/api/staff-photo/issues/route.ts",
+    "../app/api/staff-photo/random-check/route.ts",
+    "../app/api/staff-photo/collector/status/route.ts",
+    "../app/api/staff-photo/collector/media/[id]/route.ts",
+    "../app/api/staff-photo/collector/ack/route.ts",
+    "../app/api/staff-photo/collector/credentials/route.ts",
+    "../app/api/staff-photo/collector/credentials/rotate/route.ts",
+    "../app/api/staff-photo/maintenance/cleanup/route.ts",
+  ].map((path) => readFileSync(new URL(path, import.meta.url), "utf8")).join("\n");
+  assert.match(packageJson, /"@vercel\/blob"/);
+  assert.doesNotMatch(packageJson, /@supabase/);
+  assert.doesNotMatch(runtimeFiles, /supabase/i);
+});
+
+test("collector streams private media without browser caching or Blob URL exposure", () => {
+  const route = readFileSync(new URL("../app/api/staff-photo/collector/media/[id]/route.ts", import.meta.url), "utf8");
+  assert.match(route, /getStaffMedia/);
+  assert.match(route, /"cache-control": "private, no-store"/);
+  assert.match(route, /"x-content-type-options": "nosniff"/);
+  assert.doesNotMatch(route, /\\.url/);
 });
