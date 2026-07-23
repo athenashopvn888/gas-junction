@@ -12,7 +12,7 @@ The application keeps:
 - a small private `staff-photo/state/v1.json` operational record;
 - optimistic concurrency through Blob ETags for every state mutation;
 - fresh state reads with `useCache: false`;
-- exact 24-hour media expiry enforcement before streaming;
+- operational-day media retention: each 06:00-06:00 Toronto batch remains retrievable for the full following operational day, producing a 24-to-48-hour window;
 - durable metadata after retrieval or media deletion.
 
 The legacy GJC Supabase project is no longer used by this runtime. Do not delete it until production Blob verification confirms there are no legacy pending photos or issue attachments that must be retained or migrated.
@@ -28,7 +28,7 @@ The legacy GJC Supabase project is no longer used by this runtime. Do not delete
 - `GJC_STAFF_PIN_BOUNDARY_HOUR` (optional, defaults to `6` in Toronto)
 - `GJC_STAFF_PREVIOUS_PIN_GRACE_MINUTES` (optional, defaults to `0`)
 
-Deploying `vercel.json` registers daily cleanup at `15 11 * * *`. Vercel calls `GET /api/staff-photo/maintenance/cleanup` with `CRON_SECRET`. The collector may also call authenticated `POST` cleanup with `GJC_STAFF_CLEANUP_TOKEN`.
+Deploying `vercel.json` registers idempotent cleanup at both `15 10 * * *` and `15 11 * * *`. The paired UTC schedules provide a 06:15 Toronto cleanup through daylight and standard time; the off-season call is a safe no-op before expiry or an idempotent retry after it. Vercel calls `GET /api/staff-photo/maintenance/cleanup` with `CRON_SECRET`. The collector may also call authenticated `POST` cleanup with `GJC_STAFF_CLEANUP_TOKEN`.
 
 ## Daily PIN contract
 
@@ -49,7 +49,7 @@ All collector routes require `Authorization: Bearer <GJC_STAFF_RETRIEVAL_TOKEN>`
 - `GET /api/staff-photo/collector/media/{uuid}`: streams a private photo or issue attachment through the authenticated function. No Blob URL or store token is exposed.
 - `POST /api/staff-photo/collector/ack`: body `{ "kind": "submission", "id": "...", "state": "retrieved|invalid|posted", "deleteObject": true, "note": "..." }`, or kind `issue` with state `retrieved`.
 
-Acknowledgement state is persisted before requested media deletion. If deletion fails, the private path remains in state so the collector can retry. Metadata remains for completion/reporting after the object is removed. Media access is denied at exact 24-hour expiry even if physical cleanup has not yet run.
+Acknowledgement state is persisted before requested media deletion. If deletion fails, the private path remains in state so the collector can retry without duplicating a GBP post. Metadata remains for completion/reporting after the object is removed. Media access expires at 06:00 Toronto after the full additional operational-day retry window, even if physical cleanup has not yet run. Current and prior operational-day batches can therefore overlap; staff sessions and PINs remain scoped only to the current operational day.
 
 ## Staff UX
 

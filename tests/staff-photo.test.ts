@@ -8,7 +8,7 @@ import {
   loginAllowed,
   mimeMatchesKind,
   operationalDayContext,
-  PHOTO_TTL_MS,
+  MEDIA_RETRY_WINDOW_MS,
   SHOT_PROMPTS,
 } from "../app/lib/staffPhotoCore.ts";
 import { dailyPin, verifyDailyPin } from "../app/lib/staffPhotoPin.ts";
@@ -108,9 +108,16 @@ test("magic bytes must agree with MIME", () => {
   assert.equal(detectImageKind(Uint8Array.from([1, 2, 3])), null);
 });
 
-test("object expiry is exactly 24 hours", () => {
-  const created = new Date("2026-07-23T12:00:00Z");
-  assert.equal(expiryFor(created).getTime() - created.getTime(), PHOTO_TTL_MS);
+test("media expires after the full following operational day", () => {
+  const early = new Date("2026-07-14T10:01:00Z");
+  const late = new Date("2026-07-15T09:59:00Z");
+  const expected = new Date("2026-07-16T10:00:00Z");
+  assert.equal(expiryFor(early).toISOString(), expected.toISOString());
+  assert.equal(expiryFor(late).toISOString(), expected.toISOString());
+  assert.equal(
+    expiryFor(early).getTime() - operationalDayContext(early).validUntil.getTime(),
+    MEDIA_RETRY_WINDOW_MS,
+  );
 });
 
 test("rate limit blocks the seventh failed attempt in a 15 minute window", () => {
@@ -127,7 +134,10 @@ test("client source does not contain server secret names or PIN formula", () => 
 
 test("deployment cleanup is scheduled and keeps separate cron authorization", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
-  assert.deepEqual(config.crons, [{ path: "/api/staff-photo/maintenance/cleanup", schedule: "15 11 * * *" }]);
+  assert.deepEqual(config.crons, [
+    { path: "/api/staff-photo/maintenance/cleanup?window=edt", schedule: "15 10 * * *" },
+    { path: "/api/staff-photo/maintenance/cleanup?window=est", schedule: "15 11 * * *" },
+  ]);
   const route = readFileSync(new URL("../app/api/staff-photo/maintenance/cleanup/route.ts", import.meta.url), "utf8");
   assert.match(route, /export async function GET/);
   assert.match(route, /process\.env\.CRON_SECRET/);
