@@ -101,7 +101,7 @@ export default function DeliveryContent() {
         <div className={styles.ctaSection}>
           <p className={styles.ctaText}>
             Can&apos;t wait? Visit us in-store at <strong>2813 Dundas St W, Toronto</strong> —
-            we are <strong>Open 24 Hours Daily</strong>. Call <strong>(437) 535-7027</strong>.
+            we are <strong>Open 24 Hours Daily</strong>. Call <strong>+1 (437) 291-0948</strong>.
           </p>
         </div>
       </div>

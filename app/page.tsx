@@ -80,7 +80,7 @@ const LOCAL_FAQS = [
   },
   {
     q: "Where is Gas Junction Cannabis located?",
-    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at (437) 535-7027. Check posted signs or the map listing for parking details.",
+    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at +1 (437) 291-0948. Check posted signs or the map listing for parking details.",
   },
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",

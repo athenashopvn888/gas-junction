@@ -78,7 +78,7 @@ const jsonLd = {
   name: "Gas Junction Cannabis",
   description: "Cannabis dispensary at 2813 Dundas St W in Toronto, ON. Browse flower tiers plus edibles, pre-rolls, vapes, concentrates, accessories, and cigarettes. Open 24 hours daily.",
   url: "https://www.gasjunctioncannabis.com",
-  telephone: "+14375357027",
+  telephone: "+14372910948",
   image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
   priceRange: "$3 - $12/g",
   address: {
