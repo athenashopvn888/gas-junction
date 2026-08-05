@@ -9,8 +9,8 @@ export const gbpLocation = {
   address: "2813 Dundas St W, Toronto, ON M6P 1Y6",
   streetAddress: "2813 Dundas St W",
   postalCode: "M6P 1Y6",
-  phone: "(437) 535-7027",
-  phoneIntl: "+14375357027",
+  phone: "+1 (437) 291-0948",
+  phoneIntl: "+14372910948",
   neighborhood: "The Junction",
   nearbyAreas: ["The Junction", "Dundas St W", "Keele", "High Park North", "Junction Triangle", "Bloor West Village", "Runnymede", "Annette Street", "Dundas West", "Roncesvalles"],
   products: [

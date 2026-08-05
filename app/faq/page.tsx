@@ -113,7 +113,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call us at <strong>(437) 535-7027</strong> or visit us at 2813 Dundas St W, Toronto.
+              Call us at <strong>+1 (437) 291-0948</strong> or visit us at 2813 Dundas St W, Toronto.
             </p>
           </div>
         </div>

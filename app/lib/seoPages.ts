@@ -37,7 +37,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Easy to Reach on Dundas St W",
         body:
-          "The shop sits on Dundas St W near Keele in The Junction, close to TTC routes, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, and Roncesvalles. Walk in during posted hours or call (437) 535-7027 for store questions.",
+          "The shop sits on Dundas St W near Keele in The Junction, close to TTC routes, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, and Roncesvalles. Walk in during posted hours or call +1 (437) 291-0948 for store questions.",
       },
     ],
     faqs: [
@@ -170,7 +170,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Open 24 Hours Daily",
         body:
-          "The listed store hours are 24 hours daily. Walk in anytime or call (437) 535-7027 for store questions.",
+          "The listed store hours are 24 hours daily. Walk in anytime or call +1 (437) 291-0948 for store questions.",
       },
     ],
     faqs: [
@@ -213,7 +213,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Hours, Address, and Contact",
         body:
-          "The listed hours are 24 hours daily. Visit 2813 Dundas St W, Toronto, ON M6P 1Y6, or call (437) 535-7027 for store questions.",
+          "The listed hours are 24 hours daily. Visit 2813 Dundas St W, Toronto, ON M6P 1Y6, or call +1 (437) 291-0948 for store questions.",
       },
     ],
     faqs: [
