@@ -220,6 +220,10 @@ export default function HomePage() {
             <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary</p>
             <div className={styles.brandBadge}>Open 24 Hours Daily</div>
+            <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
+              <Link href="/exotic" className={styles.homeMenuCta}>STORE MENU</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
+            </div>
           </div>
 
           {/* Bento Grid */}
