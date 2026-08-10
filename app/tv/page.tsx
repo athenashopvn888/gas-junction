@@ -675,7 +675,7 @@ const TICKER_SLIDES = [
   "Flower Tiers, Edibles, Vapes, Concentrates",
   "Open 24 Hours Daily",
   "ALL SALES ARE FINAL",
-  "🎮 Play Games at www.gasjunctioncannabis.com/games",
+  "DELIVERY MENU at www.gasjunctioncannabis.com/delivery",
 ];
 
 function VerticalTicker() {
