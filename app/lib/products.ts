@@ -233,7 +233,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   CIGARETTES: {
-    banner: "/banners/06_Cigarettes.webp",
+    banner: "/banners/native-cigarette-offer-20260822.webp",
     name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
     seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Gas Junction Cannabis",
     seoIntro: "Native cigarette category information at Gas Junction Cannabis, Toronto.",
