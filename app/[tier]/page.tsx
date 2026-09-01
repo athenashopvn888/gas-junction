@@ -10,7 +10,11 @@ import {
   getTierFromSlug,
   TIER_CONFIG,
 } from "../lib/products";
-import { TIER_SEO } from "../lib/tierSeoContent";
+import {
+  TIER_H1,
+  TIER_META_DESCRIPTION,
+  TIER_SEO,
+} from "../lib/tierSeoContent";
 import styles from "./tier.module.css";
 
 /* -- Generate all tier pages at build -- */
@@ -31,14 +35,22 @@ export async function generateMetadata({
   const seo = TIER_SEO[tierInfo.key];
 
   return {
-    title: seo?.seoTitle || `${tierInfo.config.name} Cannabis Flower — ${flowers.length} Strains`,
-    description: seo?.seoIntro || `Shop ${flowers.length} ${tierInfo.config.name.toLowerCase()} cannabis strains at Gas Junction Cannabis.`,
+    title: {
+      absolute:
+        seo?.seoTitle ||
+        `${tierInfo.config.name} Cannabis Flower — ${flowers.length} Strains`,
+    },
+    description:
+      TIER_META_DESCRIPTION[tierInfo.key] ||
+      `Explore the ${tierInfo.config.name.toLowerCase()} cannabis flower category at Gas Junction Cannabis.`,
     alternates: {
       canonical: `https://www.gasjunctioncannabis.com/${tierSlug}`,
     },
     openGraph: {
-      title: `${tierInfo.config.name} Flower | Gas Junction Cannabis`,
-      description: `${flowers.length} listed ${tierInfo.config.name.toLowerCase()} flower entries. Confirm current pricing and listings before visiting Gas Junction Cannabis.`,
+      title: seo?.seoTitle || `${tierInfo.config.name} Flower | Gas Junction Cannabis`,
+      description:
+        TIER_META_DESCRIPTION[tierInfo.key] ||
+        `Explore the ${tierInfo.config.name.toLowerCase()} flower tier at Gas Junction Cannabis.`,
     },
   };
 }
@@ -91,7 +103,9 @@ export default async function TierPage({
             <div className={styles.heroTitleRow}>
               <span className={styles.heroIcon}>{config.icon}</span>
               <h1 className={styles.heroTitle}>
-                <span style={{ color: config.color }}>{config.name}</span>
+                <span style={{ color: config.color }}>
+                  {TIER_H1[tierInfo.key] || config.name}
+                </span>
               </h1>
             </div>
             <p className={styles.heroTagline}>{config.tagline}</p>
