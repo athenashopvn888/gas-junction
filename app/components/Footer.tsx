@@ -60,7 +60,7 @@ export default function Footer() {
               <Link href="/info/cheap-weed-toronto">Cheap Weed Toronto</Link>
               <Link href="/info/native-cigarettes-toronto">Native Cigarettes</Link>
               <Link href="/info/weed-store-near-the-junction">Weed Store Near The Junction</Link>
-              <Link href="/weed-dispensary-toronto/">Gas Junction Cannabis Weed Dispensary in Toronto</Link>
+              <Link href="/weed-dispensary-toronto">Gas Junction Cannabis Weed Dispensary in Toronto</Link>
               <Link href="/contact">Contact Us</Link>
               <a
                 href="https://www.gasjunctioncannabis.com/"

@@ -4,7 +4,7 @@ export type WeedFaq = { question: string; answer: string };
 export const weedOwner = {
   storeName: "Gas Junction Cannabis",
   domain: "www.gasjunctioncannabis.com",
-  ownerPath: "/weed-dispensary-toronto/",
+  ownerPath: "/weed-dispensary-toronto",
   city: "Toronto",
   streetAddress: "2813 Dundas St W",
   postalCode: "M6P 1Y6",

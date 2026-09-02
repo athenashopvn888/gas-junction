@@ -25,7 +25,8 @@ test("tier canonicals and the protected broad Weed owner stay in place", () => {
     tierPage,
     /canonical: `https:\/\/www\.gasjunctioncannabis\.com\/\$\{tierSlug\}`/,
   );
-  assert.match(footer, /href="\/weed-dispensary-toronto\/"/);
+  assert.match(footer, /href="\/weed-dispensary-toronto"/);
+  assert.doesNotMatch(footer, /href="\/weed-dispensary-toronto\/"/);
 });
 
 test("Version 2 Weed routes are the sole configured tier and guide owners", () => {
@@ -47,7 +48,8 @@ test("Version 2 Weed routes are the sole configured tier and guide owners", () =
   assert.match(redirects, /source: "\/resources\/flower-guide", destination: "\/resources\/weed-flower-guide", permanent: true/);
   assert.match(resources, /slug: "weed-flower-guide"/);
   assert.doesNotMatch(resources, /href: "\/resources\/flower-guide"/);
-  assert.match(footer, /href="\/weed-dispensary-toronto\/"/);
+  assert.match(footer, /href="\/weed-dispensary-toronto"/);
+  assert.doesNotMatch(footer, /href="\/weed-dispensary-toronto\/"/);
 });
 
 test("customer-facing tier labels include Weed", () => {
@@ -85,6 +87,7 @@ test("new tier copy omits the unresolved NAP and commercial claims", () => {
 test("refreshed Weed flower guide omits hard-coded commercial claims", () => {
   const guide = resources.slice(resources.indexOf('slug: "weed-flower-guide"'), resources.indexOf('slug: "value-guide"'));
   assert.match(guide, /title: "Gas Junction Weed & Flower Tier Guide"/);
-  assert.match(resources, /title: "Explore Gas Junction Cannabis Weed in Toronto"[\s\S]*href: "\/weed-dispensary-toronto\/"/);
+  assert.match(resources, /title: "Explore Gas Junction Cannabis Weed in Toronto"[\s\S]*href: "\/weed-dispensary-toronto"/);
+  assert.doesNotMatch(resources, /href: "\/weed-dispensary-toronto\/"/);
   assert.doesNotMatch(guide, /\$|\b(price|deal|bundle|stock|availability|potency|THC)\b/i);
 });
