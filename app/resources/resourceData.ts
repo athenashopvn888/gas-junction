@@ -75,7 +75,7 @@ const menuCards: ResourceCard[] = [
 const flowerCards: ResourceCard[] = [
   {
     title: "Explore Gas Junction Cannabis Weed in Toronto",
-    href: "/weed-dispensary-toronto/",
+    href: "/weed-dispensary-toronto",
     text: "Start with the broader Toronto Weed selection before narrowing your browsing.",
   },
   {
