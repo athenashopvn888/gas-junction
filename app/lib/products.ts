@@ -93,8 +93,8 @@ export const TIER_CONFIG: Record<
   }
 > = {
   EXOTIC: {
-    name: "Exotic",
-    slug: "exotic",
+    name: "Exotic Weed",
+    slug: "exotic-weed",
     color: "#f59e0b",
     icon: "\uD83D\uDD25",
     tagline: "Explore the exotic flower tier",
@@ -104,8 +104,8 @@ export const TIER_CONFIG: Record<
     deal6g: { label: "6g bundle", total: "6G", price: 60 },
   },
   PREMIUM: {
-    name: "Premium",
-    slug: "premium",
+    name: "Premium Weed",
+    slug: "premium-weed",
     color: "#a78bfa",
     icon: "\uD83D\uDC8E",
     tagline: "Hand-picked connoisseur grade \u00B7 THC 32-34%",
@@ -115,8 +115,8 @@ export const TIER_CONFIG: Record<
     deal6g: { label: "6g bundle", total: "6G", price: 45 },
   },
   "AAA+": {
-    name: "AAA+",
-    slug: "aaa",
+    name: "AAA+ Weed",
+    slug: "aaa-weed",
     color: "#22d3ee",
     icon: "\u26A1",
     tagline: "Heavy hitters, proven strains \u00B7 THC 30-32%",
@@ -126,8 +126,8 @@ export const TIER_CONFIG: Record<
     deal6g: { label: "6g bundle", total: "6G", price: 30 },
   },
   AA: {
-    name: "AA",
-    slug: "aa",
+    name: "AA Weed",
+    slug: "aa-weed",
     color: "#34d399",
     icon: "\u2726",
     tagline: "Quality daily drivers \u00B7 THC 27-29%",
@@ -137,8 +137,8 @@ export const TIER_CONFIG: Record<
     deal6g: null,
   },
   BUDGET: {
-    name: "Budget",
-    slug: "budget",
+    name: "Budget Weed",
+    slug: "budget-weed",
     color: "#94a3b8",
     icon: "\uD83D\uDCB0",
     tagline: "Shreds & value OZs \u00B7 From $40/oz",
@@ -171,18 +171,19 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   },
   "VAPE PENS": {
     banner: "/banners/01_Vape_Pens.webp",
-    name: "THC Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
-    seoTitle: "Vape Pens Toronto — THC & Nicotine Cartridges",
-    seoIntro: "Browse THC and nicotine vape category information at Gas Junction Cannabis in Toronto. Confirm current listed items before visiting 2813 Dundas St W.",
-    seoDescription: "Gas Junction Cannabis carries a curated selection of vape pen category information in Toronto. From 510-thread THC cartridge details to nicotine vape category browsing, shoppers can review menu information before visiting 2813 Dundas St W in The Junction.",
+    name: "Nicotine Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
+    seoTitle: "Nicotine Vapes Toronto | Gas Junction Cannabis",
+    seoIntro: "Explore Gas Junction Cannabis nicotine vape products in a category kept separate from THC vape products. Nicotine products are for adults 19+ and contain nicotine, which is addictive.",
+    seoDescription: "Browse the nicotine vape category at Gas Junction Cannabis for products classified under Nicotine Vape. THC vape products remain in the separate THC Vape category so the two product types stay clearly distinguished.",
     faqs: [
-      { q: "What vape pen information can shoppers review?", a: "Visitors can review THC vape and nicotine vape category information, then confirm current menu details before visiting Gas Junction Cannabis." },
-      { q: "Does this page guarantee vape listings?", a: "No. Vape category details can change, so customers should confirm the current menu before visiting." },
+      { q: "Are Nicotine Vape and THC Vape the same category?", a: "No. Gas Junction Cannabis keeps nicotine vape products separate from THC vape products. Nicotine Vape is under /items/vapes, while THC Vape remains under /items/vape-disposables." },
+      { q: "Who is the Nicotine Vape category for?", a: "Nicotine products are for adults 19+. Nicotine is addictive." },
+      { q: "Does this category show current stock or availability?", a: "Use the current product information presented while browsing. This category copy does not make separate stock or availability claims." },
     ],
   },
   "VAPE DISPOSABLE": {
     banner: "/banners/02_Vape_Disposable.webp",
-    name: "Nic Vape", slug: "vape-disposables", color: "#a78bfa", icon: "💨",
+    name: "THC Vape", slug: "vape-disposables", color: "#a78bfa", icon: "💨",
     seoTitle: "Disposable Vapes Toronto — THC Disposable Pens",
     seoIntro: "Review disposable vape category information at Gas Junction Cannabis in Toronto.",
     seoDescription: "Gas Junction Cannabis includes disposable vape category information for Toronto shoppers. Product details and listings can change, so confirm the current menu before visiting 2813 Dundas St W in The Junction.",

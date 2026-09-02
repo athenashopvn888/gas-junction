@@ -31,7 +31,9 @@ export async function generateMetadata({
   const items = getItemsByCategory(catInfo.key);
 
   return {
-    title: catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
+    title: catSlug === "vapes"
+      ? { absolute: catInfo.config.seoTitle }
+      : catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
     description: catInfo.config.seoIntro || `Shop ${items.length} ${catInfo.config.name.toLowerCase()} at Gas Junction Cannabis.`,
     alternates: {
       canonical: `https://www.gasjunctioncannabis.com/items/${catSlug}`,
@@ -85,6 +87,13 @@ export default async function ItemsCategoryPage({
           </div>
         )}
       </section>
+
+      {catSlug === "vapes" && (
+        <section className={styles.heroContent} style={{ padding: "24px", textAlign: "center" }}>
+          <h1 className={styles.heroTitle}>{config.name}</h1>
+          <p className={styles.heroSub}>{config.seoIntro}</p>
+        </section>
+      )}
 
       {/* Product Grid */}
       <section className={styles.products}>

@@ -30,7 +30,7 @@ const FAQ_CATEGORIES = [
       { q: "Do you have a menu online?", a: "Yes. You can browse menu and category information online before visiting. Confirm current details before making a special trip." },
       { q: "What are your flower tiers?", a: "The flower menu is organized into tiers such as Exotic, Premium, AAA+, AA, and Budget so shoppers can compare product levels more easily. Current pricing and listings should be confirmed on the menu." },
       { q: "Do you sell edibles?", a: "The site includes an edibles category. Check current category details before visiting for a specific edible product." },
-      { q: "Do you sell vapes?", a: "The site includes THC Vape and Nic Vape categories. Check current category pages for listed items." },
+      { q: "Do you sell vapes?", a: "Gas Junction Cannabis keeps Nicotine Vape and THC Vape in separate categories. Use the product information shown while browsing each category." },
       { q: "Do you sell native cigarettes?", a: "The site includes a cigarettes category. Check the current brand mix before visiting Dundas St W." },
     ],
   },
