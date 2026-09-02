@@ -8,77 +8,77 @@ export interface TierSeoData {
 export const TIER_SEO: Record<string, TierSeoData> = {
   EXOTIC: {
     seoTitle: "Exotic Weed & Cannabis Flower in Toronto | Gas Junction Cannabis",
-    seoIntro: "Gas Junction Cannabis uses the Exotic tier as a focused way to explore one defined level within its broader cannabis flower structure. This page stays specific to Exotic weed and flower while the main Toronto Weed page remains the broader store-level destination.",
+    seoIntro: "Gas Junction Cannabis presents Exotic Weed as one of its established Cannabis Flower collections for shoppers who want to explore this tier within the broader Weed selection. Browse the collection, review the product information shown with individual items, and compare Exotic Weed with other flower collections that interest you.",
     sections: [
-      { heading: "Explore the Exotic Weed Tier", body: "The Exotic section is a dedicated category within Gas Junction Cannabis's flower architecture. It helps separate Exotic weed and cannabis flower from the other established tiers without turning the page into a general store overview." },
-      { heading: "How Exotic Fits the Gas Junction Flower Structure", body: "Exotic sits alongside Premium, AAA+, AA and Budget as a distinct browsing tier. Shoppers looking for the wider Gas Junction Weed experience should continue to the broader Weed Dispensary in Toronto page." },
+      { heading: "Explore Exotic Weed at Gas Junction Cannabis", body: "Exotic Weed gives shoppers a focused Cannabis Flower collection to browse at Gas Junction Cannabis. Explore the products presented within this tier and use the information shown with each item to learn more as you browse." },
+      { heading: "Compare Exotic Weed with Other Flower Collections", body: "Gas Junction Cannabis also organizes flower into Premium Weed, AAA+ Weed, AA Weed and Budget Weed. Exploring more than one collection can help you compare different parts of the Cannabis Flower selection without assuming that one tier is the right choice for every shopper." },
     ],
     faqs: [
-      { q: "What is the Exotic tier at Gas Junction Cannabis?", a: "Exotic is one of Gas Junction Cannabis's defined cannabis flower tiers and has its own dedicated page." },
-      { q: "Is the Exotic page the main Gas Junction Weed page?", a: "No. This page is limited to the Exotic flower tier, while the broader Weed Dispensary in Toronto page covers the wider store-level Weed topic." },
-      { q: "What other flower tiers does Gas Junction Cannabis use?", a: "The site also separates flower into Premium, AAA+, AA and Budget tier pages." },
+      { q: "What is Exotic Weed at Gas Junction Cannabis?", a: "Exotic Weed is one of Gas Junction Cannabis’s dedicated Cannabis Flower collections." },
+      { q: "Can I compare Exotic Weed with other Gas Junction Cannabis flower collections?", a: "Yes. You can also explore Premium Weed, AAA+ Weed, AA Weed and Budget Weed." },
+      { q: "Where can I start if I want broader Weed browsing?", a: "Use Gas Junction Cannabis’s established broader Weed selection in Toronto, then explore a specific flower collection when one interests you." },
     ],
   },
   PREMIUM: {
     seoTitle: "Premium Weed & Cannabis Flower in Toronto | Gas Junction Cannabis",
-    seoIntro: "The Premium tier gives Gas Junction Cannabis a dedicated page for Premium weed and cannabis flower within its larger tier system. Its role is intentionally narrower than the protected Toronto Weed owner page.",
+    seoIntro: "Premium Weed is a dedicated Gas Junction Cannabis Cannabis Flower collection for shoppers who want to explore this tier within the broader Weed selection. Browse the products presented in the collection and compare Premium Weed with other flower collections as you explore.",
     sections: [
-      { heading: "Explore the Premium Weed Tier", body: "This section keeps Premium weed and flower organized as its own category instead of combining every flower tier on one page. The focus remains on the Premium tier itself." },
-      { heading: "Premium Within the Gas Junction Tier System", body: "Premium is one part of a five-tier flower structure that also includes Exotic, AAA+, AA and Budget. The broader Gas Junction Weed page remains the primary destination for general Weed intent." },
+      { heading: "Browse Premium Weed at Gas Junction Cannabis", body: "Gas Junction Cannabis brings Premium Weed together as one of its established flower collections. Shoppers can explore the Cannabis Flower products presented within this tier and review the information shown with individual items." },
+      { heading: "Explore Premium Weed Alongside Other Weed Collections", body: "Premium Weed sits alongside Exotic Weed, AAA+ Weed, AA Weed and Budget Weed. Each collection gives shoppers another part of the Gas Junction Cannabis flower selection to explore without suggesting that one tier is inherently better than another." },
     ],
     faqs: [
-      { q: "What is the Premium tier at Gas Junction Cannabis?", a: "Premium is a dedicated cannabis flower tier within the Gas Junction site structure." },
-      { q: "Does the Premium page replace the main Weed page?", a: "No. The Premium page serves narrow tier intent and remains subordinate to the broader Weed Dispensary in Toronto page." },
-      { q: "Can I compare Premium with other Gas Junction flower tiers?", a: "Yes. Separate pages are provided for Exotic, AAA+, AA and Budget so each tier can be explored independently." },
+      { q: "What can I explore in the Premium Weed collection?", a: "Premium Weed contains the Cannabis Flower products presented within Gas Junction Cannabis’s Premium collection." },
+      { q: "What other Weed flower collections are available to explore?", a: "Gas Junction Cannabis also organizes flower into Exotic Weed, AAA+ Weed, AA Weed and Budget Weed." },
+      { q: "Can I browse broadly before choosing a flower collection?", a: "Yes. Gas Junction Cannabis’s broader Toronto Weed selection provides a wider starting point before narrowing your browsing to a specific flower collection." },
     ],
   },
   "AAA+": {
     seoTitle: "AAA+ Weed & Cannabis Flower in Toronto | Gas Junction Cannabis",
-    seoIntro: "Gas Junction Cannabis gives AAA+ its own narrow flower page so that this tier can be explored separately from the broader Weed category. The page supports the existing tier architecture without competing with the main Toronto Weed owner.",
+    seoIntro: "Gas Junction Cannabis AAA+ Weed gives shoppers a dedicated Cannabis Flower collection to explore within the broader Weed selection. Browse the products presented in this tier, compare them with other Gas Junction Cannabis flower collections, and use the information shown with individual items as you explore.",
     sections: [
-      { heading: "Explore the AAA+ Weed Tier", body: "The AAA+ section is dedicated specifically to the AAA+ level in the Gas Junction flower structure. It provides a clearer category path while keeping general Weed intent on the broader owner page." },
-      { heading: "AAA+ and the Other Gas Junction Flower Tiers", body: "AAA+ is positioned alongside Exotic, Premium, AA and Budget as one of five separate flower tiers. Each tier keeps a distinct role rather than duplicating the site's broader Weed page." },
+      { heading: "Explore the AAA+ Weed Flower Collection", body: "AAA+ Weed is one of Gas Junction Cannabis’s established flower collections. It gives shoppers a focused section for exploring the Cannabis Flower products presented within this tier." },
+      { heading: "Compare AAA+ Weed with Other Gas Junction Cannabis Collections", body: "AAA+ Weed can be explored alongside Exotic Weed, Premium Weed, AA Weed and Budget Weed. Moving between several collections gives shoppers different parts of the Gas Junction Cannabis flower selection to consider without assigning a universal ranking between them." },
     ],
     faqs: [
-      { q: "What does AAA+ represent on the Gas Junction site?", a: "AAA+ is the name of one of Gas Junction Cannabis's dedicated cannabis flower tiers." },
-      { q: "Is AAA+ a separate Weed category page?", a: "Yes. It has its own narrow tier page while the main Weed Dispensary in Toronto page remains the broad Weed owner." },
-      { q: "Which other flower tiers are separated on the site?", a: "Gas Junction also has dedicated Exotic, Premium, AA and Budget tier pages." },
+      { q: "What is AAA+ Weed at Gas Junction Cannabis?", a: "AAA+ Weed is a dedicated Cannabis Flower collection within the broader Gas Junction Cannabis Weed selection." },
+      { q: "Can I compare AAA+ Weed with other flower collections?", a: "Yes. You can also explore Exotic Weed, Premium Weed, AA Weed and Budget Weed." },
+      { q: "Where can I browse Gas Junction Cannabis Weed more broadly?", a: "Use the established broader Toronto Weed selection when you want to explore beyond one specific flower collection." },
     ],
   },
   AA: {
     seoTitle: "AA Weed & Cannabis Flower in Toronto | Gas Junction Cannabis",
-    seoIntro: "The AA page gives Gas Junction Cannabis a specific destination for the AA flower tier instead of asking one broad page to cover every category. It remains a narrow tier page beneath the site's broader Toronto Weed architecture.",
+    seoIntro: "AA Weed is one of Gas Junction Cannabis’s dedicated Cannabis Flower collections, giving shoppers a focused way to explore this part of the Weed selection. Browse the collection, review the information presented with individual products, and compare AA Weed with the other flower collections that interest you.",
     sections: [
-      { heading: "Explore the AA Weed Tier", body: "AA is organized as its own cannabis flower category within the Gas Junction site. This page keeps the AA tier distinct from the other flower levels and from the main Weed owner." },
-      { heading: "Where AA Sits in the Gas Junction Flower Structure", body: "The AA tier sits alongside Exotic, Premium, AAA+ and Budget. This separation gives each flower tier a clear role while preserving the broader Weed Dispensary in Toronto page for general Weed searches." },
+      { heading: "Explore AA Weed Cannabis Flower", body: "Gas Junction Cannabis organizes AA Weed as a dedicated flower collection within its broader Weed selection. Shoppers can explore the Cannabis Flower products presented within this tier and continue comparing other collections as they browse." },
+      { heading: "Compare AA Weed with Other Flower Collections", body: "AA Weed can be explored alongside Budget Weed, AAA+ Weed, Premium Weed and Exotic Weed. The collections give shoppers several ways to browse Gas Junction Cannabis flower without treating one tier as automatically preferable." },
     ],
     faqs: [
-      { q: "What is the AA tier at Gas Junction Cannabis?", a: "AA is one of the site's five dedicated cannabis flower tiers." },
-      { q: "Why does AA have its own page?", a: "The separate page keeps AA-specific browsing distinct from other flower tiers and from the broader Gas Junction Weed page." },
-      { q: "What other tier pages are available?", a: "The site also separates Exotic, Premium, AAA+ and Budget into their own flower pages." },
+      { q: "What is the AA Weed collection at Gas Junction Cannabis?", a: "AA Weed is one of Gas Junction Cannabis’s dedicated Cannabis Flower collections." },
+      { q: "What other flower collections can I compare with AA Weed?", a: "You can also explore Budget Weed, AAA+ Weed, Premium Weed and Exotic Weed." },
+      { q: "Can I start with broader Weed browsing first?", a: "Yes. Gas Junction Cannabis’s broader Toronto Weed selection gives you a wider starting point before exploring a specific flower collection." },
     ],
   },
   BUDGET: {
     seoTitle: "Budget Weed & Cannabis Flower in Toronto | Gas Junction Cannabis",
-    seoIntro: "Gas Junction Cannabis uses a dedicated Budget tier page as part of its established flower structure. The page focuses only on that category label and does not make claims about current pricing, promotions, availability or product status.",
+    seoIntro: "Gas Junction Cannabis Budget Weed is a dedicated Cannabis Flower collection for shoppers who want to explore this part of the broader Weed selection. Browse the products presented within the collection and compare Budget Weed with other Gas Junction Cannabis flower collections as you explore.",
     sections: [
-      { heading: "Explore the Budget Weed Tier", body: "The Budget section is a distinct cannabis flower tier within the Gas Junction site architecture. Its purpose is to provide a focused category path without expanding into price or promotional claims." },
-      { heading: "Budget Within the Gas Junction Flower Structure", body: "Budget appears alongside Exotic, Premium, AAA+ and AA as one of the site's five flower tiers. Broader Weed intent remains with the protected Weed Dispensary in Toronto page." },
+      { heading: "Explore the Budget Weed Flower Collection", body: "Budget Weed gives Gas Junction Cannabis shoppers a focused Cannabis Flower collection to browse. Explore the products presented within this tier and use the information shown with individual items as you continue." },
+      { heading: "Compare Budget Weed with Other Weed Flower Collections", body: "Gas Junction Cannabis also organizes flower into AA Weed, AAA+ Weed, Premium Weed and Exotic Weed. Shoppers can explore more than one collection and compare the sections that interest them without assuming that one tier is inherently better than another." },
     ],
     faqs: [
-      { q: "What is the Budget tier at Gas Junction Cannabis?", a: "Budget is the name of one of Gas Junction Cannabis's dedicated cannabis flower tiers." },
-      { q: "Does the Budget label guarantee a particular price or promotion?", a: "No. The tier name identifies the site's category structure and should not be interpreted as a current price, deal or promotion claim." },
-      { q: "What other Gas Junction flower tiers are available to explore?", a: "Separate tier pages exist for Exotic, Premium, AAA+ and AA." },
+      { q: "What is Budget Weed at Gas Junction Cannabis?", a: "Budget Weed is one of Gas Junction Cannabis’s dedicated Cannabis Flower collections within the broader Weed selection." },
+      { q: "Can I compare Budget Weed with other Gas Junction Cannabis flower tiers?", a: "Yes. Budget Weed can be explored alongside AA Weed, AAA+ Weed, Premium Weed and Exotic Weed." },
+      { q: "Where can I browse more than one type of Weed at Gas Junction Cannabis?", a: "Use Gas Junction Cannabis’s established broader Toronto Weed selection for a wider starting point, then explore any flower collection that interests you." },
     ],
   },
 };
 
 export const TIER_META_DESCRIPTION: Record<string, string> = {
-  EXOTIC: "Explore the Exotic weed and cannabis flower tier at Gas Junction Cannabis in Toronto, kept distinct from the site's broader Weed category.",
-  PREMIUM: "Explore the Premium weed and cannabis flower tier at Gas Junction Cannabis in Toronto within its established five-tier flower structure.",
-  "AAA+": "Explore the AAA+ weed and cannabis flower tier at Gas Junction Cannabis in Toronto while the main Toronto Weed page remains the broad owner.",
-  AA: "Explore the AA weed and cannabis flower tier at Gas Junction Cannabis in Toronto as a dedicated part of its flower category structure.",
-  BUDGET: "Explore the Budget weed and cannabis flower tier at Gas Junction Cannabis in Toronto without implying current price, promotion or availability.",
+  EXOTIC: "Explore Exotic Weed and Cannabis Flower at Gas Junction Cannabis in Toronto, alongside four other established flower collections.",
+  PREMIUM: "Explore Premium Weed and Cannabis Flower at Gas Junction Cannabis in Toronto, alongside four other established flower collections.",
+  "AAA+": "Explore AAA+ Weed and Cannabis Flower at Gas Junction Cannabis in Toronto, alongside four other established flower collections.",
+  AA: "Explore AA Weed and Cannabis Flower at Gas Junction Cannabis in Toronto, alongside four other established flower collections.",
+  BUDGET: "Explore Budget Weed and Cannabis Flower at Gas Junction Cannabis in Toronto, alongside four other established flower collections.",
 };
 
 export const TIER_H1: Record<string, string> = {

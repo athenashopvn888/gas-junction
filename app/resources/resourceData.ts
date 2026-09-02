@@ -33,9 +33,9 @@ const hubCards: ResourceCard[] = [
     text: "Use a category-guided path for flower, pre-rolls, edibles, vapes, concentrates, and accessories.",
   },
   {
-    title: "Flower Tier Guide",
-    href: "/resources/flower-guide",
-    text: "Compare Exotic, Premium, AAA+, AA, and Budget with 3g and 6g bundle math included.",
+    title: "Weed & Flower Tier Guide",
+    href: "/resources/weed-flower-guide",
+    text: "Explore Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed in one concise guide.",
   },
   {
     title: "Value Guide",
@@ -52,8 +52,8 @@ const hubCards: ResourceCard[] = [
 const menuCards: ResourceCard[] = [
   {
     title: "Flower Tiers",
-    href: "/resources/flower-guide",
-    text: "Start here for Exotic, Premium, AAA+, AA, and Budget flower paths.",
+    href: "/resources/weed-flower-guide",
+    text: "Start here for Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed.",
   },
   {
     title: "Pre-Roll Guide",
@@ -74,29 +74,34 @@ const menuCards: ResourceCard[] = [
 
 const flowerCards: ResourceCard[] = [
   {
-    title: "Exotic Flower",
-    href: "/exotic",
-    text: "$20/g, 3g for $40, or 6g for $60 where the menu tier deal is listed.",
+    title: "Explore Gas Junction Cannabis Weed in Toronto",
+    href: "/weed-dispensary-toronto/",
+    text: "Start with the broader Toronto Weed selection before narrowing your browsing.",
   },
   {
-    title: "Premium Flower",
-    href: "/premium",
-    text: "$15/g, 3g for $30, or 6g for $45 where the menu tier deal is listed.",
+    title: "Exotic Weed",
+    href: "/exotic-weed",
+    text: "Explore the Gas Junction Cannabis Exotic Weed flower collection.",
   },
   {
-    title: "AAA+ Flower",
-    href: "/aaa",
-    text: "$10/g, 3g for $20, or 6g for $30 where the menu tier deal is listed.",
+    title: "Premium Weed",
+    href: "/premium-weed",
+    text: "Browse the dedicated Premium Weed flower collection.",
   },
   {
-    title: "AA Flower",
-    href: "/aa",
-    text: "$4/g for a direct value lane.",
+    title: "AAA+ Weed",
+    href: "/aaa-weed",
+    text: "Explore the Gas Junction Cannabis AAA+ Weed flower collection.",
   },
   {
-    title: "Budget Flower",
-    href: "/budget",
-    text: "$3/g for the lowest posted flower tier lane.",
+    title: "AA Weed",
+    href: "/aa-weed",
+    text: "Browse the dedicated AA Weed flower collection.",
+  },
+  {
+    title: "Budget Weed",
+    href: "/budget-weed",
+    text: "Explore the Gas Junction Cannabis Budget Weed flower collection.",
   },
 ];
 
@@ -230,35 +235,35 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
   },
   {
-    slug: "flower-guide",
-    title: "Gas Junction Flower Tier and 6g Price Guide",
-    seoTitle: "Gas Junction Flower Tier Guide | 6g Bundle Prices and Budget Weed",
+    slug: "weed-flower-guide",
+    title: "Gas Junction Weed & Flower Tier Guide",
+    seoTitle: "Weed & Flower Tier Guide Toronto | Gas Junction Cannabis",
     description:
-      "Compare Gas Junction Cannabis flower tiers with posted per-gram prices and 6g bundle math for Exotic, Premium, AAA+, AA, and Budget flower.",
-    eyebrow: "Flower Tiers",
+      "Explore Gas Junction Cannabis flower collections including Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed, with links to each dedicated tier.",
+    eyebrow: "Gas Junction Cannabis · Weed & Flower",
     intro:
-      "This is the fast flower read: Exotic is posted at $20/g with 6g for $60, Premium at $15/g with 6g for $45, AAA+ at $10/g with 6g for $30, AA at $4/g, and Budget at $3/g. Use the tier page for current listings before you choose.",
+      "Gas Junction Cannabis brings together five Weed flower collections for shoppers who want to compare different parts of the selection: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed. Explore the collections that interest you, or begin with the broader Toronto Weed selection before narrowing your browsing.",
     cards: flowerCards,
     sections: [
       {
-        heading: "The 6g Math Matters",
+        heading: "Explore Five Weed Flower Collections",
         body:
-          "For the top three flower tiers, the displayed 6g deal changes how the shelf feels. Exotic can show as 6g for $60, Premium as 6g for $45, and AAA+ as 6g for $30. That is different from only reading the straight per-gram line.",
+          "The five collections give shoppers different parts of the Gas Junction Cannabis flower selection to explore. Start with one that interests you or compare several before narrowing your browsing.",
         bullets: [
-          "Exotic: $20/g, 3g for $40, 6g for $60.",
-          "Premium: $15/g, 3g for $30, 6g for $45.",
-          "AAA+: $10/g, 3g for $20, 6g for $30.",
+          "Explore Exotic Weed, Premium Weed and AAA+ Weed.",
+          "Browse AA Weed and Budget Weed.",
+          "Explore Gas Junction Cannabis Weed in Toronto for a broader starting point.",
         ],
       },
       {
-        heading: "AA And Budget Are Straight Value Lanes",
+        heading: "Weed, Cannabis and Flower at Gas Junction Cannabis",
         body:
-          "AA is posted at $4/g and Budget is posted at $3/g. Those lanes are easier to understand when shoppers want cheap weed or affordable weed without comparing every premium shelf first.",
+          "Weed, cannabis, bud and flower are common terms shoppers use while browsing dispensary selections. Gas Junction Cannabis uses those terms naturally while keeping the five flower collections easy to distinguish.",
       },
       {
-        heading: "Use Current Product Pages",
+        heading: "Compare the Collections That Interest You",
         body:
-          "This guide explains the shelf math. Product names, strain notes, and listings can move, so the final check should always happen on the current tier page or at the counter.",
+          "You can move between Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed and explore the information presented within each collection before deciding where to continue.",
       },
     ],
   },
@@ -274,22 +279,22 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     cards: [
       {
         title: "Budget Flower",
-        href: "/budget",
+        href: "/budget-weed",
         text: "$3/g for the lowest posted flower lane.",
       },
       {
         title: "AA Flower",
-        href: "/aa",
+        href: "/aa-weed",
         text: "$4/g for a simple value shelf.",
       },
       {
         title: "AAA+ Flower",
-        href: "/aaa",
+        href: "/aaa-weed",
         text: "$10/g, 3g for $20, or 6g for $30 where listed.",
       },
       {
         title: "Flower Tier Guide",
-        href: "/resources/flower-guide",
+        href: "/resources/weed-flower-guide",
         text: "Use this if the 3g and 6g math matters.",
       },
     ],
@@ -323,7 +328,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       },
       {
         title: "Flower Tiers",
-        href: "/resources/flower-guide",
+        href: "/resources/weed-flower-guide",
         text: "Switch here if the visit turns into loose flower instead.",
       },
       {
@@ -449,7 +454,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "What Stayed Protected",
         body:
-          "The important SEO paths stay intact: /weed-dispensary-toronto, /resources, /resources/menu-guide, /resources/flower-guide, /resources/value-guide, /resources/pre-roll-guide, /resources/native-smokes, and /resources/native-smokes/native-cigarettes-guide.",
+          "The important SEO paths stay intact: /weed-dispensary-toronto, /resources, /resources/menu-guide, /resources/weed-flower-guide, /resources/value-guide, /resources/pre-roll-guide, /resources/native-smokes, and /resources/native-smokes/native-cigarettes-guide.",
       },
     ],
   },

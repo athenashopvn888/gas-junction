@@ -26,12 +26,12 @@ export const weedOwner = {
   {
     "label": "Budget Flower",
     "description": "Explore the verified Budget flower section.",
-    "href": "/budget"
+    "href": "/budget-weed"
   },
   {
     "label": "Flower Guide",
     "description": "Get more context about flower before deciding what suits your shopping priorities.",
-    "href": "/resources/flower-guide"
+    "href": "/resources/weed-flower-guide"
   },
   {
     "label": "Value Guide",
@@ -68,7 +68,7 @@ export const weedOwner = {
   {
     "label": "Flower Guide",
     "description": "Learn more about flower shopping.",
-    "href": "/resources/flower-guide"
+    "href": "/resources/weed-flower-guide"
   },
   {
     "label": "Value Guide",
@@ -116,7 +116,6 @@ export const weedOwner = {
     text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore Weed and Cannabis information, flower guidance and store details.",
     primaryLabel: "Explore Weed at Gas Junction",
     secondaryLabel: "Explore the Flower Guide",
-    secondaryHref: "/resources/flower-guide",
+    secondaryHref: "/resources/weed-flower-guide",
   },
 };
-

@@ -8,14 +8,14 @@ import styles from "./Navbar.module.css";
 
 const ALL_LINKS = [
   { href: "/careers/budtender", label: "Join Team" },
-  { href: "/exotic", label: "Exotic" },
-  { href: "/premium", label: "Premium" },
-  { href: "/aaa", label: "AAA+" },
-  { href: "/aa", label: "AA" },
-  { href: "/budget", label: "Budget" },
+  { href: "/exotic-weed", label: "Exotic Weed" },
+  { href: "/premium-weed", label: "Premium Weed" },
+  { href: "/aaa-weed", label: "AAA+ Weed" },
+  { href: "/aa-weed", label: "AA Weed" },
+  { href: "/budget-weed", label: "Budget Weed" },
   { href: "/items/edibles", label: "Edibles" },
   { href: "/items/prerolls", label: "Pre-Rolls" },
-  { href: "/items/vapes", label: "Nic Vape" },
+  { href: "/items/vapes", label: "Nicotine Vape" },
   { href: "/items/vape-disposables", label: "THC Vape" },
   { href: "/items/concentrates", label: "Concentrates" },
   { href: "/items/magic", label: "Magic Stuff" },
@@ -28,7 +28,7 @@ const ALL_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const storeMenuLinks = ALL_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic", "/premium", "/aaa", "/aa", "/budget"].includes(link.href));
+  const storeMenuLinks = ALL_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"].includes(link.href));
   const isStoreMenuActive = storeMenuLinks.some((link) => pathname === link.href);
   const isDeliveryActive = pathname === "/delivery";
   const scrollBarRef = useRef<HTMLDivElement>(null);
@@ -57,7 +57,7 @@ export default function Navbar() {
         <div className={styles.topBarRight}>
           <div className={styles.menuChoices} aria-label="Choose a menu">
             <Link
-              href="/exotic"
+              href="/exotic-weed"
               className={`${styles.menuChoice} ${isStoreMenuActive ? styles.menuChoiceActive : ""}`}
               aria-current={isStoreMenuActive ? "page" : undefined}
             >
