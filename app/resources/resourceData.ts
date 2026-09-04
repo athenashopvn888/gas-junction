@@ -6,8 +6,9 @@ export interface ResourceCard {
 
 export interface ResourceSection {
   heading: string;
-  body: string;
+  body: string | string[];
   bullets?: string[];
+  link?: ResourceCard;
 }
 
 export interface ResourcePage {
@@ -19,6 +20,8 @@ export interface ResourcePage {
   intro: string;
   cards: ResourceCard[];
   sections: ResourceSection[];
+  faqs?: { question: string; answer: string }[];
+  faqHeading?: string;
 }
 
 const hubCards: ResourceCard[] = [
@@ -182,6 +185,11 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         href: "/resources/value-guide",
         text: "Fast help for budget weed, cheap weed, and affordable flower comparisons.",
       },
+      {
+        title: "Cannabis Dispensary and Weed Dispensary Guide",
+        href: "/resources/cannabis-dispensary-vs-weed-dispensary",
+        text: "Learn how common dispensary and near-me wording can describe related local searches.",
+      },
     ],
     sections: [
       {
@@ -231,6 +239,55 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         heading: "Use The Local Page For The Store Details",
         body:
           "The menu guide is for deciding what to shop. The store visit page is for address, hours, and local visit planning. Keeping those jobs separate helps protect the important local SEO page while making the resources more useful.",
+      },
+    ],
+  },
+  {
+    slug: "cannabis-dispensary-vs-weed-dispensary",
+    title: "What Does “Dispensary Near Me” Mean in a Cannabis Search?",
+    seoTitle: "Weed vs Cannabis Dispensary | Gas Junction Cannabis Toronto",
+    description:
+      "Learn the difference between cannabis dispensary, weed dispensary and cannabis store terminology, plus how near-me searches relate in Toronto.",
+    eyebrow: "Gas Junction Cannabis · Toronto",
+    intro:
+      "People looking for a nearby cannabis business do not all use the same words. One person may search “cannabis dispensary near me,” another may type “weed dispensary near me,” and someone else may shorten the search to “dispensary near me.” The phrases are different, but the local goal is often very similar: identify a nearby business and then confirm accurate store information.",
+    cards: [],
+    sections: [
+      {
+        heading: "Why “Dispensary Near Me” Matters",
+        body: [
+          "The phrase “near me” signals that location matters. The searcher is not only learning about cannabis terminology; they are trying to identify a nearby place.",
+          "Longer versions such as “cannabis dispensary near me” and “weed dispensary near me” make the cannabis context explicit. The shorter “dispensary near me” removes the modifier but keeps strong local intent.",
+        ],
+      },
+      {
+        heading: "Local Context for Toronto",
+        body:
+          "Gas Junction Cannabis serves adults 19+ in Toronto. The terminology in this guide helps explain common local searches without changing the practical store information visitors need.",
+        link: {
+          title: "For store information and details about visiting Gas Junction Cannabis, see our Toronto weed dispensary page.",
+          href: "/weed-dispensary-toronto",
+          text: "Gas Junction Cannabis Toronto weed dispensary information",
+        },
+      },
+    ],
+    faqHeading: "Frequently Asked Questions",
+    faqs: [
+      {
+        question: "Is a weed dispensary different from a cannabis dispensary?",
+        answer: "Usually the main difference is wording. Cannabis is the more formal term, while weed is common conversational language.",
+      },
+      {
+        question: "Does “dispensary near me” include cannabis dispensaries?",
+        answer: "In a cannabis-related search context, people commonly use the shorter phrase to look for a nearby cannabis dispensary.",
+      },
+      {
+        question: "Is “cannabis store near me” related?",
+        answer: "Yes. Cannabis store is another common way to describe a nearby cannabis retail business.",
+      },
+      {
+        question: "Do closely related search phrases need separate pages?",
+        answer: "No. One useful guide can explain related wording clearly, while the dedicated Toronto dispensary page provides practical store and visit information.",
       },
     ],
   },
