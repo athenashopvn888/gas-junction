@@ -30,8 +30,15 @@ export async function generateMetadata({
     title: page.absoluteTitle ? { absolute: page.title } : page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
+      canonical: page.canonicalToHome
+        ? "https://www.gasjunctioncannabis.com"
+        : `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
     },
+    ...(page.noindex
+      ? {
+          robots: { index: false, follow: true },
+        }
+      : {}),
   };
 }
 

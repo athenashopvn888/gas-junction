@@ -36,6 +36,8 @@ export interface SeoPageData {
   banner?: string;
   sections: { heading: string; body: string }[];
   faqs: { q: string; a: string }[];
+  noindex?: boolean;
+  canonicalToHome?: boolean;
 }
 
 export const SEO_PAGES: SeoPageData[] = [
@@ -43,12 +45,14 @@ export const SEO_PAGES: SeoPageData[] = [
     slug: "toronto-weed-dispensary",
     title: "Toronto Weed Dispensary | Gas Junction Cannabis",
     metaDescription:
-      "Gas Junction Cannabis is a Toronto weed dispensary at 2813 Dundas St W in The Junction. Browse flower, pre-rolls, vapes, edibles, concentrates, accessories, and adult 19+ information.",
+      "Gas Junction Cannabis is a Junction walk-in shop at 2813 Dundas St W near Keele & Dundas. Use the homepage for store details; this city URL is not the primary listing.",
     h1: "Toronto Weed Dispensary - Gas Junction Cannabis",
     icon: "\u2728",
     heroTagline:
       "2813 Dundas St W in The Junction | Open 24 hours daily | Walk-ins welcome",
     banner: "",
+    noindex: true,
+    canonicalToHome: true,
     sections: [
       {
         heading: "A Toronto Dispensary in The Junction",
@@ -63,7 +67,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "Easy to Reach on Dundas St W",
         body:
-          "The shop sits on Dundas St W near Keele in The Junction, close to TTC routes, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, and Roncesvalles. Walk in during posted hours or call +1 (437) 291-0948 for store questions.",
+          "The shop sits on Dundas St W near Keele in The Junction, close to TTC routes, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street. Walk in during posted hours or call +1 (437) 291-0948 for store questions. Use the how-to-get-here page for transit and parking.",
       },
     ],
     faqs: [
@@ -90,12 +94,14 @@ export const SEO_PAGES: SeoPageData[] = [
     slug: "cheap-weed-toronto",
     title: "Cheap Weed Toronto | Gas Junction Cannabis",
     metaDescription:
-      "Compare budget cannabis options at Gas Junction Cannabis in Toronto. Visit 2813 Dundas St W in The Junction and confirm current flower pricing and listings before shopping.",
+      "Compare budget cannabis options at Gas Junction Cannabis in The Junction. Visit 2813 Dundas St W near Keele & Dundas and confirm current flower pricing before shopping.",
     h1: "Cheap Weed Toronto",
     icon: "$",
     heroTagline:
-      "Budget-friendly flower options | The Junction, Toronto | Open 24 hours daily",
+      "Budget-friendly flower options | The Junction | Open 24 hours daily",
     banner: "",
+    noindex: true,
+    canonicalToHome: true,
     sections: [
       {
         heading: "Value Options Without the Guesswork",
@@ -108,9 +114,9 @@ export const SEO_PAGES: SeoPageData[] = [
           "Cannabis pricing and listings can change as stock rotates. Use the current menu to confirm product details, bundle information, and category listings before heading to the store at 2813 Dundas St W.",
       },
       {
-        heading: "Convenient for West Toronto Shoppers",
+        heading: "Convenient for Junction Shoppers",
         body:
-          "The Junction location is useful for shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and nearby west Toronto neighbourhoods.",
+          "The Junction location is useful for shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street.",
       },
     ],
     faqs: [
@@ -154,7 +160,7 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         heading: "The Junction Location",
         body:
-          "The store is located at 2813 Dundas St W in Toronto, close to Keele and nearby west Toronto neighbourhoods. It is built for straightforward walk-in shopping during posted store hours.",
+          "The store is located at 2813 Dundas St W in The Junction, close to Keele & Dundas. It is built for straightforward walk-in shopping during posted store hours.",
       },
       {
         heading: "Adult 19+ Shopping",
@@ -182,37 +188,37 @@ export const SEO_PAGES: SeoPageData[] = [
     slug: "weed-store-near-the-junction",
     title: "Weed Store Near The Junction | Gas Junction Cannabis",
     metaDescription:
-      "Looking for a weed store near The Junction in Toronto? Gas Junction Cannabis is located at 2813 Dundas St W near Keele with adult 19+ cannabis category information online.",
+      "Looking for a weed store near The Junction? Gas Junction Cannabis is at 2813 Dundas St W near Keele & Dundas with 24-hour walk-in hours and adult 19+ cannabis categories.",
     h1: "Weed Store Near The Junction",
     icon: "\uD83D\uDCCD",
     heroTagline:
-      "Dundas St W near Keele | West Toronto cannabis categories | Walk-ins welcome",
+      "Dundas St W near Keele & Dundas | 24-hour Junction walk-in | How to get here",
     banner: "",
     sections: [
       {
-        heading: "Local to The Junction",
+        heading: "Local to Keele & Dundas",
         body:
-          "Gas Junction Cannabis is positioned on Dundas St W in The Junction, making it a local option for shoppers near Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles.",
+          "Gas Junction Cannabis is on Dundas St W in The Junction, just west of Keele. Use this page if you searched for a weed store near The Junction, Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street. For street-by-street reach notes, open the how-to-get-here guide.",
       },
       {
-        heading: "Browse Before You Head Over",
+        heading: "How to get here",
         body:
-          "Use the site to review cannabis categories and menu information before visiting. The menu can include flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories, with current listings subject to change.",
+          "Walk north from Keele Station on Line 2 to Dundas, then west to 2813 Dundas St W. The 40 Junction bus runs the Dundas face. From Dundas West Station or Bloor GO / UP Express, take Line 2 one stop west to Keele, then walk north. Street parking is the usual option; read posted signs.",
       },
       {
         heading: "Open 24 Hours Daily",
         body:
-          "The listed store hours are 24 hours daily. Walk in anytime or call +1 (437) 291-0948 for store questions.",
+          "The listed store hours are 24 hours daily. Walk in anytime with 19+ ID or call +1 (437) 291-0948. Confirm current menu listings before making a special trip for one product.",
       },
     ],
     faqs: [
       {
         q: "Is Gas Junction Cannabis in The Junction?",
-        a: "Yes. The store is at 2813 Dundas St W in Toronto's Junction area.",
+        a: "Yes. The store is at 2813 Dundas St W in The Junction, just west of Keele & Dundas.",
       },
       {
         q: "What nearby areas does this page help serve?",
-        a: "It is written for shoppers around The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles.",
+        a: "It is written for shoppers around The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street.",
       },
       {
         q: "Can I check products online?",
@@ -225,17 +231,19 @@ export const SEO_PAGES: SeoPageData[] = [
     slug: "dispensary-near-me-toronto",
     title: "Cannabis Dispensary Near Me Toronto | Gas Junction Cannabis",
     metaDescription:
-      "Find Gas Junction Cannabis at 2813 Dundas St W in Toronto. The Junction dispensary page includes hours, location, and adult 19+ cannabis category information.",
+      "Find Gas Junction Cannabis at 2813 Dundas St W in The Junction. Hours, location, and adult 19+ cannabis category information for the Keele & Dundas walk-in.",
     h1: "Cannabis Dispensary Near Me - Toronto",
     icon: "+",
     heroTagline:
       "The Junction dispensary | 2813 Dundas St W | Open 24 hours daily",
     banner: "",
+    noindex: true,
+    canonicalToHome: true,
     sections: [
       {
-        heading: "A Nearby Option in West Toronto",
+        heading: "A Nearby Option in The Junction",
         body:
-          "If you are searching for a cannabis dispensary near me in Toronto, Gas Junction Cannabis is located at 2813 Dundas St W in The Junction. The site gives adults 19+ a simple way to review store details and category information before visiting.",
+          "If you are searching for a cannabis dispensary near Keele & Dundas, Gas Junction Cannabis is at 2813 Dundas St W in The Junction. The site gives adults 19+ a simple way to review store details and category information before visiting.",
       },
       {
         heading: "Products and Categories",
@@ -259,7 +267,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         q: "Does Gas Junction Cannabis serve west Toronto neighbourhoods?",
-        a: "The store is in The Junction and is useful for nearby areas such as Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Dundas West, and Roncesvalles.",
+        a: "The store is in The Junction and is useful for nearby areas such as Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street.",
       },
     ],
   },

@@ -24,7 +24,7 @@ test("resource supports the existing local owner without public workflow languag
   const start = data.indexOf(`slug: "${slug}"`);
   const end = data.indexOf('slug: "weed-flower-guide"', start);
   const resource = data.slice(start, end);
-  assert.match(resource, /href: "\/weed-dispensary-toronto"/);
+  assert.match(resource, /href: "\/visit"/);
   assert.doesNotMatch(resource, /business entity|authority\/support page|replacement location page|canonical visit-intent|internal link/i);
   assert.doesNotMatch(resource, /price|deal|stock|availability|order now|buy now|delivery/i);
   assert.equal(data.split(`href: "/resources/${slug}"`).length - 1, 1);

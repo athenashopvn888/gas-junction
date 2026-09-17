@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
+import { HOME_FAQS, STORE } from "./lib/store";
 import Papa from "papaparse";
 
 /* ── Bento Mosaic Config ── */
@@ -69,25 +70,18 @@ const EXPLORE_CATEGORIES = [
   { name: "Magic Stuff", slug: "items/magic", banner: "/banners/09_Magic_Stuff.webp", icon: "🍄" },
 ];
 
-/* ── Local FAQs ── */
-const LOCAL_FAQS = [
-  {
-    q: "What are the hours for Gas Junction Cannabis?",
-    a: "Gas Junction Cannabis at 2813 Dundas St W, Toronto is open 24 hours daily. Walk in anytime — no appointment needed.",
-  },
-  {
-    q: "What cannabis products do you carry?",
-    a: "The site organizes menu categories for flower tiers, edibles, pre-rolls, vapes, concentrates, accessories, and cigarettes. Confirm current product details before visiting.",
-  },
-  {
-    q: "Where is Gas Junction Cannabis located?",
-    a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6. Visit us in person or call us at +1 (437) 291-0948. Check posted signs or the map listing for parking details.",
-  },
-  {
-    q: "What is the cheapest weed at Gas Junction Cannabis?",
-    a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and listings on the menu before visiting.",
-  },
-];
+/* ── Local FAQs (must match homepage FAQPage JSON-LD) ── */
+const LOCAL_FAQS = HOME_FAQS;
+
+const homeFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOME_FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
 
 interface Review {
   name: string;
@@ -190,6 +184,10 @@ export default function HomePage() {
 
   return (
     <main className={styles.main}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd).replace(/</g, "\\u003c") }}
+      />
       <FleetAnnouncementBanner />
       {/* ── NAVBAR ── */}
       <Navbar />
@@ -201,7 +199,7 @@ export default function HomePage() {
           <div className={styles.welcomeBannerContainer}>
             <img
               src={welcomeBannerSrc}
-              alt="Welcome to Gas Junction Cannabis — Premium Toronto Cannabis Dispensary"
+              alt="Welcome to Gas Junction Cannabis — 24-hour walk-in dispensary in The Junction"
               className={styles.welcomeBannerImg}
               onError={() => setWelcomeBannerError(true)}
             />
@@ -220,10 +218,16 @@ export default function HomePage() {
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
-            <p className={styles.brandSub}>The Junction Cannabis Dispensary</p>
+            <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
             <div className={styles.brandBadge}>Open 24 Hours Daily</div>
+            <p className={styles.heroNap}>
+              {STORE.streetAddress}, {STORE.city}, {STORE.region} {STORE.postalCode}
+              {" · "}
+              <a href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+            </p>
             <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
               <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
+              <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>HOW TO GET HERE</Link>
               <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
             </div>
           </div>
@@ -310,15 +314,28 @@ export default function HomePage() {
       <section className={styles.seoSection}>
         <div className={styles.container}>
           <div className={styles.seoPanel}>
-            <h2 className={styles.seoPanelTitle}>The Junction Cannabis Dispensary - Gas Junction Cannabis</h2>
+            <h2 className={styles.seoPanelTitle}>Walk in at Keele &amp; Dundas — The Junction&apos;s 24-hour cannabis shop</h2>
             <p className={styles.seoPanelText}>
-              Welcome to <strong>Gas Junction Cannabis</strong>, a Toronto cannabis destination at 2813 Dundas St W in The Junction. Browse flower tiers, pre-rolls, vapes, edibles, concentrates, cigarettes, and accessories before you visit.
+              <strong>Gas Junction Cannabis</strong> is the walk-in counter at {STORE.addressLine},
+              just west of Keele &amp; Dundas in The Junction. This is a neighbourhood shop for
+              people already on Dundas, coming north from Keele Station, or cutting over from
+              Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street —
+              not a city-wide Toronto dispensary page.
             </p>
             <p className={styles.seoPanelText}>
-              Gas Junction Cannabis is open 24 hours daily. Product details and listings can change, so use the current menu as your source of truth before heading over.
+              The door is open 24 hours daily. Bring government-issued photo ID; you must be 19+.
+              No appointment. Flower is stacked in clear tiers so you can compare budget through
+              exotic without a sales script, and the same stop covers pre-rolls, vapes, edibles,
+              concentrates, accessories, and cigarettes. Listings move, so use the current menu
+              as planning, then confirm on the floor.
             </p>
             <p className={styles.seoPanelText}>
-              Searching for a cannabis dispensary in Toronto or the surrounding area? Gas Junction Cannabis gives west Toronto shoppers a straightforward place to compare categories and find the right lane for their budget.
+              Last mile is simple: Line 2 to Keele Station, walk north on Keele to Dundas, then
+              west to 2813. The 40 Junction bus runs the Dundas face. Street parking is the usual
+              option — read the signs, especially when evening restaurant traffic fills the curb.
+              Need a landmark check before you leave? Call {STORE.phoneDisplay}. Full transit and
+              parking notes live on the{" "}
+              <Link href="/visit">how to get here</Link> page.
             </p>
           </div>
         </div>
@@ -397,18 +414,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── STORE LOCATION GRID ── */}
+      {/* ── STORE LOCATION GRID — homepage visit hub ── */}
       <section className={styles.storeSection} id="contact">
         <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Visit Gas Junction Cannabis in The Junction</h2>
+            <p className={styles.sectionSubtitle}>
+              Address, 24-hour hours, phone, map, and directions for the Keele &amp; Dundas walk-in.
+            </p>
+          </div>
           <div className={styles.storeGrid}>
             <div className={styles.storeCard}>
               <span className={styles.storeIcon}>📍</span>
               <h3 className={styles.storeCardTitle}>Location</h3>
               <p className={styles.storeCardText}>
-                2813 Dundas St W
+                {STORE.name}
                 <br />
-                Toronto, ON M6P 1Y6
+                {STORE.streetAddress}
                 <br />
+                {STORE.city}, {STORE.region} {STORE.postalCode}
+                <br />
+                <span className={styles.storeHighlight}>{STORE.intersection}, {STORE.neighborhood}</span>
               </p>
             </div>
             <div className={styles.storeCard}>
@@ -417,22 +443,39 @@ export default function HomePage() {
               <p className={styles.storeCardText}>
                 Open 7 Days a Week
                 <br />
-                <span className={styles.storeHighlight}>Open 24 Hours Daily</span>
+                <span className={styles.storeHighlight}>{STORE.hoursLabel}</span>
               </p>
             </div>
             <div className={styles.storeCard}>
-              <span className={styles.storeIcon}>🔥</span>
-              <h3 className={styles.storeCardTitle}>Walk In</h3>
+              <span className={styles.storeIcon}>📞</span>
+              <h3 className={styles.storeCardTitle}>Phone</h3>
               <p className={styles.storeCardText}>
-                No appointment needed
+                <a className={styles.storeLink} href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
                 <br />
-                <span className={styles.storeHighlight}>The Junction, Toronto</span>
+                <span className={styles.storeHighlight}>Walk-in · Adults 19+</span>
+              </p>
+            </div>
+            <div className={styles.storeCard}>
+              <span className={styles.storeIcon}>🗺️</span>
+              <h3 className={styles.storeCardTitle}>Directions</h3>
+              <p className={styles.storeCardText}>
+                <a className={styles.storeLink} href={STORE.directionsUrl} target="_blank" rel="noopener noreferrer">
+                  Open Google Maps
+                </a>
+                <br />
+                <Link className={styles.storeLink} href="/visit">Transit &amp; parking guide</Link>
               </p>
             </div>
           </div>
 
-          {/* Map wrapper */}
           <div className={styles.mapWrap}>
+            <iframe
+              title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
+              src={STORE.mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className={styles.mapFrame}
+            />
           </div>
         </div>
       </section>

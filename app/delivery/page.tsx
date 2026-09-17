@@ -3,8 +3,9 @@ import DeliveryContent from "./DeliveryContent";
 import menu from "./delivery-menu.json";
 
 export const metadata: Metadata = {
-  title: "Cannabis Delivery Menu — Gas Junction Cannabis",
-  description: "Browse the Gas Junction Cannabis delivery menu and start your order with the live dispatcher.",
+  title: "Cannabis Delivery Menu — The Junction, High Park & Bloor West",
+  description:
+    "Neighbourhood cannabis delivery from Gas Junction Cannabis at 2813 Dundas St W. Radius: The Junction, High Park, and Bloor West Village — not city-wide Toronto delivery.",
   alternates: { canonical: "https://www.gasjunctioncannabis.com/delivery" },
 };
 

@@ -69,17 +69,17 @@ const menuCards: ResourceCard[] = [
     text: "Open the live cigarette category for the current brand list.",
   },
   {
-    title: "Store Visit Page",
-    href: "/weed-dispensary-toronto",
-    text: "Use the store visit page for address, hours, and visit context.",
+    title: "How to Get Here",
+    href: "/visit",
+    text: "Use the reach guide for address, hours, transit, and parking in The Junction.",
   },
 ];
 
 const flowerCards: ResourceCard[] = [
   {
-    title: "Explore Gas Junction Cannabis Weed in Toronto",
-    href: "/weed-dispensary-toronto",
-    text: "Start with the broader Toronto Weed selection before narrowing your browsing.",
+    title: "Explore Gas Junction Cannabis Weed in The Junction",
+    href: "/",
+    text: "Start on the homepage for The Junction walk-in, then narrow into a flower collection.",
   },
   {
     title: "Exotic Weed",
@@ -140,15 +140,15 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Gas Junction Cannabis resource pages for The Junction shoppers, with local visit planning, menu guidance, flower tier pricing, value shopping, pre-roll tips, and Native smokes prices.",
     eyebrow: "The Junction Resource Hub",
     intro:
-      "A useful stop before the stop. These Gas Junction Cannabis resources keep The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles shoppers pointed at the right product category.",
+      "A useful stop before the stop. These Gas Junction Cannabis resources keep The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street shoppers pointed at the right product category.",
     cards: hubCards,
     sections: [
       {
         heading: "Built Around The Junction Shopper",
         body:
-          "Gas Junction Cannabis sits at 2813 Dundas St W, so the resource section is organized around how local shoppers actually move: check the store visit page, pick the category, compare the right shelf, then head in with fewer tabs open.",
+          "Gas Junction Cannabis sits at 2813 Dundas St W, so the resource section is organized around how local shoppers actually move: check the homepage or how-to-get-here page, pick the category, compare the right shelf, then head in with fewer tabs open.",
         bullets: [
-          "Use /weed-dispensary-toronto for the store visit page.",
+          "Use the homepage or /visit for store address, hours, and how to get here.",
           "Use /resources/menu-guide when you are choosing between categories.",
           "Use /resources/native-smokes when cigarettes, Backwoods, grabba, or pouches are part of the same stop.",
         ],
@@ -168,12 +168,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "A local visit guide for Gas Junction Cannabis at 2813 Dundas St W in The Junction, with nearby Toronto areas, menu shortcuts, hours, and shopping paths.",
     eyebrow: "Visit Guide",
     intro:
-      "Use this page when the search starts local: weed dispensary in The Junction, cannabis near Dundas St W and Keele, or a late stop near High Park North, Junction Triangle, Runnymede, Annette, Bloor West, Dundas West, or Roncesvalles.",
+      "Use this page when the search starts local: weed dispensary in The Junction, cannabis near Keele & Dundas, or a late stop near High Park North, Junction Triangle, Runnymede, Annette, or Bloor West Village.",
     cards: [
       {
-        title: "Store Visit Page",
-        href: "/weed-dispensary-toronto",
-        text: "The main GBP-connected page with address, hours, and visit planning.",
+        title: "How to Get Here",
+        href: "/visit",
+        text: "Transit, parking, and landmark notes for 2813 Dundas St W.",
       },
       {
         title: "Menu Guide",
@@ -200,17 +200,17 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Neighborhood Shopping Notes",
         body:
-          "The Junction page should catch shoppers who describe the area in different ways. This guide naturally helps shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, Annette Street, Dundas West, and Roncesvalles without turning the page into a keyword wall.",
+          "The Junction page should catch shoppers who describe the area in different ways. This guide naturally helps shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street without turning the page into a keyword wall.",
         bullets: [
           "The Junction and Dundas St W for the core local search.",
           "Keele and High Park North for nearby direction-based searches.",
-          "Junction Triangle, Runnymede, Bloor West, and Roncesvalles for nearby shopping trips.",
+          "Junction Triangle, Runnymede, Bloor West Village, and Annette Street for nearby shopping trips.",
         ],
       },
       {
         heading: "Best First Click",
         body:
-          "If you are not sure what to buy yet, do not start deep inside an item page. Start with the menu guide, then choose the shelf. If the visit is mostly about current store details, use the store visit page first.",
+          "If you are not sure what to buy yet, do not start deep inside an item page. Start with the menu guide, then choose the shelf. If the visit is mostly about current store details, use the homepage or how-to-get-here page first.",
       },
     ],
   },
@@ -238,7 +238,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Use The Local Page For The Store Details",
         body:
-          "The menu guide is for deciding what to shop. The store visit page is for address, hours, and local visit planning. Keeping those jobs separate helps protect the important local SEO page while making the resources more useful.",
+          "The menu guide is for deciding what to shop. The homepage and how-to-get-here page cover address, hours, and local visit planning.",
       },
     ],
   },
@@ -265,8 +265,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         body:
           "Gas Junction Cannabis serves adults 19+ in Toronto. The terminology in this guide helps explain common local searches without changing the practical store information visitors need.",
         link: {
-          title: "For store information and details about visiting Gas Junction Cannabis, see our Toronto weed dispensary page.",
-          href: "/weed-dispensary-toronto",
+          title: "For store information and details about visiting Gas Junction Cannabis, see the homepage and how-to-get-here page.",
+          href: "/visit",
           text: "Gas Junction Cannabis Toronto weed dispensary information",
         },
       },
@@ -287,7 +287,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       },
       {
         question: "Do closely related search phrases need separate pages?",
-        answer: "No. One useful guide can explain related wording clearly, while the dedicated Toronto dispensary page provides practical store and visit information.",
+        answer: "No. One useful guide can explain related wording clearly, while the homepage and how-to-get-here page provide practical store and visit information.",
       },
     ],
   },
@@ -299,7 +299,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Explore Gas Junction Cannabis flower collections including Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed, with links to each dedicated tier.",
     eyebrow: "Gas Junction Cannabis · Weed & Flower",
     intro:
-      "Gas Junction Cannabis brings together five Weed flower collections for shoppers who want to compare different parts of the selection: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed. Explore the collections that interest you, or begin with the broader Toronto Weed selection before narrowing your browsing.",
+      "Gas Junction Cannabis brings together five Weed flower collections for shoppers who want to compare different parts of the selection: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed. Explore the collections that interest you, or begin on the homepage before narrowing your browsing.",
     cards: flowerCards,
     sections: [
       {
@@ -309,7 +309,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         bullets: [
           "Explore Exotic Weed, Premium Weed and AAA+ Weed.",
           "Browse AA Weed and Budget Weed.",
-          "Explore Gas Junction Cannabis Weed in Toronto for a broader starting point.",
+          "Explore the Gas Junction Cannabis homepage for a broader starting point.",
         ],
       },
       {
@@ -506,12 +506,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "What Changed",
         body:
-          "The resources are now specific to Gas Junction Cannabis and The Junction instead of reading like a copied store template. They support the store visit page, menu categories, flower tiers, and cigarette category without replacing any of those pages.",
+          "The resources are now specific to Gas Junction Cannabis and The Junction instead of reading like a copied store template. They support the homepage visit hub, menu categories, flower tiers, and cigarette category without replacing any of those pages.",
       },
       {
         heading: "What Stayed Protected",
         body:
-          "The important SEO paths stay intact: /weed-dispensary-toronto, /resources, /resources/menu-guide, /resources/weed-flower-guide, /resources/value-guide, /resources/pre-roll-guide, /resources/native-smokes, and /resources/native-smokes/native-cigarettes-guide.",
+          "The important SEO paths stay intact: /, /visit, /resources, /resources/menu-guide, /resources/weed-flower-guide, /resources/value-guide, /resources/pre-roll-guide, /resources/native-smokes, and /resources/native-smokes/native-cigarettes-guide.",
       },
     ],
   },
