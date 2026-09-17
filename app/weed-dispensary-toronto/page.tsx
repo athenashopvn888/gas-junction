@@ -1,16 +1,23 @@
 import { Metadata } from "next";
 import { GBPLandingPage } from "@/app/components/GBPLandingPage";
-import { weedOwner } from "@/app/lib/weedDiscovery";
+import { STORE } from "@/app/lib/store";
 
 export const metadata: Metadata = {
-  title: { absolute: weedOwner.seoTitle },
-  description: weedOwner.metaDescription,
+  title: { absolute: "The Junction Dispensary | Gas Junction Cannabis" },
+  description:
+    "Gas Junction Cannabis is the 24-hour walk-in shop at 2813 Dundas St W in The Junction. Use the homepage for store details; this city URL is kept only as a legacy path.",
   alternates: {
-    canonical: `https://${weedOwner.domain}${weedOwner.ownerPath}`,
+    canonical: STORE.origin,
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
+  },
+  openGraph: {
+    url: STORE.origin,
+    title: "Gas Junction Cannabis | The Junction Dispensary",
+    description:
+      "24-hour walk-in cannabis shop at 2813 Dundas St W in The Junction, near Keele & Dundas.",
   },
 };
 

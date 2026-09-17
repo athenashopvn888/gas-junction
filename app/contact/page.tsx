@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { STORE } from "../lib/store";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Gas Junction Cannabis | 2813 Dundas St W, Toronto",
+  title: "Contact Us — Gas Junction Cannabis | 2813 Dundas St W, The Junction",
   description:
-    "Visit Gas Junction Cannabis at 2813 Dundas St W, Toronto, ON M6P 1Y6. We are open 24 hours daily. Walk-ins welcome.",
+    "Visit Gas Junction Cannabis at 2813 Dundas St W, Toronto, ON M6P 1Y6 in The Junction. Open 24 hours daily. Walk-ins welcome.",
   alternates: {
     canonical: "https://www.gasjunctioncannabis.com/contact",
   },
   openGraph: {
-    title: "Contact Gas Junction Cannabis — Toronto Dispensary",
+    title: "Contact Gas Junction Cannabis — The Junction",
     description:
-      "2813 Dundas St W, Toronto. Open 24 hours daily. Check current menu categories before visiting.",
+      "2813 Dundas St W, The Junction. Open 24 hours daily. Check current menu categories before visiting.",
   },
 };
 
@@ -42,7 +44,13 @@ export default function ContactPage() {
                 <br />
                 Toronto, ON M6P 1Y6
                 <br />
-                <span className={styles.infoMuted}>The Junction, Toronto</span>
+                <span className={styles.infoMuted}>Keele &amp; Dundas, The Junction</span>
+              </p>
+              <p className={styles.infoText}>
+                <a className={styles.infoBtn} href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+              </p>
+              <p className={styles.infoText}>
+                <Link href="/visit">How to get here</Link>
               </p>
             </div>
 
@@ -99,6 +107,13 @@ export default function ContactPage() {
 
           {/* Map */}
           <div className={styles.mapSection}>
+            <iframe
+              title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
+              src={STORE.mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{ width: "100%", height: "360px", border: 0, display: "block" }}
+            />
           </div>
         </div>
       </section>

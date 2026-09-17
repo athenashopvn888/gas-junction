@@ -3,13 +3,14 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import styles from "./GBPLandingPage.module.css";
 import { weedOwner as store } from "../lib/weedDiscovery";
+import { STORE } from "../lib/store";
 
 const storeSchema = {
   "@context": "https://schema.org",
-  "@type": "Store",
-  "@id": `https://${store.domain}${store.ownerPath}`,
+  "@type": "CannabisStore",
+  "@id": STORE.origin,
   name: store.storeName,
-  url: `https://${store.domain}${store.ownerPath}`,
+  url: STORE.origin,
   telephone: store.phoneIntl,
   address: { "@type": "PostalAddress", streetAddress: store.streetAddress, addressLocality: store.city, addressRegion: "ON", postalCode: store.postalCode, addressCountry: "CA" },
   ...(store.openingHours ? { openingHours: store.openingHours } : {}),
@@ -25,7 +26,7 @@ export function GBPLandingPage() {
           <p className={styles.eyebrow}>{store.hoursLabel ? `${store.hoursLabel} · Adults 19+` : "Adults 19+"}</p>
           <h1>{store.h1}</h1>
           <p className={styles.heroAddress}>{store.streetAddress}, {store.city}, ON {store.postalCode}</p>
-          <div className={styles.actions}><Link href="#find-your-weed" className={styles.primaryAction}>Find Your Weed</Link><Link href="#visit" className={styles.secondaryAction}>Visit {store.storeName}</Link></div>
+          <div className={styles.actions}><Link href="#find-your-weed" className={styles.primaryAction}>Find Your Weed</Link><Link href="/visit" className={styles.secondaryAction}>How to get here</Link></div>
         </section>
 
         <section className={styles.section}>

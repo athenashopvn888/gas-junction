@@ -12,8 +12,8 @@ export default function Footer() {
               GAS JUNCTION CANNABIS
             </div>
             <p className={styles.desc}>
-              Your Local Cannabis Dispensary At 2813 Dundas St W, Toronto. Visit
-              Gas Junction Cannabis For Flower Tiers, Edibles, Vapes &amp; More.
+              24-hour walk-in cannabis shop at 2813 Dundas St W in The Junction,
+              near Keele &amp; Dundas. Flower tiers, edibles, vapes, and more.
               Open 24 hours daily.
             </p>
             <div className={styles.buttons}>
@@ -55,15 +55,13 @@ export default function Footer() {
               <Link href="/info/nicotine-vapes-toronto">Nicotine Vapes Toronto</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/faq">FAQ</Link>
+              <Link href="/visit">How to Get Here</Link>
               <Link href="/delivery">Delivery Menu</Link>
-              <Link href="/info/toronto-weed-dispensary">Toronto Dispensary</Link>
-              <Link href="/info/cheap-weed-toronto">Cheap Weed Toronto</Link>
-              <Link href="/info/native-cigarettes-toronto">Native Cigarettes</Link>
               <Link href="/info/weed-store-near-the-junction">Weed Store Near The Junction</Link>
-              <Link href="/weed-dispensary-toronto">Gas Junction Cannabis Weed Dispensary in Toronto</Link>
+              <Link href="/info/native-cigarettes-toronto">Native Cigarettes</Link>
               <Link href="/contact">Contact Us</Link>
               <a
-                href="https://www.gasjunctioncannabis.com/"
+                href="https://www.google.com/maps/search/?api=1&query=2813+Dundas+St+W%2C+Toronto%2C+ON+M6P+1Y6"
                 target="_blank"
                 rel="noopener noreferrer"
               >

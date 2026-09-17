@@ -18,9 +18,9 @@ const FAQ_CATEGORIES = [
     faqs: [
       { q: "Where is Gas Junction Cannabis located?", a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6, in The Junction area." },
       { q: "What are your hours?", a: "We are open 24 hours daily. Walk in anytime — no appointment needed." },
-      { q: "Is there parking nearby?", a: "For parking or transit details, use the current map listing or contact the store before visiting." },
-      { q: "What nearby areas do you serve?", a: "The Junction location is useful for shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and nearby west Toronto neighbourhoods." },
-      { q: "What's the best way to get to Gas Junction Cannabis?", a: "We're accessible by car, local transit, or on foot from nearby Junction streets. Confirm your route before visiting if you are coming from outside the neighbourhood." },
+      { q: "Is there parking nearby?", a: "Street parking on Dundas St W and nearby Junction side streets is the usual option. Check posted signs for time limits. Full parking and transit notes are on the how-to-get-here page." },
+      { q: "What nearby areas do you serve?", a: "The Junction walk-in is useful for shoppers around Keele & Dundas, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street." },
+      { q: "What's the best way to get to Gas Junction Cannabis?", a: "Walk north from Keele Station (Line 2) to Dundas, then west to 2813 Dundas St W. The 40 Junction bus runs along Dundas. From Dundas West Station or Bloor GO / UP Express, take Line 2 one stop west to Keele." },
     ],
   },
   {

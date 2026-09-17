@@ -12,13 +12,13 @@ export const weedOwner = {
   phoneIntl: "+14372910948",
   hoursLabel: "Open 24 Hours · 7 Days a Week",
   openingHours: "Mo-Su 00:00-23:59",
-  seoTitle: "Weed Dispensary in Toronto | Gas Junction Cannabis",
-  metaDescription: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W in Toronto. Adults 19+ can explore cannabis categories and useful shopping guides.",
-  h1: "Gas Junction Cannabis — Weed Dispensary in Toronto",
-  introTitle: "Weed and Cannabis on Dundas Street West",
+  seoTitle: "Weed Dispensary in The Junction | Gas Junction Cannabis",
+  metaDescription: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W in The Junction, near Keele & Dundas. Adults 19+ can explore cannabis categories and visit notes.",
+  h1: "Gas Junction Cannabis — The Junction Walk-In Dispensary",
+  introTitle: "Weed and Cannabis at Keele & Dundas",
   intro: [
-  "Gas Junction Cannabis is located at 2813 Dundas St W in Toronto and is open 24 hours a day, seven days a week.",
-  "Adults 19+ can start with flower or focus on another cannabis format such as pre-rolls, edibles, vapes, concentrates or accessories. If you already know what you want to explore, the guides below can help narrow the choices before your visit.",
+  "Gas Junction Cannabis is located at 2813 Dundas St W in The Junction and is open 24 hours a day, seven days a week.",
+  "Adults 19+ can start with flower or focus on another cannabis format such as pre-rolls, edibles, vapes, concentrates or accessories. For transit, parking, and landmark notes, use the how-to-get-here page.",
   "For a specific item, call +1 (437) 291-0948 before making a special trip."
 ],
   findTitle: "Find Your Weed at Gas Junction",
@@ -112,9 +112,9 @@ export const weedOwner = {
   }
 ] satisfies WeedFaq[],
   home: {
-    title: "Weed in Toronto at Gas Junction",
-    text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore Weed and Cannabis information, flower guidance and store details.",
-    primaryLabel: "Explore Weed at Gas Junction",
+    title: "Weed at Keele & Dundas in The Junction",
+    text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore flower, visit notes for The Junction, and the current store menu.",
+    primaryLabel: "How to get here",
     secondaryLabel: "Explore the Flower Guide",
     secondaryHref: "/resources/weed-flower-guide",
   },
