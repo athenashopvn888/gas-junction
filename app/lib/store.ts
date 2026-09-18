@@ -28,10 +28,25 @@ export const STORE = {
   deliveryRadius: ["The Junction", "High Park", "Bloor West Village"],
 } as const;
 
+export const LOCAL_MESH_LINKS = [
+  { href: "/", label: "Store homepage" },
+  { href: "/visit", label: "How to get here" },
+  { href: "/info/weed-store-near-the-junction", label: "Weed store near The Junction" },
+  { href: "/24-hour-junction-dispensary", label: "24-hour Junction dispensary" },
+] as const;
+
+export const TIER_MESH_LINKS = [
+  { href: "/exotic-weed", label: "Exotic Weed" },
+  { href: "/premium-weed", label: "Premium Weed" },
+  { href: "/aaa-weed", label: "AAA+ Weed" },
+  { href: "/aa-weed", label: "AA Weed" },
+  { href: "/budget-weed", label: "Budget Weed" },
+] as const;
+
 export const HOME_FAQS = [
   {
     q: "What are the hours for Gas Junction Cannabis?",
-    a: "Gas Junction Cannabis at 2813 Dundas St W in The Junction is open 24 hours daily. Walk in any hour — no appointment needed.",
+    a: "Gas Junction Cannabis at 2813 Dundas St W in The Junction is open 24 hours daily. Walk in any hour — no appointment needed. Late-night notes live on the 24-hour Junction dispensary guide.",
   },
   {
     q: "How do I get to Gas Junction Cannabis from Keele Station?",
@@ -40,6 +55,10 @@ export const HOME_FAQS = [
   {
     q: "Where is Gas Junction Cannabis in The Junction?",
     a: "We are at 2813 Dundas St W, Toronto, ON M6P 1Y6, in The Junction near Keele & Dundas. Call +1 (437) 291-0948. Street parking is the usual option; check posted signs when you arrive.",
+  },
+  {
+    q: "Can I walk in overnight after Junction restaurants close?",
+    a: "Yes. The Keele & Dundas door stays open 24 hours daily, including after the Dundas West strip winds down. Use the 24-hour Junction dispensary guide for overnight walk-ins and the how-to-get-here page for transit.",
   },
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",

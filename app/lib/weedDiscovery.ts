@@ -24,6 +24,16 @@ export const weedOwner = {
   findTitle: "Find Your Weed at Gas Junction",
   discoveryLinks: [
   {
+    "label": "Weed Store Near The Junction",
+    "description": "Neighbourhood weed owner for Keele & Dundas — not a city-wide Toronto listing.",
+    "href": "/info/weed-store-near-the-junction"
+  },
+  {
+    "label": "24-Hour Junction Dispensary",
+    "description": "Overnight and open-now notes for the Dundas West walk-in.",
+    "href": "/24-hour-junction-dispensary"
+  },
+  {
     "label": "Budget Flower",
     "description": "Explore the verified Budget flower section.",
     "href": "/budget-weed"
@@ -113,9 +123,9 @@ export const weedOwner = {
 ] satisfies WeedFaq[],
   home: {
     title: "Weed at Keele & Dundas in The Junction",
-    text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore flower, visit notes for The Junction, and the current store menu.",
+    text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore flower, overnight hours for The Junction, and the current store menu.",
     primaryLabel: "How to get here",
-    secondaryLabel: "Explore the Flower Guide",
-    secondaryHref: "/resources/weed-flower-guide",
+    secondaryLabel: "24-hour Junction walk-in",
+    secondaryHref: "/24-hour-junction-dispensary",
   },
 };

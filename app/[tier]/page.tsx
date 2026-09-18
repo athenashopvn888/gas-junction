@@ -15,6 +15,7 @@ import {
   TIER_META_DESCRIPTION,
   TIER_SEO,
 } from "../lib/tierSeoContent";
+import LocalSeoMesh from "../components/LocalSeoMesh";
 import styles from "./tier.module.css";
 
 /* -- Generate all tier pages at build -- */
@@ -78,8 +79,26 @@ export default async function TierPage({
     ? fs.existsSync(path.join(process.cwd(), "public", config.banner))
     : false;
 
+  const faqJsonLd = seo
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: seo.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }
+    : null;
+
   return (
     <main className={styles.main}>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+        />
+      )}
       <Navbar />
 
       {/* ── Banner Image (standalone, no overlay text) ── */}
@@ -219,6 +238,8 @@ export default async function TierPage({
                 ))}
               </div>
             )}
+
+            <LocalSeoMesh currentPath={`/${tierSlug}`} variant="light" />
           </div>
         </section>
       )}

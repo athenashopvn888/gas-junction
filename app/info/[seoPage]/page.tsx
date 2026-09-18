@@ -8,6 +8,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { SEO_PAGES, getLegacySeoRedirect, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
+import { STORE } from "../../lib/store";
+import LocalSeoMesh from "../../components/LocalSeoMesh";
 import styles from "./seo.module.css";
 
 /* ── Generate all SEO pages ── */
@@ -57,6 +59,18 @@ export default async function SeoLandingPage({
 
   const tiers = Object.values(TIER_CONFIG);
   const heroPreview = page.heroPreview;
+  const faqJsonLd =
+    page.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: page.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.q,
+            acceptedAnswer: { "@type": "Answer", text: faq.a },
+          })),
+        }
+      : null;
 
   // Check if banner file exists in the public folder
   const bannerExists = page.banner
@@ -65,6 +79,12 @@ export default async function SeoLandingPage({
 
   return (
     <main className={styles.main}>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+        />
+      )}
       <Navbar />
 
       {/* Banner Image */}
@@ -148,11 +168,25 @@ export default async function SeoLandingPage({
 
           {/* Map */}
           {heroPreview?.theme !== "nicotine" && <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Find Us</h2>
+            <h2 className={styles.sectionTitle}>Find Us in The Junction</h2>
             <div className={styles.mapWrap}>
+              <iframe
+                title={`Map of ${STORE.name} at ${STORE.streetAddress} in The Junction`}
+                src={STORE.mapsEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{ display: "block", width: "100%", height: "320px", border: 0 }}
+              />
             </div>
             <div className={styles.visitBtns}>
+              <Link href="/visit" className={styles.visitBtn}>How to get here</Link>
+              <Link href="/24-hour-junction-dispensary" className={styles.visitBtn}>24-hour Junction hours</Link>
+              <Link href="/" className={styles.visitBtn}>Store homepage</Link>
             </div>
+            <LocalSeoMesh
+              currentPath={slug === "weed-store-near-the-junction" ? "/info/weed-store-near-the-junction" : undefined}
+              variant="light"
+            />
           </div>}
 
           {/* FAQ */}

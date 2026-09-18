@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
 import styles from "./visit.module.css";
 
 export const metadata: Metadata = {
-  title: "How to Get Here — The Junction | Gas Junction Cannabis",
+  title: { absolute: "How to Get Here — The Junction | Gas Junction Cannabis" },
   description:
     "Walk-in directions to Gas Junction Cannabis at 2813 Dundas St W near Keele & Dundas. Transit from Keele Station, parking notes, 24-hour hours, and 19+ ID for The Junction.",
   alternates: {
@@ -32,6 +33,10 @@ const VISIT_FAQS = [
   {
     q: "How do I reach Gas Junction Cannabis on transit?",
     a: "Walk north from Keele Station (Line 2) along Keele Street to Dundas, then west to 2813. The 40 Junction bus runs along Dundas through the neighbourhood. From Dundas West Station or Bloor GO / UP Express, take Line 2 one stop west to Keele, then walk north.",
+  },
+  {
+    q: "Is the Junction shop open overnight?",
+    a: "Yes. Gas Junction Cannabis is open 24 hours daily at 2813 Dundas St W. The 24-hour Junction dispensary guide covers late-night walk-ins; this page is the reach guide for transit and parking.",
   },
 ];
 
@@ -103,6 +108,9 @@ export default function VisitPage() {
             </a>
             <Link className={styles.secondary} href="/">
               Store homepage
+            </Link>
+            <Link className={styles.secondary} href="/24-hour-junction-dispensary">
+              24-hour hours
             </Link>
           </div>
         </div>
@@ -206,6 +214,10 @@ export default function VisitPage() {
               <p>
                 <Link href="/">Back to the Gas Junction Cannabis homepage</Link>
                 {" · "}
+                <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link>
+                {" · "}
+                <Link href="/info/weed-store-near-the-junction">Weed store near The Junction</Link>
+                {" · "}
                 <Link href="/exotic-weed">Store menu</Link>
                 {" · "}
                 <Link href="/delivery">Neighbourhood delivery</Link>
@@ -224,6 +236,7 @@ export default function VisitPage() {
               <p>{faq.a}</p>
             </details>
           ))}
+          <LocalSeoMesh currentPath="/visit" />
         </div>
       </section>
 
