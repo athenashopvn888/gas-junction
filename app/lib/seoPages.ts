@@ -186,43 +186,44 @@ export const SEO_PAGES: SeoPageData[] = [
 
   {
     slug: "weed-store-near-the-junction",
-    title: "Weed Store Near The Junction | Gas Junction Cannabis",
+    title: "Weed Dispensary in The Junction | Gas Junction Cannabis",
+    absoluteTitle: true,
     metaDescription:
-      "Looking for a weed store near The Junction? Gas Junction Cannabis is at 2813 Dundas St W near Keele & Dundas with 24-hour walk-in hours and adult 19+ cannabis categories.",
-    h1: "Weed Store Near The Junction",
+      "Gas Junction Cannabis is the Keele & Dundas weed dispensary in The Junction at 2813 Dundas St W. Neighbourhood flower tiers and walk-in notes — not a city-wide Toronto listing.",
+    h1: "Weed Dispensary in The Junction",
     icon: "\uD83D\uDCCD",
     heroTagline:
-      "Dundas St W near Keele & Dundas | 24-hour Junction walk-in | How to get here",
+      "Keele & Dundas walk-in · Junction Triangle · High Park North · How to get here",
     banner: "",
     sections: [
       {
-        heading: "Local to Keele & Dundas",
+        heading: "The Junction weed shop — not a Toronto city listing",
         body:
-          "Gas Junction Cannabis is on Dundas St W in The Junction, just west of Keele. Use this page if you searched for a weed store near The Junction, Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street. For street-by-street reach notes, open the how-to-get-here guide.",
+          "Gas Junction Cannabis is the walk-in counter at 2813 Dundas St W, just west of Keele & Dundas in The Junction. This page owns neighbourhood weed intent for that strip: people already on Dundas, cutting over from Junction Triangle, or coming north from High Park North. City-wide Toronto URLs on this site are legacy paths, not the listing to use.",
       },
       {
-        heading: "How to get here",
+        heading: "Catchment around Keele & Dundas",
         body:
-          "Walk north from Keele Station on Line 2 to Dundas, then west to 2813 Dundas St W. The 40 Junction bus runs the Dundas face. From Dundas West Station or Bloor GO / UP Express, take Line 2 one stop west to Keele, then walk north. Street parking is the usual option; read posted signs.",
+          "Use this guide if you searched for a weed store near The Junction, Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street. Street-by-street transit and parking live on the how-to-get-here page. Overnight and open-now hours live on the 24-hour Junction dispensary guide.",
       },
       {
-        heading: "Open 24 Hours Daily",
+        heading: "Flower tiers at this Dundas West counter",
         body:
-          "The listed store hours are 24 hours daily. Walk in anytime with 19+ ID or call +1 (437) 291-0948. Confirm current menu listings before making a special trip for one product.",
+          "Flower is stacked as Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed so you can compare bands without a sales script. The same stop covers pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes. Confirm a named SKU on the floor before a special trip.",
       },
     ],
     faqs: [
       {
-        q: "Is Gas Junction Cannabis in The Junction?",
-        a: "Yes. The store is at 2813 Dundas St W in The Junction, just west of Keele & Dundas.",
+        q: "Is this the Junction weed dispensary or a Toronto city page?",
+        a: "This is the neighbourhood weed owner for Gas Junction Cannabis at 2813 Dundas St W in The Junction, near Keele & Dundas. It is not a city-wide Toronto dispensary listing.",
       },
       {
-        q: "What nearby areas does this page help serve?",
-        a: "It is written for shoppers around The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street.",
+        q: "Does this shop cover Junction Triangle and High Park North?",
+        a: "Yes. Those streets and pockets are the walk-up catchment, along with Bloor West Village, Runnymede, and Annette Street. The counter itself sits on Dundas just west of Keele.",
       },
       {
-        q: "Can I check products online?",
-        a: "You can browse category and menu information online. Confirm current listings before visiting.",
+        q: "Where do I go for directions or overnight hours?",
+        a: "Use the how-to-get-here page for transit and parking. Use the 24-hour Junction dispensary guide for late-night and open-now hours. The homepage keeps address, hours, phone, and the map.",
       },
     ],
   },

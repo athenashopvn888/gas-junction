@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import LocalSeoMesh from "./LocalSeoMesh";
 import styles from "./GBPLandingPage.module.css";
 import { weedOwner as store } from "../lib/weedDiscovery";
 import { STORE } from "../lib/store";
@@ -26,7 +27,7 @@ export function GBPLandingPage() {
           <p className={styles.eyebrow}>{store.hoursLabel ? `${store.hoursLabel} · Adults 19+` : "Adults 19+"}</p>
           <h1>{store.h1}</h1>
           <p className={styles.heroAddress}>{store.streetAddress}, {store.city}, ON {store.postalCode}</p>
-          <div className={styles.actions}><Link href="#find-your-weed" className={styles.primaryAction}>Find Your Weed</Link><Link href="/visit" className={styles.secondaryAction}>How to get here</Link></div>
+          <div className={styles.actions}><Link href="#find-your-weed" className={styles.primaryAction}>Find Your Weed</Link><Link href="/visit" className={styles.secondaryAction}>How to get here</Link><Link href="/info/weed-store-near-the-junction" className={styles.secondaryAction}>Junction weed shop</Link></div>
         </section>
 
         <section className={styles.section}>
@@ -64,7 +65,7 @@ export function GBPLandingPage() {
           <div className={styles.guideGrid}>{store.guides.map((guide) => <article className={styles.guideCard} key={guide.href}><h3>{guide.label}</h3><p>{guide.description}</p><Link href={guide.href}>Explore {guide.label}</Link></article>)}</div>
         </section>
 
-        <section className={styles.section} id="faq"><h2>Frequently Asked Questions</h2><div className={styles.faqList}>{store.faq.map((item) => <article className={styles.faqItem} key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></article>)}</div></section>
+        <section className={styles.section} id="faq"><h2>Frequently Asked Questions</h2><div className={styles.faqList}>{store.faq.map((item) => <article className={styles.faqItem} key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></article>)}</div><LocalSeoMesh currentPath="/weed-dispensary-toronto" variant="light" /></section>
       </main>
       <Footer />
     </>

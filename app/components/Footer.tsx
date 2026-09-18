@@ -56,6 +56,7 @@ export default function Footer() {
               <Link href="/resources">Resources</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/visit">How to Get Here</Link>
+              <Link href="/24-hour-junction-dispensary">24-Hour Junction Dispensary</Link>
               <Link href="/delivery">Delivery Menu</Link>
               <Link href="/info/weed-store-near-the-junction">Weed Store Near The Junction</Link>
               <Link href="/info/native-cigarettes-toronto">Native Cigarettes</Link>

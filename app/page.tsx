@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
+import LocalSeoMesh from "./components/LocalSeoMesh";
 import { HOME_FAQS, STORE } from "./lib/store";
 import Papa from "papaparse";
 
@@ -335,7 +336,10 @@ export default function HomePage() {
               option — read the signs, especially when evening restaurant traffic fills the curb.
               Need a landmark check before you leave? Call {STORE.phoneDisplay}. Full transit and
               parking notes live on the{" "}
-              <Link href="/visit">how to get here</Link> page.
+              <Link href="/visit">how to get here</Link> page. Overnight and open-now hours are on the{" "}
+              <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link> guide.
+              Neighbourhood weed intent sits on{" "}
+              <Link href="/info/weed-store-near-the-junction">weed store near The Junction</Link>.
             </p>
           </div>
         </div>
@@ -464,6 +468,8 @@ export default function HomePage() {
                 </a>
                 <br />
                 <Link className={styles.storeLink} href="/visit">Transit &amp; parking guide</Link>
+                <br />
+                <Link className={styles.storeLink} href="/24-hour-junction-dispensary">24-hour Junction hours</Link>
               </p>
             </div>
           </div>
@@ -477,6 +483,7 @@ export default function HomePage() {
               className={styles.mapFrame}
             />
           </div>
+          <LocalSeoMesh currentPath="/" heading="Visit, hours, neighbourhood, and flower" />
         </div>
       </section>
 
