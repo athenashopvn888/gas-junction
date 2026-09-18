@@ -39,6 +39,7 @@ test("dedicated 24h Junction LP exists with unique H1, NAP, and FAQ schema", () 
   assert.match(hoursPage, /Keele &amp; Dundas/);
   assert.doesNotMatch(hoursPage, /Ottawa|Gatineau|ByWard/);
   assert.match(hoursPage, /not a Toronto-wide 24-hour directory/);
+  assert.match(hoursPage, /\{STORE\.addressLine\}\{" "\}/);
   assert.match(sitemap, /\$\{BASE\}\/24-hour-junction-dispensary/);
 });
 

@@ -68,7 +68,7 @@ export default function TwentyFourHourJunctionPage() {
           <p className={styles.kicker}>Open now · The Junction · Keele &amp; Dundas · Adults 19+</p>
           <h1>24-Hour Dispensary in The Junction</h1>
           <p className={styles.lede}>
-            Gas Junction Cannabis does not close for the night. The walk-in at {STORE.addressLine}
+            Gas Junction Cannabis does not close for the night. The walk-in at {STORE.addressLine}{" "}
             stays open after the Dundas West restaurants shut, for shift workers coming off the
             strip, and for anyone already in Junction Triangle or High Park North who needs a
             counter that is actually open. This is the overnight page for Keele &amp; Dundas —
