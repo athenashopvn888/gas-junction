@@ -81,8 +81,14 @@ test("24h LP is first-class open-now / 24h-near-me and meshes the Big Three", ()
   assert.match(hoursPage, /cannabis-delivery-junction/);
   assert.match(hoursPage, /native-cigarettes-junction/);
   assert.match(hoursPage, /nicotine-vape-junction/);
-  assert.match(hoursPage, /Open now \/ near me on Dundas West/);
-  assert.match(hoursPage, /open-now \/[\s\S]*overnight owner/);
+  assert.match(hoursPage, /Open now \/ 24h near me questions/);
+  assert.match(store, /Open now — 24-hour Junction dispensary/);
+  assert.match(verticals, /Open now — 24-hour dispensary/);
+  assert.equal((verticals.match(/Open now — 24-hour dispensary/g) || []).length, 3);
+  assert.match(sitemap, /24-hour-junction-dispensary[\s\S]*priority: 0\.8/);
+  assert.match(sitemap, /cannabis-delivery-junction[\s\S]*priority: 0\.8/);
+  assert.match(sitemap, /native-cigarettes-junction[\s\S]*priority: 0\.8/);
+  assert.match(sitemap, /nicotine-vape-junction[\s\S]*priority: 0\.8/);
 });
 
 test("homepage and visit mesh the new Junction verticals", () => {
@@ -93,6 +99,7 @@ test("homepage and visit mesh the new Junction verticals", () => {
   assert.match(visitPage, /native-cigarettes-junction/);
   assert.match(visitPage, /nicotine-vape-junction/);
   assert.match(store, /Do you deliver cannabis in The Junction\?/);
+  assert.match(store, /Is there a 24-hour dispensary open now in The Junction\?/);
 });
 
 test("cigarettes and vapes category SEO is Junction-true", () => {

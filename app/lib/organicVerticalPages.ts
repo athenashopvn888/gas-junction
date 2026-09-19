@@ -38,7 +38,7 @@ export const CANNABIS_DELIVERY_JUNCTION: OrganicVerticalPageData = {
   secondaryHref: "/visit",
   secondaryLabel: "Walk-in directions",
   extraActions: [
-    { href: "/24-hour-junction-dispensary", label: "24-hour walk-in" },
+    { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
     { href: "/", label: "Store homepage" },
   ],
   panels: [
@@ -101,7 +101,7 @@ export const NATIVE_CIGARETTES_JUNCTION: OrganicVerticalPageData = {
   secondaryHref: "/visit",
   secondaryLabel: "How to get here",
   extraActions: [
-    { href: "/24-hour-junction-dispensary", label: "Open 24 hours" },
+    { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
     { href: "/nicotine-vape-junction", label: "Nicotine vape in The Junction" },
   ],
   panels: [
@@ -161,7 +161,7 @@ export const NICOTINE_VAPE_JUNCTION: OrganicVerticalPageData = {
   secondaryHref: "/visit",
   secondaryLabel: "How to get here",
   extraActions: [
-    { href: "/items/vape-disposables", label: "THC vape category" },
+    { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
     { href: "/native-cigarettes-junction", label: "Native cigarettes in The Junction" },
   ],
   panels: [

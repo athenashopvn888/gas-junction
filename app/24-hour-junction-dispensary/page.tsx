@@ -130,8 +130,11 @@ export default function TwentyFourHourJunctionPage() {
             <Link className={styles.secondary} href="/cannabis-delivery-junction">
               Junction delivery
             </Link>
-            <Link className={styles.secondary} href="/info/weed-store-near-the-junction">
-              Near The Junction
+            <Link className={styles.secondary} href="/native-cigarettes-junction">
+              Native cigarettes
+            </Link>
+            <Link className={styles.secondary} href="/nicotine-vape-junction">
+              Nicotine vape
             </Link>
           </div>
         </div>
@@ -214,7 +217,7 @@ export default function TwentyFourHourJunctionPage() {
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2>24-hour Junction questions</h2>
+          <h2>Open now / 24h near me questions</h2>
           {HOURS_FAQS.map((faq) => (
             <details key={faq.q} className={styles.faqItem}>
               <summary>{faq.q}</summary>
