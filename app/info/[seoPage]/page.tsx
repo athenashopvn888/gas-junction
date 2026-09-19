@@ -34,7 +34,9 @@ export async function generateMetadata({
     alternates: {
       canonical: page.canonicalToHome
         ? "https://www.gasjunctioncannabis.com"
-        : `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
+        : page.canonicalPath
+          ? `https://www.gasjunctioncannabis.com${page.canonicalPath}`
+          : `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
     },
     ...(page.noindex
       ? {

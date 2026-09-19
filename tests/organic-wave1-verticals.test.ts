@@ -112,3 +112,12 @@ test("new copy stays 19+ and avoids prescription or fleet language", () => {
   assert.match(verticals, /19\+/);
   assert.doesNotMatch(verticals, /\bprescription\b|\bfleet\b/i);
 });
+
+test("authoritative brief: neighbourhood-only titles and hard menu swimlane ban", () => {
+  assert.doesNotMatch(verticals, /weed delivery toronto|native cigarettes toronto|nicotine vapes toronto/i);
+  assert.doesNotMatch(verticals, /flowers\.json|items\.json|prebuild-stock|adcInventory/i);
+  assert.match(seoPages, /slug: "native-cigarettes-toronto"[\s\S]*canonicalPath: "\/native-cigarettes-junction"/);
+  assert.match(seoPages, /slug: "nicotine-vapes-toronto"[\s\S]*canonicalPath: "\/nicotine-vape-junction"/);
+  assert.match(sitemap, /native-cigarettes-toronto/);
+  assert.match(sitemap, /nicotine-vapes-toronto/);
+});

@@ -58,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "toronto-weed-dispensary",
     "cheap-weed-toronto",
     "dispensary-near-me-toronto",
+    "native-cigarettes-toronto",
+    "nicotine-vapes-toronto",
   ]);
   const seoPages: MetadataRoute.Sitemap = SEO_PAGES.filter((p) => !demotedSeoSlugs.has(p.slug)).map((p) => ({
     url: `${BASE}/info/${p.slug}`,

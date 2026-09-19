@@ -38,6 +38,7 @@ export interface SeoPageData {
   faqs: { q: string; a: string }[];
   noindex?: boolean;
   canonicalToHome?: boolean;
+  canonicalPath?: string;
 }
 
 export const SEO_PAGES: SeoPageData[] = [
@@ -137,6 +138,8 @@ export const SEO_PAGES: SeoPageData[] = [
 
   {
     slug: "native-cigarettes-toronto",
+    noindex: true,
+    canonicalPath: "/native-cigarettes-junction",
     title: "Native Cigarettes Toronto | Gas Junction Cannabis",
     metaDescription:
       "Gas Junction Cannabis includes cigarette category information for Toronto shoppers at 2813 Dundas St W in The Junction. Confirm current in-store selection before visiting.",
@@ -287,6 +290,8 @@ export const SEO_PAGES: SeoPageData[] = [
   },
   {
     slug: "nicotine-vapes-toronto",
+    noindex: true,
+    canonicalPath: "/nicotine-vape-junction",
     title: "Nicotine Vapes in Toronto | Gas Junction Cannabis",
     absoluteTitle: true,
     metaDescription: "Adults 19+: review six verified nicotine vape product pages from Gas Junction Cannabis in Toronto, then check /items/vapes for the current category. Nicotine is addictive.",
