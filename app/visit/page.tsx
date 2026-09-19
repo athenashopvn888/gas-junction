@@ -220,7 +220,13 @@ export default function VisitPage() {
                 {" · "}
                 <Link href="/exotic-weed">Store menu</Link>
                 {" · "}
-                <Link href="/delivery">Neighbourhood delivery</Link>
+                <Link href="/cannabis-delivery-junction">Cannabis delivery in The Junction</Link>
+                {" · "}
+                <Link href="/delivery">Delivery menu</Link>
+                {" · "}
+                <Link href="/native-cigarettes-junction">Native cigarettes in The Junction</Link>
+                {" · "}
+                <Link href="/nicotine-vape-junction">Nicotine vape in The Junction</Link>
               </p>
             </div>
           </div>

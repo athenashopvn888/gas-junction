@@ -32,7 +32,11 @@ export const LOCAL_MESH_LINKS = [
   { href: "/", label: "Store homepage" },
   { href: "/visit", label: "How to get here" },
   { href: "/info/weed-store-near-the-junction", label: "Weed store near The Junction" },
-  { href: "/24-hour-junction-dispensary", label: "24-hour Junction dispensary" },
+  { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour Junction dispensary" },
+  { href: "/cannabis-delivery-junction", label: "Cannabis delivery in The Junction" },
+  { href: "/delivery", label: "Delivery menu" },
+  { href: "/native-cigarettes-junction", label: "Native cigarettes in The Junction" },
+  { href: "/nicotine-vape-junction", label: "Nicotine vape in The Junction" },
 ] as const;
 
 export const TIER_MESH_LINKS = [
@@ -45,8 +49,8 @@ export const TIER_MESH_LINKS = [
 
 export const HOME_FAQS = [
   {
-    q: "What are the hours for Gas Junction Cannabis?",
-    a: "Gas Junction Cannabis at 2813 Dundas St W in The Junction is open 24 hours daily. Walk in any hour — no appointment needed. Late-night notes live on the 24-hour Junction dispensary guide.",
+    q: "Is there a 24-hour dispensary open now in The Junction?",
+    a: "Yes. Gas Junction Cannabis at 2813 Dundas St W is open 24 hours daily — that is the walk-in door, not the delivery window. The 24-hour Junction dispensary page is the open-now / 24h-near-me owner, same weight as the Junction delivery, Native cigarettes, and nicotine vape pages.",
   },
   {
     q: "How do I get to Gas Junction Cannabis from Keele Station?",
@@ -63,5 +67,13 @@ export const HOME_FAQS = [
   {
     q: "What is the cheapest weed at Gas Junction Cannabis?",
     a: "Budget flower is shown from $3/g, with AA and AAA+ tiers listed separately. Confirm current pricing and listings on the menu before visiting.",
+  },
+  {
+    q: "Do you deliver cannabis in The Junction?",
+    a: "Yes. Neighbourhood delivery from 2813 Dundas St W covers The Junction, High Park, and Bloor West Village during the posted delivery window. The cannabis delivery in The Junction page is the radius guide; the delivery menu is for browsing and ordering. The Keele & Dundas walk-in stays open 24 hours.",
+  },
+  {
+    q: "Do you sell cigarettes and nicotine vapes at Keele & Dundas?",
+    a: "Yes. The walk-in keeps a cigarette category and a nicotine vape category, separate from THC vapes. Junction notes live on the Native cigarettes and nicotine vape pages. Confirm current listings on those category menus. Adults 19+.",
   },
 ] as const;

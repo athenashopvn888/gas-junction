@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: BASE, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/visit`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/24-hour-junction-dispensary`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/cannabis-delivery-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/native-cigarettes-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/nicotine-vape-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/careers/budtender`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -55,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "toronto-weed-dispensary",
     "cheap-weed-toronto",
     "dispensary-near-me-toronto",
+    "native-cigarettes-toronto",
+    "nicotine-vapes-toronto",
   ]);
   const seoPages: MetadataRoute.Sitemap = SEO_PAGES.filter((p) => !demotedSeoSlugs.has(p.slug)).map((p) => ({
     url: `${BASE}/info/${p.slug}`,

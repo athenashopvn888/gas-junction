@@ -29,9 +29,24 @@ export const weedOwner = {
     "href": "/info/weed-store-near-the-junction"
   },
   {
-    "label": "24-Hour Junction Dispensary",
-    "description": "Overnight and open-now notes for the Dundas West walk-in.",
+    "label": "24-Hour Junction Dispensary Open Now",
+    "description": "Open-now / 24h-near-me owner for the Dundas West walk-in.",
     "href": "/24-hour-junction-dispensary"
+  },
+  {
+    "label": "Cannabis Delivery in The Junction",
+    "description": "Neighbourhood delivery radius for The Junction, High Park, and Bloor West Village.",
+    "href": "/cannabis-delivery-junction"
+  },
+  {
+    "label": "Native Cigarettes in The Junction",
+    "description": "Junction-scoped cigarette notes. Current listings stay on the cigarette category.",
+    "href": "/native-cigarettes-junction"
+  },
+  {
+    "label": "Nicotine Vape in The Junction",
+    "description": "Nicotine vape near Keele & Dundas. Current devices live on /items/vapes.",
+    "href": "/nicotine-vape-junction"
   },
   {
     "label": "Budget Flower",
@@ -125,7 +140,7 @@ export const weedOwner = {
     title: "Weed at Keele & Dundas in The Junction",
     text: "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W. Adults 19+ can explore flower, overnight hours for The Junction, and the current store menu.",
     primaryLabel: "How to get here",
-    secondaryLabel: "24-hour Junction walk-in",
+    secondaryLabel: "Open now — 24-hour Junction",
     secondaryHref: "/24-hour-junction-dispensary",
   },
 };

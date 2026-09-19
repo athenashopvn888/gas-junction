@@ -34,7 +34,9 @@ export async function generateMetadata({
     alternates: {
       canonical: page.canonicalToHome
         ? "https://www.gasjunctioncannabis.com"
-        : `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
+        : page.canonicalPath
+          ? `https://www.gasjunctioncannabis.com${page.canonicalPath}`
+          : `https://www.gasjunctioncannabis.com/info/${replacementSlug || slug}`,
     },
     ...(page.noindex
       ? {
@@ -183,11 +185,13 @@ export default async function SeoLandingPage({
               <Link href="/24-hour-junction-dispensary" className={styles.visitBtn}>24-hour Junction hours</Link>
               <Link href="/" className={styles.visitBtn}>Store homepage</Link>
             </div>
+          </div>}
+          <div className={styles.section}>
             <LocalSeoMesh
               currentPath={slug === "weed-store-near-the-junction" ? "/info/weed-store-near-the-junction" : undefined}
               variant="light"
             />
-          </div>}
+          </div>
 
           {/* FAQ */}
           {page.faqs.length > 0 && (

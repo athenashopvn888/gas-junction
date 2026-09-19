@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DeliveryContent from "./DeliveryContent";
+import DeliverySeoBridge from "./DeliverySeoBridge";
 import menu from "./delivery-menu.json";
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export default function DeliveryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <DeliveryContent />
+      <DeliverySeoBridge />
     </>
   );
 }

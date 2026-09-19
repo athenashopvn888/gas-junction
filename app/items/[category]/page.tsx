@@ -13,7 +13,18 @@ import {
   CATEGORY_CONFIG,
   type ItemProduct,
 } from "../../lib/products";
+import LocalSeoMesh from "../../components/LocalSeoMesh";
 import styles from "./items.module.css";
+
+const CATEGORY_H1: Record<string, string> = {
+  cigarettes: "Cigarette Menu at Keele & Dundas",
+  vapes: "Nicotine Vape Menu at Keele & Dundas",
+};
+
+const CATEGORY_AREA_LANDING: Record<string, { href: string; label: string }> = {
+  cigarettes: { href: "/native-cigarettes-junction", label: "Native cigarettes in The Junction" },
+  vapes: { href: "/nicotine-vape-junction", label: "Nicotine vape in The Junction" },
+};
 
 /* ── Generate all category pages ── */
 export function generateStaticParams() {
@@ -32,7 +43,7 @@ export async function generateMetadata({
   const items = getItemsByCategory(catInfo.key);
 
   return {
-    title: catSlug === "vapes"
+    title: catSlug === "vapes" || catSlug === "cigarettes"
       ? { absolute: catInfo.config.seoTitle }
       : catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
     description: catInfo.config.seoIntro || `Shop ${items.length} ${catInfo.config.name.toLowerCase()} at Gas Junction Cannabis.`,
@@ -60,6 +71,8 @@ export default async function ItemsCategoryPage({
     items = [...items, ...uniqueAccessories];
   }
   const { config } = catInfo;
+  const categoryH1 = CATEGORY_H1[catSlug];
+  const areaLanding = CATEGORY_AREA_LANDING[catSlug];
 
   // Check if banner file exists in the public folder
   const bannerExists = config.banner
@@ -89,10 +102,16 @@ export default async function ItemsCategoryPage({
         )}
       </section>
 
-      {catSlug === "vapes" && (
+      {categoryH1 && (
         <section className={styles.heroContent} style={{ padding: "24px", textAlign: "center" }}>
-          <h1 className={styles.heroTitle}>{config.name}</h1>
+          <h1 className={styles.heroTitle}>{categoryH1}</h1>
           <p className={styles.heroSub}>{config.seoIntro}</p>
+          {areaLanding && (
+            <p className={styles.heroSub}>
+              Neighbourhood page:{" "}
+              <Link href={areaLanding.href}>{areaLanding.label}</Link>
+            </p>
+          )}
         </section>
       )}
 
@@ -140,7 +159,17 @@ export default async function ItemsCategoryPage({
             <p className={styles.visitText}>
               2813 Dundas St W, Toronto, ON M6P 1Y6 · Open 24 Hours Daily
             </p>
+            {areaLanding && (
+              <p className={styles.visitText}>
+                <Link href={areaLanding.href}>{areaLanding.label}</Link>
+                {" · "}
+                <Link href="/visit">How to get here</Link>
+                {" · "}
+                <Link href="/24-hour-junction-dispensary">24-hour Junction hours</Link>
+              </p>
+            )}
           </div>
+          <LocalSeoMesh currentPath={`/items/${catSlug}`} />
         </div>
       </section>
 
