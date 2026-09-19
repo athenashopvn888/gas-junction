@@ -7,16 +7,16 @@ import { STORE } from "../lib/store";
 import styles from "../visit/visit.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "24-Hour Junction Dispensary | Gas Junction Cannabis" },
+  title: { absolute: "24-Hour Dispensary Open Now in The Junction | Gas Junction Cannabis" },
   description:
-    "Gas Junction Cannabis is open 24 hours at 2813 Dundas St W in The Junction, near Keele & Dundas. Overnight walk-ins, open-now hours, 19+ ID, and late-night notes for the Dundas West strip.",
+    "Gas Junction Cannabis is a 24-hour dispensary open now at 2813 Dundas St W in The Junction, near Keele & Dundas. Overnight walk-ins, 24h near-me hours, 19+ ID, and late-night notes for Dundas West.",
   alternates: {
     canonical: `${STORE.origin}/24-hour-junction-dispensary`,
   },
   openGraph: {
-    title: "24-Hour Junction Dispensary | Gas Junction Cannabis",
+    title: "24-Hour Dispensary Open Now in The Junction | Gas Junction Cannabis",
     description:
-      "Overnight walk-in cannabis shop at Keele & Dundas in The Junction. Open 24 hours daily — not a city-wide Toronto hours listing.",
+      "Open now: 24-hour walk-in cannabis shop at Keele & Dundas in The Junction — not a city-wide Toronto hours listing.",
     url: `${STORE.origin}/24-hour-junction-dispensary`,
   },
 };
@@ -77,14 +77,15 @@ export default function TwentyFourHourJunctionPage() {
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.kicker}>Open now · The Junction · Keele &amp; Dundas · Adults 19+</p>
-          <h1>24-Hour Dispensary in The Junction</h1>
+          <p className={styles.kicker}>Open now · 24h near me · Keele &amp; Dundas · Adults 19+</p>
+          <h1>24-Hour Dispensary Open Now in The Junction</h1>
           <p className={styles.lede}>
-            Gas Junction Cannabis does not close for the night. The walk-in at {STORE.addressLine}{" "}
-            stays open after the Dundas West restaurants shut, for shift workers coming off the
-            strip, and for anyone already in Junction Triangle or High Park North who needs a
-            counter that is actually open. This is the overnight page for Keele &amp; Dundas —
-            not a Toronto-wide 24-hour directory.
+            Gas Junction Cannabis is a 24-hour dispensary that is open now at {STORE.addressLine}.
+            The Keele &amp; Dundas walk-in does not close for the night — after Dundas West
+            restaurants shut, for shift workers coming off the strip, and for anyone already in
+            Junction Triangle or High Park North searching 24h near me. This is the open-now /
+            overnight owner for The Junction. Cannabis delivery, Native cigarettes, and nicotine
+            vape have their own Junction pages beside it — not a Toronto-wide 24-hour directory.
           </p>
 
           <dl className={styles.napBar}>

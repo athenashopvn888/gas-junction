@@ -229,6 +229,7 @@ export default function HomePage() {
             <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
               <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
               <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>HOW TO GET HERE</Link>
+              <Link href="/24-hour-junction-dispensary" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>OPEN 24 HOURS</Link>
               <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
             </div>
           </div>
@@ -493,7 +494,7 @@ export default function HomePage() {
               className={styles.mapFrame}
             />
           </div>
-          <LocalSeoMesh currentPath="/" heading="Visit, hours, neighbourhood, Big Three, and flower" />
+          <LocalSeoMesh currentPath="/" heading="Visit, 24-hour hours, neighbourhood, delivery, cigarettes, vape, and flower" />
         </div>
       </section>
 

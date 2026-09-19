@@ -17,7 +17,7 @@ const h1s = [
   verticals.match(/h1: "Cannabis Delivery in The Junction"/),
   verticals.match(/h1: "Native Cigarettes in The Junction"/),
   verticals.match(/h1: "Nicotine Vape in The Junction"/),
-  hoursPage.match(/<h1>24-Hour Dispensary in The Junction<\/h1>/),
+  hoursPage.match(/<h1>24-Hour Dispensary Open Now in The Junction<\/h1>/),
   visitPage.match(/<h1>The Junction — How to Get to Gas Junction Cannabis<\/h1>/),
   seoPages.match(/h1: "Weed Dispensary in The Junction"/),
 ];
@@ -73,12 +73,16 @@ test("delivery Junction LP stays neighbourhood-scoped and meshes the menu", () =
   assert.match(deliveryCatalog, /cannabis-delivery-junction/);
 });
 
-test("24h LP gained open-now / near-me FAQ and Big Three mesh", () => {
+test("24h LP is first-class open-now / 24h-near-me and meshes the Big Three", () => {
+  assert.match(hoursPage, /24-Hour Dispensary Open Now in The Junction/);
   assert.match(hoursPage, /24-hour dispensary near me around Keele/);
   assert.match(hoursPage, /open now if I am in Junction Triangle/);
   assert.match(hoursPage, /open now include cannabis delivery/);
   assert.match(hoursPage, /cannabis-delivery-junction/);
+  assert.match(hoursPage, /native-cigarettes-junction/);
+  assert.match(hoursPage, /nicotine-vape-junction/);
   assert.match(hoursPage, /Open now \/ near me on Dundas West/);
+  assert.match(hoursPage, /open-now \/[\s\S]*overnight owner/);
 });
 
 test("homepage and visit mesh the new Junction verticals", () => {
