@@ -12,6 +12,7 @@ const sitemap = readFileSync("app/sitemap.ts", "utf8");
 const deliveryPage = readFileSync("app/delivery/page.tsx", "utf8");
 const deliveryCatalog = readFileSync("app/delivery/DeliveryCatalog.tsx", "utf8");
 const seoPages = readFileSync("app/lib/seoPages.ts", "utf8");
+const faqPage = readFileSync("app/faq/page.tsx", "utf8");
 
 const h1s = [
   verticals.match(/h1: "Cannabis Delivery in The Junction"/),
@@ -118,6 +119,16 @@ test("sitemap lists the three Junction vertical LPs", () => {
 test("new copy stays 19+ and avoids prescription or fleet language", () => {
   assert.match(verticals, /19\+/);
   assert.doesNotMatch(verticals, /\bprescription\b|\bfleet\b/i);
+});
+
+test("FAQ hub meshes 24h equally with delivery, Native cigarettes, and nicotine vape", () => {
+  assert.match(faqPage, /24-hour dispensary open now near Keele/);
+  assert.match(faqPage, /href="\/24-hour-junction-dispensary"/);
+  assert.match(faqPage, /href="\/cannabis-delivery-junction"/);
+  assert.match(faqPage, /href="\/native-cigarettes-junction"/);
+  assert.match(faqPage, /href="\/nicotine-vape-junction"/);
+  assert.match(faqPage, /LocalSeoMesh/);
+  assert.doesNotMatch(faqPage, /Toronto Dispensary Questions/);
 });
 
 test("authoritative brief: neighbourhood-only titles and hard menu swimlane ban", () => {
