@@ -112,6 +112,13 @@
   margin: 0 0 16px;
 }
 
+.ctaLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .ctaLink {
   display: inline-flex;
   align-items: center;
