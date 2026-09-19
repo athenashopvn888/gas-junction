@@ -172,13 +172,13 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   "VAPE PENS": {
     banner: "/banners/01_Vape_Pens.webp",
     name: "Nicotine Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
-    seoTitle: "Nicotine Vapes Toronto | Gas Junction Cannabis",
-    seoIntro: "Explore Gas Junction Cannabis nicotine vape products in a category kept separate from THC vape products. Nicotine products are for adults 19+ and contain nicotine, which is addictive.",
-    seoDescription: "Browse the nicotine vape category at Gas Junction Cannabis for products classified under Nicotine Vape. THC vape products remain in the separate THC Vape category so the two product types stay clearly distinguished.",
+    seoTitle: "Nicotine Vape Menu at Keele & Dundas | Gas Junction Cannabis",
+    seoIntro: "Current nicotine vape listings for the Gas Junction Cannabis walk-in in The Junction. This category stays separate from THC vapes. Neighbourhood notes live on nicotine vape in The Junction. Adults 19+. Nicotine is addictive.",
+    seoDescription: "Nicotine vape category for the Keele & Dundas counter at 2813 Dundas St W. Browse listed devices here, then confirm on the floor. THC vapes stay under a separate category. Junction context is on the nicotine vape in The Junction page.",
     faqs: [
-      { q: "Are Nicotine Vape and THC Vape the same category?", a: "No. Gas Junction Cannabis keeps nicotine vape products separate from THC vape products. Nicotine Vape is under /items/vapes, while THC Vape remains under /items/vape-disposables." },
-      { q: "Who is the Nicotine Vape category for?", a: "Nicotine products are for adults 19+. Nicotine is addictive." },
-      { q: "Does this category show current stock or availability?", a: "Use the current product information presented while browsing. This category copy does not make separate stock or availability claims." },
+      { q: "Are Nicotine Vape and THC Vape the same category at this Junction shop?", a: "No. Gas Junction Cannabis keeps nicotine vape products under /items/vapes and THC vape products under /items/vape-disposables." },
+      { q: "Who is the Nicotine Vape category for?", a: "Nicotine products are for adults 19+ at the Keele & Dundas walk-in. Nicotine is addictive." },
+      { q: "Where is the Junction neighbourhood nicotine page?", a: "Use nicotine vape in The Junction for Keele & Dundas / Dundas West context. This category is the live listing and does not invent extra SKUs or prices." },
     ],
   },
   "VAPE DISPOSABLE": {
@@ -236,13 +236,13 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   CIGARETTES: {
     banner: "/banners/native-cigarette-offer-20260822.webp",
     name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
-    seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Gas Junction Cannabis",
-    seoIntro: "Native cigarette category information at Gas Junction Cannabis, Toronto.",
-    seoDescription: "Gas Junction Cannabis includes cigarette category information for Toronto shoppers. Located at 2813 Dundas St W in The Junction, the store is open 24 hours daily.",
+    seoTitle: "Cigarette Menu at Keele & Dundas | Gas Junction Cannabis",
+    seoIntro: "Cigarette listings for the Gas Junction Cannabis walk-in in The Junction, just west of Keele & Dundas. Neighbourhood notes live on Native cigarettes in The Junction. Adults 19+.",
+    seoDescription: "Cigarette category for the 24-hour Junction counter at 2813 Dundas St W. Review listed names here, then confirm on the floor. This menu is Junction-true — not a city-wide Toronto tobacco directory.",
     faqs: [
-      { q: "Do you sell cigarettes at Gas Junction Cannabis?", a: "The site includes a cigarettes category for Gas Junction Cannabis shoppers." },
-      { q: "What cigarette brands do you carry?", a: "Brand mix can change. Check the current menu or contact the store before visiting for a specific cigarette brand." },
-      { q: "Are your cigarette prices competitive?", a: "Check current in-store pricing before visiting, since cigarette selection and pricing can change." },
+      { q: "Do you sell cigarettes at the Junction walk-in?", a: "Yes. Gas Junction Cannabis keeps a cigarette category at 2813 Dundas St W. Confirm the current mix here before a special trip." },
+      { q: "Where is the Junction cigarette neighbourhood page?", a: "Native cigarettes in The Junction covers Keele & Dundas / Dundas West context. This category is the live listing." },
+      { q: "Does this page guarantee a brand or price?", a: "No. Brand mix and pricing can change. Use the names shown on this category, then confirm in store. Adults 19+." },
     ],
   },
 };

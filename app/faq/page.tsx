@@ -31,7 +31,8 @@ const FAQ_CATEGORIES = [
       { q: "What are your flower tiers?", a: "The flower menu is organized into tiers such as Exotic, Premium, AAA+, AA, and Budget so shoppers can compare product levels more easily. Current pricing and listings should be confirmed on the menu." },
       { q: "Do you sell edibles?", a: "The site includes an edibles category. Check current category details before visiting for a specific edible product." },
       { q: "Do you sell vapes?", a: "Gas Junction Cannabis keeps Nicotine Vape and THC Vape in separate categories. Use the product information shown while browsing each category." },
-      { q: "Do you sell native cigarettes?", a: "The site includes a cigarettes category. Check the current brand mix before visiting Dundas St W." },
+      { q: "Do you sell native cigarettes?", a: "The site includes a cigarettes category. Junction notes live on Native cigarettes in The Junction. Check the current brand mix on the cigarette category before visiting Dundas St W." },
+      { q: "Do you sell nicotine vapes in The Junction?", a: "Yes. Nicotine vape is a separate category from THC vapes. Use nicotine vape in The Junction for neighbourhood notes, then /items/vapes for current listings. Adults 19+. Nicotine is addictive." },
     ],
   },
   {
@@ -49,7 +50,7 @@ const FAQ_CATEGORIES = [
     faqs: [
       { q: "Do I need an appointment?", a: "No! Gas Junction Cannabis is walk-in only. Just show up anytime — we are open 24 hours daily." },
       { q: "Can I order online?", a: "Currently, Gas Junction Cannabis is an in-store shopping experience. You can browse menu and category information online before visiting." },
-      { q: "Do you offer delivery?", a: "Delivery information is being prepared. Visit the delivery page for updates." },
+      { q: "Do you offer delivery?", a: "Yes. Neighbourhood delivery from 2813 Dundas St W covers The Junction, High Park, and Bloor West Village. Use cannabis delivery in The Junction for the radius, then the delivery menu to browse and order. The walk-in stays open 24 hours." },
       { q: "What payment methods do you accept?", a: "We accept cash and debit. No credit cards at this time." },
       { q: "Can your staff help me choose a strain?", a: "Yes. Staff can help adult 19+ shoppers compare menu categories, product styles, and budget ranges during posted store hours." },
       { q: "Is there a minimum purchase?", a: "No minimum purchase required. You can buy as little as 1 gram." },

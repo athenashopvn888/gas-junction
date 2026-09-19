@@ -132,7 +132,7 @@ export default function Catalog() {
       <main className="delivery-page" id="top">
         <section className="store-hero qlc-editorial-hero delivery-brand-hero">
           <Image src="/storeFavicon.webp" alt={`${store.name} logo`} width={240} height={240} priority />
-          <div className="store-hero-copy"><p>JUNCTION NEIGHBOURHOOD DELIVERY</p><h1>{store.name}</h1><span>Delivery from 2813 Dundas St W for The Junction, High Park, and Bloor West Village. Browse the current delivery menu, then connect with the live dispatcher.</span></div>
+          <div className="store-hero-copy"><p>JUNCTION NEIGHBOURHOOD DELIVERY</p><h1>{store.name}</h1><span>Delivery from 2813 Dundas St W for The Junction, High Park, and Bloor West Village. Browse this live menu, then connect with the dispatcher. Neighbourhood radius notes live on <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>.</span></div>
         </section>
 
         <section className="member-loyalty" aria-labelledby="member-loyalty-title">

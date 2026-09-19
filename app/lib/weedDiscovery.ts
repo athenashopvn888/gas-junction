@@ -34,6 +34,21 @@ export const weedOwner = {
     "href": "/24-hour-junction-dispensary"
   },
   {
+    "label": "Cannabis Delivery in The Junction",
+    "description": "Neighbourhood delivery radius for The Junction, High Park, and Bloor West Village.",
+    "href": "/cannabis-delivery-junction"
+  },
+  {
+    "label": "Native Cigarettes in The Junction",
+    "description": "Junction-scoped cigarette notes. Current listings stay on the cigarette category.",
+    "href": "/native-cigarettes-junction"
+  },
+  {
+    "label": "Nicotine Vape in The Junction",
+    "description": "Nicotine vape near Keele & Dundas. Current devices live on /items/vapes.",
+    "href": "/nicotine-vape-junction"
+  },
+  {
     "label": "Budget Flower",
     "description": "Explore the verified Budget flower section.",
     "href": "/budget-weed"

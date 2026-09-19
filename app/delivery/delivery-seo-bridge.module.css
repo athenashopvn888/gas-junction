@@ -1,0 +1,36 @@
+.bridge {
+  width: min(100% - 2rem, 1040px);
+  margin: 0 auto 48px;
+  padding: 28px 24px;
+  border: 1px solid #d8e2dc;
+  border-radius: 20px;
+  background: #fff;
+  color: #111b16;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  color: #0f5f38;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.copy {
+  margin: 0 0 8px;
+  color: #5f6c65;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.copy a {
+  color: #0f5f38;
+  font-weight: 700;
+}

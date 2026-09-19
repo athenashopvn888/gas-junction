@@ -47,6 +47,15 @@
   line-height: 1.7;
 }
 
+.warning {
+  max-width: 720px;
+  margin: 16px 0 0;
+  color: #fde68a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .napBar {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -42,6 +42,18 @@ const HOURS_FAQS = [
     q: "Is late-night parking easier on Dundas St W?",
     a: "Often yes — curb space loosens after dinner service on the strip. Still read posted signs on Dundas and Junction side streets toward Pacific, Vine, and Heintzman. There is no dedicated lot.",
   },
+  {
+    q: "Is there a 24-hour dispensary near me around Keele & Dundas?",
+    a: "If you are already in The Junction, Junction Triangle, High Park North, or along Dundas West, this is the open-now walk-in at 2813 Dundas St W. Neighbourhood weed context sits on the weed store near The Junction page. This URL is the hours owner — not a city-wide near-me directory.",
+  },
+  {
+    q: "Is Gas Junction Cannabis open now if I am in Junction Triangle?",
+    a: "Yes. The listed hours are open every clock hour, including for walk-ups coming across the rail corridors from Junction Triangle or north from High Park North. Call +1 (437) 291-0948 only if you need a product check before you leave.",
+  },
+  {
+    q: "Does open now include cannabis delivery after 10 p.m.?",
+    a: "No. Open now refers to the Keele & Dundas walk-in. Neighbourhood delivery from this shop uses a separate 10:00 a.m. to 10:00 p.m. window, explained on cannabis delivery in The Junction. After that window, walk in.",
+  },
 ];
 
 const faqJsonLd = {
@@ -114,6 +126,12 @@ export default function TwentyFourHourJunctionPage() {
             <Link className={styles.secondary} href="/">
               Store homepage
             </Link>
+            <Link className={styles.secondary} href="/cannabis-delivery-junction">
+              Junction delivery
+            </Link>
+            <Link className={styles.secondary} href="/info/weed-store-near-the-junction">
+              Near The Junction
+            </Link>
           </div>
         </div>
       </section>
@@ -164,6 +182,30 @@ export default function TwentyFourHourJunctionPage() {
           <p>
             Late curb space on Dundas is usually easier than the dinner rush. Read the signs.
             If you are making a special trip for one product, call {STORE.phoneDisplay} first.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2>Open now / near me on Dundas West</h2>
+          <p>
+            Searches for a dispensary open now or a weed shop near me only help if they resolve
+            to this Keele &amp; Dundas door — not a city-wide Toronto hours list. If you are
+            already on the Junction strip, in Junction Triangle, or walking up from High Park
+            North, the listed hours are open. Street-by-street reach stays on{" "}
+            <Link href="/visit">how to get here</Link>. Neighbourhood weed intent stays on{" "}
+            <Link href="/info/weed-store-near-the-junction">weed store near The Junction</Link>.
+          </p>
+          <p>
+            Need the order brought to you instead? Use{" "}
+            <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>{" "}
+            for the High Park / Bloor West Village radius, then the{" "}
+            <Link href="/delivery">delivery menu</Link>. Cigarettes and nicotine vapes are
+            walk-in categories — see{" "}
+            <Link href="/native-cigarettes-junction">Native cigarettes in The Junction</Link>
+            {" "}and{" "}
+            <Link href="/nicotine-vape-junction">nicotine vape in The Junction</Link>.
           </p>
           <LocalSeoMesh currentPath="/24-hour-junction-dispensary" />
         </div>

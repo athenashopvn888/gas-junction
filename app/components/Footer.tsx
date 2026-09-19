@@ -52,14 +52,15 @@ export default function Footer() {
               <Link href="/items/edibles">Edibles</Link>
               <Link href="/items/cigarettes">Cigarettes</Link>
               <Link href="/items/vapes">Nicotine Vape</Link>
-              <Link href="/info/nicotine-vapes-toronto">Nicotine Vapes Toronto</Link>
+              <Link href="/native-cigarettes-junction">Native Cigarettes in The Junction</Link>
+              <Link href="/nicotine-vape-junction">Nicotine Vape in The Junction</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/visit">How to Get Here</Link>
               <Link href="/24-hour-junction-dispensary">24-Hour Junction Dispensary</Link>
+              <Link href="/cannabis-delivery-junction">Cannabis Delivery in The Junction</Link>
               <Link href="/delivery">Delivery Menu</Link>
               <Link href="/info/weed-store-near-the-junction">Weed Store Near The Junction</Link>
-              <Link href="/info/native-cigarettes-toronto">Native Cigarettes</Link>
               <Link href="/contact">Contact Us</Link>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=2813+Dundas+St+W%2C+Toronto%2C+ON+M6P+1Y6"

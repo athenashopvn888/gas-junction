@@ -167,6 +167,11 @@ export const SEO_PAGES: SeoPageData[] = [
         body:
           "Cannabis and tobacco-related purchases are for adults 19+. Bring valid government-issued ID and check current store information before making a special trip.",
       },
+      {
+        heading: "Junction neighbourhood owner",
+        body:
+          "The Junction-scoped cigarette page is Native cigarettes in The Junction. Use that URL for Keele & Dundas / Dundas West intent, then the cigarette category for current listings.",
+      },
     ],
     faqs: [
       {
@@ -180,6 +185,10 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         q: "What are the listed hours?",
         a: "The listed hours are 24 hours daily.",
+      },
+      {
+        q: "Where is the Junction cigarette neighbourhood page?",
+        a: "Use Native cigarettes in The Junction for Keele & Dundas / Dundas West context. The cigarette category is the live listing.",
       },
     ],
   },
@@ -224,6 +233,10 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         q: "Where do I go for directions or overnight hours?",
         a: "Use the how-to-get-here page for transit and parking. Use the 24-hour Junction dispensary guide for late-night and open-now hours. The homepage keeps address, hours, phone, and the map.",
+      },
+      {
+        q: "Do you deliver, and do you sell cigarettes or nicotine vapes here?",
+        a: "Neighbourhood delivery is on cannabis delivery in The Junction. Cigarettes and nicotine vapes have Junction pages that link to their category menus. Confirm current listings before a special trip.",
       },
     ],
   },
@@ -307,11 +320,13 @@ export const SEO_PAGES: SeoPageData[] = [
       { heading: "Puff Counts Identify Listings", body: "Several verified names include puff counts. Use those numbers to distinguish the listings, not as guarantees of duration, performance or superiority." },
       { heading: "Keep Nicotine and Cannabis Vape Routes Separate", body: "This adult-only Gas Junction Cannabis guide uses VAPE PENS products under /items/vapes. THC and cannabis vape products under /items/vape-disposables are excluded." },
       { heading: "Review the Current Toronto Category", body: "Before choosing, open /items/vapes and the individual product page for current supported details. This guide does not claim prices, stock or guaranteed availability." },
+      { heading: "Junction neighbourhood owner", body: "Keele & Dundas / Dundas West nicotine-vape intent now lives on nicotine vape in The Junction. That page links to /items/vapes and does not invent SKUs or prices." },
     ],
     faqs: [
       { q: "Where should I check Gas Junction Cannabis’s current nicotine selection?", a: "Use /items/vapes. The six featured cards are verified starting points while the current category listing controls selection information." },
       { q: "Does every featured item use the same format?", a: "No. The verified set explicitly identifies a Level X G2 Pod and an OVNS disposable. Read every current product page for its supported format and details." },
       { q: "Does this page include cannabis vapes?", a: "No. It covers nicotine products from the VAPE PENS category for adults 19+. THC and cannabis vape products under /items/vape-disposables are excluded." },
+      { q: "Where is the Junction nicotine vape page?", a: "Use nicotine vape in The Junction for neighbourhood context, then /items/vapes for the current category." },
     ],
   },
 ];

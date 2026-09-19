@@ -340,6 +340,14 @@ export default function HomePage() {
               <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link> guide.
               Neighbourhood weed intent sits on{" "}
               <Link href="/info/weed-store-near-the-junction">weed store near The Junction</Link>.
+              Cannabis delivery for The Junction, High Park, and Bloor West Village is on{" "}
+              <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>
+              , with the live catalog on the{" "}
+              <Link href="/delivery">delivery menu</Link>.
+              Cigarettes and nicotine vapes have Junction pages at{" "}
+              <Link href="/native-cigarettes-junction">Native cigarettes</Link>
+              {" "}and{" "}
+              <Link href="/nicotine-vape-junction">nicotine vape</Link>.
             </p>
           </div>
         </div>
@@ -470,6 +478,8 @@ export default function HomePage() {
                 <Link className={styles.storeLink} href="/visit">Transit &amp; parking guide</Link>
                 <br />
                 <Link className={styles.storeLink} href="/24-hour-junction-dispensary">24-hour Junction hours</Link>
+                <br />
+                <Link className={styles.storeLink} href="/cannabis-delivery-junction">Junction cannabis delivery</Link>
               </p>
             </div>
           </div>
@@ -483,7 +493,7 @@ export default function HomePage() {
               className={styles.mapFrame}
             />
           </div>
-          <LocalSeoMesh currentPath="/" heading="Visit, hours, neighbourhood, and flower" />
+          <LocalSeoMesh currentPath="/" heading="Visit, hours, neighbourhood, Big Three, and flower" />
         </div>
       </section>
 
