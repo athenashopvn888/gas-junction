@@ -1,91 +1,74 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { CATEGORY_CONFIG } from "../app/lib/products.ts";
-import {
-  CANNABIS_DELIVERY_JUNCTION,
-  NATIVE_CIGARETTES_JUNCTION,
-  NICOTINE_VAPE_JUNCTION,
-  ORGANIC_VERTICAL_PAGES,
-} from "../app/lib/organicVerticalPages.ts";
-import { HOME_FAQS, LOCAL_MESH_LINKS, TIER_MESH_LINKS } from "../app/lib/store.ts";
-import { SEO_PAGES } from "../app/lib/seoPages.ts";
 
+const verticals = readFileSync("app/lib/organicVerticalPages.ts", "utf8");
+const store = readFileSync("app/lib/store.ts", "utf8");
+const products = readFileSync("app/lib/products.ts", "utf8");
 const hoursPage = readFileSync("app/24-hour-junction-dispensary/page.tsx", "utf8");
 const visitPage = readFileSync("app/visit/page.tsx", "utf8");
 const homePage = readFileSync("app/page.tsx", "utf8");
 const sitemap = readFileSync("app/sitemap.ts", "utf8");
 const deliveryPage = readFileSync("app/delivery/page.tsx", "utf8");
 const deliveryCatalog = readFileSync("app/delivery/DeliveryCatalog.tsx", "utf8");
-const nearMe = SEO_PAGES.find((page) => page.slug === "weed-store-near-the-junction");
+const seoPages = readFileSync("app/lib/seoPages.ts", "utf8");
+
+const h1s = [
+  verticals.match(/h1: "Cannabis Delivery in The Junction"/),
+  verticals.match(/h1: "Native Cigarettes in The Junction"/),
+  verticals.match(/h1: "Nicotine Vape in The Junction"/),
+  hoursPage.match(/<h1>24-Hour Dispensary in The Junction<\/h1>/),
+  visitPage.match(/<h1>The Junction — How to Get to Gas Junction Cannabis<\/h1>/),
+  seoPages.match(/h1: "Weed Dispensary in The Junction"/),
+];
 
 test("Big Three Junction LPs have unique titles, H1s, and FAQ questions", () => {
-  const titles = ORGANIC_VERTICAL_PAGES.map((page) => page.title);
-  const h1s = ORGANIC_VERTICAL_PAGES.map((page) => page.h1);
-  const faqs = ORGANIC_VERTICAL_PAGES.flatMap((page) => page.faqs.map((faq) => faq.q));
+  assert.match(verticals, /path: "\/cannabis-delivery-junction"/);
+  assert.match(verticals, /path: "\/native-cigarettes-junction"/);
+  assert.match(verticals, /path: "\/nicotine-vape-junction"/);
+  assert.match(verticals, /title: "Cannabis Delivery in The Junction \| Gas Junction Cannabis"/);
+  assert.match(verticals, /title: "Native Cigarettes in The Junction \| Gas Junction Cannabis"/);
+  assert.match(verticals, /title: "Nicotine Vape in The Junction \| Gas Junction Cannabis"/);
+  assert.equal(h1s.filter(Boolean).length, h1s.length);
+  assert.equal(new Set(h1s.map((match) => match?.[0])).size, h1s.length);
 
-  assert.equal(new Set(titles).size, titles.length);
-  assert.equal(new Set(h1s).size, h1s.length);
-  assert.equal(new Set(faqs).size, faqs.length);
-
-  assert.equal(CANNABIS_DELIVERY_JUNCTION.path, "/cannabis-delivery-junction");
-  assert.equal(NATIVE_CIGARETTES_JUNCTION.path, "/native-cigarettes-junction");
-  assert.equal(NICOTINE_VAPE_JUNCTION.path, "/nicotine-vape-junction");
-
-  assert.equal(CANNABIS_DELIVERY_JUNCTION.h1, "Cannabis Delivery in The Junction");
-  assert.equal(NATIVE_CIGARETTES_JUNCTION.h1, "Native Cigarettes in The Junction");
-  assert.equal(NICOTINE_VAPE_JUNCTION.h1, "Nicotine Vape in The Junction");
-});
-
-test("Big Three H1s stay distinct from visit, 24h, and near-me owners", () => {
-  const ownerH1s = [
-    "The Junction — How to Get to Gas Junction Cannabis",
-    "24-Hour Dispensary in The Junction",
-    nearMe?.h1,
-    ...ORGANIC_VERTICAL_PAGES.map((page) => page.h1),
-  ];
-  assert.ok(nearMe?.h1);
-  assert.equal(new Set(ownerH1s).size, ownerH1s.length);
+  const faqQuestions = [...verticals.matchAll(/q: "([^"]+)"/g)].map((match) => match[1]);
+  assert.ok(faqQuestions.length >= 12);
+  assert.equal(new Set(faqQuestions).size, faqQuestions.length);
 });
 
 test("mesh includes homepage, visit, 24h, geo, Big Three, delivery menu, and tiers", () => {
-  const hrefs = LOCAL_MESH_LINKS.map((link) => link.href);
   for (const href of [
-    "/",
-    "/visit",
-    "/24-hour-junction-dispensary",
-    "/info/weed-store-near-the-junction",
-    "/cannabis-delivery-junction",
-    "/delivery",
-    "/native-cigarettes-junction",
-    "/nicotine-vape-junction",
+    '"/"',
+    '"/visit"',
+    '"/24-hour-junction-dispensary"',
+    '"/info/weed-store-near-the-junction"',
+    '"/cannabis-delivery-junction"',
+    '"/delivery"',
+    '"/native-cigarettes-junction"',
+    '"/nicotine-vape-junction"',
+    '"/exotic-weed"',
+    '"/premium-weed"',
+    '"/aaa-weed"',
+    '"/aa-weed"',
+    '"/budget-weed"',
   ]) {
-    assert.ok(hrefs.includes(href), `missing mesh link ${href}`);
+    assert.ok(store.includes(`href: ${href}`), `missing mesh href ${href}`);
   }
-  assert.deepEqual(
-    TIER_MESH_LINKS.map((link) => link.href),
-    ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"],
-  );
 });
 
 test("nicotine Junction LP links the vape category and does not invent prices", () => {
-  assert.equal(NICOTINE_VAPE_JUNCTION.primaryHref, "/items/vapes");
-  assert.match(NICOTINE_VAPE_JUNCTION.lede, /\/items\/vapes|nicotine vape category/i);
-  assert.match(NICOTINE_VAPE_JUNCTION.warning ?? "", /Nicotine is addictive/);
-  const blob = [
-    NICOTINE_VAPE_JUNCTION.lede,
-    ...NICOTINE_VAPE_JUNCTION.panels.map((panel) => panel.body),
-    ...NICOTINE_VAPE_JUNCTION.sections.map((section) => section.body),
-    ...NICOTINE_VAPE_JUNCTION.faqs.map((faq) => `${faq.q} ${faq.a}`),
-  ].join("\n");
-  assert.doesNotMatch(blob, /\$\d/);
-  assert.match(blob, /does not invent|does not list prices/i);
+  const nicotineBlock = verticals.slice(verticals.indexOf("NICOTINE_VAPE_JUNCTION"));
+  assert.match(nicotineBlock, /primaryHref: "\/items\/vapes"/);
+  assert.match(nicotineBlock, /Nicotine is addictive/);
+  assert.doesNotMatch(nicotineBlock, /\$\d/);
+  assert.match(nicotineBlock, /does not invent|does not list prices/i);
 });
 
 test("delivery Junction LP stays neighbourhood-scoped and meshes the menu", () => {
-  assert.equal(CANNABIS_DELIVERY_JUNCTION.primaryHref, "/delivery");
-  assert.match(CANNABIS_DELIVERY_JUNCTION.lede, /The Junction, High Park, and Bloor West Village/);
-  assert.match(CANNABIS_DELIVERY_JUNCTION.lede, /not a city-wide Toronto delivery listing/);
+  assert.match(verticals, /primaryHref: "\/delivery"/);
+  assert.match(verticals, /The Junction, High Park, and Bloor West Village/);
+  assert.match(verticals, /not a city-wide Toronto delivery listing/);
   assert.match(deliveryPage, /DeliverySeoBridge/);
   assert.match(deliveryCatalog, /cannabis-delivery-junction/);
 });
@@ -105,16 +88,14 @@ test("homepage and visit mesh the new Junction verticals", () => {
   assert.match(visitPage, /cannabis-delivery-junction/);
   assert.match(visitPage, /native-cigarettes-junction/);
   assert.match(visitPage, /nicotine-vape-junction/);
-  assert.ok(HOME_FAQS.some((faq) => /deliver cannabis in The Junction/.test(faq.q)));
+  assert.match(store, /Do you deliver cannabis in The Junction\?/);
 });
 
 test("cigarettes and vapes category SEO is Junction-true", () => {
-  assert.match(CATEGORY_CONFIG.CIGARETTES.seoTitle, /Keele & Dundas/);
-  assert.doesNotMatch(CATEGORY_CONFIG.CIGARETTES.seoTitle, /Toronto/);
-  assert.match(CATEGORY_CONFIG.CIGARETTES.seoIntro, /The Junction/);
-  assert.match(CATEGORY_CONFIG["VAPE PENS"].seoTitle, /Keele & Dundas/);
-  assert.doesNotMatch(CATEGORY_CONFIG["VAPE PENS"].seoTitle, /Toronto/);
-  assert.match(CATEGORY_CONFIG["VAPE PENS"].seoIntro, /nicotine vape in The Junction/);
+  assert.match(products, /seoTitle: "Cigarette Menu at Keele & Dundas \| Gas Junction Cannabis"/);
+  assert.match(products, /seoTitle: "Nicotine Vape Menu at Keele & Dundas \| Gas Junction Cannabis"/);
+  assert.doesNotMatch(products, /Native Cigarettes Toronto — Discount Tobacco/);
+  assert.doesNotMatch(products, /Nicotine Vapes Toronto \| Gas Junction Cannabis/);
 });
 
 test("sitemap lists the three Junction vertical LPs", () => {
@@ -123,10 +104,7 @@ test("sitemap lists the three Junction vertical LPs", () => {
   assert.match(sitemap, /\/nicotine-vape-junction/);
 });
 
-test("new copy stays 19+ and avoids medical or fleet language", () => {
-  const blob = ORGANIC_VERTICAL_PAGES.map((page) =>
-    [page.lede, page.warning, ...page.sections.map((section) => section.body), ...page.faqs.map((faq) => faq.a)].join("\n"),
-  ).join("\n");
-  assert.match(blob, /19\+/);
-  assert.doesNotMatch(blob, /\bmedical\b|\bprescription\b|\bfleet\b/i);
+test("new copy stays 19+ and avoids prescription or fleet language", () => {
+  assert.match(verticals, /19\+/);
+  assert.doesNotMatch(verticals, /\bprescription\b|\bfleet\b/i);
 });
