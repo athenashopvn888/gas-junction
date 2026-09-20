@@ -23,6 +23,7 @@ const ALL_LINKS = [
   { href: "/items/add-ons", label: "Accessories" },
   { href: "/delivery", label: "🚗 Delivery" },
   { href: "/visit", label: "Visit" },
+  { href: "/weed-dispensary-junction", label: "Weed Dispensary" },
   { href: "/24-hour-junction-dispensary", label: "Open 24h" },
   { href: "/faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },

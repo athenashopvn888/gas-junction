@@ -24,9 +24,9 @@ export const weedOwner = {
   findTitle: "Find Your Weed at Gas Junction",
   discoveryLinks: [
   {
-    "label": "Weed Store Near The Junction",
-    "description": "Neighbourhood weed owner for Keele & Dundas — not a city-wide Toronto listing.",
-    "href": "/info/weed-store-near-the-junction"
+    "label": "Weed Dispensary in The Junction",
+    "description": "Neighbourhood weed-dispensary owner for Keele & Dundas — not a city-wide Toronto listing.",
+    "href": "/weed-dispensary-junction"
   },
   {
     "label": "24-Hour Junction Dispensary Open Now",

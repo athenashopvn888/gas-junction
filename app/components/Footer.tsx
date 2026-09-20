@@ -60,7 +60,7 @@ export default function Footer() {
               <Link href="/faq">FAQ</Link>
               <Link href="/visit">How to Get Here</Link>
               <Link href="/delivery">Delivery Menu</Link>
-              <Link href="/info/weed-store-near-the-junction">Weed Store Near The Junction</Link>
+              <Link href="/weed-dispensary-junction">Weed Dispensary in The Junction</Link>
               <Link href="/contact">Contact Us</Link>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=2813+Dundas+St+W%2C+Toronto%2C+ON+M6P+1Y6"

@@ -9,7 +9,7 @@ import styles from "./faq.module.css";
 export const metadata: Metadata = {
   title: { absolute: "FAQ — The Junction | Gas Junction Cannabis" },
   description:
-    "Junction FAQ for Gas Junction Cannabis at 2813 Dundas St W: 24-hour open-now hours, neighbourhood delivery, Native cigarettes, nicotine vape, and walk-in notes. Adults 19+.",
+    "Junction FAQ for Gas Junction Cannabis at 2813 Dundas St W: weed dispensary, 24-hour open-now hours, neighbourhood delivery, Native cigarettes, nicotine vape, and walk-in notes. Adults 19+.",
   alternates: {
     canonical: `${STORE.origin}/faq`,
   },
@@ -21,7 +21,8 @@ const FAQ_CATEGORIES = [
     faqs: [
       { q: "Where is Gas Junction Cannabis located?", a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6, in The Junction area." },
       { q: "What are your hours?", a: "The Keele & Dundas walk-in is open 24 hours daily. No appointment. Open-now and 24h-near-me notes live on the 24-hour Junction dispensary page. Delivery uses a separate 10:00 a.m. to 10:00 p.m. window." },
-      { q: "Is there a 24-hour dispensary open now near Keele & Dundas?", a: "Yes. Gas Junction Cannabis at 2813 Dundas St W is open now, every clock hour. Use the 24-hour Junction dispensary page for overnight and near-me hours. That page is equal to the Junction delivery, Native cigarettes, and nicotine vape pages." },
+      { q: "Is there a 24-hour dispensary open now near Keele & Dundas?", a: "Yes. Gas Junction Cannabis at 2813 Dundas St W is open now, every clock hour. Use the 24-hour Junction dispensary page for overnight and near-me hours. That page is equal to the Junction weed dispensary, delivery, Native cigarettes, and nicotine vape pages." },
+      { q: "Is there a weed dispensary in The Junction near Keele & Dundas?", a: "Yes. Gas Junction Cannabis at 2813 Dundas St W is the neighbourhood weed dispensary. Use weed dispensary in The Junction for that walk-in — not a city-wide Toronto listing. Flower tiers, 24-hour hours, and how to get here sit beside it." },
       { q: "Is there parking nearby?", a: "Street parking on Dundas St W and nearby Junction side streets is the usual option. Check posted signs for time limits. Full parking and transit notes are on the how-to-get-here page." },
       { q: "What nearby areas do you serve?", a: "The Junction walk-in is useful for shoppers around Keele & Dundas, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street." },
       { q: "How do I reach Gas Junction Cannabis on transit?", a: "Walk north from Keele Station (Line 2) to Dundas, then west to 2813 Dundas St W. The 40 Junction bus runs along Dundas. From Dundas West Station or Bloor GO / UP Express, take Line 2 one stop west to Keele. Street-by-street notes are on the how-to-get-here page." },
@@ -100,7 +101,7 @@ export default function FAQPage() {
         <div className={styles.content}>
           <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
           <p className={styles.pageSubtitle}>
-            Hours, delivery, cigarettes, nicotine vape, and walk-in notes for Gas Junction Cannabis
+            Hours, weed dispensary, delivery, cigarettes, nicotine vape, and walk-in notes for Gas Junction Cannabis
             at 2813 Dundas St W in The Junction. Adults 19+.
           </p>
 
@@ -116,7 +117,7 @@ export default function FAQPage() {
             </div>
           ))}
 
-          <LocalSeoMesh currentPath="/faq" heading="24-hour hours, delivery, cigarettes, and vape" />
+          <LocalSeoMesh currentPath="/faq" heading="24-hour hours, weed dispensary, delivery, cigarettes, and vape" />
 
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
@@ -125,6 +126,7 @@ export default function FAQPage() {
             </p>
             <div className={styles.ctaLinks}>
               <Link className={styles.ctaLink} href="/24-hour-junction-dispensary">Open now — 24 hours</Link>
+              <Link className={styles.ctaLink} href="/weed-dispensary-junction">Junction weed dispensary</Link>
               <Link className={styles.ctaLink} href="/cannabis-delivery-junction">Junction delivery</Link>
               <Link className={styles.ctaLink} href="/native-cigarettes-junction">Native cigarettes</Link>
               <Link className={styles.ctaLink} href="/nicotine-vape-junction">Nicotine vape</Link>
