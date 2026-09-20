@@ -18,18 +18,20 @@ const h1s = [
   verticals.match(/h1: "Cannabis Delivery in The Junction"/),
   verticals.match(/h1: "Native Cigarettes in The Junction"/),
   verticals.match(/h1: "Nicotine Vape in The Junction"/),
+  verticals.match(/h1: "Weed Dispensary in The Junction"/),
   hoursPage.match(/<h1>24-Hour Dispensary Open Now in The Junction<\/h1>/),
   visitPage.match(/<h1>The Junction — How to Get to Gas Junction Cannabis<\/h1>/),
-  seoPages.match(/h1: "Weed Dispensary in The Junction"/),
 ];
 
-test("Big Three Junction LPs have unique titles, H1s, and FAQ questions", () => {
+test("Junction neighbourhood LPs have unique titles, H1s, and FAQ questions", () => {
   assert.match(verticals, /path: "\/cannabis-delivery-junction"/);
   assert.match(verticals, /path: "\/native-cigarettes-junction"/);
   assert.match(verticals, /path: "\/nicotine-vape-junction"/);
+  assert.match(verticals, /path: "\/weed-dispensary-junction"/);
   assert.match(verticals, /title: "Cannabis Delivery in The Junction \| Gas Junction Cannabis"/);
   assert.match(verticals, /title: "Native Cigarettes in The Junction \| Gas Junction Cannabis"/);
   assert.match(verticals, /title: "Nicotine Vape in The Junction \| Gas Junction Cannabis"/);
+  assert.match(verticals, /title: "Weed Dispensary in The Junction \| Gas Junction Cannabis"/);
   assert.equal(h1s.filter(Boolean).length, h1s.length);
   assert.equal(new Set(h1s.map((match) => match?.[0])).size, h1s.length);
 
@@ -43,7 +45,7 @@ test("mesh includes homepage, visit, 24h, geo, Big Three, delivery menu, and tie
     '"/"',
     '"/visit"',
     '"/24-hour-junction-dispensary"',
-    '"/info/weed-store-near-the-junction"',
+    '"/weed-dispensary-junction"',
     '"/cannabis-delivery-junction"',
     '"/delivery"',
     '"/native-cigarettes-junction"',
@@ -82,25 +84,30 @@ test("24h LP is first-class open-now / 24h-near-me and meshes the Big Three", ()
   assert.match(hoursPage, /cannabis-delivery-junction/);
   assert.match(hoursPage, /native-cigarettes-junction/);
   assert.match(hoursPage, /nicotine-vape-junction/);
+  assert.match(hoursPage, /weed-dispensary-junction/);
   assert.match(hoursPage, /Open now \/ 24h near me questions/);
   assert.match(store, /Open now — 24-hour Junction dispensary/);
   assert.match(verticals, /Open now — 24-hour dispensary/);
-  assert.equal((verticals.match(/Open now — 24-hour dispensary/g) || []).length, 3);
+  assert.equal((verticals.match(/Open now — 24-hour dispensary/g) || []).length, 4);
   assert.match(sitemap, /24-hour-junction-dispensary[\s\S]*priority: 0\.8/);
   assert.match(sitemap, /cannabis-delivery-junction[\s\S]*priority: 0\.8/);
   assert.match(sitemap, /native-cigarettes-junction[\s\S]*priority: 0\.8/);
   assert.match(sitemap, /nicotine-vape-junction[\s\S]*priority: 0\.8/);
+  assert.match(sitemap, /weed-dispensary-junction[\s\S]*priority: 0\.8/);
 });
 
 test("homepage and visit mesh the new Junction verticals", () => {
   assert.match(homePage, /cannabis-delivery-junction/);
   assert.match(homePage, /native-cigarettes-junction/);
   assert.match(homePage, /nicotine-vape-junction/);
+  assert.match(homePage, /weed-dispensary-junction/);
   assert.match(visitPage, /cannabis-delivery-junction/);
   assert.match(visitPage, /native-cigarettes-junction/);
   assert.match(visitPage, /nicotine-vape-junction/);
+  assert.match(visitPage, /weed-dispensary-junction/);
   assert.match(store, /Do you deliver cannabis in The Junction\?/);
   assert.match(store, /Is there a 24-hour dispensary open now in The Junction\?/);
+  assert.match(store, /Is there a weed dispensary in The Junction\?/);
 });
 
 test("cigarettes and vapes category SEO is Junction-true", () => {
@@ -110,10 +117,11 @@ test("cigarettes and vapes category SEO is Junction-true", () => {
   assert.doesNotMatch(products, /Nicotine Vapes Toronto \| Gas Junction Cannabis/);
 });
 
-test("sitemap lists the three Junction vertical LPs", () => {
+test("sitemap lists the Junction vertical LPs including weed dispensary", () => {
   assert.match(sitemap, /\/cannabis-delivery-junction/);
   assert.match(sitemap, /\/native-cigarettes-junction/);
   assert.match(sitemap, /\/nicotine-vape-junction/);
+  assert.match(sitemap, /weed-dispensary-junction[\s\S]*priority: 0\.8/);
 });
 
 test("new copy stays 19+ and avoids prescription or fleet language", () => {
@@ -121,9 +129,11 @@ test("new copy stays 19+ and avoids prescription or fleet language", () => {
   assert.doesNotMatch(verticals, /\bprescription\b|\bfleet\b/i);
 });
 
-test("FAQ hub meshes 24h equally with delivery, Native cigarettes, and nicotine vape", () => {
+test("FAQ hub meshes 24h equally with weed dispensary, delivery, Native cigarettes, and nicotine vape", () => {
   assert.match(faqPage, /24-hour dispensary open now near Keele/);
+  assert.match(faqPage, /weed dispensary in The Junction near Keele/);
   assert.match(faqPage, /href="\/24-hour-junction-dispensary"/);
+  assert.match(faqPage, /href="\/weed-dispensary-junction"/);
   assert.match(faqPage, /href="\/cannabis-delivery-junction"/);
   assert.match(faqPage, /href="\/native-cigarettes-junction"/);
   assert.match(faqPage, /href="\/nicotine-vape-junction"/);
@@ -136,6 +146,7 @@ test("authoritative brief: neighbourhood-only titles and hard menu swimlane ban"
   assert.doesNotMatch(verticals, /flowers\.json|items\.json|prebuild-stock|adcInventory/i);
   assert.match(seoPages, /slug: "native-cigarettes-toronto"[\s\S]*canonicalPath: "\/native-cigarettes-junction"/);
   assert.match(seoPages, /slug: "nicotine-vapes-toronto"[\s\S]*canonicalPath: "\/nicotine-vape-junction"/);
+  assert.match(seoPages, /slug: "weed-store-near-the-junction"[\s\S]*canonicalPath: "\/weed-dispensary-junction"/);
   assert.match(sitemap, /native-cigarettes-toronto/);
   assert.match(sitemap, /nicotine-vapes-toronto/);
 });

@@ -198,48 +198,50 @@ export const SEO_PAGES: SeoPageData[] = [
 
   {
     slug: "weed-store-near-the-junction",
-    title: "Weed Dispensary in The Junction | Gas Junction Cannabis",
+    noindex: true,
+    canonicalPath: "/weed-dispensary-junction",
+    title: "Weed Store Near The Junction | Gas Junction Cannabis",
     absoluteTitle: true,
     metaDescription:
-      "Gas Junction Cannabis is the Keele & Dundas weed dispensary in The Junction at 2813 Dundas St W. Neighbourhood flower tiers and walk-in notes — not a city-wide Toronto listing.",
-    h1: "Weed Dispensary in The Junction",
+      "Supporting weed-store-near path for Gas Junction Cannabis at 2813 Dundas St W. The Junction weed-dispensary owner is Weed dispensary in The Junction.",
+    h1: "Weed Store Near The Junction",
     icon: "\uD83D\uDCCD",
     heroTagline:
-      "Keele & Dundas walk-in · Junction Triangle · High Park North · How to get here",
+      "Supporting path · Use Weed dispensary in The Junction · Adults 19+",
     banner: "",
     sections: [
       {
-        heading: "The Junction weed shop — not a Toronto city listing",
+        heading: "Junction neighbourhood owner",
         body:
-          "Gas Junction Cannabis is the walk-in counter at 2813 Dundas St W, just west of Keele & Dundas in The Junction. This page owns neighbourhood weed intent for that strip: people already on Dundas, cutting over from Junction Triangle, or coming north from High Park North. City-wide Toronto URLs on this site are legacy paths, not the listing to use.",
+          "Keele & Dundas / Dundas West weed-dispensary intent now lives on Weed dispensary in The Junction. Use that URL for the walk-in at 2813 Dundas St W — not this supporting weed-store-near path, and not a city-wide Toronto listing.",
       },
       {
         heading: "Catchment around Keele & Dundas",
         body:
-          "Use this guide if you searched for a weed store near The Junction, Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street. Street-by-street transit and parking live on the how-to-get-here page. Overnight and open-now hours live on the 24-hour Junction dispensary guide.",
+          "The counter sits just west of Keele & Dundas in The Junction. Junction Triangle, High Park North, Bloor West Village, Runnymede, and Annette Street shoppers should use the neighbourhood weed-dispensary page, then the how-to-get-here guide for transit and parking.",
       },
       {
-        heading: "Flower tiers at this Dundas West counter",
+        heading: "Hours, delivery, and menus sit beside that owner",
         body:
-          "Flower is stacked as Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed so you can compare bands without a sales script. The same stop covers pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes. Confirm a named SKU on the floor before a special trip.",
+          "Overnight and open-now hours live on the 24-hour Junction dispensary guide. Neighbourhood delivery, Native cigarettes, and nicotine vape have their own Junction pages. Flower bands stay on Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed. Adults 19+.",
       },
     ],
     faqs: [
       {
-        q: "Is this the Junction weed dispensary or a Toronto city page?",
-        a: "This is the neighbourhood weed owner for Gas Junction Cannabis at 2813 Dundas St W in The Junction, near Keele & Dundas. It is not a city-wide Toronto dispensary listing.",
+        q: "Where is the Junction weed dispensary page?",
+        a: "Use Weed dispensary in The Junction for Keele & Dundas / Dundas West context. This URL is a supporting weed-store-near path, not the neighbourhood owner.",
       },
       {
-        q: "Does this shop cover Junction Triangle and High Park North?",
-        a: "Yes. Those streets and pockets are the walk-up catchment, along with Bloor West Village, Runnymede, and Annette Street. The counter itself sits on Dundas just west of Keele.",
+        q: "Does the shop still cover Junction Triangle and High Park North?",
+        a: "Yes. Those streets stay in the walk-up catchment, along with Bloor West Village, Runnymede, and Annette Street. The neighbourhood owner explains that catchment.",
       },
       {
-        q: "Where do I go for directions or overnight hours?",
-        a: "Use the how-to-get-here page for transit and parking. Use the 24-hour Junction dispensary guide for late-night and open-now hours. The homepage keeps address, hours, phone, and the map.",
+        q: "Where do I go for directions or overnight hours from this path?",
+        a: "Use the how-to-get-here page for transit and parking. Use the 24-hour Junction dispensary guide for late-night and open-now hours. Start from Weed dispensary in The Junction if you meant the neighbourhood shop.",
       },
       {
-        q: "Do you deliver, and do you sell cigarettes or nicotine vapes here?",
-        a: "Neighbourhood delivery is on cannabis delivery in The Junction. Cigarettes and nicotine vapes have Junction pages that link to their category menus. Confirm current listings before a special trip.",
+        q: "Do delivery, cigarettes, or nicotine vapes live on this weed-store path?",
+        a: "No. Neighbourhood delivery is on cannabis delivery in The Junction. Cigarettes and nicotine vapes have their own Junction pages. This path only points at the weed-dispensary owner.",
       },
     ],
   },

@@ -39,6 +39,7 @@ export const CANNABIS_DELIVERY_JUNCTION: OrganicVerticalPageData = {
   secondaryLabel: "Walk-in directions",
   extraActions: [
     { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
+    { href: "/weed-dispensary-junction", label: "Weed dispensary in The Junction" },
     { href: "/", label: "Store homepage" },
   ],
   panels: [
@@ -102,6 +103,7 @@ export const NATIVE_CIGARETTES_JUNCTION: OrganicVerticalPageData = {
   secondaryLabel: "How to get here",
   extraActions: [
     { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
+    { href: "/weed-dispensary-junction", label: "Weed dispensary in The Junction" },
     { href: "/nicotine-vape-junction", label: "Nicotine vape in The Junction" },
   ],
   panels: [
@@ -162,6 +164,7 @@ export const NICOTINE_VAPE_JUNCTION: OrganicVerticalPageData = {
   secondaryLabel: "How to get here",
   extraActions: [
     { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
+    { href: "/weed-dispensary-junction", label: "Weed dispensary in The Junction" },
     { href: "/native-cigarettes-junction", label: "Native cigarettes in The Junction" },
   ],
   panels: [
@@ -206,10 +209,79 @@ export const NICOTINE_VAPE_JUNCTION: OrganicVerticalPageData = {
   warning: "Adults 19+. Nicotine is addictive.",
 };
 
+export const WEED_DISPENSARY_JUNCTION: OrganicVerticalPageData = {
+  path: "/weed-dispensary-junction",
+  title: "Weed Dispensary in The Junction | Gas Junction Cannabis",
+  description:
+    "Gas Junction Cannabis is the weed dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas. Walk-in flower tiers for Junction Triangle and High Park North — not a city-wide Toronto listing. Adults 19+.",
+  ogDescription:
+    "Keele & Dundas weed dispensary in The Junction. Flower tiers, 24-hour walk-in, and neighbourhood notes — not a Toronto city-wide directory.",
+  kicker: "Keele & Dundas · Junction Triangle · High Park North · Adults 19+",
+  h1: "Weed Dispensary in The Junction",
+  lede: `This page owns neighbourhood weed-dispensary intent for Gas Junction Cannabis at ${STORE.addressLine}. The walk-in sits just west of Keele & Dundas on the Dundas West strip — for people already in The Junction, cutting over from Junction Triangle, or coming north from High Park North. It is not a city-wide Toronto dispensary listing.`,
+  primaryHref: "/",
+  primaryLabel: "Store homepage",
+  secondaryHref: "/visit",
+  secondaryLabel: "How to get here",
+  extraActions: [
+    { href: "/24-hour-junction-dispensary", label: "Open now — 24-hour dispensary" },
+    { href: "/exotic-weed", label: "Flower tiers" },
+    { href: "/cannabis-delivery-junction", label: "Junction delivery" },
+  ],
+  panels: [
+    {
+      heading: "The Junction weed dispensary — not a Toronto city listing",
+      body: "Gas Junction Cannabis is the walk-in counter at 2813 Dundas St W, just west of Keele & Dundas. This URL is the neighbourhood owner for weed-dispensary searches that already mean The Junction: Dundas West, Junction Triangle, High Park North, Bloor West Village, Runnymede, and Annette Street. City-head dispensary URLs on this site are supporting paths, not the listing to use.",
+    },
+    {
+      heading: "Catchment around Keele & Dundas",
+      body: "Use this guide if you searched for a weed dispensary in The Junction, a weed shop near Keele & Dundas, or a walk-in from Junction Triangle or High Park North. Street-by-street transit and parking live on the how-to-get-here page. Overnight and open-now hours live on the 24-hour Junction dispensary guide. The homepage keeps address, phone, map, and the current store menu.",
+    },
+  ],
+  sections: [
+    {
+      heading: "Flower tiers at this Dundas West counter",
+      body: "Flower is stacked as Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed so you can compare bands without a sales script. The same stop covers pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes. Named SKUs belong on those tier and category pages, then on the floor — this page does not invent stock counts or prices.",
+    },
+    {
+      heading: "How this page sits beside visit, hours, delivery, and the menus",
+      body: "How to get here is the reach guide. The 24-hour Junction dispensary page is the open-now / overnight owner. Cannabis delivery in The Junction covers the High Park / Bloor West Village radius. Native cigarettes and nicotine vape have their own Junction pages. This URL is the weed-dispensary neighbourhood page — not a second homepage.",
+    },
+    {
+      heading: "Adults 19+ only",
+      body: "The Keele & Dundas walk-in is for adults 19+ with valid government-issued photo ID. Overnight does not change that rule. This is a retail counter, not a clinic. Staff can point you to a flower tier or category; they do not give health advice.",
+    },
+  ],
+  faqs: [
+    {
+      q: "Is Gas Junction Cannabis a weed dispensary in The Junction?",
+      a: "Yes. The walk-in at 2813 Dundas St W, just west of Keele & Dundas, is the neighbourhood weed dispensary for The Junction. This page is that neighbourhood owner — not a city-wide Toronto dispensary listing.",
+    },
+    {
+      q: "Which streets does this Junction weed dispensary cover?",
+      a: "The counter is on Dundas West at 2813. The walk-up catchment is The Junction, Junction Triangle, High Park North, Bloor West Village, Runnymede, and Annette Street. Transit and parking notes stay on the how-to-get-here page.",
+    },
+    {
+      q: "Where do flower tiers live next to this dispensary page?",
+      a: "Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed are the five flower collections at this shop. Use those tier pages to compare bands, then confirm a named jar on the floor.",
+    },
+    {
+      q: "Is this the same page as the 24-hour Junction hours guide?",
+      a: "No. This URL is the neighbourhood weed-dispensary page for The Junction. The 24-hour Junction dispensary page is the open-now and overnight hours guide. The homepage keeps address, map, and the store menu.",
+    },
+    {
+      q: "Do I need to be 19+ to walk into the Junction weed dispensary?",
+      a: "Yes. The walk-in and neighbourhood delivery are for adults 19+ with valid government-issued photo ID. That rule holds at every clock hour.",
+    },
+  ],
+  faqHeading: "Junction weed dispensary questions",
+};
+
 export const ORGANIC_VERTICAL_PAGES = [
   CANNABIS_DELIVERY_JUNCTION,
   NATIVE_CIGARETTES_JUNCTION,
   NICOTINE_VAPE_JUNCTION,
+  WEED_DISPENSARY_JUNCTION,
 ] as const;
 
 export function getOrganicVerticalPage(path: string): OrganicVerticalPageData | undefined {

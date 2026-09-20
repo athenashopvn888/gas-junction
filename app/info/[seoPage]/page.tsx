@@ -183,6 +183,9 @@ export default async function SeoLandingPage({
             <div className={styles.visitBtns}>
               <Link href="/visit" className={styles.visitBtn}>How to get here</Link>
               <Link href="/24-hour-junction-dispensary" className={styles.visitBtn}>24-hour Junction hours</Link>
+              {slug === "weed-store-near-the-junction" && (
+                <Link href="/weed-dispensary-junction" className={styles.visitBtn}>Weed dispensary in The Junction</Link>
+              )}
               <Link href="/" className={styles.visitBtn}>Store homepage</Link>
             </div>
           </div>}

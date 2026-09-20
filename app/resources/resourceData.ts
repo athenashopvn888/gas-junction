@@ -171,6 +171,11 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Use this page when the search starts local: weed dispensary in The Junction, cannabis near Keele & Dundas, or a late stop near High Park North, Junction Triangle, Runnymede, Annette, or Bloor West Village.",
     cards: [
       {
+        title: "Weed Dispensary in The Junction",
+        href: "/weed-dispensary-junction",
+        text: "Neighbourhood weed-dispensary owner for the Keele & Dundas walk-in.",
+      },
+      {
         title: "How to Get Here",
         href: "/visit",
         text: "Transit, parking, and landmark notes for 2813 Dundas St W.",

@@ -339,8 +339,8 @@ export default function HomePage() {
               parking notes live on the{" "}
               <Link href="/visit">how to get here</Link> page. Overnight and open-now hours are on the{" "}
               <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link> guide.
-              Neighbourhood weed intent sits on{" "}
-              <Link href="/info/weed-store-near-the-junction">weed store near The Junction</Link>.
+              Neighbourhood weed-dispensary intent sits on{" "}
+              <Link href="/weed-dispensary-junction">weed dispensary in The Junction</Link>.
               Cannabis delivery for The Junction, High Park, and Bloor West Village is on{" "}
               <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>
               , with the live catalog on the{" "}
@@ -480,6 +480,8 @@ export default function HomePage() {
                 <br />
                 <Link className={styles.storeLink} href="/24-hour-junction-dispensary">24-hour Junction hours</Link>
                 <br />
+                <Link className={styles.storeLink} href="/weed-dispensary-junction">Junction weed dispensary</Link>
+                <br />
                 <Link className={styles.storeLink} href="/cannabis-delivery-junction">Junction cannabis delivery</Link>
               </p>
             </div>
@@ -494,7 +496,7 @@ export default function HomePage() {
               className={styles.mapFrame}
             />
           </div>
-          <LocalSeoMesh currentPath="/" heading="Visit, 24-hour hours, neighbourhood, delivery, cigarettes, vape, and flower" />
+          <LocalSeoMesh currentPath="/" heading="Visit, 24-hour hours, weed dispensary, delivery, cigarettes, vape, and flower" />
         </div>
       </section>
 

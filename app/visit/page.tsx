@@ -112,6 +112,9 @@ export default function VisitPage() {
             <Link className={styles.secondary} href="/24-hour-junction-dispensary">
               24-hour hours
             </Link>
+            <Link className={styles.secondary} href="/weed-dispensary-junction">
+              Junction weed dispensary
+            </Link>
           </div>
         </div>
       </section>
@@ -216,7 +219,7 @@ export default function VisitPage() {
                 {" · "}
                 <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link>
                 {" · "}
-                <Link href="/info/weed-store-near-the-junction">Weed store near The Junction</Link>
+                <Link href="/weed-dispensary-junction">Weed dispensary in The Junction</Link>
                 {" · "}
                 <Link href="/exotic-weed">Store menu</Link>
                 {" · "}
