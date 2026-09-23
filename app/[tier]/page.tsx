@@ -79,24 +79,48 @@ export default async function TierPage({
     ? fs.existsSync(path.join(process.cwd(), "public", config.banner))
     : false;
 
-  const faqJsonLd = seo
+  const tierJsonLd = seo
     ? {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: seo.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.q,
-          acceptedAnswer: { "@type": "Answer", text: faq.a },
-        })),
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": `https://www.gasjunctioncannabis.com/${tierSlug}#webpage`,
+            url: `https://www.gasjunctioncannabis.com/${tierSlug}`,
+            name: seo.seoTitle,
+            description: TIER_META_DESCRIPTION[tierInfo.key],
+            isPartOf: { "@type": "WebSite", "@id": "https://www.gasjunctioncannabis.com/#website" },
+            about: { "@id": "https://www.gasjunctioncannabis.com/#store" },
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: flowers.length,
+              itemListElement: flowers.map((flower, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: flower.name,
+                url: `https://www.gasjunctioncannabis.com/flower/${flower.slug}`,
+              })),
+            },
+          },
+          {
+            "@type": "FAQPage",
+            "@id": `https://www.gasjunctioncannabis.com/${tierSlug}#faq`,
+            mainEntity: seo.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
+            })),
+          },
+        ],
       }
     : null;
 
   return (
     <main className={styles.main}>
-      {faqJsonLd && (
+      {tierJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(tierJsonLd).replace(/</g, "\\u003c") }}
         />
       )}
       <Navbar />
