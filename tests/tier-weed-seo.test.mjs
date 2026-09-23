@@ -64,12 +64,13 @@ test("GJC01 nicotine and THC vape categories remain separate", () => {
   const nicotine = products.slice(products.indexOf('"VAPE PENS"'), products.indexOf('"VAPE DISPOSABLE"'));
   const thc = products.slice(products.indexOf('"VAPE DISPOSABLE"'), products.indexOf("CONCENTRATES:"));
   assert.match(nicotine, /name: "Nicotine Vape"/);
-  assert.match(nicotine, /seoTitle: "Nicotine Vapes Toronto \| Gas Junction Cannabis"/);
-  assert.match(nicotine, /kept separate from THC vape products/);
+  assert.match(nicotine, /seoTitle: "Nicotine Vape Menu at Keele & Dundas \| Gas Junction Cannabis"/);
+  assert.match(nicotine, /stays separate from THC vapes/);
   assert.match(thc, /name: "THC Vape"/);
   assert.match(navbar, /href: "\/items\/vapes", label: "Nicotine Vape"/);
   assert.match(navbar, /href: "\/items\/vape-disposables", label: "THC Vape"/);
-  assert.match(itemCategoryPage, /catSlug === "vapes"[\s\S]*<h1 className=\{styles\.heroTitle\}>\{config\.name\}<\/h1>/);
+  assert.match(itemCategoryPage, /vapes: "Nicotine Vape Menu at Keele & Dundas"/);
+  assert.match(itemCategoryPage, /<h1 className=\{styles\.heroTitle\}>\{categoryH1\}<\/h1>/);
 });
 
 test("held delivery route and behavior remain outside the migration", () => {
