@@ -29,6 +29,13 @@ test("tier canonicals and the Junction visit hub stay in place", () => {
   assert.doesNotMatch(footer, /href="\/weed-dispensary-toronto"/);
 });
 
+test("tier pages publish stable CollectionPage, ItemList and FAQPage schema", () => {
+  assert.match(tierPage, /"@type": "CollectionPage"/);
+  assert.match(tierPage, /"@type": "ItemList"/);
+  assert.match(tierPage, /"@type": "FAQPage"/);
+  assert.doesNotMatch(tierPage, /"@type": "Offer"/);
+});
+
 test("Version 2 Weed routes are the sole configured tier and guide owners", () => {
   const routeMap = [
     ["exotic", "exotic-weed"],
