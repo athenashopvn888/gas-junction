@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   description:
     "Gas Junction Cannabis is the 24-hour walk-in shop at 2813 Dundas St W in The Junction. Use the homepage for store details; this city URL is kept only as a legacy path.",
   alternates: {
-    canonical: STORE.origin,
+    canonical: `${STORE.origin}/weed-dispensary-toronto`,
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   openGraph: {
