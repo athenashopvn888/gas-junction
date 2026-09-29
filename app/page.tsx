@@ -226,7 +226,10 @@ export default function HomePage() {
             </p>
             <h1 className={styles.brandTitle}>
               GAS JUNCTION CANNABIS
-              <span className={styles.brandTitleExtend}> - Cannabis Delivery &amp; Dispensary in The Junction</span>
+              <span className={styles.brandTitleExtend}>
+                <span className="sr-only"> - </span>
+                Cannabis Delivery &amp; Dispensary in The Junction
+              </span>
             </h1>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
             <p className={styles.heroLead}>
