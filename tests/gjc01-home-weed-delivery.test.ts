@@ -12,7 +12,7 @@ const page = fs.readFileSync("app/page.tsx", "utf8");
 const globals = fs.readFileSync("app/globals.css", "utf8");
 
 test("homepage title, Open Graph title, and H1 use the locked phrase", () => {
-  const locked = "Gas Junction Cannabis - Weed Delivery & Cannabis Dispensary in The Junction";
+  const locked = "Gas Junction Cannabis Dispensary - Weed Delivery in The Junction";
   assert.equal(HOME_TITLE, locked);
   assert.match(page, /\{HOME_TITLE\}/);
   const layout = fs.readFileSync("app/layout.tsx", "utf8");
