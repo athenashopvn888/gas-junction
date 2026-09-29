@@ -221,6 +221,9 @@
 }
 
 @media (max-width: 486px) {
+  .topBar { padding: 0 12px; }
+  .brandText, .open { display: none; }
+  .logo { flex: 0 0 auto; }
   .topBarRight { flex: 1; }
   .menuChoices { width: 100%; gap: 5px; }
   .menuChoice { min-width: 0; min-height: 44px; padding: 7px 5px; font-size: 9px; }
