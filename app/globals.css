@@ -466,9 +466,11 @@ button { cursor: pointer; font-family: inherit; }
   border: 1px solid var(--border-subtle);
 }
 
-/* Fleet homepage announcements: reserve their full height above the fixed navigation. */
+/* Promo banners follow the fixed navigation in normal flow.
+   Their height must not offset the menu or it sticks over the hero. */
 :root {
   --fleet-homepage-announcement-height: 144px;
+  --homepage-nav-clearance: 138px;
 }
 
 [data-fleet-homepage-announcement] {
@@ -476,6 +478,7 @@ button { cursor: pointer; font-family: inherit; }
   grid-template-rows: 1fr 1fr;
   width: 100%;
   height: var(--fleet-homepage-announcement-height);
+  margin-top: var(--homepage-nav-clearance);
 }
 
 [data-fleet-homepage-announcement] > p {
@@ -484,8 +487,4 @@ button { cursor: pointer; font-family: inherit; }
   justify-content: center;
   min-height: 0;
   box-sizing: border-box;
-}
-
-main:has(> [data-fleet-homepage-announcement]) > #main-nav {
-  top: calc(var(--delivery-announcement-height, 0px) + var(--fleet-homepage-announcement-height)) !important;
 }

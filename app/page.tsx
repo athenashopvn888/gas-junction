@@ -12,6 +12,13 @@ import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
 import LocalSeoMesh from "./components/LocalSeoMesh";
 import { HOME_FAQS, STORE } from "./lib/store";
+import {
+  HOME_DELIVERY_CARDS,
+  HOME_DELIVERY_FAQS,
+  HOME_DELIVERY_H2,
+  HOME_DELIVERY_PARAGRAPHS,
+  HOME_TITLE,
+} from "./lib/homeDelivery";
 import Papa from "papaparse";
 
 /* ── Bento Mosaic Config ── */
@@ -77,7 +84,7 @@ const LOCAL_FAQS = HOME_FAQS;
 const homeFaqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: HOME_FAQS.map((faq) => ({
+  mainEntity: [...HOME_DELIVERY_FAQS, ...HOME_FAQS].map((faq) => ({
     "@type": "Question",
     name: faq.q,
     acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -189,9 +196,9 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd).replace(/</g, "\\u003c") }}
       />
-      <FleetAnnouncementBanner />
-      {/* ── NAVBAR ── */}
+      {/* ── NAVBAR: fixed below the site delivery bar; promos follow in normal flow ── */}
       <Navbar />
+      <FleetAnnouncementBanner />
       <HiringCallout />
 
       {/* ── WELCOME BANNER ── */}
@@ -224,13 +231,7 @@ export default function HomePage() {
               </svg>
               Delivery &amp; Retail in The Junction
             </p>
-            <h1 className={styles.brandTitle}>
-              GAS JUNCTION CANNABIS
-              <span className={styles.brandTitleExtend}>
-                <span className="sr-only"> - </span>
-                Cannabis Delivery &amp; Dispensary in The Junction
-              </span>
-            </h1>
+            <h1 className={styles.brandTitle}>{HOME_TITLE}</h1>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
             <p className={styles.heroLead}>
               Shop for fast, discreet local delivery in The Junction, or visit the dispensary.
@@ -268,6 +269,40 @@ export default function HomePage() {
                   <span className={styles.bentoPrice}>{tier.price}</span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={styles.deliverySection}
+        id="junction-weed-delivery"
+        aria-labelledby="home-delivery-heading"
+      >
+        <div className={styles.container}>
+          <div className={styles.deliveryPanel}>
+            <h2 id="home-delivery-heading" className={styles.deliveryTitle}>
+              {HOME_DELIVERY_H2}
+            </h2>
+            {HOME_DELIVERY_PARAGRAPHS.map((paragraph) => (
+              <p key={paragraph} className={styles.deliveryText}>
+                {paragraph}
+              </p>
+            ))}
+            <div className={styles.deliveryCards}>
+              {HOME_DELIVERY_CARDS.map((card) => (
+                <Link key={card.href} href={card.href} className={styles.deliveryCard}>
+                  <strong>{card.title}</strong>
+                  <span>{card.text}</span>
+                </Link>
+              ))}
+            </div>
+            <h3 className={styles.deliveryFaqTitle}>The Junction delivery questions</h3>
+            {HOME_DELIVERY_FAQS.map((faq) => (
+              <details key={faq.q} className={styles.faqItem}>
+                <summary className={styles.faqQuestion}>{faq.q}</summary>
+                <p className={styles.faqAnswer}>{faq.a}</p>
+              </details>
             ))}
           </div>
         </div>
