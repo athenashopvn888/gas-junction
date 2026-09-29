@@ -218,20 +218,36 @@ export default function HomePage() {
           {/* Brand branding */}
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
-            <h1 className={styles.brandTitle}>GAS JUNCTION CANNABIS</h1>
+            <p className={styles.heroEyebrow}>
+              <svg className={styles.heroEyebrowIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h8.2a2.5 2.5 0 0 1 2.3 1.5H20a1 1 0 0 1 1 1V16a2.5 2.5 0 0 1-2.5 2.5h-.17a3 3 0 0 1-5.66 0H10.3a3 3 0 0 1-5.66 0H4.5A2.5 2.5 0 0 1 2 16V8.5A2.5 2.5 0 0 1 3 6.5Zm2.5-.5a.5.5 0 0 0-.5.5V15h.17a3 3 0 0 1 2.66-1.5c.98 0 1.84.47 2.4 1.2L14 8.5V6h-8.5ZM16 8v3h3.2l-1.6-3H16Zm1.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-9 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+              </svg>
+              Delivery &amp; Retail in The Junction
+            </p>
+            <h1 className={styles.brandTitle}>
+              GAS JUNCTION CANNABIS
+              <span className={styles.brandTitleExtend}>
+                <span className="sr-only"> - </span>
+                Cannabis Delivery &amp; Dispensary in The Junction
+              </span>
+            </h1>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
+            <p className={styles.heroLead}>
+              Shop for fast, discreet local delivery in The Junction, or visit the dispensary.
+            </p>
+            <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
+              <Link href="/exotic-weed" className={`${styles.homeMenuCta} ${styles.homeMenuPrimary}`}>STORE MENU</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliverySecondary}`}>Delivery</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
+              <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>HOW TO GET HERE</Link>
+              <Link href="/24-hour-junction-dispensary" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>OPEN 24 HOURS</Link>
+            </div>
             <div className={styles.brandBadge}>Open 24 Hours Daily</div>
             <p className={styles.heroNap}>
               {STORE.streetAddress}, {STORE.city}, {STORE.region} {STORE.postalCode}
               {" · "}
               <a href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
             </p>
-            <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
-              <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
-              <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>HOW TO GET HERE</Link>
-              <Link href="/24-hour-junction-dispensary" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>OPEN 24 HOURS</Link>
-              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
-            </div>
           </div>
 
           {/* Bento Grid */}
