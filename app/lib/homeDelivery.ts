@@ -1,7 +1,7 @@
 /** Homepage delivery block for the GJC01 Junction service area. Existing URLs only. */
 
 export const HOME_TITLE =
-  "Gas Junction Cannabis - Weed Delivery & Cannabis Dispensary in The Junction";
+  "Gas Junction Cannabis Dispensary - Weed Delivery in The Junction";
 
 export const HOME_DELIVERY_H2 = "Weed Delivery in The Junction";
 
