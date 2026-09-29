@@ -7,11 +7,11 @@ import { STORE } from "./lib/store";
 export const metadata: Metadata = {
   metadataBase: new URL(STORE.origin),
   title: {
-    default: "Gas Junction Cannabis | The Junction Dispensary",
+    default: "Gas Junction Cannabis | The Junction Dispensary — Cannabis Delivery in The Junction",
     template: "%s | Gas Junction Cannabis",
   },
   description:
-    "Gas Junction Cannabis is the 24-hour walk-in dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas. Flower, pre-rolls, vapes, edibles, concentrates, and adult 19+ info.",
+    "Gas Junction Cannabis is the 24-hour walk-in dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local cannabis delivery or a visit to the dispensary. Flower, pre-rolls, vapes, edibles, concentrates, and adult 19+ info.",
   keywords: [
     "The Junction dispensary",
     "weed near Keele and Dundas",
@@ -24,15 +24,17 @@ export const metadata: Metadata = {
     "vapes",
     "pre-rolls",
     "weed store The Junction",
+    "cannabis delivery The Junction",
+    "The Junction cannabis dispensary",
   ],
   openGraph: {
     type: "website",
     locale: "en_CA",
     url: STORE.origin,
     siteName: "Gas Junction Cannabis",
-    title: "Gas Junction Cannabis | The Junction Dispensary",
+    title: "Gas Junction Cannabis | The Junction Dispensary — Cannabis Delivery in The Junction",
     description:
-      "24-hour walk-in cannabis shop at 2813 Dundas St W in The Junction, near Keele & Dundas. Adults 19+.",
+      "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery. Adults 19+.",
     images: [
       {
         url: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
@@ -44,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gas Junction Cannabis | The Junction Dispensary",
-    description: "24-hour walk-in cannabis shop at 2813 Dundas St W in The Junction, near Keele & Dundas. Adults 19+.",
+    title: "Gas Junction Cannabis | The Junction Dispensary — Cannabis Delivery in The Junction",
+    description: "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery. Adults 19+.",
     images: ["https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
   robots: {
@@ -71,11 +73,16 @@ export const metadata: Metadata = {
 const cannabisStoreJsonLd = {
   "@context": "https://schema.org",
   "@type": "CannabisStore",
-  additionalType: "https://schema.org/CannabisStore",
+  additionalType: [
+    "https://schema.org/CannabisStore",
+    "https://schema.org/LocalBusiness",
+    "https://schema.org/Organization",
+  ],
   "@id": STORE.origin,
-  name: STORE.name,
+  name: "Gas Junction Cannabis Dispensary",
+  alternateName: STORE.name,
   description:
-    "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.",
+    "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.",
   url: STORE.origin,
   telephone: STORE.phoneTel,
   image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
