@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import AgeGate from "./components/AgeGate";
 import { HOME_TITLE } from "./lib/homeDelivery";
 import { STORE } from "./lib/store";
 
@@ -172,7 +171,6 @@ export default function RootLayout({
           </p>
         </noscript>
         {children}
-        <AgeGate />
       </body>
     </html>
   );
