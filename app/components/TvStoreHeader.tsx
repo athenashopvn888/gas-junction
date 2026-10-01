@@ -12,7 +12,7 @@ export default function TvStoreHeader({
     <div className={styles.stack}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <img src="/banners/logo.jpg" alt="" />
+          <img src="/storeFavicon.webp" alt="Gas Junction Cannabis logo" />
           <div>
             <span className={styles.eyebrow}>{eyebrow}</span>
             <h1>{tvStore.name}</h1>
