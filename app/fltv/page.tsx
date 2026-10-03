@@ -6,7 +6,7 @@ import { CIGARETTE_FLASH_MESSAGE, isCigaretteFlashWindow } from "./flashMessages
 import { getFlowerEffects } from "./flowerEffects";
 import { TOP_TIER_BUNDLE_LABELS } from "./bundleLabels";
 import HiringRibbon from "../components/HiringRibbon";
-import TvStoreHeader from "../components/TvStoreHeader";
+import FlTvStoreHeader from "../components/FlTvStoreHeader";
 import { tvHiring } from "../lib/tvHiring";
 import { formatBoardTime, readStockUpdatedAt } from "../lib/tvStockTime";
 
@@ -245,7 +245,7 @@ function FlowerCard({
     <div className={`${styles.card} ${cardCls} ${tierCls}`}>
       {/* HEADER */}
       <div className={`${styles.cardHeader} ${isTop3 ? styles.headerSheen : ""}`}
-        style={{ background:`linear-gradient(180deg, ${accent} 0%, color-mix(in srgb, ${accent} 82%, #000 18%) 100%)` }}>
+        style={{ "--tier-accent": accent } as React.CSSProperties}>
         <span className={styles.tierCrown}>{TIER_CROWN[tier]||"🌿"}</span>
         <span className={styles.headerTitle}>
           {isTop3 ? (
@@ -502,7 +502,7 @@ function OZCard({ flowers, hiIdx }: { flowers: Flower[]; hiIdx: number }) {
   return (
     <div className={`${styles.card} ${styles.cardOz} ${styles.tierOz}`}>
       <div className={`${styles.cardHeader}`}
-        style={{ background:`linear-gradient(180deg, ${accent} 0%, color-mix(in srgb, ${accent} 82%, #000 18%) 100%)` }}>
+        style={{ "--tier-accent": accent } as React.CSSProperties}>
         <span className={styles.tierCrown}>🎯</span>
         <span className={styles.headerTitle}><span className={styles.headerDeal}>$40 up OZ</span></span>
         <div className={`${styles.tierBadge} ${styles.tierBadgeOz}`}><span>OZ</span></div>
@@ -614,7 +614,7 @@ function AddOnsCard({ items, hiIdx }: { items: Item[]; hiIdx: number }) {
   return (
     <div className={`${styles.card} ${styles.cardAddons}`}>
       <div className={styles.cardHeader}
-        style={{ background:"linear-gradient(180deg, #16a34a 0%, #0d7a38 100%)", fontSize:28, justifyContent:"center" }}>
+        style={{ "--tier-accent":"#16a34a", fontSize:28, justifyContent:"center" } as React.CSSProperties}>
         ADD ONS
       </div>
       <div className={styles.addonsBody}>
@@ -725,18 +725,6 @@ function VerticalTicker() {
    MAIN TV PAGE
    ============================================================ */
 export default function TVMenuPage() {
-  const [bgUrl, setBgUrl] = useState("");
-  useEffect(() => {
-    fetch("https://athena-cannabis-images.vercel.app/backgrounds/list.json")
-      .then(r => r.json())
-      .then(data => {
-        if (data && data.length) {
-          const hourIndex = Math.floor(Date.now() / (3600 * 1000)) % data.length;
-          setBgUrl(`https://athena-cannabis-images.vercel.app/backgrounds/${data[hourIndex]}`);
-        }
-      })
-      .catch(err => console.warn("[BG] Load failed:", err));
-  }, []);
   const [flowers, setFlowers] = useState<Record<string,Flower[]>>({});
   const [ozFlowers, setOzFlowers] = useState<Flower[]>([]);
   const [addOns, setAddOns] = useState<Item[]>([]);
@@ -811,7 +799,7 @@ export default function TVMenuPage() {
   }, []);
 
   useEffect(() => {
-    const colors = ['rgba(220,38,38,.12)','rgba(245,158,11,.10)','rgba(59,130,246,.10)','rgba(16,185,129,.08)','rgba(168,85,247,.08)'];
+    const colors = ['rgba(86,154,45,.16)','rgba(250,190,24,.12)','rgba(255,255,255,.08)','rgba(42,112,35,.12)'];
     setParticles(Array.from({length: 25}, (_, i) => {
       const size = 4 + Math.random() * 8;
       const color = colors[i % colors.length];
@@ -856,7 +844,7 @@ export default function TVMenuPage() {
   };
 
   return (
-    <div className={styles.tvPage} style={bgUrl ? { backgroundImage: `url(${bgUrl})`, backgroundSize: "cover" } : undefined}>
+    <div className={styles.tvPage}>
       {/* Floating particles */}
       <div className={styles.particles}>
         {particles.map((p, i) => (
@@ -871,7 +859,7 @@ export default function TVMenuPage() {
         ))}
       </div>
       <div className={styles.wrap} ref={wrapRef}>
-        <TvStoreHeader eyebrow="Flower Menu Board" stockUpdated={stockUpdated} />
+        <FlTvStoreHeader eyebrow="FLTV • Flower Menu Board" stockUpdated={stockUpdated} />
 
         {/* GRID */}
         <div className={styles.stage}>
