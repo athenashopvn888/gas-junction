@@ -34,8 +34,8 @@ const fmtTHC = (v?:string) => { const s=String(v||"").trim(); if(!s)return""; if
 const fmtMG = (v?:string) => { const s=String(v||"").trim(); if(!s)return""; if(/^\d+(\.\d+)?$/.test(s))return s+"mg"; return s; };
 
 /* -- ITEM CARD -- */
-function ItemCard({ title, accent, items, hiIdx, preset, offerOverlay = false }: {
-  title:string; accent:string; items:Item[]; hiIdx:number; preset:string; offerOverlay?:boolean;
+function ItemCard({ title, accent, items, hiIdx, preset, section, offerOverlay = false }: {
+  title:string; accent:string; items:Item[]; hiIdx:number; preset:string; section:string; offerOverlay?:boolean;
 }) {
   const MAX = 10;
   const hiW = Math.min(hiIdx % Math.max(1, items.length), items.length - 1);
@@ -65,7 +65,10 @@ function ItemCard({ title, accent, items, hiIdx, preset, offerOverlay = false }:
 
   return (
     <div className={`${styles.card} ${offerOverlay ? styles.timedPromoCard : ""}`} style={{"--accent":accent} as React.CSSProperties}>
-      <div className={styles.cardHeader}>{title}</div>
+      <div className={styles.cardHeader}>
+        <span className={styles.sectionCode}>MARKET {section}</span>
+        <span>{title}</span>
+      </div>
       <div className={styles.cardMain}>
         {/* LEFT */}
         <div className={styles.mediaSide}>
@@ -265,11 +268,18 @@ export default function TV2Page() {
     <div className={styles.tvPage}>
       <div className={styles.wrap} ref={wrapRef}>
         <FlTvStoreHeader eyebrow="FLTV2 • Secondary Menu Board" stockUpdated={stockUpdated} />
+        <div className={styles.marketBanner}>
+          <div>
+            <span>GAS JUNCTION FIELD EDITION</span>
+            <strong>THE GREEN MARKET</strong>
+          </div>
+          <p>SIX DEPARTMENTS · ONE BOARD · UPDATED THROUGHOUT THE DAY</p>
+        </div>
         {/* GRID */}
         <div className={styles.stage}>
           <HiringRibbon hiring={tvHiring} />
           <div className={styles.grid}>
-            {CARD_CONFIG.map(card => {
+            {CARD_CONFIG.map((card, index) => {
               const filtered = items.filter(card.filter);
               const promo = getTv2DaytimePromo(card.id, daytime);
 
@@ -281,7 +291,10 @@ export default function TV2Page() {
                     data-promo-card={card.id}
                     style={{"--accent":card.accent} as React.CSSProperties}
                   >
-                    <div className={styles.cardHeader}>PROMO</div>
+                    <div className={styles.cardHeader}>
+                      <span className={styles.sectionCode}>MARKET {String(index + 1).padStart(2, "0")}</span>
+                      <span>PROMO</span>
+                    </div>
                     <div className={styles.promoMain}>
                       <div className={styles.promoViewport}>
                         <img
@@ -309,6 +322,7 @@ export default function TV2Page() {
               return (
                 <ItemCard key={card.id} title={card.title} accent={card.accent}
                   items={filtered} hiIdx={highlights[card.id]||0} preset={card.preset}
+                  section={String(index + 1).padStart(2, "0")}
                   offerOverlay={card.id === "CIGARETTES" && cigaretteOfferVisible} />
               );
             })}

@@ -30,8 +30,12 @@ test("FLTV card chrome uses green and gold framing with compact tier accents", a
   ]);
 
   assert.match(fltv, /"--tier-accent": accent/);
+  assert.match(fltv, /HARVEST MAP/);
   assert.match(fltvCss, /border-bottom: 7px solid var\(--tier-accent/);
   assert.match(fltvCss, /linear-gradient\(180deg, #172317 0%, #040704 100%\)/);
+  assert.match(fltvCss, /\.harvestRail/);
   assert.match(fltv2Css, /border-bottom: 7px solid var\(--accent/);
   assert.match(fltv2Css, /0 0 0 5px rgba\(51, 105, 33, \.76\)/);
+  assert.match(fltv2Css, /\.marketBanner/);
+  assert.match(fltv2Css, /\.sectionCode/);
 });

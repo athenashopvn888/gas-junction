@@ -861,6 +861,32 @@ export default function TVMenuPage() {
       <div className={styles.wrap} ref={wrapRef}>
         <FlTvStoreHeader eyebrow="FLTV • Flower Menu Board" stockUpdated={stockUpdated} />
 
+        <div className={styles.harvestRail} aria-label="Flower tier harvest map">
+          <div className={styles.harvestRailTitle}>
+            <span>FIELD GUIDE</span>
+            <strong>HARVEST MAP</strong>
+          </div>
+          {TIERS.map((tier, index) => (
+            <div
+              key={tier}
+              className={styles.harvestStop}
+              style={{ "--tier-accent": TIER_ACCENT[tier] } as React.CSSProperties}
+            >
+              <span className={styles.harvestNumber}>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{tier}</strong>
+              <span>{TIER_UNIT[tier]} · {flowers[tier]?.length || 0} PICKS</span>
+            </div>
+          ))}
+          <div
+            className={styles.harvestStop}
+            style={{ "--tier-accent": TIER_ACCENT.OZ } as React.CSSProperties}
+          >
+            <span className={styles.harvestNumber}>06</span>
+            <strong>OUNCE</strong>
+            <span>{ozFlowers.length} PICKS</span>
+          </div>
+        </div>
+
         {/* GRID */}
         <div className={styles.stage}>
           <HiringRibbon hiring={tvHiring} />
