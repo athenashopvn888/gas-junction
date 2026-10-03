@@ -725,18 +725,6 @@ function VerticalTicker() {
    MAIN TV PAGE
    ============================================================ */
 export default function TVMenuPage() {
-  const [bgUrl, setBgUrl] = useState("");
-  useEffect(() => {
-    fetch("https://athena-cannabis-images.vercel.app/backgrounds/list.json")
-      .then(r => r.json())
-      .then(data => {
-        if (data && data.length) {
-          const hourIndex = Math.floor(Date.now() / (3600 * 1000)) % data.length;
-          setBgUrl(`https://athena-cannabis-images.vercel.app/backgrounds/${data[hourIndex]}`);
-        }
-      })
-      .catch(err => console.warn("[BG] Load failed:", err));
-  }, []);
   const [flowers, setFlowers] = useState<Record<string,Flower[]>>({});
   const [ozFlowers, setOzFlowers] = useState<Flower[]>([]);
   const [addOns, setAddOns] = useState<Item[]>([]);
@@ -811,7 +799,7 @@ export default function TVMenuPage() {
   }, []);
 
   useEffect(() => {
-    const colors = ['rgba(220,38,38,.12)','rgba(245,158,11,.10)','rgba(59,130,246,.10)','rgba(16,185,129,.08)','rgba(168,85,247,.08)'];
+    const colors = ['rgba(86,154,45,.16)','rgba(250,190,24,.12)','rgba(255,255,255,.08)','rgba(42,112,35,.12)'];
     setParticles(Array.from({length: 25}, (_, i) => {
       const size = 4 + Math.random() * 8;
       const color = colors[i % colors.length];
@@ -856,7 +844,7 @@ export default function TVMenuPage() {
   };
 
   return (
-    <div className={styles.tvPage} style={bgUrl ? { backgroundImage: `url(${bgUrl})`, backgroundSize: "cover" } : undefined}>
+    <div className={styles.tvPage}>
       {/* Floating particles */}
       <div className={styles.particles}>
         {particles.map((p, i) => (

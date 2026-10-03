@@ -8,8 +8,15 @@
   position: fixed;
   z-index: 1200;
   inset: 0;
-  background: url("/banners/TVbackground.png") no-repeat center center fixed;
-  background-size: cover;
+  --brand-black: #030503;
+  --brand-green: #4f8f2f;
+  --brand-green-bright: #72b842;
+  --brand-gold: #f4b812;
+  --brand-red: #e3130b;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(79, 143, 47, 0.34), transparent 28%),
+    radial-gradient(circle at 88% 92%, rgba(79, 143, 47, 0.23), transparent 30%),
+    linear-gradient(145deg, #071008 0%, var(--brand-black) 46%, #0c170d 100%);
   color: #ecfdf5;
   font: 650 clamp(18px,1.25vw,22px)/1.18 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   overflow: hidden;
@@ -23,8 +30,9 @@
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 80% at 15% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 80% at 85% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+    linear-gradient(115deg, transparent 0 44%, rgba(244, 184, 18, 0.035) 44.2% 44.5%, transparent 44.7% 100%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 96px),
+    radial-gradient(ellipse 70% 60% at 50% 105%, rgba(72, 132, 42, 0.22), transparent 68%);
   pointer-events: none;
   z-index: 0;
 }
@@ -154,11 +162,14 @@
   box-sizing: border-box;
   margin-left: 90px;
   margin-right: 90px;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(180deg, rgba(12, 20, 12, 0.96), rgba(2, 5, 2, 0.94));
+  border: 3px solid rgba(91, 158, 53, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 22px 58px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow:
+    0 30px 76px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(244,184,18,.24),
+    inset 0 1px 0 rgba(255,255,255,.11);
   position: relative;
 }
 
@@ -170,7 +181,9 @@
   border-radius: 22px;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+  background:
+    linear-gradient(90deg, transparent, rgba(244,184,18,.12), transparent),
+    linear-gradient(180deg, rgba(99,167,54,.11) 0%, transparent 100%);
 }
 
 /* ── GRID — 4 cols × 2 rows (like the original TVMenu) ── */
@@ -183,7 +196,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.30fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 48px;
+  gap: 40px;
   grid-template-areas:
     "EXOTIC  PREMIUM AAA    ADDONS"
     "AA      BUDGET  OZ     ADDONS";
@@ -192,11 +205,14 @@
 /* ── CARD ── */
 .card {
   background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 2px solid rgba(95, 153, 55, 0.38);
   border-radius: 20px;
   overflow: hidden;
   /* Raised 3D: layered shadow stack */
-  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.95), 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1), 0 2px 0 rgba(255,255,255,0.9) inset;
+  box-shadow:
+    0 34px 72px -22px rgba(0,0,0,.94),
+    0 0 0 2px rgba(244,184,18,.11),
+    0 2px 0 rgba(255,255,255,.9) inset;
   transform: translateY(-2px);
   display: flex;
   flex-direction: column;
@@ -1374,6 +1390,25 @@
   padding: 2px 8px;
   border-radius: 8px;
   z-index: 999;
+}
+
+/* Farmers Link-inspired presentation layer: dark field, green growth line,
+   gold trim and red callouts while preserving Gas Junction identity. */
+.ticker {
+  color: #fff;
+  background: linear-gradient(180deg, rgba(16, 24, 16, .98), rgba(2, 5, 2, .98));
+  border: 2px solid rgba(91, 158, 53, .84);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,.62),
+    0 0 0 1px rgba(244,184,18,.34),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.lastUpdated {
+  color: #f7cf4b;
+  background: rgba(2, 5, 2, .92);
+  border: 1px solid rgba(91, 158, 53, .72);
+  box-shadow: 0 8px 20px rgba(0,0,0,.34);
 }
 
 /* Header + hiring ribbon take vertical space. Keep every product row on screen. */
