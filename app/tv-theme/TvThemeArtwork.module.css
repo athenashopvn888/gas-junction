@@ -29,21 +29,29 @@
 .slogans {
   position: absolute;
   z-index: 4;
-  top: 38px;
+  top: clamp(6px, 0.5vw, 18px);
   left: 50%;
-  width: 42%;
+  width: 46%;
   transform: translateX(-50%);
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 80px;
+  gap: clamp(18px, 2vw, 76px);
   color: var(--tv-theme-header-text);
-  font-size: 24px;
+  font-size: clamp(10px, 0.65vw, 24px);
   font-weight: 950;
-  letter-spacing: 4px;
+  letter-spacing: clamp(1.5px, 0.11vw, 4px);
   text-transform: uppercase;
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.8), 0 0 18px var(--tv-theme-glow);
   pointer-events: none;
+}
+
+.slogans span {
+  white-space: nowrap;
+}
+
+.slogans span:last-child {
+  text-align: right;
 }
 
 .footer {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import FleetAnnouncementBanner from "./components/FleetAnnouncementBanner";
 import Navbar from "./components/Navbar";
@@ -20,6 +21,8 @@ import {
   HOME_TITLE,
 } from "./lib/homeDelivery";
 import Papa from "papaparse";
+
+const WELCOME_BANNER_SRC = "/home/gjc01-hero.webp";
 
 /* ── Bento Mosaic Config ── */
 const BENTO_TIERS = [
@@ -108,7 +111,7 @@ export default function HomePage() {
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
   const [reviewsLoading, setReviewsLoading] = useState(true);
   const [welcomeBannerError, setWelcomeBannerError] = useState(false);
-  const welcomeBannerSrc: string = "/banners/welcome_banner.webp";
+  const welcomeBannerSrc: string = WELCOME_BANNER_SRC;
   const hasWelcomeBanner = welcomeBannerSrc && welcomeBannerSrc !== "/banners/" && !welcomeBannerSrc.includes("HERO_BANNER") && !welcomeBannerSrc.includes("WELCOME_BANNER") && welcomeBannerSrc !== "";
 
   /* ── 1. Fetch Client-Side Google Reviews ── */
@@ -205,12 +208,23 @@ export default function HomePage() {
       {hasWelcomeBanner && !welcomeBannerError && (
         <section className={styles.welcomeBannerSection}>
           <div className={styles.welcomeBannerContainer}>
-            <img
+            <Image
               src={welcomeBannerSrc}
-              alt="Welcome to Gas Junction Cannabis — 24-hour walk-in dispensary in The Junction"
+              alt="Gas Junction Cannabis Dispensary - Weed Delivery"
+              width={1672}
+              height={941}
+              priority
+              sizes="100vw"
               className={styles.welcomeBannerImg}
               onError={() => setWelcomeBannerError(true)}
             />
+            <nav className={styles.welcomeBannerHotspots} aria-label="Shop Gas Junction Cannabis flower tiers">
+              <Link href="/exotic-weed" aria-label="Shop Exotic weed" />
+              <Link href="/premium-weed" aria-label="Shop Premium weed" />
+              <Link href="/aaa-weed" aria-label="Shop AAA+ weed" />
+              <Link href="/aa-weed" aria-label="Shop AA weed" />
+              <Link href="/budget-weed" aria-label="Shop Budget weed" />
+            </nav>
           </div>
         </section>
       )}
