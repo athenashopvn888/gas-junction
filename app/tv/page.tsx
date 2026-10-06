@@ -10,6 +10,7 @@ import { tvHiring } from "../lib/tvHiring";
 import { formatBoardTime, readStockUpdatedAt } from "../lib/tvStockTime";
 import TvThemeArtwork from "../tv-theme/TvThemeArtwork";
 import { getTvTheme, getTvThemeVariables } from "../tv-theme/theme";
+import TvReviewQr from "../TvReviewQr";
 
 /* -- Types -- */
 interface PricePoint { regular: number; sale: number | null; }
@@ -645,7 +646,6 @@ function AddOnsCard({ items, hiIdx }: { items: Item[]; hiIdx: number }) {
           <div className={styles.addonsDetailCard}>
             <div className={styles.addonsDetailName}>{hi?.name||""}</div>
             <div className={styles.addonsDetailPrice}>PRICE {(hi?.price||'').replace(/\[object.*\]/,'')}</div>
-            <div className={styles.effectIcons}>CURRENT MENU ITEM</div>
           </div>
         </div>
 
@@ -672,6 +672,7 @@ function AddOnsCard({ items, hiIdx }: { items: Item[]; hiIdx: number }) {
             </div>
           ))}
         </div>
+        <TvReviewQr storeName="Gas Junction Cannabis" />
       </div>
     </div>
   );
