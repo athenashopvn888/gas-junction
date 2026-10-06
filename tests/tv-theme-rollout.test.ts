@@ -18,6 +18,33 @@ test("GJC01 theme assets and data entry are complete", async () => {
   }
 });
 
+test("GJC01 TV boards center in the full viewport and do not reserve QR width", async () => {
+  const [tv, tv2] = await Promise.all([
+    readFile("app/tv/page.tsx", "utf8"),
+    readFile("app/tv2/page.tsx", "utf8"),
+  ]);
+  for (const page of [tv, tv2]) {
+    assert.doesNotMatch(page, /reviewQrSafeArea|availableW/);
+    assert.match(page, /Math\.min\(W\s*\/\s*3840, H\s*\/\s*2160\)/);
+    assert.match(page, /Math\.round\(\(W - 3840\*s\)\/2\)/);
+  }
+});
+
+test("homepage hero is optimized, stable and linked only to matching tiers", async () => {
+  const [page, css, hero] = await Promise.all([
+    readFile("app/page.tsx", "utf8"),
+    readFile("app/page.module.css", "utf8"),
+    stat("public/home/gjc01-hero.webp"),
+  ]);
+  assert.ok(hero.size > 0 && hero.size < 500 * 1024, "homepage hero must be below 500 KB");
+  assert.match(page, /alt="Gas Junction Cannabis Dispensary - Weed Delivery"/);
+  assert.match(page, /width=\{1672\}[\s\S]*height=\{941\}[\s\S]*priority[\s\S]*sizes="100vw"/);
+  for (const route of ["exotic-weed", "premium-weed", "aaa-weed", "aa-weed", "budget-weed"]) {
+    assert.match(page, new RegExp(`href="/${route}"`));
+  }
+  assert.match(css, /\.welcomeBannerImg[\s\S]*object-fit: contain/);
+});
+
 test("cigarette promos alternate for five seconds every thirty seconds", () => {
   assert.equal(CIGARETTE_OFFER_CYCLE_MS, 30_000);
   assert.equal(CIGARETTE_OFFER_VISIBLE_MS, 5_000);
