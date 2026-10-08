@@ -16,7 +16,7 @@ import { getWebMenuData } from "../../lib/webMenu";
 import LocalSeoMesh from "../../components/LocalSeoMesh";
 import styles from "./items.module.css";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 const CATEGORY_H1: Record<string, string> = {
   cigarettes: "Cigarette Menu at Keele & Dundas",

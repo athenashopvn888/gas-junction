@@ -15,7 +15,7 @@ import {
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import styles from "./tier.module.css";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 /* -- Generate all tier pages at build -- */
 export function generateStaticParams() {
