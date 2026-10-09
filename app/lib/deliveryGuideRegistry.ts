@@ -16,6 +16,6 @@ export type DeliveryGuideEntry = {
   action_path: string;
 };
 
-export const DELIVERY_GUIDE_STORE = { domain: "https://www.gasjunctioncannabis.com" } as const;
+export const DELIVERY_GUIDE_STORE = { domain: "www.gasjunctioncannabis.com" } as const;
 export const DELIVERY_GUIDE_REGISTRY = deliveryGuideCopy as DeliveryGuideEntry[];
 export const getDeliveryGuide = (slug: string) => DELIVERY_GUIDE_REGISTRY.find((guide) => guide.slug === slug);
