@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { HOME_TITLE } from "./lib/homeDelivery";
+import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import { STORE } from "./lib/store";
 
 export const metadata: Metadata = {
   metadataBase: new URL(STORE.origin),
   title: {
-    default: HOME_TITLE,
+    default: HOME_DOC_TITLE,
     template: "%s | Gas Junction Cannabis",
   },
   description:
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: STORE.origin,
     siteName: "Gas Junction Cannabis",
-    title: HOME_TITLE,
+    title: HOME_DOC_TITLE,
     description:
       "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery. Adults 19+.",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: HOME_TITLE,
+    title: HOME_DOC_TITLE,
     description: "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery. Adults 19+.",
     images: ["https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
