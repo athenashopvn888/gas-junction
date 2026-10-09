@@ -60,3 +60,6 @@ export const HOME_DELIVERY_FAQS = [
     a: "No. The Keele & Dundas dispensary is open 24 hours daily. Delivery is a separate local service with a posted 10:00 a.m. to 10:00 p.m. window.",
   },
 ] as const;
+
+// Document <title> only (exact Google name | area). H1 keeps HOME_TITLE.
+export const HOME_DOC_TITLE = "Gas Junction Cannabis Dispensary Weed Delivery | The Junction";
