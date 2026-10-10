@@ -5,6 +5,7 @@ import LocalSeoMesh from "./LocalSeoMesh";
 import { STORE } from "../lib/store";
 import type { OrganicVerticalPageData } from "../lib/organicVerticalPages";
 import styles from "../visit/visit.module.css";
+import VapeActionPanel from "./VapeActionPanel";
 
 export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPageData }) {
   const faqJsonLd = {
@@ -78,6 +79,8 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
           </div>
         </div>
       </section>
+
+      {page.path === "/nicotine-vape-junction" && <VapeActionPanel compact />}
 
       <section className={styles.section}>
         <div className={styles.container}>

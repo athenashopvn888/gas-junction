@@ -29,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/cannabis-delivery-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/native-cigarettes-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/nicotine-vape-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/vape-shop-the-junction`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${BASE}/weed-dispensary-junction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/careers/budtender`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

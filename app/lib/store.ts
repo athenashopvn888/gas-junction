@@ -37,6 +37,7 @@ export const LOCAL_MESH_LINKS = [
   { href: "/delivery", label: "Delivery menu" },
   { href: "/native-cigarettes-junction", label: "Native cigarettes in The Junction" },
   { href: "/nicotine-vape-junction", label: "Nicotine vape in The Junction" },
+  { href: "/vape-shop-the-junction", label: "Current Junction vape listings" },
 ] as const;
 
 export const TIER_MESH_LINKS = [

@@ -14,6 +14,7 @@ import {
 } from "../../lib/products";
 import { getWebMenuData } from "../../lib/webMenu";
 import LocalSeoMesh from "../../components/LocalSeoMesh";
+import VapeActionPanel from "../../components/VapeActionPanel";
 import styles from "./items.module.css";
 
 export const dynamic = "force-dynamic";
@@ -105,6 +106,8 @@ export default async function ItemsCategoryPage({
           </div>
         )}
       </section>
+
+      {(catSlug === "vapes" || catSlug === "vape-disposables") && <VapeActionPanel compact />}
 
       {categoryH1 && (
         <section className={styles.heroContent} style={{ padding: "24px", textAlign: "center" }}>
