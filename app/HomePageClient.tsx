@@ -1,0 +1,581 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "./page.module.css";
+import FleetAnnouncementBanner from "./components/FleetAnnouncementBanner";
+import Navbar from "./components/Navbar";
+import HiringCallout from "./components/HiringCallout";
+import Footer from "./components/Footer";
+import FlowerCard from "./components/FlowerCard";
+import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
+import LocalSeoMesh from "./components/LocalSeoMesh";
+import { HOME_FAQS, STORE } from "./lib/store";
+import {
+  HOME_DELIVERY_CARDS,
+  HOME_DELIVERY_FAQS,
+  HOME_DELIVERY_H2,
+  HOME_DELIVERY_PARAGRAPHS,
+  HOME_TITLE,
+} from "./lib/homeDelivery";
+import Papa from "papaparse";
+import { useLiveFlowers } from "./lib/useLiveMenu";
+import { storeTierRange, tierRangeText } from "./lib/tierPriceRanges";
+
+const WELCOME_BANNER_SRC = "/home/gjc01-hero.webp";
+
+/* ── Bento Mosaic Config ── */
+const BENTO_TIERS = [
+  {
+    name: "EXOTIC WEED",
+    key: "EXOTIC",
+    slug: "exotic-weed",
+    price: "$10-$12/g",
+    banner: "/banners/exotics_banner.webp",
+    className: styles.bentoExotic,
+  },
+  {
+    name: "PREMIUM WEED",
+    key: "PREMIUM",
+    slug: "premium-weed",
+    price: "$7-$10/g",
+    banner: "/banners/premium_banner.webp",
+    className: styles.bentoPremium,
+  },
+  {
+    name: "AAA+ WEED",
+    key: "AAA+",
+    slug: "aaa-weed",
+    price: "$5-$6/g",
+    banner: "/banners/aaa_plus_banner.webp",
+    className: styles.bentoTile,
+  },
+  {
+    name: "AA WEED",
+    key: "AA",
+    slug: "aa-weed",
+    price: "$4/g",
+    banner: "/banners/aa_banner.webp",
+    className: styles.bentoTile,
+  },
+  {
+    name: "BUDGET WEED",
+    key: "BUDGET",
+    slug: "budget-weed",
+    price: "$3/g",
+    banner: "/banners/budget_banner.webp",
+    className: styles.bentoTile,
+  },
+  {
+    name: "EDIBLES • PREROLLS • MORE",
+    key: null,
+    slug: "items/edibles",
+    price: "Shop Tiers",
+    banner: "/banners/edibles_prerolls_more_banner.webp",
+    className: styles.bentoEdibles,
+  },
+];
+
+/* ── Explore Categories Config (New Banners) ── */
+const EXPLORE_CATEGORIES = [
+  { name: "Nicotine Vape", slug: "items/vapes", banner: "/banners/01_Vape_Pens.webp", icon: "💨" },
+  { name: "THC Vape", slug: "items/vape-disposables", banner: "/banners/02_Vape_Disposable.webp", icon: "💨" },
+  { name: "Concentrates", slug: "items/concentrates", banner: "/banners/03_Concentrates.webp", icon: "💎" },
+  { name: "Pre-Rolls", slug: "items/prerolls", banner: "/banners/04_Pre_Rolls.webp", icon: "🚬" },
+  { name: "Accessories", slug: "items/add-ons", banner: "/banners/05_Accessories.webp", icon: "➕" },
+  { name: "Cigarettes", slug: "items/cigarettes", banner: "/banners/native-cigarette-offer-20260822.webp", icon: "🏷️" },
+  { name: "Magic Stuff", slug: "items/magic", banner: "/banners/09_Magic_Stuff.webp", icon: "🍄" },
+];
+
+/* ── Local FAQs (must match homepage FAQPage JSON-LD) ── */
+const LOCAL_FAQS = HOME_FAQS;
+
+const homeFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [...HOME_DELIVERY_FAQS, ...HOME_FAQS].map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+
+interface Review {
+  name: string;
+  comment: string;
+  date: string;
+}
+
+interface ReviewStats {
+  total: number;
+  avg: number;
+}
+
+export default function HomePageClient({ initialFlowers }: { initialFlowers: Parameters<typeof storeTierRange>[0] }) {
+    const __liveFlowers = useLiveFlowers();
+  const [featuredStrains, setFeaturedStrains] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [welcomeBannerError, setWelcomeBannerError] = useState(false);
+  const welcomeBannerSrc: string = WELCOME_BANNER_SRC;
+  const hasWelcomeBanner = welcomeBannerSrc && welcomeBannerSrc !== "/banners/" && !welcomeBannerSrc.includes("HERO_BANNER") && !welcomeBannerSrc.includes("WELCOME_BANNER") && welcomeBannerSrc !== "";
+
+  /* ── 1. Fetch Client-Side Google Reviews ── */
+  useEffect(() => {
+    const STORE_KEY = "GJC01";
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSu6iy9W3YKRzBYo_r96rXcbJsAOzlkzn5Rw9QMFnE0NbYSBgPxKX8kPRZNC9QcffZYj57155esmnqH/pub?gid=1555782756&single=true&output=csv";
+
+    fetch(url)
+      .then((r) => {
+        if (!r.ok) throw new Error(`Review feed returned ${r.status}`);
+        return r.text();
+      })
+      .then((raw) => {
+        const rows = Papa.parse<Record<string, string>>(raw, {
+          header: true,
+          skipEmptyLines: true,
+        }).data;
+
+        const reviewsPool: Review[] = [];
+        let totalVal: number | null = null;
+        let avgVal: number | null = null;
+        let hasStats = false;
+
+        rows.forEach((row) => {
+          if (row.StoreKey !== STORE_KEY) return;
+
+          const rn = row.ReviewerName || "";
+          if (rn === "__STATS__") {
+            const parsedTotal = parseInt(row.Comment || "", 10);
+            const parsedAvg = parseFloat(row.CreateTime || "");
+            if (Number.isFinite(parsedTotal) && Number.isFinite(parsedAvg)) {
+              totalVal = parsedTotal;
+              avgVal = parsedAvg;
+              hasStats = true;
+            }
+            return;
+          }
+
+          const comment = row.Comment || "";
+          if (!comment || comment.length < 10) return;
+          const name = rn || "Customer";
+          const dateStr = row.CreateTime || "";
+          reviewsPool.push({ name, comment, date: dateStr });
+        });
+
+        setReviews(reviewsPool.slice(0, 6));
+        if (hasStats && totalVal !== null && avgVal !== null) {
+          setReviewsStats({ total: totalVal, avg: avgVal });
+        }
+        setReviewsLoading(false);
+      })
+      .catch((err) => {
+        console.warn("Reviews fetch failed:", err);
+        setReviewsLoading(false);
+      });
+  }, []);
+
+  /* ── 2. Build Featured Strains ── */
+  useEffect(() => {
+    const pool = [...__liveFlowers].filter((f) => f.image);
+    // Shuffle pool securely
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+
+    const picked: typeof pool = [];
+    const tierCounts: Record<string, number> = {};
+
+    for (const f of pool) {
+      if (picked.length >= 8) break;
+      const tc = tierCounts[f.tier] || 0;
+      if (tc >= 2) continue; // max 2 per tier
+      if (picked.some((p) => p.name === f.name)) continue; // avoid exact duplicates
+      picked.push(f);
+      tierCounts[f.tier] = tc + 1;
+    }
+
+    setFeaturedStrains(picked);
+  }, [__liveFlowers]);
+
+  return (
+    <main className={styles.main}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd).replace(/</g, "\\u003c") }}
+      />
+      {/* ── NAVBAR: fixed below the site delivery bar; promos follow in normal flow ── */}
+      <Navbar />
+      <FleetAnnouncementBanner />
+      <HiringCallout />
+
+      {/* ── WELCOME BANNER ── */}
+      {hasWelcomeBanner && !welcomeBannerError && (
+        <section className={styles.welcomeBannerSection}>
+          <div className={styles.welcomeBannerContainer}>
+            <Image
+              src={welcomeBannerSrc}
+              alt="Gas Junction Cannabis Dispensary - Weed Delivery"
+              width={1672}
+              height={941}
+              priority
+              sizes="100vw"
+              className={styles.welcomeBannerImg}
+              onError={() => setWelcomeBannerError(true)}
+            />
+            <nav className={styles.welcomeBannerHotspots} aria-label="Shop Gas Junction Cannabis flower tiers">
+              <Link href="/exotic-weed" aria-label="Shop Exotic weed" />
+              <Link href="/premium-weed" aria-label="Shop Premium weed" />
+              <Link href="/aaa-weed" aria-label="Shop AAA+ weed" />
+              <Link href="/aa-weed" aria-label="Shop AA weed" />
+              <Link href="/budget-weed" aria-label="Shop Budget weed" />
+            </nav>
+          </div>
+        </section>
+      )}
+
+      {/* ── BENTO MOSAIC HERO ── */}
+      <section className={styles.hero}>
+        <div className={styles.heroBg} />
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroStars} />
+
+        <div className={styles.heroContent}>
+          {/* Brand branding */}
+          <div className={styles.brandBlock}>
+            <img src="/storeFavicon.webp" alt="Gas Junction Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
+            <p className={styles.heroEyebrow}>
+              <svg className={styles.heroEyebrowIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h8.2a2.5 2.5 0 0 1 2.3 1.5H20a1 1 0 0 1 1 1V16a2.5 2.5 0 0 1-2.5 2.5h-.17a3 3 0 0 1-5.66 0H10.3a3 3 0 0 1-5.66 0H4.5A2.5 2.5 0 0 1 2 16V8.5A2.5 2.5 0 0 1 3 6.5Zm2.5-.5a.5.5 0 0 0-.5.5V15h.17a3 3 0 0 1 2.66-1.5c.98 0 1.84.47 2.4 1.2L14 8.5V6h-8.5ZM16 8v3h3.2l-1.6-3H16Zm1.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-9 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+              </svg>
+              Delivery &amp; Retail in The Junction
+            </p>
+            <h1 className={styles.brandTitle}>{HOME_TITLE}</h1>
+            <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
+            <p className={styles.heroLead}>
+              Shop for fast, discreet local delivery in The Junction, or visit the dispensary.
+            </p>
+            <div className={styles.homeMenuActions} aria-label="Choose a Gas Junction menu">
+              <Link href="/exotic-weed" className={`${styles.homeMenuCta} ${styles.homeMenuPrimary}`}>STORE MENU</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliverySecondary}`}>Delivery</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
+              <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>HOW TO GET HERE</Link>
+              <Link href="/24-hour-junction-dispensary" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>OPEN 24 HOURS</Link>
+            </div>
+            <div className={styles.brandBadge}>Open 24 Hours Daily</div>
+            <p className={styles.heroNap}>
+              {STORE.streetAddress}, {STORE.city}, {STORE.region} {STORE.postalCode}
+              {" · "}
+              <a href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+            </p>
+          </div>
+
+          {/* Bento Grid */}
+          <p className="price-rule-notice"><strong>IN-STORE PRICES ONLY.</strong> These prices do not apply to delivery orders. Delivery has its own prices. Why? <Link href="/faq#delivery-price-rule">See the FAQ</Link></p>
+          <div className={styles.bentoGrid}>
+            {BENTO_TIERS.map((tier) => (
+              <Link
+                key={tier.slug}
+                href={`/${tier.slug}`}
+                className={`${styles.bentoTile} ${tier.className}`}
+              >
+                <div
+                  className={styles.bentoTileBg}
+                  style={{ backgroundImage: `url('${tier.banner}')` }}
+                />
+                <div className={styles.bentoTileOverlay} />
+                <div className={styles.bentoTileContent}>
+                  <span className={styles.bentoLabel}>{tier.name}</span>
+                  {tier.key ? (() => { const line = tierRangeText(storeTierRange(initialFlowers, tier.key)); return line ? <span className={styles.bentoPrice}><small className="price-scope-label">In-store price</small>{line}</span> : null; })() : <span className={styles.bentoPrice}>{tier.price}</span>}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={styles.deliverySection}
+        id="junction-weed-delivery"
+        aria-labelledby="home-delivery-heading"
+      >
+        <div className={styles.container}>
+          <div className={styles.deliveryPanel}>
+            <h2 id="home-delivery-heading" className={styles.deliveryTitle}>
+              {HOME_DELIVERY_H2}
+            </h2>
+            {HOME_DELIVERY_PARAGRAPHS.map((paragraph) => (
+              <p key={paragraph} className={styles.deliveryText}>
+                {paragraph}
+              </p>
+            ))}
+            <div className={styles.deliveryCards}>
+              {HOME_DELIVERY_CARDS.map((card) => (
+                <Link key={card.href} href={card.href} className={styles.deliveryCard}>
+                  <strong>{card.title}</strong>
+                  <span>{card.text}</span>
+                </Link>
+              ))}
+            </div>
+            <h3 className={styles.deliveryFaqTitle}>The Junction delivery questions</h3>
+            {HOME_DELIVERY_FAQS.map((faq) => (
+              <details key={faq.q} className={styles.faqItem}>
+                <summary className={styles.faqQuestion}>{faq.q}</summary>
+                <p className={styles.faqAnswer}>{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── EXPLORE CATEGORIES ── */}
+      <section className={styles.categoriesSection} id="menu">
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Explore Categories</h2>
+            <p className={styles.sectionSubtitle}>
+              From custom disposable vapes and concentrates to accessories and cigarettes.
+            </p>
+          </div>
+
+          <div className={styles.categoriesGrid}>
+            {EXPLORE_CATEGORIES.map((cat) => (
+              <Link
+                key={cat.slug}
+                href={`/${cat.slug}`}
+                className={styles.categoryCard}
+              >
+                <div
+                  className={styles.categoryCardBg}
+                  style={{ backgroundImage: `url('${cat.banner}')` }}
+                />
+                <div className={styles.categoryCardOverlay} />
+                <div className={styles.categoryCardContent}>
+                  <h3 className={styles.categoryCardName}>
+                    {cat.icon} {cat.name} <span className={styles.categoryCardArrow}>→</span>
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <WeedDiscoveryModule />
+
+      {/* ── FEATURED PRODUCTS ── */}
+      <section className={styles.featuredSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Featured Strains</h2>
+            <p className={styles.sectionSubtitle}>
+              Featured menu items pulled from the current store data.
+            </p>
+          </div>
+
+          <div className={styles.featuredScroll}>
+            {featuredStrains.map((strain, i) => (
+              <div key={`${strain.sku}-${i}`} className={styles.scrollItem}>
+                <FlowerCard flower={strain} tierKey={strain.tier} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEO PANEL WRITE-UP ── */}
+      <section className={styles.seoSection}>
+        <div className={styles.container}>
+          <div className={styles.seoPanel}>
+            <h2 className={styles.seoPanelTitle}>Walk in at Keele &amp; Dundas — The Junction&apos;s 24-hour cannabis shop</h2>
+            <p className={styles.seoPanelText}>
+              <strong>Gas Junction Cannabis</strong> is the walk-in counter at {STORE.addressLine},
+              just west of Keele &amp; Dundas in The Junction. This is a neighbourhood shop for
+              people already on Dundas, coming north from Keele Station, or cutting over from
+              Junction Triangle, High Park North, Bloor West Village, Runnymede, or Annette Street —
+              not a city-wide Toronto dispensary page.
+            </p>
+            <p className={styles.seoPanelText}>
+              The door is open 24 hours daily. Bring government-issued photo ID; you must be 19+.
+              No appointment. Flower is stacked in clear tiers so you can compare budget through
+              exotic without a sales script, and the same stop covers pre-rolls, vapes, edibles,
+              concentrates, accessories, and cigarettes. Listings move, so use the current menu
+              as planning, then confirm on the floor.
+            </p>
+            <p className={styles.seoPanelText}>
+              Last mile is simple: Line 2 to Keele Station, walk north on Keele to Dundas, then
+              west to 2813. The 40 Junction bus runs the Dundas face. Street parking is the usual
+              option — read the signs, especially when evening restaurant traffic fills the curb.
+              Need a landmark check before you leave? Call {STORE.phoneDisplay}. Full transit and
+              parking notes live on the{" "}
+              <Link href="/visit">how to get here</Link> page. Overnight and open-now hours are on the{" "}
+              <Link href="/24-hour-junction-dispensary">24-hour Junction dispensary</Link> guide.
+              Neighbourhood weed-dispensary intent sits on{" "}
+              <Link href="/weed-dispensary-junction">weed dispensary in The Junction</Link>.
+              Cannabis delivery for The Junction, High Park, and Bloor West Village is on{" "}
+              <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>
+              , with the live catalog on the{" "}
+              <Link href="/delivery">delivery menu</Link>.
+              Cigarettes and nicotine vapes have Junction pages at{" "}
+              <Link href="/native-cigarettes-junction">Native cigarettes</Link>
+              {" "}and{" "}
+              <Link href="/nicotine-vape-junction">nicotine vape</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CLIENT-SIDE GOOGLE REVIEWS SHOWCASE ── */}
+      <section className={styles.reviewsSection}>
+        <div className={styles.container}>
+          <div className={styles.reviewsHeader}>
+            <h2 className={styles.sectionTitle}>Customer Feedback</h2>
+            {reviewsStats && (
+              <div className={styles.reviewsStarsSummary}>
+                <span className={styles.reviewsStars}>★★★★★</span>
+                <span className={styles.reviewsAvg}>
+                  {reviewsStats.avg.toFixed(1)}
+                </span>
+                <span className={styles.reviewsCount}>
+                  ({reviewsStats.total} reviews)
+                </span>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.reviewsGrid}>
+            {reviewsLoading ? (
+              <div className={styles.reviewsLoading}>Loading customer feedback...</div>
+            ) : reviews.length === 0 ? (
+              <div className={styles.reviewsLoading}>
+                Customer feedback is currently unavailable.
+              </div>
+            ) : (
+              reviews.map((rv, idx) => (
+                <div key={idx} className={styles.rvCard}>
+                  <div className={styles.rvTop}>
+                    <div className={styles.rvAvatar}>
+                      {rv.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className={styles.rvMeta}>
+                      <span className={styles.rvName}>{rv.name}</span>
+                      {rv.date && (
+                        <span className={styles.rvDate}>
+                          {new Date(rv.date).toLocaleDateString("en-CA", {
+                            year: "numeric",
+                            month: "short",
+                          })}
+                        </span>
+                      )}
+                    </div>
+                    <span className={styles.rvStars}>★★★★★</span>
+                  </div>
+                  <p className={styles.rvText}>
+                    {rv.comment.length > 180 ? `${rv.comment.substring(0, 177)}...` : rv.comment}
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className={styles.reviewCtaRow}>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQS SECTION ── */}
+      <section className={styles.faqSection}>
+        <div className={styles.faqContainer}>
+          <h2 className={styles.sectionTitle} style={{ textAlign: "center", marginBottom: "32px" }}>
+            Frequently Asked Questions
+          </h2>
+          {LOCAL_FAQS.map((faq, i) => (
+            <details key={i} className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{faq.q}</summary>
+              <p className={styles.faqAnswer}>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* ── STORE LOCATION GRID — homepage visit hub ── */}
+      <section className={styles.storeSection} id="contact">
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Visit Gas Junction Cannabis in The Junction</h2>
+            <p className={styles.sectionSubtitle}>
+              Address, 24-hour hours, phone, map, and directions for the Keele &amp; Dundas walk-in.
+            </p>
+          </div>
+          <div className={styles.storeGrid}>
+            <div className={styles.storeCard}>
+              <span className={styles.storeIcon}>📍</span>
+              <h3 className={styles.storeCardTitle}>Location</h3>
+              <p className={styles.storeCardText}>
+                {STORE.name}
+                <br />
+                {STORE.streetAddress}
+                <br />
+                {STORE.city}, {STORE.region} {STORE.postalCode}
+                <br />
+                <span className={styles.storeHighlight}>{STORE.intersection}, {STORE.neighborhood}</span>
+              </p>
+            </div>
+            <div className={styles.storeCard}>
+              <span className={styles.storeIcon}>🕒</span>
+              <h3 className={styles.storeCardTitle}>Hours</h3>
+              <p className={styles.storeCardText}>
+                Open 7 Days a Week
+                <br />
+                <span className={styles.storeHighlight}>{STORE.hoursLabel}</span>
+              </p>
+            </div>
+            <div className={styles.storeCard}>
+              <span className={styles.storeIcon}>📞</span>
+              <h3 className={styles.storeCardTitle}>Phone</h3>
+              <p className={styles.storeCardText}>
+                <a className={styles.storeLink} href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+                <br />
+                <span className={styles.storeHighlight}>Walk-in · Adults 19+</span>
+              </p>
+            </div>
+            <div className={styles.storeCard}>
+              <span className={styles.storeIcon}>🗺️</span>
+              <h3 className={styles.storeCardTitle}>Directions</h3>
+              <p className={styles.storeCardText}>
+                <a className={styles.storeLink} href={STORE.directionsUrl} target="_blank" rel="noopener noreferrer">
+                  Open Google Maps
+                </a>
+                <br />
+                <Link className={styles.storeLink} href="/visit">Transit &amp; parking guide</Link>
+                <br />
+                <Link className={styles.storeLink} href="/24-hour-junction-dispensary">24-hour Junction hours</Link>
+                <br />
+                <Link className={styles.storeLink} href="/weed-dispensary-junction">Junction weed dispensary</Link>
+                <br />
+                <Link className={styles.storeLink} href="/cannabis-delivery-junction">Junction cannabis delivery</Link>
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.mapWrap}>
+            <iframe
+              title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
+              src={STORE.mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className={styles.mapFrame}
+            />
+          </div>
+          <LocalSeoMesh currentPath="/" heading="Visit, 24-hour hours, weed dispensary, delivery, cigarettes, vape, and flower" />
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <Footer />
+    </main>
+  );
+}
