@@ -17,6 +17,12 @@ export const metadata: Metadata = {
 
 const FAQ_CATEGORIES = [
   {
+    title: "Store and Delivery Prices",
+    faqs: [
+      { q: "Can I get the store price on a delivery order?", a: "No. In-store prices are for purchases made in the store. Delivery orders always use delivery prices." },
+    ],
+  },
+  {
     title: "📍 Location & Hours",
     faqs: [
       { q: "Where is Gas Junction Cannabis located?", a: "We are located at 2813 Dundas St W, Toronto, ON M6P 1Y6, in The Junction area." },
@@ -109,7 +115,7 @@ export default function FAQPage() {
             <div key={cat.title} className={styles.category}>
               <h2 className={styles.categoryTitle}>{cat.title}</h2>
               {cat.faqs.map((faq) => (
-                <details key={faq.q} className={styles.faqItem}>
+                <details key={faq.q} id={faq.q === "Can I get the store price on a delivery order?" ? "delivery-price-rule" : undefined} className={styles.faqItem}>
                   <summary className={styles.faqQuestion}>{faq.q}</summary>
                   <p className={styles.faqAnswer}>{faq.a}</p>
                 </details>
