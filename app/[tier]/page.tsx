@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import Navbar from "../components/Navbar";
@@ -14,6 +15,7 @@ import {
 } from "../lib/tierSeoContent";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import styles from "./tier.module.css";
+import { storeTierRange, tierRangeText } from "../lib/tierPriceRanges";
 
 export const dynamic = "force-dynamic";
 
@@ -70,6 +72,7 @@ export default async function TierPage({
   const flowers = menuFlowers.filter((flower) => flower.tier.toUpperCase() === tierInfo.key.toUpperCase());
   const { config } = tierInfo;
   const seo = TIER_SEO[tierInfo.key];
+  const rangeLine = tierRangeText(storeTierRange(flowers, tierInfo.key));
 
   const saleFlowers = flowers.filter((f) => f.isSale);
   const regularFlowers = flowers.filter((f) => !f.isSale);
@@ -153,6 +156,8 @@ export default async function TierPage({
               </h1>
             </div>
             <p className={styles.heroTagline}>{config.tagline}</p>
+            {rangeLine ? <p className="tier-range-line"><strong className="price-scope-label">In-store price</strong>{rangeLine}</p> : null}
+            <p className="price-rule-notice"><strong>IN-STORE PRICES ONLY.</strong> These prices do not apply to delivery orders. Delivery has its own prices. Why? <Link href="/faq#delivery-price-rule">See the FAQ</Link></p>
             <div className={styles.heroStats}>
               <span className={styles.stat}>
                 <strong>{flowers.length}</strong> strains
@@ -172,7 +177,7 @@ export default async function TierPage({
 
           <div className={styles.heroRight}>
             <div className={styles.unitPriceBox}>
-              <span className={styles.unitPriceLabel}>Starting at</span>
+              <span className={styles.unitPriceLabel}>In-store price · Starting at</span>
               <span className={styles.unitPriceValue}>${config.unitPrice}/g</span>
             </div>
 
@@ -180,7 +185,7 @@ export default async function TierPage({
             <div className={styles.dealRow}>
               {config.deal3g && (
               <div className={styles.dealBox}>
-                <div className={styles.dealLabel}>🎁 {config.deal3g.label}</div>
+                <div className={styles.dealLabel}>In-store price · 🎁 {config.deal3g.label}</div>
                 <div className={styles.dealPrice}>
                   = <strong>${config.deal3g.price}</strong> / {config.deal3g.total}
                 </div>
@@ -188,7 +193,7 @@ export default async function TierPage({
               )}
               {config.deal6g && (
                 <div className={styles.dealBox}>
-                  <div className={styles.dealLabel}>🎁 {config.deal6g.label}</div>
+                  <div className={styles.dealLabel}>In-store price · 🎁 {config.deal6g.label}</div>
                   <div className={styles.dealPrice}>
                     = <strong>${config.deal6g.price}</strong> / {config.deal6g.total}
                   </div>
