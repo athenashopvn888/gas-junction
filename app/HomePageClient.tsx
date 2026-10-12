@@ -209,7 +209,6 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
       />
       {/* ── NAVBAR: fixed below the site delivery bar; promos follow in normal flow ── */}
       <Navbar />
-      <FleetAnnouncementBanner />
       <HiringCallout />
 
       {/* ── WELCOME BANNER ── */}
@@ -296,6 +295,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           </div>
         </div>
       </section>
+      <FleetAnnouncementBanner />
 
       <section
         className={styles.deliverySection}
