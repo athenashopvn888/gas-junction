@@ -102,7 +102,7 @@ export default function Navbar() {
         </div>
         {canAdvance && <button type="button" className={styles.scrollAdvance} aria-label="Show more navigation links" aria-controls="store-menu-scrollbar" onClick={advanceScrollBar}><span aria-hidden="true">›</span></button>}
       </div>
-      {pathname !== "/" ? <FlowerBogoStrip /> : null}
+      <FlowerBogoStrip />
     </nav>
   );
 }
