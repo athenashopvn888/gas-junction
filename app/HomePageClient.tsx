@@ -209,7 +209,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
       />
       {/* ── NAVBAR: fixed below the site delivery bar; promos follow in normal flow ── */}
       <Navbar />
-      <FleetAnnouncementBanner />
+      <FleetAnnouncementBanner title={HOME_TITLE} />
       <HiringCallout />
 
       {/* ── WELCOME BANNER ── */}
@@ -253,7 +253,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
               </svg>
               Delivery &amp; Retail in The Junction
             </p>
-            <h1 className={styles.brandTitle}>{HOME_TITLE}</h1>
+            <p className={styles.brandTitle}>{HOME_TITLE}</p>
             <p className={styles.brandSub}>The Junction Cannabis Dispensary · Keele &amp; Dundas</p>
             <p className={styles.heroLead}>
               Shop for fast, discreet local delivery in The Junction, or visit the dispensary.
