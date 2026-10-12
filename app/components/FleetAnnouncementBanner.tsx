@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import FlowerBogoStrip from "./FlowerBogoStrip";
 
 import { useEffect, useState } from "react";
 
@@ -63,7 +64,12 @@ export default function FleetAnnouncementBanner() {
           Thanksgiving Monday (Oct 12): We are open regular hours.
         </p>
       ) : null}
-<Link href="/items/cigarettes" data-cig-mix-banner="" aria-label="Shop the 2 packs for $5 mix and match cigarette offer">
+      <FlowerBogoStrip hero />
+      <Link href="/exotic-weed" data-exotic-tier-banner="" aria-label="Shop Exotic, Premium and AAA+ flower tiers">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/banners/top-weed-tier-gjc01.webp" alt="TOP WEED TIER — Exotic, Premium and AAA+ flower at Gas Junction Cannabis — Buy 2g Get 1g FREE and Buy 3g Get 3g FREE." />
+      </Link>
+      <Link href="/items/cigarettes" data-cig-mix-banner="" aria-label="Shop the 2 packs for $5 mix and match cigarette offer">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/banners/native-cigarette-offer-20260822.webp"
@@ -71,6 +77,6 @@ export default function FleetAnnouncementBanner() {
           style={{ display: "block", width: "100%", height: "auto" }}
         />
       </Link>
-</aside>
+    </aside>
   );
 }
