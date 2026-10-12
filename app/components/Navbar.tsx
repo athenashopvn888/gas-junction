@@ -27,6 +27,7 @@ const ALL_LINKS = [
   { href: "/24-hour-junction-dispensary", label: "Open 24h" },
   { href: "/faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
+  { href: "/guides", label: "Guides" },
 ];
 
 export default function Navbar() {
