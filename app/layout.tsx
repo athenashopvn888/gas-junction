@@ -70,6 +70,15 @@ export const metadata: Metadata = {
 };
 
 /* ── JSON-LD Structured Data: store entity lives on the homepage ── */
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${STORE.origin}/#website`,
+  name: "Gas Junction Cannabis Dispensary",
+  url: STORE.origin,
+  inLanguage: "en-CA",
+};
+
 const cannabisStoreJsonLd = {
   "@context": "https://schema.org",
   "@type": "CannabisStore",
@@ -159,6 +168,10 @@ export default function RootLayout({
               gtag('config', 'G-6BF78FQ8EC');
             `
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd).replace(/</g, "\\u003c") }}
         />
       </head>
       <body>
