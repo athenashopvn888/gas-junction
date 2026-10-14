@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import DeliveryContent from "./DeliveryContent";
 import DeliverySeoBridge from "./DeliverySeoBridge";
 import menu from "./delivery-menu.json";
+import NearMeFaq from "../components/NearMeFaq";
+import nearMeFaq from "../lib/nearMeFaq.json";
 
 export const metadata: Metadata = {
   title: "Cannabis Delivery Menu — The Junction, High Park & Bloor West",
@@ -48,6 +50,7 @@ export default function DeliveryPage() {
       />
       <DeliveryContent />
       <DeliverySeoBridge />
+      <NearMeFaq id="delivery-near-me" q={nearMeFaq.delivery!.q} a={nearMeFaq.delivery!.a} />
     </>
   );
 }
