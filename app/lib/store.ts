@@ -50,6 +50,10 @@ export const TIER_MESH_LINKS = [
 
 export const HOME_FAQS = [
   {
+    q: "Need a cannabis dispensary near me in The Junction?",
+    a: "Gas Junction Cannabis sits at 2813 Dundas St W, just west of Keele & Dundas, and the walk-in door is open 24 hours daily. Adults 19+ with valid photo ID.",
+  },
+  {
     q: "Is there a 24-hour dispensary open now in The Junction?",
     a: "Yes. Gas Junction Cannabis at 2813 Dundas St W is open 24 hours daily — that is the walk-in door, not the delivery window. The 24-hour Junction dispensary page is the open-now / 24h-near-me owner, same weight as the Junction weed dispensary, delivery, Native cigarettes, and nicotine vape pages.",
   },
