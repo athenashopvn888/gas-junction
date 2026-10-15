@@ -1,3 +1,4 @@
+import CigaretteSeasonalNotice from "./CigaretteSeasonalNotice";
 import Link from "next/link";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -25,6 +26,7 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <Navbar />
+      {page.path.includes("native-cigarettes") && <CigaretteSeasonalNotice sticky />}
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
