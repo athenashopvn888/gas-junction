@@ -1,3 +1,4 @@
+import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -89,7 +90,7 @@ const cannabisStoreJsonLd = {
     "https://schema.org/Organization",
   ],
   "@id": STORE.origin,
-  name: "Gas Junction Cannabis Dispensary",
+  name: "Gas Junction Cannabis Dispensary Weed Delivery",
   alternateName: STORE.name,
   description:
     "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.",
@@ -126,7 +127,7 @@ const cannabisStoreJsonLd = {
       closes: STORE.closes,
     },
   ],
-  sameAs: [STORE.origin],
+  sameAs: [STORE.origin, "https://www.google.com/maps/place/?q=place_id:ChIJ5fWBhQo1K4gRecy0Z7mLT04"],
   hasMap: STORE.mapsSearchUrl,
   areaServed: [
     { "@type": "Neighborhood", name: "The Junction" },
@@ -185,6 +186,7 @@ export default function RootLayout({
           </p>
         </noscript>
         {children}
+        <FullNameNap />
         <PinnedNavClearance />
       </body>
     </html>
