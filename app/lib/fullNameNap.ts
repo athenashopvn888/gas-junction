@@ -13,7 +13,11 @@ export const FULL_NAME_NAP = {
   "phoneTel": "tel:+14372910948",
   "hours": "Open 24 hours, 7 days a week",
   "mapsUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ5fWBhQo1K4gRecy0Z7mLT04",
-  "placeId": "ChIJ5fWBhQo1K4gRecy0Z7mLT04"
+  "placeId": "ChIJ5fWBhQo1K4gRecy0Z7mLT04",
+  "neighbourhood": "The Junction",
+  "intersection": "Keele St & Dundas St W",
+  "transit": "Walk north from Keele Station (Line 2) to Dundas, then west to 2813. The 40 Junction bus runs along Dundas.",
+  "visitPath": "/visit"
 } as const;
 
 export const FULL_NAME_NAP_ADDRESS = `${FULL_NAME_NAP.street}, ${FULL_NAME_NAP.city}, ${FULL_NAME_NAP.region} ${FULL_NAME_NAP.postal}`;
