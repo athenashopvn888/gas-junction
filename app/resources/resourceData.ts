@@ -22,6 +22,8 @@ export interface ResourcePage {
   sections: ResourceSection[];
   faqs?: { question: string; answer: string }[];
   faqHeading?: string;
+  markdown?: string;
+  dateModified?: string;
 }
 
 const hubCards: ResourceCard[] = [
@@ -131,6 +133,83 @@ const cigaretteCards: ResourceCard[] = [
   },
 ];
 
+export const CONCENTRATES_GLOSSARY_TITLE = "Cannabis concentrates, decoded: a plain-language glossary";
+
+export const CONCENTRATES_GLOSSARY_DESCRIPTION =
+  "This glossary explains the words you're most likely to see in a Toronto store, focusing on how each type is made and what it looks like.";
+
+export const CONCENTRATES_GLOSSARY_MARKDOWN = `Last checked: September 30, 2026
+Concentrate menus use a lot of shorthand: rosin, sift, sauce, "Moroccan-style." Unless you already know the vocabulary, a list of names doesn't tell you much. This glossary explains the words you're most likely to see in a Toronto store, focusing on **how each type is made and what it looks like**. It's written for adults 19+ and doesn't rank one type above another.
+
+When we checked our own online concentrates category at Gas Junction at the end of September 2026, it was mostly pressed hash. Menus change, so treat that as a snapshot, not a promise of what's in stock today. That's why the hash entries below go into more detail than the rest.
+
+## First, two words that get mixed up
+
+**Concentrate** is the everyday word. It means any product where the resin from the cannabis plant has been separated out and collected, whether by hand, water, heat, pressure or a solvent.
+
+**Cannabis extract** is the legal category most concentrates fall into under the federal Cannabis Regulations. Vape cartridges and many other products belong to it too. When you see "extract" on a label, that's the regulatory term.
+
+## The glossary, A to Z
+
+**Afghan-style / Moroccan-style (hash)**
+Traditional names for particular hash styles, usually describing texture, colour and how the hash was pressed. On a legal Canadian menu, treat them as **style names**. The name alone tells you nothing about how strong the product is, so read the label for that.
+
+**Badder / budder**
+Extract whipped while it's being made so it ends up soft, opaque and spreadable.
+
+**Bubble hash (ice-water hash)**
+Resin knocked off the plant using ice-cold water and agitation, then filtered through a series of fine mesh bags. The result is dried and often pressed. No chemical solvent is involved.
+
+**Cold cure**
+A finishing step for rosin: it's rested at low temperature so the texture changes. You'll sometimes see it printed next to the product name.
+
+**Diamonds and sauce**
+Crystal-like solids ("diamonds") sitting in a runnier, aromatic liquid ("sauce"). Both are separated during extraction.
+
+**Distillate**
+Extract refined until it's mostly a single compound, leaving a clear, thick oil. It's common inside vape cartridges and as an ingredient in other products.
+
+**Dry sift**
+Resin separated by shaking dried cannabis over fine screens, with no water or solvent. Pressed dry sift becomes a form of hash.
+
+**Hash (pressed hash)**
+One of the oldest concentrate formats: collected resin (sift, kief or ice-water hash) pressed into a block, slab or ball. Colour ranges from light blond to near-black depending on the method and how it was pressed.
+
+**Kief**
+The loose, powdery resin that collects at the bottom of a grinder or screen. Kief is the raw material many hash styles start from.
+
+**Live resin**
+Extract made from plant material that was frozen right after harvest instead of dried and cured first. "Live" refers to the fresh-frozen starting material, not the finished texture.
+
+**Rosin**
+Extract made by pressing cannabis, hash or sift between heated plates, with no chemical solvent. "Live rosin" is rosin pressed from ice-water hash made from fresh-frozen plants.
+
+**Shatter**
+A hard, glassy, translucent extract that snaps cleanly when it's cold, a bit like a thin pane of glass.
+
+**Solventless**
+An umbrella label for anything made without a chemical solvent: hash, dry sift, ice-water hash and rosin.
+
+**Wax / crumble**
+Extract with an opaque, waxy or crumbly texture, depending on moisture and how it was handled after extraction.
+
+## What the texture name doesn't tell you
+
+A texture word (badder, shatter, crumble) describes **consistency**. A process word (solventless, live, rosin) describes **how it was made**. Neither one tells you the THC content, freshness or anything about the effects. For that, read the product label: it lists THC and CBD amounts, the packaged-on date and the producer.
+
+## Carrying concentrates in public: the 7.5 g figure
+
+In Ontario, an adult may carry up to 30 grams of dried cannabis in public, or an equivalent amount of other formats. Under Schedule 3 of the Cannabis Act, 1 g of dried cannabis equals 0.25 g of concentrates, so the concentrate equivalent of the 30 g limit is **7.5 g**. If you're carrying more than one format, it all counts toward the same total.
+
+Here's a worked example. Say you're carrying 3.75 g of hash. Multiply by four (because 0.25 g of concentrate counts as 1 g of dried cannabis) and it counts as 15 g of dried cannabis, which is half the limit. That leaves room for 15 g of dried flower and nothing else. Ontario's "Cannabis laws" page on ontario.ca lists the same equivalents for other formats, including edibles and beverages.
+
+## Finding us
+
+Gas Junction Cannabis is at 2813 Dundas St W, near Keele Street in the Junction. For directions, parking and getting here by TTC, see our [visit page](/visit).
+
+If a word on our concentrates list isn't in this glossary, ask at the counter and we'll explain it. Bring government-issued photo ID; you need to be 19 or older.
+`;
+
 export const RESOURCE_PAGES: ResourcePage[] = [
   {
     slug: "",
@@ -141,7 +220,14 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     eyebrow: "The Junction Resource Hub",
     intro:
       "A useful stop before the stop. These Gas Junction Cannabis resources keep The Junction, Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street shoppers pointed at the right product category.",
-    cards: hubCards,
+    cards: [
+      ...hubCards,
+      {
+        title: CONCENTRATES_GLOSSARY_TITLE,
+        href: "/resources/cannabis-concentrates-glossary",
+        text: CONCENTRATES_GLOSSARY_DESCRIPTION,
+      },
+    ],
     sections: [
       {
         heading: "Built Around The Junction Shopper",
@@ -519,6 +605,18 @@ export const RESOURCE_PAGES: ResourcePage[] = [
           "The important SEO paths stay intact: /, /visit, /resources, /resources/menu-guide, /resources/weed-flower-guide, /resources/value-guide, /resources/pre-roll-guide, /resources/native-smokes, and /resources/native-smokes/native-cigarettes-guide.",
       },
     ],
+  },
+  {
+    slug: "cannabis-concentrates-glossary",
+    title: CONCENTRATES_GLOSSARY_TITLE,
+    seoTitle: CONCENTRATES_GLOSSARY_TITLE,
+    description: CONCENTRATES_GLOSSARY_DESCRIPTION,
+    eyebrow: "",
+    intro: CONCENTRATES_GLOSSARY_DESCRIPTION,
+    cards: [],
+    sections: [],
+    markdown: CONCENTRATES_GLOSSARY_MARKDOWN,
+    dateModified: "2026-09-30",
   },
 ];
 
