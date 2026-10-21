@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ResourceView from "../ResourceView";
 import { getResourcePage, RESOURCE_PAGES } from "../resourceData";
+import { visibleCopy } from "../../lib/cigaretteVisibility";
 
 type ResourceRouteProps = {
   params: Promise<{ slug?: string[] }>;
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
     };
   }
   return {
-    title: page.slug === "weed-flower-guide" ? { absolute: page.seoTitle } : page.seoTitle,
-    description: page.description,
+    title: page.slug === "weed-flower-guide" ? { absolute: visibleCopy(page.seoTitle) } : visibleCopy(page.seoTitle),
+    description: visibleCopy(page.description),
     alternates: { canonical: "https://www.gasjunctioncannabis.com/resources/" + page.slug },
   };
 }

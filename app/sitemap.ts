@@ -1,4 +1,6 @@
 import { getLiveMenu } from "./lib/liveMenu";
+import { isCigaretteSitemapUrl } from "./lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "./lib/siteConfig";
 import type { MetadataRoute } from "next";
 import { DELIVERY_GUIDE_REGISTRY, DELIVERY_GUIDE_STORE } from "./lib/deliveryGuideRegistry";
 import { TIER_CONFIG, CATEGORY_CONFIG } from "./lib/products";
@@ -96,5 +98,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const deliveryGuidePages: MetadataRoute.Sitemap = DELIVERY_GUIDE_REGISTRY.map((guide) => ({ url: `https://${DELIVERY_GUIDE_STORE.domain}/guides/${guide.slug}`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.75 }));
   const strainGuidePages: MetadataRoute.Sitemap = [`${BASE}/guides`, ...STRAIN_GUIDES.map((guide) => `${BASE}/guides/${guide.slug}`)].map((url) => ({ url, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.7 }));
-  return [...deliveryGuidePages, ...strainGuidePages, ...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...seoPages, ...resourcePages];
+  const entries = [...deliveryGuidePages, ...strainGuidePages, ...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...seoPages, ...resourcePages];
+  return SHOW_CIGARETTES ? entries : entries.filter((entry) => !isCigaretteSitemapUrl(entry.url));
 }

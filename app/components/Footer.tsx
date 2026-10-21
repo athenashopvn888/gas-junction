@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 
 export default function Footer() {
   return (
@@ -50,11 +51,11 @@ export default function Footer() {
               <Link href="/aa-weed">AA Weed</Link>
               <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
-              <Link href="/items/cigarettes">Cigarettes</Link>
+              {SHOW_CIGARETTES ? <Link href="/items/cigarettes">Cigarettes</Link> : null}
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/24-hour-junction-dispensary">Open Now — 24-Hour Junction Dispensary</Link>
               <Link href="/cannabis-delivery-junction">Cannabis Delivery in The Junction</Link>
-              <Link href="/native-cigarettes-junction">Native Cigarettes in The Junction</Link>
+              {SHOW_CIGARETTES ? <Link href="/native-cigarettes-junction">Native Cigarettes in The Junction</Link> : null}
               <Link href="/nicotine-vape-junction">Nicotine Vape in The Junction</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/guides">Guides</Link>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ResourceView from "./ResourceView";
 import { RESOURCE_HOME } from "./resourceData";
+import { visibleCopy } from "../lib/cigaretteVisibility";
 
 export const metadata: Metadata = {
-  title: RESOURCE_HOME.seoTitle,
-  description: RESOURCE_HOME.description,
+  title: visibleCopy(RESOURCE_HOME.seoTitle),
+  description: visibleCopy(RESOURCE_HOME.description),
   alternates: { canonical: "https://www.gasjunctioncannabis.com/resources" },
 };
 

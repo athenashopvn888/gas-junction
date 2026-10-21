@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { LOCAL_MESH_LINKS, TIER_MESH_LINKS } from "../lib/store";
+import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import styles from "./LocalSeoMesh.module.css";
 
 export default function LocalSeoMesh({
@@ -13,7 +15,7 @@ export default function LocalSeoMesh({
   heading?: string;
   variant?: "dark" | "light";
 }) {
-  const owners = LOCAL_MESH_LINKS.filter((link) => link.href !== currentPath);
+  const owners = LOCAL_MESH_LINKS.filter((link) => link.href !== currentPath && (SHOW_CIGARETTES || !isCigaretteHref(link.href)));
   const tiers = includeTiers
     ? TIER_MESH_LINKS.filter((link) => link.href !== currentPath)
     : [];
@@ -23,7 +25,7 @@ export default function LocalSeoMesh({
       className={`${styles.mesh} ${variant === "light" ? styles.light : ""}`}
       aria-label="Junction store pages"
     >
-      <p className={styles.heading}>{heading}</p>
+      <p className={styles.heading}>{visibleCopy(heading)}</p>
       <div className={styles.row}>
         {owners.map((link) => (
           <Link key={link.href} href={link.href} className={styles.chip}>

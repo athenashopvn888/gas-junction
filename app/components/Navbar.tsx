@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 
 const ALL_LINKS = [
   { href: "/careers/budtender", label: "Join Team" },
@@ -30,9 +31,11 @@ const ALL_LINKS = [
   { href: "/guides", label: "Guides" },
 ];
 
+const NAV_LINKS = SHOW_CIGARETTES ? ALL_LINKS : ALL_LINKS.filter((link) => link.href !== "/items/cigarettes");
+
 export default function Navbar() {
   const pathname = usePathname();
-  const storeMenuLinks = ALL_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"].includes(link.href));
+  const storeMenuLinks = NAV_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"].includes(link.href));
   const isStoreMenuActive = storeMenuLinks.some((link) => pathname === link.href);
   const isDeliveryActive = pathname === "/delivery";
   const scrollBarRef = useRef<HTMLDivElement>(null);
@@ -86,7 +89,7 @@ export default function Navbar() {
       <div className={styles.scrollShell}>
         <div ref={scrollBarRef} id="store-menu-scrollbar" className={styles.scrollBar}>
           <div className={styles.scrollInner}>
-          {ALL_LINKS.map((link) => {
+          {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
