@@ -9,6 +9,8 @@ import Footer from "../../components/Footer";
 import { SEO_PAGES, getLegacySeoRedirect, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import { STORE } from "../../lib/store";
+import { visibleCopy } from "../../lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "../../lib/siteConfig";
 import LocalSeoMesh from "../../components/LocalSeoMesh";
 import styles from "./seo.module.css";
 
@@ -30,7 +32,7 @@ export async function generateMetadata({
 
   return {
     title: page.absoluteTitle ? { absolute: page.title } : page.title,
-    description: page.metaDescription,
+    description: visibleCopy(page.metaDescription),
     alternates: {
       canonical: page.canonicalToHome
         ? "https://www.gasjunctioncannabis.com"
@@ -58,15 +60,26 @@ export default async function SeoLandingPage({
 
   const page = getSeoPageBySlug(slug);
   if (!page) notFound();
+  const menuFallback = SHOW_CIGARETTES ? "/items/cigarettes" : "/items/vapes";
+  const sections = SHOW_CIGARETTES
+    ? page.sections
+    : page.sections
+        .map((section) => ({ ...section, heading: visibleCopy(section.heading), body: visibleCopy(section.body) }))
+        .filter((section) => section.heading && section.body);
+  const faqs = SHOW_CIGARETTES
+    ? page.faqs
+    : page.faqs
+        .map((faq) => ({ ...faq, q: visibleCopy(faq.q), a: visibleCopy(faq.a) }))
+        .filter((faq) => faq.q && faq.a && !/\b(cigarette|tobacco)\b/i.test(`${faq.q} ${faq.a}`));
 
   const tiers = Object.values(TIER_CONFIG);
   const heroPreview = page.heroPreview;
   const faqJsonLd =
-    page.faqs.length > 0
+    faqs.length > 0
       ? {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: page.faqs.map((faq) => ({
+          mainEntity: faqs.map((faq) => ({
             "@type": "Question",
             name: faq.q,
             acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -94,7 +107,7 @@ export default async function SeoLandingPage({
         <section className={styles.bannerSection}>
           <img
             src={page.banner}
-            alt={page.h1}
+            alt={visibleCopy(page.h1)}
             className={styles.bannerImg}
           />
         </section>
@@ -106,18 +119,18 @@ export default async function SeoLandingPage({
           <div className={styles.productHeroInner}>
             <div className={styles.productHeroCopy}>
               <span className={styles.productHeroKicker}>{heroPreview.eyebrow}</span>
-              <h1>{page.h1}</h1>
-              <p>{heroPreview.intro}</p>
+              <h1>{visibleCopy(page.h1)}</h1>
+              <p>{visibleCopy(heroPreview.intro)}</p>
               <div className={styles.productHeroActions}>
-                <Link href={heroPreview.menuHref ?? "/items/cigarettes"} className={styles.productHeroPrimary}>{heroPreview.primaryLabel ?? "Check the cigarette menu"}</Link>
-                <Link href={heroPreview.secondaryHref ?? heroPreview.menuHref ?? "/items/cigarettes"} className={styles.productHeroSecondary}>{heroPreview.secondaryLabel ?? "See the current selection"}</Link>
+                <Link href={heroPreview.menuHref ?? menuFallback} className={styles.productHeroPrimary}>{heroPreview.primaryLabel ?? (SHOW_CIGARETTES ? "Check the cigarette menu" : "Check the vape menu")}</Link>
+                <Link href={heroPreview.secondaryHref ?? heroPreview.menuHref ?? menuFallback} className={styles.productHeroSecondary}>{heroPreview.secondaryLabel ?? "See the current selection"}</Link>
               </div>
               {heroPreview.identityStrip && <p className={styles.productHeroIdentity}>{heroPreview.identityStrip}</p>}
             </div>
             <div className={styles.productPreviewStage} aria-label={`${page.h1} brand preview`}>
               {heroPreview.products.map((product, index) => (
-                <Link key={product.name} href={heroPreview.menuHref ?? "/items/cigarettes"} className={styles.productPreviewCard}>
-                  <Image src={product.image} alt={`${product.name} brand preview`} width={800} height={800} priority={index === 0} unoptimized={product.image.startsWith("https://")} sizes="(max-width: 720px) 42vw, (max-width: 980px) 46vw, 220px" />
+                <Link key={product.name} href={heroPreview.menuHref ?? menuFallback} className={styles.productPreviewCard}>
+                  <Image src={product.image} alt={visibleCopy(`${product.name} brand preview`)} width={800} height={800} priority={index === 0} unoptimized={product.image.startsWith("https://")} sizes="(max-width: 720px) 42vw, (max-width: 980px) 46vw, 220px" />
                   <span>{product.name}</span>
                 </Link>
               ))}
@@ -129,8 +142,8 @@ export default async function SeoLandingPage({
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <span className={styles.heroIcon}>{page.icon}</span>
-            <h1 className={styles.heroH1}>{page.h1}</h1>
-            <p className={styles.heroTagline}>{page.heroTagline}</p>
+            <h1 className={styles.heroH1}>{visibleCopy(page.h1)}</h1>
+            <p className={styles.heroTagline}>{visibleCopy(page.heroTagline)}</p>
           </div>
         </section>
       )}
@@ -139,10 +152,10 @@ export default async function SeoLandingPage({
       <section className={styles.content}>
         <div className={styles.container}>
           {heroPreview?.featuredHeading && heroPreview.featuredIntro && <div className={styles.featuredIntro} id="featured-vapes"><h2>{heroPreview.featuredHeading}</h2><p>{heroPreview.featuredIntro}</p></div>}
-          {page.sections.map((s, i) => (
+          {sections.map((s, i) => (
             <div key={i} className={styles.section}>
-              <h2 className={styles.sectionTitle}>{s.heading}</h2>
-              <p className={styles.sectionBody}>{s.body}</p>
+              <h2 className={styles.sectionTitle}>{visibleCopy(s.heading)}</h2>
+              <p className={styles.sectionBody}>{visibleCopy(s.body)}</p>
             </div>
           ))}
 
@@ -197,10 +210,10 @@ export default async function SeoLandingPage({
           </div>
 
           {/* FAQ */}
-          {page.faqs.length > 0 && (
+          {faqs.length > 0 && (
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-              {page.faqs.map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <details key={i} className={styles.faqItem}>
                   <summary className={styles.faqQ}>{faq.q}</summary>
                   <p className={styles.faqA}>{faq.a}</p>

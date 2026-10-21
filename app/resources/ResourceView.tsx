@@ -4,11 +4,49 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./resources.module.css";
 import { inlinePlainText, parseArticleMarkdown, type ArticleBlock, type InlineNode } from "./articleMarkdown";
-import type { ResourcePage } from "./resourceData";
+import type { ResourcePage, ResourceSection } from "./resourceData";
+import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 
 type ResourceViewProps = {
   page: ResourcePage;
 };
+
+function presentedResource(page: ResourcePage): ResourcePage {
+  if (SHOW_CIGARETTES) return page;
+  const sections: ResourceSection[] = page.sections
+    .map((section) => {
+      const body = Array.isArray(section.body) ? section.body.map(visibleCopy).filter(Boolean) : visibleCopy(section.body);
+      const bullets = section.bullets
+        ?.filter((item) => !/^\s*cigarettes?\b/i.test(item) && !/\/items\/cigarettes|\/resources\/native-smokes|\/native-cigarettes/i.test(item))
+        .map(visibleCopy)
+        .filter((item) => item && !isCigaretteHref(item));
+      const link = section.link && !isCigaretteHref(section.link.href)
+        ? { ...section.link, title: visibleCopy(section.link.title), text: visibleCopy(section.link.text) }
+        : undefined;
+      return { ...section, heading: visibleCopy(section.heading), body, bullets, link };
+    })
+    .filter((section) => {
+      const bodyText = Array.isArray(section.body) ? section.body.join("") : section.body;
+      return Boolean(section.heading && (bodyText || section.bullets?.length || section.link));
+    });
+  return {
+    ...page,
+    title: visibleCopy(page.title),
+    seoTitle: visibleCopy(page.seoTitle),
+    description: visibleCopy(page.description),
+    eyebrow: visibleCopy(page.eyebrow),
+    intro: visibleCopy(page.intro),
+    cards: page.cards
+      .filter((card) => !isCigaretteHref(card.href))
+      .map((card) => ({ ...card, title: visibleCopy(card.title), text: visibleCopy(card.text) }))
+      .filter((card) => card.title && card.text),
+    sections,
+    faqs: page.faqs
+      ?.map((faq) => ({ question: visibleCopy(faq.question), answer: visibleCopy(faq.answer) }))
+      .filter((faq) => faq.question && faq.answer && !/\b(cigarette|tobacco)\b/i.test(`${faq.question} ${faq.answer}`)),
+  };
+}
 
 function InlineText({ inlines }: { inlines: InlineNode[] }) {
   return (
@@ -128,22 +166,23 @@ function MarkdownResource({ page }: ResourceViewProps) {
 }
 
 export default function ResourceView({ page }: ResourceViewProps) {
-  if (page.markdown) return <MarkdownResource page={page} />;
+  const view = presentedResource(page);
+  if (view.markdown) return <MarkdownResource page={view} />;
   return (
     <main className={styles.main}>
       <Navbar />
       <section className={styles.hero}>
         <div className={styles.wrap}>
-          <p className={styles.eyebrow}>{page.eyebrow}</p>
-          <h1>{page.title}</h1>
-          <p className={styles.intro}>{page.intro}</p>
+          <p className={styles.eyebrow}>{view.eyebrow}</p>
+          <h1>{view.title}</h1>
+          <p className={styles.intro}>{view.intro}</p>
         </div>
       </section>
 
-      {page.cards.length > 0 && (
+      {view.cards.length > 0 && (
         <section className={styles.cardsSection}>
           <div className={styles.grid}>
-            {page.cards.map((card) => (
+            {view.cards.map((card) => (
               <Link key={card.href} href={card.href} className={styles.card}>
                 <span>{card.title}</span>
                 <p>{card.text}</p>
@@ -154,7 +193,7 @@ export default function ResourceView({ page }: ResourceViewProps) {
       )}
 
       <section className={styles.body}>
-        {page.sections.map((section) => (
+        {view.sections.map((section) => (
           <article key={section.heading} className={styles.section}>
             <h2>{section.heading}</h2>
             {(Array.isArray(section.body) ? section.body : [section.body]).map((paragraph) => (
@@ -174,11 +213,11 @@ export default function ResourceView({ page }: ResourceViewProps) {
             )}
           </article>
         ))}
-        {page.faqs && page.faqs.length > 0 && (
+        {view.faqs && view.faqs.length > 0 && (
           <article className={styles.section}>
-            <h2>{page.faqHeading || "Frequently Asked Questions"}</h2>
+            <h2>{view.faqHeading || "Frequently Asked Questions"}</h2>
             <div className={styles.faqList}>
-              {page.faqs.map((faq) => (
+              {view.faqs.map((faq) => (
                 <section key={faq.question}>
                   <h3>{faq.question}</h3>
                   <p>{faq.answer}</p>

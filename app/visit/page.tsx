@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import styles from "./visit.module.css";
 
 export const metadata: Metadata = {
@@ -226,8 +227,12 @@ export default function VisitPage() {
                 <Link href="/cannabis-delivery-junction">Cannabis delivery in The Junction</Link>
                 {" · "}
                 <Link href="/delivery">Delivery menu</Link>
-                {" · "}
-                <Link href="/native-cigarettes-junction">Native cigarettes in The Junction</Link>
+                {SHOW_CIGARETTES ? (
+                  <>
+                    {" · "}
+                    <Link href="/native-cigarettes-junction">Native cigarettes in The Junction</Link>
+                  </>
+                ) : null}
                 {" · "}
                 <Link href="/nicotine-vape-junction">Nicotine vape in The Junction</Link>
               </p>

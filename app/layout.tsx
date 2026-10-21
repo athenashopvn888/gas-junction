@@ -5,6 +5,8 @@ import Link from "next/link";
 import "./globals.css";
 import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import { STORE } from "./lib/store";
+import { visibleCopy } from "./lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "./lib/siteConfig";
 
 export const metadata: Metadata = {
   metadataBase: new URL(STORE.origin),
@@ -92,8 +94,9 @@ const cannabisStoreJsonLd = {
   "@id": STORE.origin,
   name: "Gas Junction Cannabis Dispensary Weed Delivery",
   alternateName: STORE.name,
-  description:
-    "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.",
+  description: SHOW_CIGARETTES
+    ? "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."
+    : visibleCopy("24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."),
   url: STORE.origin,
   telephone: STORE.phoneTel,
   image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",

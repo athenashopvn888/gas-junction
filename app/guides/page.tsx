@@ -3,6 +3,8 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { DELIVERY_GUIDE_REGISTRY } from "../lib/deliveryGuideRegistry";
+import { isCigaretteGuideSlug } from "../lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import { STRAIN_GUIDES, STRAIN_GUIDE_STORE as STORE } from "../lib/strainGuides";
 import styles from "./[slug]/guide.module.css";
 
@@ -19,6 +21,7 @@ const GROUPS = [
 ] as const;
 
 export default function GuidesIndexPage() {
+  const deliveryGuides = SHOW_CIGARETTES ? DELIVERY_GUIDE_REGISTRY : DELIVERY_GUIDE_REGISTRY.filter((guide) => !isCigaretteGuideSlug(guide.slug));
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE }, { "@type": "ListItem", position: 2, name: "Guides", item: `${BASE}/guides` }] },
     { "@type": "CollectionPage", "@id": `${BASE}/guides#webpage`, url: `${BASE}/guides`, name: TITLE, description: DESC, mainEntity: { "@type": "ItemList", numberOfItems: STRAIN_GUIDES.length, itemListElement: STRAIN_GUIDES.map((guide, index) => ({ "@type": "ListItem", position: index + 1, name: `${guide.name} strain guide`, url: `${BASE}/guides/${guide.slug}` })) } },
@@ -41,11 +44,11 @@ export default function GuidesIndexPage() {
             </div>
           </section>
         ))}
-        {DELIVERY_GUIDE_REGISTRY.length > 0 && (
-          <section className={styles.section} aria-label="Cigarette and vape guides">
+        {deliveryGuides.length > 0 && (
+          <section className={styles.section} aria-label={SHOW_CIGARETTES ? "Cigarette and vape guides" : "Vape and cigarillo guides"}>
             <div className={styles.body}>
-              <h2>Cigarette and vape guides</h2>
-              <ul>{DELIVERY_GUIDE_REGISTRY.map((guide) => <li key={guide.slug}><Link href={`/guides/${guide.slug}`}>{guide.h1}</Link></li>)}</ul>
+              <h2>{SHOW_CIGARETTES ? "Cigarette and vape guides" : "Vape and cigarillo guides"}</h2>
+              <ul>{deliveryGuides.map((guide) => <li key={guide.slug}><Link href={`/guides/${guide.slug}`}>{guide.h1}</Link></li>)}</ul>
             </div>
           </section>
         )}

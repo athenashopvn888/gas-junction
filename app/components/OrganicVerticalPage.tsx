@@ -4,15 +4,36 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import LocalSeoMesh from "./LocalSeoMesh";
 import { STORE } from "../lib/store";
+import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import type { OrganicVerticalPageData } from "../lib/organicVerticalPages";
 import styles from "../visit/visit.module.css";
 import VapeActionPanel from "./VapeActionPanel";
 
+function presentedPage(page: OrganicVerticalPageData): OrganicVerticalPageData {
+  if (SHOW_CIGARETTES) return page;
+  return {
+    ...page,
+    kicker: visibleCopy(page.kicker),
+    h1: visibleCopy(page.h1),
+    lede: visibleCopy(page.lede),
+    warning: page.warning ? visibleCopy(page.warning) : page.warning,
+    extraActions: (page.extraActions ?? []).filter((action) => !isCigaretteHref(action.href)),
+    panels: page.panels.map((panel) => ({ ...panel, heading: visibleCopy(panel.heading), body: visibleCopy(panel.body) })),
+    sections: page.sections.map((section) => ({ ...section, heading: visibleCopy(section.heading), body: visibleCopy(section.body) })),
+    faqs: page.faqs
+      .map((faq) => ({ q: visibleCopy(faq.q), a: visibleCopy(faq.a) }))
+      .filter((faq) => faq.q && faq.a && !/\b(cigarette|tobacco)\b/i.test(`${faq.q} ${faq.a}`)),
+    faqHeading: visibleCopy(page.faqHeading),
+  } as unknown as OrganicVerticalPageData;
+}
+
 export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPageData }) {
+  const view = presentedPage(page);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: page.faqs.map((faq) => ({
+    mainEntity: view.faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
       acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -26,14 +47,14 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <Navbar />
-      {page.path.includes("native-cigarettes") && <CigaretteSeasonalNotice sticky />}
+      {view.path.includes("native-cigarettes") && SHOW_CIGARETTES ? <CigaretteSeasonalNotice sticky /> : null}
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.kicker}>{page.kicker}</p>
-          <h1>{page.h1}</h1>
-          <p className={styles.lede}>{page.lede}</p>
-          {page.warning ? <p className={styles.warning}>{page.warning}</p> : null}
+          <p className={styles.kicker}>{view.kicker}</p>
+          <h1>{view.h1}</h1>
+          <p className={styles.lede}>{view.lede}</p>
+          {view.warning ? <p className={styles.warning}>{view.warning}</p> : null}
 
           <dl className={styles.napBar}>
             <div className={styles.napCard}>
@@ -67,13 +88,13 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
           </dl>
 
           <div className={styles.actions}>
-            <Link className={styles.primary} href={page.primaryHref}>
-              {page.primaryLabel}
+            <Link className={styles.primary} href={view.primaryHref}>
+              {view.primaryLabel}
             </Link>
-            <Link className={styles.secondary} href={page.secondaryHref}>
-              {page.secondaryLabel}
+            <Link className={styles.secondary} href={view.secondaryHref}>
+              {view.secondaryLabel}
             </Link>
-            {(page.extraActions ?? []).map((action) => (
+            {(view.extraActions ?? []).map((action) => (
               <Link key={action.href} className={styles.secondary} href={action.href}>
                 {action.label}
               </Link>
@@ -82,12 +103,12 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
         </div>
       </section>
 
-      {page.path === "/nicotine-vape-junction" && <VapeActionPanel compact />}
+      {view.path === "/nicotine-vape-junction" && <VapeActionPanel compact />}
 
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.grid}>
-            {page.panels.map((panel) => (
+            {view.panels.map((panel) => (
               <div key={panel.heading} className={styles.panel}>
                 <h2>{panel.heading}</h2>
                 <p>{panel.body}</p>
@@ -99,20 +120,20 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
 
       <section className={styles.section}>
         <div className={styles.container}>
-          {page.sections.map((section) => (
+          {view.sections.map((section) => (
             <div key={section.heading}>
               <h2>{section.heading}</h2>
               <p>{section.body}</p>
             </div>
           ))}
-          <LocalSeoMesh currentPath={page.path} />
+          <LocalSeoMesh currentPath={view.path} />
         </div>
       </section>
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2>{page.faqHeading}</h2>
-          {page.faqs.map((faq) => (
+          <h2>{view.faqHeading}</h2>
+          {view.faqs.map((faq) => (
             <details key={faq.q} className={styles.faqItem}>
               <summary>{faq.q}</summary>
               <p>{faq.a}</p>
