@@ -19,6 +19,14 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) return {};
+  if (page.slug === "cannabis-concentrates-glossary") {
+    return {
+      title: { absolute: page.seoTitle },
+      description: page.description,
+      alternates: { canonical: "https://www.gasjunctioncannabis.com/resources/cannabis-concentrates-glossary" },
+      robots: { index: true, follow: true },
+    };
+  }
   return {
     title: page.slug === "weed-flower-guide" ? { absolute: page.seoTitle } : page.seoTitle,
     description: page.description,
