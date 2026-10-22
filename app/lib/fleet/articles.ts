@@ -1,3 +1,4 @@
+import { readEmergencyCoded } from "./emergency.ts";
 import { articleBodyUrl, articlesIndexUrl, FLEET_ARTICLES_PATH, FLEET_BLOCKED_PHONES, FLEET_ORIGIN, FLEET_STORE_NAME } from "./config.ts";
 import { markdownToHtml, sanitizeArticleHtml } from "./sanitize.ts";
 import { FLEET_CONTENT_TAG, FLEET_MAX_BUNDLE_BYTES } from "./types.ts";
@@ -237,7 +238,10 @@ export async function loadFleetArticles(options: {
   fetchImpl?: typeof fetch;
   indexUrl?: string;
   blockedPhones?: readonly string[];
+  emergencyCoded?: boolean;
 } = {}): Promise<ArticleLoadResult> {
+  const emergency = options.emergencyCoded ?? await readEmergencyCoded(options.fetchImpl);
+  if (emergency) return { ok: false, articles: [] };
   const indexUrl = options.indexUrl || articlesIndexUrl();
   const blocked = options.blockedPhones ?? FLEET_BLOCKED_PHONES;
   const fetchImpl = options.fetchImpl ?? fetch;
