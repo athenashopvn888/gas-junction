@@ -4,8 +4,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { CATEGORY_CONFIG, type ItemProduct } from "../../lib/products";
+import { CATEGORY_CONFIG, allItems, type ItemProduct } from "../../lib/products";
 import { getWebMenuData } from "../../lib/webMenu";
+import { isRealCigaretteItem } from "../../lib/cigMarkers";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
+import CigaretteUnavailable from "../../components/CigaretteUnavailable";
 import { getItemData } from "../../lib/itemData";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
 import Magnifier from "../../components/Magnifier";
@@ -135,7 +138,20 @@ export default async function ItemPage({
   const { slug } = await params;
   const { items } = await getWebMenuData();
   const item = items.find((i) => i.slug === slug);
-  if (!item) notFound();
+  if (!item) {
+    const snap = await getCigaretteSnapshot();
+    const known = allItems.find((entry) => entry.slug === slug);
+    if (known && isRealCigaretteItem(known) && !snap.web.show) {
+      return (
+        <main className={styles.main}>
+          <Navbar />
+          <CigaretteUnavailable />
+          <Footer />
+        </main>
+      );
+    }
+    notFound();
+  }
 
   const catInfo = Object.values(CATEGORY_CONFIG).find(c => c.name.toUpperCase() === item.category.toUpperCase() || c.name === item.category);
   const catColor = catInfo?.color || "#94a3b8";

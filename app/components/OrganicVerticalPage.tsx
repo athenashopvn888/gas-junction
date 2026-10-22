@@ -4,7 +4,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import LocalSeoMesh from "./LocalSeoMesh";
 import { STORE } from "../lib/store";
-import { isCigaretteHref, scrubCigaretteCopy } from "../lib/cigaretteVisibility";
+import CigaretteUnavailable from "./CigaretteUnavailable";
+import { isCigaretteHref, isCigarettePublicPath, scrubCigaretteCopy } from "../lib/cigaretteVisibility";
 import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import type { OrganicVerticalPageData } from "../lib/organicVerticalPages";
 import styles from "../visit/visit.module.css";
@@ -49,6 +50,7 @@ export default async function OrganicVerticalPage({ page }: { page: OrganicVerti
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <Navbar />
+      {isCigarettePublicPath(view.path) && !showCigarettes ? <CigaretteUnavailable /> : null}
       {view.path.includes("native-cigarettes") && showCigarettes ? <CigaretteSeasonalNotice sticky /> : null}
 
       <section className={styles.hero}>

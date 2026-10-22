@@ -1,9 +1,10 @@
 import HomePageClient from "./HomePageClient";
+import { getFleetContent } from "./lib/fleetContent";
 import { getLiveMenu } from "./lib/liveMenu";
 
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const { flowers } = await getLiveMenu();
-  return <HomePageClient initialFlowers={flowers} />;
+  const [{ flowers }, fleet] = await Promise.all([getLiveMenu(), getFleetContent()]);
+  return <HomePageClient initialFlowers={flowers} contentBanners={fleet.active ? fleet.banners : undefined} />;
 }

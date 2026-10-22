@@ -282,7 +282,7 @@ test("HTTP 200 HTML, 429, and throws serve last-good with reason and cooldown", 
   }
 });
 
-test("cigarette dataset keeps cig on a live read and drops it when the feed errors", async () => {
+test("cigarette dataset keeps cig on a live read and reuses it when a later read errors", async () => {
   assert.equal(CIG_STOCK_CACHE_MS, 60_000);
   const flowers = list(staticFlowers.length, (index) => flower(`F${index}`));
   const items = list(staticItems.length, (index) => item(`I${index}`));
@@ -309,6 +309,16 @@ test("cigarette dataset keeps cig on a live read and drops it when the feed erro
   });
   assert.equal(cached.cig, first.cig);
   assert.equal(live.calls.length, 1);
+
+  const kept = await getCigaretteDataset({
+    staticFlowers,
+    staticItems,
+    fetchImpl: mockFetch(null, { throwError: new Error("network down") }).fetchImpl,
+    now: 5_000 + 61_000,
+  });
+  assert.notEqual(kept.source, "live");
+  assert.equal(kept.cig.tvOn, true);
+  assert.equal(kept.cig.webOn, false);
 
   resetTvStockCache();
   const failed = await getCigaretteDataset({

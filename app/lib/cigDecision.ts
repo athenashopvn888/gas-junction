@@ -63,21 +63,17 @@ export function resolveCigWording(wording: unknown): CigaretteWording {
   };
 }
 
-function booleanOrUndefined(value: unknown): boolean | undefined {
-  return typeof value === "boolean" ? value : undefined;
-}
-
-/**
- * Website surfaces read webOn. TV surfaces read tvOn.
- * A missing side flag falls back to cig.on. Anything other than strict true is off.
- */
+/** Website surfaces read webOn. TV surfaces read tvOn. A missing side flag falls back to cig.on. Only an explicit false hides the surface. */
 export function resolveSurfaceFlag(cig: unknown, surface: CigaretteSurface): boolean {
   if (!cig || typeof cig !== "object" || Array.isArray(cig)) return false;
   const block = cig as Record<string, unknown>;
-  const specific = booleanOrUndefined(surface === "web" ? block.webOn : block.tvOn);
-  const fallback = booleanOrUndefined(block.on);
-  const flag = specific !== undefined ? specific : fallback;
-  return flag === true;
+  const specific = surface === "web" ? block.webOn : block.tvOn;
+  const fallback = block.on;
+  if (specific === false) return false;
+  if (typeof specific === "boolean") return specific;
+  if (fallback === false) return false;
+  if (typeof fallback === "boolean") return fallback;
+  return true;
 }
 
 export function decideCigaretteSurface(input: {
@@ -93,14 +89,37 @@ export function decideCigaretteSurface(input: {
       : undefined,
   );
   if (cigaretteEnvHardOff(input.envRaw)) return { show: false, reason: "env", wording };
-  if (input.errored) return { show: false, reason: "error", wording };
+  // A missing feed or a feed error shows cigarettes. Only an explicit false flag hides them.
+  if (input.errored) return { show: true, reason: "error", wording };
   if (!input.cig || typeof input.cig !== "object" || Array.isArray(input.cig)) {
-    return { show: false, reason: "missing", wording };
+    return { show: true, reason: "missing", wording };
   }
   if (!resolveSurfaceFlag(input.cig, input.surface)) return { show: false, reason: "off", wording };
   const items = Array.isArray(input.items) ? input.items : [];
   if (!items.some((item) => isRealCigaretteItem(item))) return { show: false, reason: "no-items", wording };
   return { show: true, reason: "on", wording };
+}
+
+/** Guide pages follow the master switch (`master`, otherwise `on`), not the web/TV split. */
+export function decideCigaretteGuide(input: {
+  cig: unknown;
+  items?: ShelfItem[] | null;
+  envRaw?: string;
+  errored?: boolean;
+}): CigaretteSurfaceDecision {
+  if (cigaretteEnvHardOff(input.envRaw)) return { show: false, reason: "env" };
+  if (input.errored) return { show: true, reason: "error" };
+  if (!input.cig || typeof input.cig !== "object" || Array.isArray(input.cig)) {
+    return { show: true, reason: "missing" };
+  }
+  const block = input.cig as Record<string, unknown>;
+  const master = typeof block.master === "boolean" ? block.master : undefined;
+  const on = typeof block.on === "boolean" ? block.on : undefined;
+  const flag = master !== undefined ? master : on;
+  if (flag === false) return { show: false, reason: "off" };
+  const items = Array.isArray(input.items) ? input.items : [];
+  if (!items.some((item) => isRealCigaretteItem(item))) return { show: false, reason: "no-items" };
+  return { show: true, reason: "on" };
 }
 
 /** Drop real cigarettes when this surface is off. Always keep wraps and pouches. */

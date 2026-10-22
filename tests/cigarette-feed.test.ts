@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   CIG_WORDING_FALLBACK,
+  decideCigaretteGuide,
   decideCigaretteSurface,
   reconcileSurfaceItems,
   resolveCigWording,
@@ -43,12 +44,16 @@ test("website follows webOn and TV follows tvOn, with on as the fallback", () =>
   assert.equal(resolveSurfaceFlag(cig({ on: true, webOn: false, webFollowsTv: true }), "web"), false);
 });
 
-test("cigarettes stay off without a true flag, without real items, on errors, or when the env is explicitly false", () => {
+test("only an explicit false flag, no real items, or the env override hides cigarettes", () => {
   const items = [carton, grabba, backwoods];
-  assert.equal(decideCigaretteSurface({ cig: null, items, surface: "web" }).reason, "missing");
-  assert.equal(decideCigaretteSurface({ cig: cig(), items, surface: "tv" }).reason, "off");
+  const missing = decideCigaretteSurface({ cig: null, items, surface: "web" });
+  assert.equal(missing.reason, "missing");
+  assert.equal(missing.show, true);
+  assert.equal(decideCigaretteSurface({ cig: cig(), items, surface: "tv" }).show, false);
   assert.equal(decideCigaretteSurface({ cig: cig({ on: true, webOn: true, tvOn: true }), items: [backwoods, pouch], surface: "web" }).reason, "no-items");
-  assert.equal(decideCigaretteSurface({ cig: cig({ on: true, webOn: true, tvOn: true }), items, surface: "web", errored: true }).reason, "error");
+  const errored = decideCigaretteSurface({ cig: cig({ on: true, webOn: false, tvOn: false }), items, surface: "web", errored: true });
+  assert.equal(errored.reason, "error");
+  assert.equal(errored.show, true);
   assert.equal(decideCigaretteSurface({ cig: cig({ on: true, webOn: true, tvOn: true }), items, surface: "tv", envRaw: "false" }).reason, "env");
   assert.equal(decideCigaretteSurface({ cig: cig({ on: true, webOn: true, tvOn: true }), items, surface: "web", envRaw: "true" }).show, true);
 });
@@ -59,6 +64,22 @@ test("wording uses the feed and falls back to the current copy field by field", 
   assert.equal(resolveCigWording(undefined).tickerLine1, CIG_WORDING_FALLBACK.tickerLine1);
   assert.equal(decideCigaretteSurface({ cig: cig({ webOn: false }), items: [backwoods], surface: "web" }).wording.wrapsTitle, "🍂 WRAPS & POUCHES");
   assert.equal(decideCigaretteSurface({ cig: null, items: [], surface: "tv" }).wording.bannerText, CIG_WORDING_FALLBACK.bannerText);
+});
+
+test("null flags with real cigarettes stay open and an explicit false still hides", () => {
+  const open = decideCigaretteSurface({ cig: { on: null, webOn: null, tvOn: null, wording }, items: [carton], surface: "web" });
+  assert.equal(open.show, true);
+  assert.equal(open.reason, "on");
+  assert.equal(decideCigaretteSurface({ cig: { on: false }, items: [carton], surface: "tv" }).reason, "off");
+  assert.equal(decideCigaretteGuide({ cig: { master: null, on: null }, items: [carton] }).show, true);
+});
+
+test("guide pages follow the master switch and a feed error stays open", () => {
+  const items = [carton];
+  assert.equal(decideCigaretteGuide({ cig: cig({ on: false, master: false, webOn: true }), items }).show, false);
+  assert.equal(decideCigaretteGuide({ cig: cig({ on: true, master: true, webOn: false }), items }).show, true);
+  assert.equal(decideCigaretteGuide({ cig: null, items, errored: true }).show, true);
+  assert.equal(decideCigaretteGuide({ cig: cig({ on: true, master: true }), items, envRaw: "off" }).reason, "env");
 });
 
 test("each surface hides real cigarettes itself and always keeps wraps and pouches", () => {

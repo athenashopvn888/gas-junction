@@ -104,8 +104,9 @@ export function isCigaretteHref(href: string): boolean {
   return isCigarettePublicPath(href);
 }
 
-export function cigaretteRedirectPath(pathname: string): string | null {
-  return isCigarettePublicPath(pathname) ? VAPE_PAGE_PATH : null;
+/** Cigarette URLs stay on their own path. Nothing redirects them. */
+export function cigaretteRedirectPath(_pathname: string): string | null {
+  return null;
 }
 
 export function isCigaretteSitemapUrl(url: string): boolean {

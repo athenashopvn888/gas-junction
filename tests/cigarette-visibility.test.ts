@@ -38,7 +38,7 @@ test("cigarette items are hidden and rolling papers, Backwoods, cigarillos, pouc
   assert.equal(isCigaretteItem({ category: "CIGARETTES", name: "VELO POUCH", slug: "velo-pouch" }), false);
 });
 
-test("cigarette urls 302 targets are the nicotine vape page and kept smoke urls are not", () => {
+test("cigarette urls stay on their own path and kept smoke urls are not cigarette paths", () => {
   for (const path of [
     "/cigarettes",
     "/items/cigarettes",
@@ -54,7 +54,7 @@ test("cigarette urls 302 targets are the nicotine vape page and kept smoke urls 
     "/guides/belmont-delivery-the-junction",
     "/guides/grabba-delivery-the-junction",
   ]) {
-    assert.equal(cigaretteRedirectPath(path), "/items/vapes", path);
+    assert.equal(cigaretteRedirectPath(path), null, path);
   }
   assert.equal(cigaretteRedirectPath("/item/backwoods-assorted-flavors-20-25"), null);
   assert.equal(cigaretteRedirectPath("/item/new-backwoods-flavors"), null);

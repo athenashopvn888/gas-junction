@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
 import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
+import { getFleetContent } from "../lib/fleetContent";
 import styles from "./visit.module.css";
 
 export const metadata: Metadata = {
@@ -52,7 +53,9 @@ const faqJsonLd = {
 };
 
 export default async function VisitPage() {
-  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const [cigaretteSnapshot, fleet] = await Promise.all([getCigaretteSnapshot(), getFleetContent()]);
+  const showCigarettes = cigaretteSnapshot.web.show;
+  const nap = fleet.nap;
   return (
     <main className={styles.main}>
       <script
@@ -66,7 +69,7 @@ export default async function VisitPage() {
           <p className={styles.kicker}>The Junction · Keele &amp; Dundas · Adults 19+</p>
           <h1>The Junction — How to Get to Gas Junction Cannabis</h1>
           <p className={styles.lede}>
-            Gas Junction Cannabis is a 24-hour walk-in shop at {STORE.addressLine}.
+            Gas Junction Cannabis is a 24-hour walk-in shop at {nap.street}, {nap.cityLine}.
             This page is the neighbourhood reach guide — streetcar and subway notes,
             parking, and landmarks around Keele &amp; Dundas — not a Toronto-wide
             dispensary listing.
@@ -77,27 +80,27 @@ export default async function VisitPage() {
               <dt>Address</dt>
               <dd>
                 <address>
-                  {STORE.name}
+                  {nap.name}
                   <br />
-                  {STORE.streetAddress}
+                  {nap.street}
                   <br />
-                  {STORE.city}, {STORE.region} {STORE.postalCode}
+                  {nap.city}, {nap.province} {nap.postalCode}
                 </address>
               </dd>
             </div>
             <div className={styles.napCard}>
               <dt>Phone</dt>
               <dd>
-                <a href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+                <a href={`tel:${nap.phoneTel}`}>{nap.phoneDisplay}</a>
               </dd>
             </div>
             <div className={styles.napCard}>
               <dt>Hours</dt>
-              <dd>{STORE.hoursLabel}</dd>
+              <dd>{nap.hours}</dd>
             </div>
             <div className={styles.napCard}>
               <dt>Intersection</dt>
-              <dd>{STORE.intersection}, {STORE.neighborhood}</dd>
+              <dd>{nap.intersection}, {nap.area}</dd>
             </div>
           </dl>
 
@@ -105,8 +108,8 @@ export default async function VisitPage() {
             <a className={styles.primary} href={STORE.directionsUrl} target="_blank" rel="noopener noreferrer">
               Open directions
             </a>
-            <a className={styles.secondary} href={`tel:${STORE.phoneTel}`}>
-              Call {STORE.phoneDisplay}
+            <a className={styles.secondary} href={`tel:${nap.phoneTel}`}>
+              Call {nap.phoneDisplay}
             </a>
             <Link className={styles.secondary} href="/">
               Store homepage
@@ -158,7 +161,7 @@ export default async function VisitPage() {
               <p>
                 This is not a mall-pad shop. There is no dedicated lot advertised on
                 this page. If you are driving in for a specific product, call{" "}
-                {STORE.phoneDisplay} before you leave so the trip stays a single stop.
+                {nap.phoneDisplay} before you leave so the trip stays a single stop.
               </p>
             </div>
           </div>
@@ -185,7 +188,7 @@ export default async function VisitPage() {
           <div className={styles.mapWrap}>
             <iframe
               title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
-              src={STORE.mapsEmbedUrl}
+              src={nap.mapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

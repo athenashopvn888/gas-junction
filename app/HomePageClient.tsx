@@ -24,6 +24,8 @@ import { useLiveFlowers } from "./lib/useLiveMenu";
 import { storeTierRange, tierRangeText } from "./lib/tierPriceRanges";
 import { scrubCigaretteCopy } from "./lib/cigaretteVisibility";
 import { useCigaretteState } from "./components/CigaretteStateProvider";
+import { useFleetContent } from "./components/FleetContentProvider";
+import type { ResolvedBanner } from "./lib/fleet/types";
 
 const WELCOME_BANNER_SRC = "/home/gjc01-hero.webp";
 
@@ -101,8 +103,9 @@ interface ReviewStats {
   avg: number;
 }
 
-export default function HomePageClient({ initialFlowers }: { initialFlowers: Parameters<typeof storeTierRange>[0] }) {
+export default function HomePageClient({ initialFlowers, contentBanners }: { initialFlowers: Parameters<typeof storeTierRange>[0]; contentBanners?: ResolvedBanner[] }) {
     const showCigarettes = useCigaretteState().web;
+    const mapSrc = useFleetContent().nap.mapsEmbedUrl;
     const exploreCategories = showCigarettes
       ? EXPLORE_CATEGORIES
       : EXPLORE_CATEGORIES.filter((cat) => cat.slug !== "items/cigarettes");
@@ -214,7 +217,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
       />
       {/* ── NAVBAR: fixed below the site delivery bar; promos follow in normal flow ── */}
       <Navbar />
-      <FleetAnnouncementBanner title={HOME_TITLE} />
+      <FleetAnnouncementBanner title={HOME_TITLE} banners={contentBanners} />
       <HiringCallout />
 
       {/* ── WELCOME BANNER ── */}
@@ -580,7 +583,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           <div className={styles.mapWrap}>
             <iframe
               title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
-              src={STORE.mapsEmbedUrl}
+              src={mapSrc}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className={styles.mapFrame}

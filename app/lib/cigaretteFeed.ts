@@ -1,6 +1,7 @@
 import { cache } from "react";
 import {
   cigarettePublicHeaders,
+  decideCigaretteGuide,
   decideCigaretteSurface,
   reconcileSurfaceItems,
   type CigaretteSurfaceDecision,
@@ -13,6 +14,7 @@ import { getCigaretteDataset } from "./tvStock";
 export type CigaretteSnapshot = {
   web: CigaretteSurfaceDecision;
   tv: CigaretteSurfaceDecision;
+  guides: CigaretteSurfaceDecision;
   wording: CigaretteWording;
   live: boolean;
   items: ItemProduct[];
@@ -24,36 +26,27 @@ export type PublicCigaretteState = {
   wording: CigaretteWording;
 };
 
-function offSnapshot(reason: CigaretteSurfaceDecision["reason"]): CigaretteSnapshot {
-  const web = decideCigaretteSurface({ cig: null, items: [], surface: "web", errored: reason === "error" });
-  const tv = decideCigaretteSurface({ cig: null, items: [], surface: "tv", errored: reason === "error" });
-  if (reason === "env") {
-    return {
-      web: { show: false, reason: "env" },
-      tv: { show: false, reason: "env" },
-      wording: web.wording,
-      live: false,
-      items: [],
-    };
-  }
-  return { web, tv, wording: web.wording, live: false, items: [] };
+function snapshotFrom(cig: unknown, items: ItemProduct[], live: boolean, errored: boolean): CigaretteSnapshot {
+  const web = decideCigaretteSurface({ cig, items, surface: "web", errored });
+  const tv = decideCigaretteSurface({ cig, items, surface: "tv", errored });
+  const guides = decideCigaretteGuide({ cig, items, errored });
+  return { web, tv, guides, wording: web.wording, live, items };
 }
 
 export async function readCigaretteFeed(): Promise<CigaretteSnapshot> {
-  if (cigaretteEnvHardOff()) return offSnapshot("env");
+  if (cigaretteEnvHardOff()) return snapshotFrom(null, [], false, false);
   try {
     const dataset = await getCigaretteDataset({
       staticFlowers: allFlowers,
       staticItems: allItems,
     });
     const live = dataset?.source === "live";
-    const items = live && Array.isArray(dataset.items) ? dataset.items as ItemProduct[] : [];
-    const cig = live ? dataset.cig : null;
-    const web = decideCigaretteSurface({ cig, items, surface: "web", errored: !live });
-    const tv = decideCigaretteSurface({ cig, items, surface: "tv", errored: !live });
-    return { web, tv, wording: web.wording, live, items };
+    const items = Array.isArray(dataset?.items) ? dataset.items as ItemProduct[] : allItems;
+    const cig = dataset?.cig ?? null;
+    // Last-good cig is kept on the dataset. A miss with no saved cig fails open.
+    return snapshotFrom(cig, items.length ? items : allItems, live, !live && !cig);
   } catch {
-    return offSnapshot("error");
+    return snapshotFrom(null, allItems, false, true);
   }
 }
 

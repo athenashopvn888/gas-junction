@@ -149,13 +149,16 @@ function resetTvStockCache() {
 
 function presentCigDataset(dataset) {
   const source = dataset && dataset.source ? dataset.source : "static-fallback";
+  const cig = source === "live"
+    ? normalizeCig(dataset.cig)
+    : (lastGood ? normalizeCig(lastGood.cig) : null);
   return {
     source,
     flowers: dataset && Array.isArray(dataset.flowers) ? dataset.flowers : [],
     items: dataset && Array.isArray(dataset.items) ? dataset.items : [],
     stockDate: dataset && dataset.stockDate ? dataset.stockDate : "",
     fallbackReason: dataset && dataset.fallbackReason ? dataset.fallbackReason : "",
-    cig: source === "live" ? normalizeCig(dataset.cig) : null,
+    cig,
   };
 }
 

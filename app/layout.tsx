@@ -1,4 +1,6 @@
 import CigaretteStateProvider from "./components/CigaretteStateProvider";
+import FleetContentProvider from "./components/FleetContentProvider";
+import { getFleetContent } from "./lib/fleetContent";
 import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
@@ -13,7 +15,7 @@ import { scrubCigaretteCopy } from "./lib/cigaretteVisibility";
 // so nav, footer, and store copy follow the feed without a rebuild.
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+const ROOT_METADATA: Metadata = {
   metadataBase: new URL(STORE.origin),
   title: {
     default: HOME_DOC_TITLE,
@@ -77,6 +79,20 @@ export const metadata: Metadata = {
     // google: "your-google-verification-code",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return ROOT_METADATA;
+  const page = fleet.pages.Home;
+  const description = page?.metaDescription || "";
+  if (!description || description === ROOT_METADATA.description) return ROOT_METADATA;
+  return {
+    ...ROOT_METADATA,
+    description,
+    openGraph: { ...ROOT_METADATA.openGraph, description },
+    twitter: { ...ROOT_METADATA.twitter, description },
+  };
+}
 
 /* ── JSON-LD Structured Data: store entity lives on the homepage ── */
 const webSiteJsonLd = {
@@ -151,14 +167,38 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cigarettes = toPublicCigaretteState(await getCigaretteSnapshot());
+  const [cigaretteSnapshot, fleet] = await Promise.all([getCigaretteSnapshot(), getFleetContent()]);
+  const cigarettes = toPublicCigaretteState(cigaretteSnapshot);
   const storeJsonLd = {
     ...cannabisStoreJsonLd,
     description: scrubCigaretteCopy(STORE_DESCRIPTION, cigarettes.web),
+    ...(fleet.active
+      ? {
+          name: fleet.nap.schemaName,
+          alternateName: fleet.nap.name,
+          telephone: fleet.nap.phoneTel,
+          url: fleet.nap.website,
+          hasMap: fleet.nap.mapsSearchUrl,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: fleet.nap.street,
+            addressLocality: fleet.nap.city,
+            addressRegion: fleet.nap.province,
+            postalCode: fleet.nap.postalCode,
+            addressCountry: "CA",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: Number(fleet.nap.lat),
+            longitude: Number(fleet.nap.lng),
+          },
+        }
+      : {}),
   };
   return (
     <html lang="en">
       <head>
+        <meta name="fleet-content-version" content={fleet.version} />
         <meta name="geo.region" content="CA-ON" />
         <meta name="geo.placename" content="The Junction, Toronto" />
         <meta name="geo.position" content="43.66517;-79.46306" />
@@ -195,14 +235,16 @@ export default async function RootLayout({
         </Link>
         <noscript>
           <p>
-            Gas Junction Cannabis · 2813 Dundas St W, Toronto, ON M6P 1Y6 · +1 (437) 291-0948 · Open 24 Hours Daily · The Junction, Keele &amp; Dundas
+            {`${fleet.nap.name} · ${fleet.nap.street}, ${fleet.nap.cityLine} · ${fleet.nap.phoneDisplay} · ${fleet.nap.hours} · ${fleet.nap.area}, ${fleet.nap.intersection}`}
           </p>
         </noscript>
-        <CigaretteStateProvider value={cigarettes}>
-          {children}
-          <FullNameNap />
-          <PinnedNavClearance />
-        </CigaretteStateProvider>
+        <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap }}>
+          <CigaretteStateProvider value={cigarettes}>
+            {children}
+            <FullNameNap />
+            <PinnedNavClearance />
+          </CigaretteStateProvider>
+        </FleetContentProvider>
       </body>
     </html>
   );
