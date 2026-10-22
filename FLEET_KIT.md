@@ -12,7 +12,9 @@ Gas Junction keeps its current pages when the blob is missing, the manifest is i
 4. Wire the touchpoints below. Leave coded pages and URLs in place.
 5. Run the checklist.
 
-No manifest env var is required. The reader requests `{FLEET_BLOB_ORIGIN}/{STORE_CODE}/manifest.json`. `FLEET_CONTENT_MANIFEST_URL` still overrides that URL when it is set. A timeout, 404, or invalid file keeps the last good bundle, or coded content when there has never been one. `EDGE_CONFIG` item `contentMode=coded` forces coded content.
+No manifest env var is required. The reader requests `https://dhaah0upvlpukv56.public.blob.vercel-storage.com/{STORE_CODE}/manifest.json` (`FLEET_BLOB_ORIGIN` in `config.ts`). `FLEET_CONTENT_MANIFEST_URL` still overrides that URL when it is set. A 404 or invalid file keeps the last good bundle, or coded content when there has never been one. `EDGE_CONFIG` item `contentMode=coded` forces coded content.
+
+`/contact`, `/tv`, and `/tv2` are dynamic so the layout meta is rendered with that read, not a build-time snapshot. `/` and the tier pages are already dynamic. The meta tag is `<meta name="fleet-content-version" content={fleet.version} />`, and `fleet.version` is `{storeCode}:{manifest.contentVersion}`.
 
 Publish refresh is `POST /api/revalidate` with header `x-fleet-revalidate-secret`. The route clears the in-memory bundle and article cache, calls `revalidateTag("fleet-content", "max")`, and revalidates `FLEET_AFFECTED_PATHS` plus `/articles/[slug]`.
 
