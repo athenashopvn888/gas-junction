@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, unstable_rethrow } from "next/navigation";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { loadFleetArticles, mergeArticleLinks } from "../lib/fleet/articles";
 import { FLEET_ARTICLES_PATH, FLEET_ORIGIN } from "../lib/fleet/config";
 import { RESOURCE_PAGES } from "../resources/resourceData";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Articles",
@@ -24,23 +24,28 @@ function codedLinks() {
 }
 
 export default async function ArticlesPage() {
-  const loaded = await loadFleetArticles();
-  if (!loaded.ok) notFound();
-  const links = mergeArticleLinks(codedLinks(), loaded.articles);
-  return (
-    <>
-      <Navbar />
-      <main>
-        <h1>Articles</h1>
-        <ul>
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href}>{link.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-      <Footer />
-    </>
-  );
+  try {
+    const loaded = await loadFleetArticles();
+    if (!loaded.ok) notFound();
+    const links = mergeArticleLinks(codedLinks(), loaded.articles);
+    return (
+      <>
+        <Navbar />
+        <main>
+          <h1>Articles</h1>
+          <ul>
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </main>
+        <Footer />
+      </>
+    );
+  } catch (error) {
+    unstable_rethrow(error);
+    notFound();
+  }
 }
