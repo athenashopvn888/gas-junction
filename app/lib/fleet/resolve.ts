@@ -29,6 +29,14 @@ function fieldValue(field: ContentField | undefined, coded: string, allField?: C
   return resolveModeValue(mode, field?.value, coded, allField?.value).value;
 }
 
+/** 10-digit and 1+10-digit numbers become +1 E.164. Anything else keeps the coded tel link. */
+export function phoneToTel(display: string, fallback: string): string {
+  const digits = display.replace(/\D/g, "");
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  return fallback;
+}
+
 export function resolveNap(bundle: ContentBundle | null): Nap {
   if (!bundle) return CODED_NAP;
   const info = bundle.storeInfo ?? {};
@@ -39,7 +47,6 @@ export function resolveNap(bundle: ContentBundle | null): Nap {
   const area = fieldValue(info.area, CODED_NAP.area);
   const intersection = fieldValue(info.intersection, CODED_NAP.intersection);
   const phoneDisplay = fieldValue(info.phone, CODED_NAP.phoneDisplay);
-  const digits = phoneDisplay.replace(/[^\d+]/g, "");
   return {
     name: fieldValue(info.name, CODED_NAP.name),
     street,
@@ -51,7 +58,7 @@ export function resolveNap(bundle: ContentBundle | null): Nap {
     intersection,
     areaLine: `${intersection}, ${area}`,
     phoneDisplay,
-    phoneTel: digits.startsWith("+") ? digits : CODED_NAP.phoneTel,
+    phoneTel: phoneToTel(phoneDisplay, CODED_NAP.phoneTel),
     hours: fieldValue(info.hours, CODED_NAP.hours),
     mapsSearchUrl: fieldValue(info.mapsLink, CODED_NAP.mapsSearchUrl),
     mapsEmbedUrl: fieldValue(info.mapsEmbed, CODED_NAP.mapsEmbedUrl),
@@ -66,7 +73,7 @@ function findSlot(bundle: ContentBundle, page: string, spot: string): ContentSlo
   return bundle.slots?.find((slot) => slot.page === page && slot.spot === spot);
 }
 
-export function resolveBanners(bundle: ContentBundle | null, imageOk: (url: string) => boolean): ResolvedBanner[] {
+export function resolveBanners(bundle: ContentBundle | null): ResolvedBanner[] {
   return CODED_BANNERS.map((coded) => {
     if (!bundle) return coded;
     const slot = findSlot(bundle, coded.page, coded.spot);
@@ -82,12 +89,12 @@ export function resolveBanners(bundle: ContentBundle | null, imageOk: (url: stri
     const caption = safeText(source?.caption, textBar);
     const categoryName = safeText(source?.categoryName, coded.categoryName);
     const imageValue = source?.image?.trim() ?? "";
-    const missingOrBroken = imageValue === "" || !imageOk(imageValue);
+    const missing = imageValue === "";
     return {
       ...coded,
       hidden: false,
-      render: missingOrBroken ? "text" : "image",
-      image: missingOrBroken ? "" : imageValue,
+      render: missing ? "text" : "image",
+      image: missing ? "" : imageValue,
       imageWidth: source?.imageWidth,
       imageHeight: source?.imageHeight,
       alt,
@@ -103,6 +110,8 @@ export function resolvePages(bundle: ContentBundle | null): Record<string, Resol
   const pages: Record<string, ResolvedPage> = { ...CODED_PAGES };
   if (!bundle?.slots) return pages;
   for (const slot of bundle.slots) {
+    // Banner rows share a page with meta. Only the Page meta spot may change it, and a Coded row keeps the coded meta.
+    if (slot.spot !== "Page meta" || slot.mode === "Coded") continue;
     const coded = pages[slot.page] ?? { description: "", metaTitle: "", metaDescription: "" };
     const all = allSlot(bundle, slot);
     const source = slot.mode === "Follow ALL" ? all : slot;

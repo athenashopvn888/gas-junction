@@ -143,6 +143,8 @@ export type FleetState = {
   active: boolean;
   version: string;
   contentVersion: number | null;
+  /** Blob manifest URL. Empty when the site is on coded content. */
+  bundleUrl: string;
   renderedAt: string;
   nap: Nap;
   banners: ResolvedBanner[];

@@ -3,13 +3,12 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { CODED_BANNERS, CODED_NAP, CODED_PAGES, fleetVersion } from "../app/lib/fleet/coded.ts";
 import {
-  defaultImageOk,
   readEmergencyCoded,
   readFleetContent,
   resetFleetContentCache,
   tvManifestDecision,
 } from "../app/lib/fleet/read.ts";
-import { resolveBanners, resolveModeValue, resolveNap, resolvePages } from "../app/lib/fleet/resolve.ts";
+import { phoneToTel, resolveBanners, resolveModeValue, resolveNap, resolvePages } from "../app/lib/fleet/resolve.ts";
 import { revalidateAuthorized } from "../app/lib/fleet/secret.ts";
 import { FLEET_AFFECTED_PATHS } from "../app/lib/fleet/routes.ts";
 import { FLEET_MAX_BUNDLE_BYTES, type ContentBundle } from "../app/lib/fleet/types.ts";
@@ -36,19 +35,19 @@ function fetchServing(bodies: Record<string, { body: string; status?: number; he
   return { fetchImpl: fetchImpl as typeof fetch, calls };
 }
 
-async function acceptFixture(imageOk: (url: string) => boolean = () => true) {
+async function acceptFixture() {
   resetFleetContentCache();
-  const { fetchImpl } = fetchServing({
+  const { fetchImpl, calls } = fetchServing({
     [MANIFEST_URL]: { body: JSON.stringify(manifest), headers: { etag: '"GJC01-1"' } },
     [BUNDLE_URL]: { body: JSON.stringify(bundle) },
   });
-  return readFleetContent({
+  const state = await readFleetContent({
     manifestUrl: MANIFEST_URL,
     fetchImpl,
     emergencyCoded: false,
-    imageOk,
     renderedAt: "2026-10-22T12:00:01.000Z",
   });
+  return { state, calls };
 }
 
 test("a valid bundle is accepted and a missing manifest stays on coded content", async () => {
@@ -58,10 +57,12 @@ test("a valid bundle is accepted and a missing manifest stays on coded content",
   assert.equal(coded.nap.street, CODED_NAP.street);
   assert.equal(coded.pages.Home.description, CODED_PAGES.Home.description);
 
-  const live = await acceptFixture();
+  const { state: live, calls } = await acceptFixture();
   assert.equal(live.active, true);
   assert.equal(live.version, fleetVersion(1));
   assert.equal(live.contentVersion, 1);
+  assert.equal(live.bundleUrl, BUNDLE_URL);
+  assert.deepEqual(calls, [MANIFEST_URL, BUNDLE_URL]);
   assert.equal(live.banners.map((banner) => banner.id).join(","), "weed,vapes,cigarettes,premium-cigarettes");
   assert.equal(live.banners[0].textBar, "Sheet weed text bar");
   assert.equal(live.banners[0].render, "image");
@@ -98,7 +99,6 @@ test("invalid-200 responses are rejected before they replace the last good bundl
       manifestUrl: MANIFEST_URL,
       fetchImpl,
       emergencyCoded: false,
-      imageOk: () => true,
       renderedAt: "2026-10-23T00:00:01.000Z",
     });
     assert.equal(kept.contentVersion, 1, item.name);
@@ -107,8 +107,8 @@ test("invalid-200 responses are rejected before they replace the last good bundl
   }
 });
 
-test("a blank cell keeps coded copy and a broken image becomes the bold category banner", async () => {
-  const live = await acceptFixture((url) => url.startsWith("/banners/"));
+test("a blank cell keeps coded copy and a missing image becomes the bold category banner", async () => {
+  const { state: live } = await acceptFixture();
   assert.equal(live.banners[1].textBar, CODED_BANNERS[1].textBar);
   assert.equal(live.banners[1].alt, CODED_BANNERS[1].alt);
   assert.equal(live.nap.street, CODED_NAP.street);
@@ -117,16 +117,20 @@ test("a blank cell keeps coded copy and a broken image becomes the bold category
   assert.equal(live.banners[3].hidden, true);
 
   const broken = structuredClone(bundle);
-  broken.slots![0].image = "https://cdn.example/missing.webp";
-  const banners = resolveBanners(broken, () => false);
+  broken.slots![0].image = "";
+  const banners = resolveBanners(broken);
   assert.equal(banners[0].render, "text");
   assert.equal(banners[0].image, "");
   assert.equal(banners[0].categoryName, "Exotic Weed");
   assert.equal(banners[0].textBar, "Sheet weed text bar");
 
-  assert.equal(await defaultImageOk("/banners/core-top-weed-tier.webp"), true);
-  assert.equal(await defaultImageOk("/banners/does-not-exist.webp"), false);
-  assert.equal(await defaultImageOk("https://cdn.example/old.webp"), false);
+  broken.slots![0].image = "https://example.blob.vercel-storage.com/weed.webp";
+  const kept = resolveBanners(broken);
+  assert.equal(kept[0].render, "image");
+  assert.equal(kept[0].image, "https://example.blob.vercel-storage.com/weed.webp");
+  const bannerSource = readFileSync(new URL("../app/components/FleetAnnouncementBanner.tsx", import.meta.url), "utf8");
+  assert.match(bannerSource, /onError=\{\(\) => setImageFailed\(true\)\}/);
+  assert.match(bannerSource, /data-fleet-text-banner/);
 });
 
 test("Follow ALL, Custom, Coded and Hidden each resolve on their own", () => {
@@ -140,12 +144,41 @@ test("Follow ALL, Custom, Coded and Hidden each resolve on their own", () => {
 
   const follow = structuredClone(bundle);
   follow.slots![0].mode = "Follow ALL";
-  assert.equal(resolveBanners(follow, () => true)[0].textBar, "ALL weed text bar");
+  assert.equal(resolveBanners(follow)[0].textBar, "ALL weed text bar");
   follow.slots![0].mode = "Coded";
-  assert.equal(resolveBanners(follow, () => true)[0].textBar, CODED_BANNERS[0].textBar);
-  assert.equal(resolveBanners(follow, () => true)[0].image, CODED_BANNERS[0].image);
+  assert.equal(resolveBanners(follow)[0].textBar, CODED_BANNERS[0].textBar);
+  assert.equal(resolveBanners(follow)[0].image, CODED_BANNERS[0].image);
   assert.equal(resolveNap(null).name, CODED_NAP.name);
   assert.equal(resolvePages(bundle).Home.metaDescription, CODED_PAGES.Home.metaDescription);
+
+  const withMeta = structuredClone(bundle);
+  withMeta.slots!.push({
+    page: "Home",
+    spot: "Page meta",
+    mode: "Custom",
+    metaTitle: "Sheet home title",
+    metaDescription: "Sheet home description",
+    description: "Sheet home description",
+  });
+  withMeta.slots!.push({
+    page: "Home",
+    spot: "Top banner",
+    mode: "Coded",
+    metaTitle: "",
+    metaDescription: "",
+    description: "",
+  });
+  const pages = resolvePages(withMeta);
+  assert.equal(pages.Home.metaTitle, "Sheet home title");
+  assert.equal(pages.Home.metaDescription, "Sheet home description");
+  withMeta.slots!.find((slot) => slot.spot === "Page meta")!.mode = "Coded";
+  assert.equal(resolvePages(withMeta).Home.metaDescription, CODED_PAGES.Home.metaDescription);
+
+  assert.equal(phoneToTel("4372910948", CODED_NAP.phoneTel), "+14372910948");
+  assert.equal(phoneToTel("(437) 291-0948", CODED_NAP.phoneTel), "+14372910948");
+  assert.equal(phoneToTel("1 (437) 291-0948", CODED_NAP.phoneTel), "+14372910948");
+  assert.equal(phoneToTel("+1 437-291-0948", CODED_NAP.phoneTel), "+14372910948");
+  assert.equal(phoneToTel("not a phone", CODED_NAP.phoneTel), CODED_NAP.phoneTel);
 });
 
 test("the version marker, tv manifest 304, emergency coded flag, and revalidate secret stay in their lanes", async () => {
@@ -165,8 +198,11 @@ test("the version marker, tv manifest 304, emergency coded flag, and revalidate 
   assert.equal(miss.etag, '"GJC01-coded"');
   assert.equal(tvManifestDecision(coded, miss.etag).status, 304);
 
-  const live = await acceptFixture();
+  const { state: live } = await acceptFixture();
   assert.equal(tvManifestDecision(live, '"GJC01-1"').status, 304);
+  const manifestBody = tvManifestDecision(live, null).body;
+  assert.equal(manifestBody?.bundleUrl, BUNDLE_URL);
+  assert.equal(manifestBody?.contentVersion, 1);
   assert.equal((await readFleetContent({ manifestUrl: MANIFEST_URL, emergencyCoded: true, renderedAt: "2026-10-22T00:00:00.000Z" })).version, "GJC01:coded");
 
   assert.equal(revalidateAuthorized("right-secret", "right-secret"), true);
