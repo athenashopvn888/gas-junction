@@ -187,6 +187,12 @@ test("the version marker, tv manifest 304, emergency coded flag, and revalidate 
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.match(layout, /<meta name="fleet-content-version" content=\{fleet\.version\} \/>/);
   assert.match(readFileSync(new URL("../app/api/revalidate/route.ts", import.meta.url), "utf8"), /revalidateTag\(FLEET_CONTENT_TAG, "max"\)/);
+  const manifestRoute = readFileSync(new URL("../app/api/tv-manifest/route.ts", import.meta.url), "utf8");
+  assert.match(manifestRoute, /"Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=300"/);
+  assert.doesNotMatch(manifestRoute, /force-dynamic/);
+  assert.doesNotMatch(manifestRoute, /from ["']next\/headers["']/);
+  assert.doesNotMatch(manifestRoute, /\bcookies\s*\(/);
+  assert.doesNotMatch(manifestRoute, /\bheaders\s*\(/);
   assert.ok(FLEET_AFFECTED_PATHS.includes("/items/cigarettes"));
   assert.ok(FLEET_AFFECTED_PATHS.includes("/cigarettes"));
   assert.ok(FLEET_AFFECTED_PATHS.includes("/tv"));
