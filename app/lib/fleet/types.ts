@@ -155,6 +155,8 @@ export type TvCardSlot = {
   promoAlt: string;
   offImage: string | null;
   offAlt: string;
+  /** Present only when this TV2 row's mode is Hidden. Omitted for Coded and Custom. */
+  hidden?: true;
 };
 
 export type TvFullscreenPromo = {

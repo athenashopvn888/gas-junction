@@ -304,6 +304,85 @@ export default function TV2Page() {
     return () => clearInterval(interval);
   }, [items]);
 
+  const visibleBoard = CARD_CONFIG.map(card => {
+    const isCig = card.id === "CIGARETTES";
+    const shelf = items.filter(card.filter).filter((it) => !hideForDaytimeQuiet(it, daytime));
+    const filtered = isCig && !tvCig.show ? shelf.filter((it) => !isRealCigaretteItem(it)) : shelf;
+    const title = isCig ? (tvCig.show ? tvCig.wording.tv2BoardTitle : tvCig.wording.wrapsTitle) : card.title;
+    const broken = sheetBroken[card.id] || {};
+    const sheet = pickTv2Sheet(fleetTv.cards[card.id], {
+      categoryOff: isCig && !tvCig.show,
+      noItems: filtered.length === 0,
+      promoBroken: Boolean(broken.promo),
+      offBroken: Boolean(broken.off),
+    });
+    if (sheet?.kind === "hidden") return null;
+    if (sheet) {
+      const markBroken = () => setSheetBroken((prev) => ({ ...prev, [card.id]: { ...prev[card.id], [sheet.kind]: true } }));
+      return (
+        <div key={card.id} className={styles.card} data-fleet-tv-card={card.id} data-fleet-tv-kind={sheet.kind} style={{"--accent":card.accent} as React.CSSProperties}>
+          <div className={styles.cardHeader}>{sheet.kind === "promo" ? "PROMO" : title}</div>
+          <div className={styles.promoMain}>
+            <div className={styles.promoViewport}>
+              <img
+                className={`${styles.promoImg} ${styles.promoActive}`}
+                src={sheet.image}
+                alt={sheet.alt}
+                referrerPolicy="no-referrer"
+                ref={(node) => { if (node?.complete && node.naturalWidth === 0) markBroken(); }}
+                onError={markBroken}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    const promo = isCig
+      ? (filtered.length === 0 ? getTv2DaytimePromo("CIGARETTES", true) : undefined)
+      : getTv2DaytimePromo(card.id, daytime, promoElapsedMs);
+
+    if (promo) {
+      return (
+        <div
+          key={card.id}
+          className={styles.card}
+          data-promo-card={card.id === "CIGARETTES" ? "CATEGORY_COLLAGE" : card.id}
+          style={{"--accent":card.accent} as React.CSSProperties}
+        >
+          <div className={styles.cardHeader}>PROMO</div>
+          <div className={styles.promoMain}>
+            <div className={styles.promoViewport}>
+              <img
+                className={`${styles.promoImg} ${styles.promoActive}`}
+                src={promo.src}
+                alt={promo.alt}
+                referrerPolicy="no-referrer"
+                onError={(event) => {
+                  const target = event.currentTarget;
+                  if (
+                    promo.fallbackSrc &&
+                    target.dataset.fallbackApplied !== "true"
+                  ) {
+                    target.dataset.fallbackApplied = "true";
+                    target.src = promo.fallbackSrc;
+                  }
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <ItemCard key={card.id} title={title} accent={card.accent}
+        items={filtered} hiIdx={highlights[card.id]||0} preset={card.preset}
+        carton={tvCig.wording.priceCarton} twoPack={tvCig.wording.priceTwoPack}
+        board={isCig ? (tvCig.show ? "cigarettes" : "wraps") : undefined}
+        offerPromo={isCig && tvCig.show ? getCigaretteOfferPromo(daytime, promoElapsedMs) : undefined} />
+    );
+  }).filter((node) => node != null);
+
   return (
     <div
       className={styles.tvPage}
@@ -316,84 +395,8 @@ export default function TV2Page() {
         {/* GRID */}
         <div className={styles.stage}>
           <HiringRibbon hiring={tvHiring} />
-          <div className={styles.grid}>
-            {CARD_CONFIG.map(card => {
-              const isCig = card.id === "CIGARETTES";
-              const shelf = items.filter(card.filter).filter((it) => !hideForDaytimeQuiet(it, daytime));
-              const filtered = isCig && !tvCig.show ? shelf.filter((it) => !isRealCigaretteItem(it)) : shelf;
-              const title = isCig ? (tvCig.show ? tvCig.wording.tv2BoardTitle : tvCig.wording.wrapsTitle) : card.title;
-              const broken = sheetBroken[card.id] || {};
-              const sheet = pickTv2Sheet(fleetTv.cards[card.id], {
-                categoryOff: isCig && !tvCig.show,
-                noItems: filtered.length === 0,
-                promoBroken: Boolean(broken.promo),
-                offBroken: Boolean(broken.off),
-              });
-              if (sheet) {
-                const markBroken = () => setSheetBroken((prev) => ({ ...prev, [card.id]: { ...prev[card.id], [sheet.kind]: true } }));
-                return (
-                  <div key={card.id} className={styles.card} data-fleet-tv-card={card.id} data-fleet-tv-kind={sheet.kind} style={{"--accent":card.accent} as React.CSSProperties}>
-                    <div className={styles.cardHeader}>{sheet.kind === "promo" ? "PROMO" : title}</div>
-                    <div className={styles.promoMain}>
-                      <div className={styles.promoViewport}>
-                        <img
-                          className={`${styles.promoImg} ${styles.promoActive}`}
-                          src={sheet.image}
-                          alt={sheet.alt}
-                          referrerPolicy="no-referrer"
-                          ref={(node) => { if (node?.complete && node.naturalWidth === 0) markBroken(); }}
-                          onError={markBroken}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-              const promo = isCig
-                ? (filtered.length === 0 ? getTv2DaytimePromo("CIGARETTES", true) : undefined)
-                : getTv2DaytimePromo(card.id, daytime, promoElapsedMs);
-
-              if (promo) {
-                return (
-                  <div
-                    key={card.id}
-                    className={styles.card}
-                    data-promo-card={card.id === "CIGARETTES" ? "CATEGORY_COLLAGE" : card.id}
-                    style={{"--accent":card.accent} as React.CSSProperties}
-                  >
-                    <div className={styles.cardHeader}>PROMO</div>
-                    <div className={styles.promoMain}>
-                      <div className={styles.promoViewport}>
-                        <img
-                          className={`${styles.promoImg} ${styles.promoActive}`}
-                          src={promo.src}
-                          alt={promo.alt}
-                          referrerPolicy="no-referrer"
-                          onError={(event) => {
-                            const target = event.currentTarget;
-                            if (
-                              promo.fallbackSrc &&
-                              target.dataset.fallbackApplied !== "true"
-                            ) {
-                              target.dataset.fallbackApplied = "true";
-                              target.src = promo.fallbackSrc;
-                            }
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <ItemCard key={card.id} title={title} accent={card.accent}
-                  items={filtered} hiIdx={highlights[card.id]||0} preset={card.preset}
-                  carton={tvCig.wording.priceCarton} twoPack={tvCig.wording.priceTwoPack}
-                  board={isCig ? (tvCig.show ? "cigarettes" : "wraps") : undefined}
-                  offerPromo={isCig && tvCig.show ? getCigaretteOfferPromo(daytime, promoElapsedMs) : undefined} />
-              );
-            })}
+          <div className={styles.grid} {...(visibleBoard.length === CARD_CONFIG.length ? {} : { "data-fleet-tv-count": visibleBoard.length })}>
+            {visibleBoard}
           </div>
         </div>
         

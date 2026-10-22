@@ -39,7 +39,7 @@ function findSlot(bundle: ContentBundle, page: string, spot: string): ContentSlo
   return bundle.slots?.find((slot) => slot.page === page && slot.spot === spot);
 }
 
-/** Custom uses the row. Follow ALL uses the ALL row when that row is Custom. Coded and Hidden stay coded. */
+/** Custom uses the row. Follow ALL uses the ALL row when that row is Custom. Coded stays coded. Hidden is not a picture. */
 function customSource(bundle: ContentBundle, slot: ContentSlot): ContentSlot | null {
   if (slot.mode === "Hidden" || slot.mode === "Coded") return null;
   if (slot.mode === "Custom") return slot;
@@ -55,6 +55,10 @@ export function resolveTvCards(bundle: ContentBundle | null, now: Date): Record<
   for (const card of TV2_CARDS) {
     const slot = findSlot(bundle, TV2_PAGE, card);
     if (!slot) continue;
+    if (slot.mode === "Hidden") {
+      cards[card] = { card, hidden: true, promoImage: null, promoAlt: card, offImage: null, offAlt: card };
+      continue;
+    }
     const source = customSource(bundle, slot);
     if (!source) continue;
     const promo = inPromoWindow(source.promoStart, source.promoEnd, now) ? safeImage(source.image) : null;
@@ -91,8 +95,9 @@ export function resolveFullscreenPromos(bundle: ContentBundle | null, now: Date)
 export function pickTv2Sheet(
   slot: TvCardSlot | undefined,
   state: { categoryOff: boolean; noItems: boolean; promoBroken: boolean; offBroken: boolean },
-): { kind: "promo" | "off"; image: string; alt: string } | null {
+): { kind: "promo" | "off"; image: string; alt: string } | { kind: "hidden" } | null {
   if (!slot) return null;
+  if (slot.hidden) return { kind: "hidden" };
   if (!state.categoryOff && slot.promoImage && !state.promoBroken) {
     return { kind: "promo", image: slot.promoImage, alt: slot.promoAlt };
   }
@@ -100,4 +105,39 @@ export function pickTv2Sheet(
     return { kind: "off", image: slot.offImage, alt: slot.offAlt };
   }
   return null;
+}
+
+export function parseFleetTvManifest(body: unknown): { cards: Record<string, TvCardSlot>; fullscreenPromos: TvFullscreenPromo[] } {
+  if (!body || typeof body !== "object") return { cards: {}, fullscreenPromos: [] };
+  const record = body as { tvCards?: unknown; fullscreenPromos?: unknown };
+  const cards: Record<string, TvCardSlot> = {};
+  if (record.tvCards && typeof record.tvCards === "object" && !Array.isArray(record.tvCards)) {
+    for (const [card, value] of Object.entries(record.tvCards as Record<string, TvCardSlot>)) {
+      if (!value || typeof value !== "object") continue;
+      const parsed: TvCardSlot = {
+        card,
+        promoImage: typeof value.promoImage === "string" ? value.promoImage : null,
+        promoAlt: typeof value.promoAlt === "string" ? value.promoAlt : card,
+        offImage: typeof value.offImage === "string" ? value.offImage : null,
+        offAlt: typeof value.offAlt === "string" ? value.offAlt : card,
+      };
+      if (value.hidden === true) parsed.hidden = true;
+      cards[card] = parsed;
+    }
+  }
+  const fullscreenPromos = Array.isArray(record.fullscreenPromos)
+    ? record.fullscreenPromos.flatMap((item) => {
+        if (!item || typeof item !== "object") return [];
+        const promo = item as TvFullscreenPromo;
+        if (typeof promo.image !== "string" || !promo.image) return [];
+        return [{
+          spot: String(promo.spot || ""),
+          image: promo.image,
+          alt: typeof promo.alt === "string" ? promo.alt : "",
+          showSeconds: Number(promo.showSeconds) > 0 ? Number(promo.showSeconds) : 5,
+          everyMinutes: Number(promo.everyMinutes) > 0 ? Number(promo.everyMinutes) : 1,
+        }];
+      })
+    : [];
+  return { cards, fullscreenPromos };
 }
