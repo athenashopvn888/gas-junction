@@ -109,7 +109,7 @@ Index:
 }
 ```
 
-A bare array of those objects is also accepted. `slug` is lowercase letters, numbers, and single hyphens. `publishedAt` is an ISO instant. Entries missing a slug, title, or parseable date are skipped.
+A bare array of those objects is also accepted. `slug` is lowercase letters, numbers, and single hyphens. `publishedAt` is an ISO instant. `heroImage` may be an `http(s)` URL or a site-relative path such as `/banners/core-top-weed-tier.webp`. Protocol-relative and other schemes are dropped. Entries missing a slug, title, or parseable date are skipped.
 
 Body:
 
@@ -124,7 +124,7 @@ Body:
 
 `format` is `html` or `markdown`. When it is omitted, a body with an HTML tag is treated as HTML and anything else as markdown. HTML is reduced to `p`, `br`, headings, lists, `a`, `strong`, `em`, `blockquote`, `code`, `pre`, `hr`, `img`, `figure`, and `figcaption`. Scripts, iframes, event handlers, and `javascript:` / `data:` URLs are removed. The article is dropped when the title, description, body, or FAQ contains a number from `FLEET_BLOCKED_PHONES` in `config.ts` (digits or the formatted string).
 
-Each fleet article emits `Article` and `BreadcrumbList` JSON-LD. Pages use `export const revalidate = 60` and fetch with the `fleet-content` tag, so `/api/revalidate` refreshes them. Sitemap entries are `{origin}/articles/{slug}` for fleet slugs that do not clash.
+Each fleet article emits `Article` and `BreadcrumbList` JSON-LD, plus `FAQPage` when the body has FAQs. Schema `image` is absolute even when `heroImage` is site-relative. `/articles` and `/articles/[slug]` are `force-dynamic`: the root layout fetches the manifest with `cache: "no-store"`, and an ISR article page turns that into a 500 (`Page changed from static to dynamic at runtime`) for any slug that was not prerendered. A missing, rejected, or throwing article calls `notFound()` and responds 404. Article fetches still use `revalidate: 60` and the `fleet-content` tag, so `/api/revalidate` refreshes them. Sitemap entries are `{origin}/articles/{slug}` for fleet slugs that do not clash.
 
 ## Checklist
 

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
-import { loadFleetArticles, mergeArticleLinks, parseArticleBody, parseArticleIndex, resetFleetArticleCache, textHasBlockedPhone, type ArticleIndexEntry } from "../app/lib/fleet/articles.ts";
+import { absoluteArticleHero, articleJsonLd, loadFleetArticles, mergeArticleLinks, parseArticleBody, parseArticleIndex, resetFleetArticleCache, textHasBlockedPhone, type ArticleIndexEntry } from "../app/lib/fleet/articles.ts";
 import { markdownToHtml, sanitizeArticleHtml } from "../app/lib/fleet/sanitize.ts";
 
 const entry: ArticleIndexEntry = {
@@ -67,4 +68,62 @@ test("a missing index publishes nothing and a coded slug wins the clash", async 
   });
   assert.equal(missing.ok, false);
   assert.deepEqual(missing.articles, []);
+});
+
+const KIT_INDEX = `{"articles":[{"slug":"kit-test-article","title":"Kit Test Article","metaTitle":"Kit Test Article | Gas Junction","metaDescription":"Test article for the fleet content kit.","publishedAt":"2026-10-22T04:00:00.000Z","heroImage":"/banners/core-top-weed-tier.webp","alt":"Test hero"}]}`;
+const KIT_BODY = `{"slug":"kit-test-article","format":"html","body":"<p>Hello kit test.</p>","faqs":[{"question":"Is this a test?","answer":"Yes."}]}`;
+
+test("the live kit-test-article JSON keeps a relative hero, the HTML body, and a plain FAQ", async () => {
+  const entries = parseArticleIndex(KIT_INDEX);
+  assert.ok(entries);
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].heroImage, "/banners/core-top-weed-tier.webp");
+  assert.equal(entries[0].publishedAt, "2026-10-22T04:00:00.000Z");
+
+  const article = parseArticleBody(KIT_BODY, entries[0], []);
+  assert.ok(article);
+  assert.equal(article.heroImage, "/banners/core-top-weed-tier.webp");
+  assert.equal(article.html, "<p>Hello kit test.</p>");
+  assert.equal(article.html.includes("<script"), false);
+  assert.deepEqual(article.faqs, [{ question: "Is this a test?", answer: "Yes." }]);
+  assert.equal(absoluteArticleHero(article.heroImage), "https://www.gasjunctioncannabis.com/banners/core-top-weed-tier.webp");
+
+  const absolute = parseArticleBody(KIT_BODY, { ...entries[0], heroImage: "https://cdn.example/hero.webp" }, []);
+  assert.equal(absolute?.heroImage, "https://cdn.example/hero.webp");
+  assert.equal(absoluteArticleHero("https://cdn.example/hero.webp"), "https://cdn.example/hero.webp");
+  assert.equal(absoluteArticleHero("//evil.example/x.webp"), "");
+
+  const scriptOnly = parseArticleBody(JSON.stringify({ slug: "kit-test-article", format: "html", body: "<script>alert(1)</script>" }), entries[0], []);
+  assert.equal(scriptOnly, null);
+  assert.equal(parseArticleBody("{", entries[0], []), null);
+
+  const graph = articleJsonLd(article)["@graph"];
+  assert.deepEqual(graph.map((node) => node["@type"]), ["Article", "BreadcrumbList", "FAQPage"]);
+  assert.equal(graph[0].image, "https://www.gasjunctioncannabis.com/banners/core-top-weed-tier.webp");
+  const faq = graph[2].mainEntity as { acceptedAnswer: { text: string } }[];
+  assert.equal(faq[0].acceptedAnswer.text, "Yes.");
+  assert.equal(articleJsonLd(absolute!)["@graph"][0].image, "https://cdn.example/hero.webp");
+
+  const loaded = await loadFleetArticles({
+    fetchImpl: (async (url: string | URL) => {
+      const href = String(url);
+      if (href.endsWith("/articles/index.json")) return new Response(KIT_INDEX, { status: 200 });
+      if (href.endsWith("/articles/kit-test-article.json")) return new Response(KIT_BODY, { status: 200 });
+      return new Response("missing", { status: 404 });
+    }) as typeof fetch,
+    indexUrl: "https://dhaah0upvlpukv56.public.blob.vercel-storage.com/GJC01/articles/index.json",
+    blockedPhones: [],
+  });
+  assert.equal(loaded.ok, true);
+  if (!loaded.ok) return;
+  assert.equal(loaded.articles[0]?.html, "<p>Hello kit test.</p>");
+  assert.equal(loaded.articles[0]?.html.includes("<script"), false);
+
+  const page = readFileSync(new URL("../app/articles/[slug]/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /export const dynamic = "force-dynamic"/);
+  assert.match(page, /unstable_rethrow/);
+  assert.match(page, /notFound\(\)/);
+  const view = readFileSync(new URL("../app/components/fleet/FleetArticleView.tsx", import.meta.url), "utf8");
+  assert.match(view, /src=\{article\.heroImage\}/);
+  assert.match(view, /data-fleet-article-body/);
 });

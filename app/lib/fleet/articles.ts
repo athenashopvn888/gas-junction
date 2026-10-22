@@ -1,4 +1,4 @@
-import { articleBodyUrl, articlesIndexUrl, FLEET_BLOCKED_PHONES } from "./config.ts";
+import { articleBodyUrl, articlesIndexUrl, FLEET_ARTICLES_PATH, FLEET_BLOCKED_PHONES, FLEET_ORIGIN, FLEET_STORE_NAME } from "./config.ts";
 import { markdownToHtml, sanitizeArticleHtml } from "./sanitize.ts";
 import { FLEET_CONTENT_TAG, FLEET_MAX_BUNDLE_BYTES } from "./types.ts";
 
@@ -145,6 +145,52 @@ export function parseArticleBody(raw: string, entry: ArticleIndexEntry, blocked:
     html,
     faqs,
   };
+}
+
+export function absoluteArticleHero(hero: string, origin = FLEET_ORIGIN): string {
+  if (/^https?:\/\//i.test(hero)) return hero;
+  if (hero.startsWith("/") && !hero.startsWith("//")) return `${origin}${hero}`;
+  return "";
+}
+
+function faqPlainText(html: string): string {
+  return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+export function articleJsonLd(article: FleetArticle, origin = FLEET_ORIGIN): { "@context": string; "@graph": Record<string, unknown>[] } {
+  const url = `${origin}${FLEET_ARTICLES_PATH}/${article.slug}`;
+  const image = absoluteArticleHero(article.heroImage, origin);
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "Article",
+      headline: article.title,
+      description: article.metaDescription,
+      datePublished: article.publishedAt,
+      ...(image ? { image } : {}),
+      mainEntityOfPage: url,
+      author: { "@type": "Organization", name: FLEET_STORE_NAME, url: origin },
+      publisher: { "@type": "Organization", name: FLEET_STORE_NAME, url: origin },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: origin },
+        { "@type": "ListItem", position: 2, name: "Articles", item: `${origin}${FLEET_ARTICLES_PATH}` },
+        { "@type": "ListItem", position: 3, name: article.title, item: url },
+      ],
+    },
+  ];
+  if (article.faqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: article.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faqPlainText(faq.answer) },
+      })),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
 }
 
 export function mergeArticleLinks(coded: readonly CodedArticleLink[], fleet: readonly FleetArticle[]): MergedArticleLink[] {
