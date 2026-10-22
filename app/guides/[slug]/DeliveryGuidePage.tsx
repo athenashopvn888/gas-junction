@@ -3,14 +3,15 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { DELIVERY_GUIDE_STORE, type DeliveryGuideEntry } from "../../lib/deliveryGuideRegistry";
 import { isCigaretteHref } from "../../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../../lib/siteConfig";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 import DeliveryGuideBody, { stripDeliveryMarkdown } from "./DeliveryGuideBody";
 import styles from "./guide.module.css";
 
 const BASE = `https://${DELIVERY_GUIDE_STORE.domain}`;
-export default function DeliveryGuidePage({ guide }: { guide: DeliveryGuideEntry }) {
+export default async function DeliveryGuidePage({ guide }: { guide: DeliveryGuideEntry }) {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
   const canonical = `${BASE}/guides/${guide.slug}`;
-  const categoryHref = !SHOW_CIGARETTES && isCigaretteHref(guide.category_path) ? "/items/add-ons" : guide.category_path;
+  const categoryHref = !showCigarettes && isCigaretteHref(guide.category_path) ? "/items/add-ons" : guide.category_path;
   const jsonLd = { "@context": "https://schema.org", "@graph": [
     { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE }, { "@type": "ListItem", position: 2, name: guide.h1, item: canonical }] },
     { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: guide.title, description: guide.description },

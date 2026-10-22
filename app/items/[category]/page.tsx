@@ -9,8 +9,8 @@ import CategoryCoreBanners, { cigaretteCategoryImage } from "../../components/Ca
 import Footer from "../../components/Footer";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
-import { keptCigaretteShelfItems } from "../../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../../lib/siteConfig";
+import { isKeptCigaretteShelfItem } from "../../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 import {
   getCategoryFromSlug,
   CATEGORY_CONFIG,
@@ -79,9 +79,10 @@ export default async function ItemsCategoryPage({
     const uniqueAccessories = accessories.filter(a => !existingIds.has(a.sku));
     items = [...items, ...uniqueAccessories];
   }
-  if (!SHOW_CIGARETTES && catSlug === "add-ons") {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  if (!showCigarettes && catSlug === "add-ons") {
     const existingIds = new Set(items.map((item) => item.sku));
-    items = [...items, ...keptCigaretteShelfItems(menuItems).filter((item) => !existingIds.has(item.sku))];
+    items = [...items, ...menuItems.filter((item) => isKeptCigaretteShelfItem(item) && !existingIds.has(item.sku))];
   }
   const { config } = catInfo;
   const categoryH1 = CATEGORY_H1[catSlug];

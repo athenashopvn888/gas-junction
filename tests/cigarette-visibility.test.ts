@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { SHOW_CIGARETTES } from "../app/lib/siteConfig.ts";
+import { cigaretteEnvHardOff, SHOW_CIGARETTES } from "../app/lib/siteConfig.ts";
 import {
   cigaretteRedirectPath,
   isCigaretteGuideSlug,
@@ -12,6 +12,11 @@ import {
 
 test("cigarette switch defaults off unless the public env var is enabled", () => {
   assert.equal(SHOW_CIGARETTES, false);
+  assert.equal(cigaretteEnvHardOff(undefined), false);
+  assert.equal(cigaretteEnvHardOff(""), false);
+  assert.equal(cigaretteEnvHardOff("false"), true);
+  assert.equal(cigaretteEnvHardOff("off"), true);
+  assert.equal(cigaretteEnvHardOff("true"), false);
   assert.equal(VAPE_PAGE_PATH, "/items/vapes");
 });
 
@@ -28,6 +33,9 @@ test("cigarette items are hidden and rolling papers, Backwoods, cigarillos, pouc
   assert.equal(isKeptCigaretteShelfItem({ category: "CIGARETTES", name: "BACKWOODS ASSORTED FLAVORS $20-$25", slug: "backwoods-assorted-flavors-20-25" }), true);
   assert.equal(isKeptCigaretteShelfItem({ category: "CIGARETTES", name: "BB LIGHTS CARTON", slug: "bb-lights-carton" }), false);
   assert.equal(isKeptCigaretteShelfItem({ category: "ADD ONS", name: "RAW PAPER KING SIZE", slug: "raw-paper-king-size" }), false);
+  assert.equal(isCigaretteItem({ category: "CIGARETTES", name: "HEMP WRAPS", slug: "hemp-wraps" }), false);
+  assert.equal(isKeptCigaretteShelfItem({ category: "CIGARETTES", name: "HEMP WRAPS", slug: "hemp-wraps" }), true);
+  assert.equal(isCigaretteItem({ category: "CIGARETTES", name: "VELO POUCH", slug: "velo-pouch" }), false);
 });
 
 test("cigarette urls 302 targets are the nicotine vape page and kept smoke urls are not", () => {

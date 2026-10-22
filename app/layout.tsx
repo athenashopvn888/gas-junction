@@ -1,12 +1,17 @@
+import CigaretteStateProvider from "./components/CigaretteStateProvider";
 import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import { STORE } from "./lib/store";
-import { visibleCopy } from "./lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "./lib/siteConfig";
+import { scrubCigaretteCopy } from "./lib/cigaretteVisibility";
+
+// Cigarette on/off is read in this layout. Refresh it about every minute
+// so nav, footer, and store copy follow the feed without a rebuild.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   metadataBase: new URL(STORE.origin),
@@ -83,6 +88,8 @@ const webSiteJsonLd = {
   inLanguage: "en-CA",
 };
 
+const STORE_DESCRIPTION = "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.";
+
 const cannabisStoreJsonLd = {
   "@context": "https://schema.org",
   "@type": "CannabisStore",
@@ -94,9 +101,7 @@ const cannabisStoreJsonLd = {
   "@id": STORE.origin,
   name: "Gas Junction Cannabis Dispensary Weed Delivery",
   alternateName: STORE.name,
-  description: SHOW_CIGARETTES
-    ? "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."
-    : visibleCopy("24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."),
+  description: STORE_DESCRIPTION,
   url: STORE.origin,
   telephone: STORE.phoneTel,
   image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
@@ -141,11 +146,16 @@ const cannabisStoreJsonLd = {
 };
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cigarettes = toPublicCigaretteState(await getCigaretteSnapshot());
+  const storeJsonLd = {
+    ...cannabisStoreJsonLd,
+    description: scrubCigaretteCopy(STORE_DESCRIPTION, cigarettes.web),
+  };
   return (
     <html lang="en">
       <head>
@@ -161,7 +171,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(cannabisStoreJsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd).replace(/</g, "\\u003c") }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BF78FQ8EC"></script>
         <script
@@ -188,9 +198,11 @@ export default function RootLayout({
             Gas Junction Cannabis · 2813 Dundas St W, Toronto, ON M6P 1Y6 · +1 (437) 291-0948 · Open 24 Hours Daily · The Junction, Keele &amp; Dundas
           </p>
         </noscript>
-        {children}
-        <FullNameNap />
-        <PinnedNavClearance />
+        <CigaretteStateProvider value={cigarettes}>
+          {children}
+          <FullNameNap />
+          <PinnedNavClearance />
+        </CigaretteStateProvider>
       </body>
     </html>
   );

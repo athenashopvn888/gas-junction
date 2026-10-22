@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ResourceView from "../ResourceView";
 import { getResourcePage, RESOURCE_PAGES } from "../resourceData";
-import { visibleCopy } from "../../lib/cigaretteVisibility";
+import { scrubCigaretteCopy } from "../../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 
 type ResourceRouteProps = {
   params: Promise<{ slug?: string[] }>;
@@ -20,6 +21,8 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) return {};
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const visibleCopy = (text: string) => scrubCigaretteCopy(text, showCigarettes);
   if (page.slug === "cannabis-concentrates-glossary") {
     return {
       title: { absolute: page.seoTitle },

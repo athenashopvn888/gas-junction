@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { LOCAL_MESH_LINKS, TIER_MESH_LINKS } from "../lib/store";
 import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { useCigaretteState } from "./CigaretteStateProvider";
 import styles from "./LocalSeoMesh.module.css";
 
 export default function LocalSeoMesh({
@@ -15,7 +17,8 @@ export default function LocalSeoMesh({
   heading?: string;
   variant?: "dark" | "light";
 }) {
-  const owners = LOCAL_MESH_LINKS.filter((link) => link.href !== currentPath && (SHOW_CIGARETTES || !isCigaretteHref(link.href)));
+  const showCigarettes = useCigaretteState().web;
+  const owners = LOCAL_MESH_LINKS.filter((link) => link.href !== currentPath && (showCigarettes || !isCigaretteHref(link.href)));
   const tiers = includeTiers
     ? TIER_MESH_LINKS.filter((link) => link.href !== currentPath)
     : [];

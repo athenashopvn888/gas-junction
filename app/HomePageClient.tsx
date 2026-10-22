@@ -22,8 +22,8 @@ import {
 import Papa from "papaparse";
 import { useLiveFlowers } from "./lib/useLiveMenu";
 import { storeTierRange, tierRangeText } from "./lib/tierPriceRanges";
-import { visibleCopy } from "./lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "./lib/siteConfig";
+import { scrubCigaretteCopy } from "./lib/cigaretteVisibility";
+import { useCigaretteState } from "./components/CigaretteStateProvider";
 
 const WELCOME_BANNER_SRC = "/home/gjc01-hero.webp";
 
@@ -90,25 +90,6 @@ const EXPLORE_CATEGORIES = [
   { name: "Magic Stuff", slug: "items/magic", banner: "/banners/09_Magic_Stuff.webp", icon: "🍄" },
 ];
 
-const exploreCategories = SHOW_CIGARETTES
-  ? EXPLORE_CATEGORIES
-  : EXPLORE_CATEGORIES.filter((cat) => cat.slug !== "items/cigarettes");
-
-/* ── Local FAQs (must match homepage FAQPage JSON-LD) ── */
-const LOCAL_FAQS = SHOW_CIGARETTES
-  ? HOME_FAQS
-  : HOME_FAQS.map((faq) => ({ q: visibleCopy(faq.q), a: visibleCopy(faq.a) }));
-
-const homeFaqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [...HOME_DELIVERY_FAQS, ...LOCAL_FAQS].map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: { "@type": "Answer", text: faq.a },
-  })),
-};
-
 interface Review {
   name: string;
   comment: string;
@@ -121,6 +102,22 @@ interface ReviewStats {
 }
 
 export default function HomePageClient({ initialFlowers }: { initialFlowers: Parameters<typeof storeTierRange>[0] }) {
+    const showCigarettes = useCigaretteState().web;
+    const exploreCategories = showCigarettes
+      ? EXPLORE_CATEGORIES
+      : EXPLORE_CATEGORIES.filter((cat) => cat.slug !== "items/cigarettes");
+    const localFaqs = showCigarettes
+      ? HOME_FAQS
+      : HOME_FAQS.map((faq) => ({ q: scrubCigaretteCopy(faq.q, false), a: scrubCigaretteCopy(faq.a, false) }));
+    const homeFaqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [...HOME_DELIVERY_FAQS, ...localFaqs].map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    };
     const __liveFlowers = useLiveFlowers();
   const [featuredStrains, setFeaturedStrains] = useState<any[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -345,7 +342,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Explore Categories</h2>
             <p className={styles.sectionSubtitle}>
-              {visibleCopy("From custom disposable vapes and concentrates to accessories and cigarettes.")}
+              {scrubCigaretteCopy("From custom disposable vapes and concentrates to accessories and cigarettes.", showCigarettes)}
             </p>
           </div>
 
@@ -410,7 +407,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
               The door is open 24 hours daily. Bring government-issued photo ID; you must be 19+.
               No appointment. Flower is stacked in clear tiers so you can compare budget through
               exotic without a sales script, and the same stop covers pre-rolls, vapes, edibles,{" "}
-              {visibleCopy("concentrates, accessories, and cigarettes.")} Listings move, so use the current menu
+              {scrubCigaretteCopy("concentrates, accessories, and cigarettes.", showCigarettes)} Listings move, so use the current menu
               as planning, then confirm on the floor.
             </p>
             <p className={styles.seoPanelText}>
@@ -427,7 +424,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
               <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>
               , with the live catalog on the{" "}
               <Link href="/delivery">delivery menu</Link>.
-              {SHOW_CIGARETTES ? (
+              {showCigarettes ? (
                 <>
                   {" "}
                   Cigarettes and nicotine vapes have Junction pages at{" "}
@@ -511,7 +508,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           <h2 className={styles.sectionTitle} style={{ textAlign: "center", marginBottom: "32px" }}>
             Frequently Asked Questions
           </h2>
-          {LOCAL_FAQS.map((faq, i) => (
+          {localFaqs.map((faq, i) => (
             <details key={i} className={styles.faqItem}>
               <summary className={styles.faqQuestion}>{faq.q}</summary>
               <p className={styles.faqAnswer}>{faq.a}</p>

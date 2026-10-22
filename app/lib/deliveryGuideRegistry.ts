@@ -1,4 +1,4 @@
-import deliveryGuideCopy from "./deliveryGuideCopy.json";
+import deliveryGuideCopy from "./deliveryGuideCopy.json" with { type: "json" };
 
 export type DeliveryGuideFaq = { question: string; answer: string };
 export type DeliveryGuideEntry = {

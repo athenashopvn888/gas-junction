@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import styles from "./visit.module.css";
 
 export const metadata: Metadata = {
@@ -51,7 +51,8 @@ const faqJsonLd = {
   })),
 };
 
-export default function VisitPage() {
+export default async function VisitPage() {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
   return (
     <main className={styles.main}>
       <script
@@ -227,7 +228,7 @@ export default function VisitPage() {
                 <Link href="/cannabis-delivery-junction">Cannabis delivery in The Junction</Link>
                 {" · "}
                 <Link href="/delivery">Delivery menu</Link>
-                {SHOW_CIGARETTES ? (
+                {showCigarettes ? (
                   <>
                     {" · "}
                     <Link href="/native-cigarettes-junction">Native cigarettes in The Junction</Link>
