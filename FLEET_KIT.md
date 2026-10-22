@@ -12,7 +12,7 @@ Gas Junction keeps its current pages when the blob is missing, the manifest is i
 4. Wire the touchpoints below. Leave coded pages and URLs in place.
 5. Run the checklist.
 
-No manifest env var is required. The reader requests `https://dhaah0upvlpukv56.public.blob.vercel-storage.com/{STORE_CODE}/manifest.json` (`FLEET_BLOB_ORIGIN` in `config.ts`). `FLEET_CONTENT_MANIFEST_URL` still overrides that URL when it is set. A 404 or invalid file keeps the last good bundle, or coded content when there has never been one. `EDGE_CONFIG` item `contentMode=coded` forces coded content.
+No manifest env var is required. The reader requests `https://dhaah0upvlpukv56.public.blob.vercel-storage.com/{STORE_CODE}/manifest.json` (`FLEET_BLOB_ORIGIN` in `config.ts`). `FLEET_CONTENT_MANIFEST_URL` still overrides that URL when it is set. A 404 or invalid file keeps the last good bundle, or coded content when there has never been one. `EDGE_CONFIG` item `contentMode=coded` forces coded content everywhere, sheet articles included (`/articles` and `/articles/[slug]` return 404 and drop out of the sitemap). The check lives in `app/lib/fleet/emergency.ts`, which is shared kit code; copy it with the rest of `app/lib/fleet`. The home page only switches to kit banners when at least one banner row differs from coded, so a store with no Home rows keeps its exact coded banner markup.
 
 `/contact`, `/tv`, and `/tv2` are dynamic so the layout meta is rendered with that read, not a build-time snapshot. `/` and the tier pages are already dynamic. The meta tag is `<meta name="fleet-content-version" content={fleet.version} />`, and `fleet.version` is `{storeCode}:{manifest.contentVersion}`.
 
