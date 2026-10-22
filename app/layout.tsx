@@ -1,14 +1,21 @@
+import CigaretteStateProvider from "./components/CigaretteStateProvider";
+import FleetContentProvider from "./components/FleetContentProvider";
+import { getFleetContent } from "./lib/fleetContent";
 import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import { STORE } from "./lib/store";
-import { visibleCopy } from "./lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "./lib/siteConfig";
+import { scrubCigaretteCopy } from "./lib/cigaretteVisibility";
 
-export const metadata: Metadata = {
+// Cigarette on/off is read in this layout. Refresh it about every minute
+// so nav, footer, and store copy follow the feed without a rebuild.
+export const revalidate = 60;
+
+const ROOT_METADATA: Metadata = {
   metadataBase: new URL(STORE.origin),
   title: {
     default: HOME_DOC_TITLE,
@@ -73,6 +80,20 @@ export const metadata: Metadata = {
   },
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return ROOT_METADATA;
+  const page = fleet.pages.Home;
+  const description = page?.metaDescription || "";
+  if (!description || description === ROOT_METADATA.description) return ROOT_METADATA;
+  return {
+    ...ROOT_METADATA,
+    description,
+    openGraph: { ...ROOT_METADATA.openGraph, description },
+    twitter: { ...ROOT_METADATA.twitter, description },
+  };
+}
+
 /* ── JSON-LD Structured Data: store entity lives on the homepage ── */
 const webSiteJsonLd = {
   "@context": "https://schema.org",
@@ -82,6 +103,8 @@ const webSiteJsonLd = {
   url: STORE.origin,
   inLanguage: "en-CA",
 };
+
+const STORE_DESCRIPTION = "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.";
 
 const cannabisStoreJsonLd = {
   "@context": "https://schema.org",
@@ -94,9 +117,7 @@ const cannabisStoreJsonLd = {
   "@id": STORE.origin,
   name: "Gas Junction Cannabis Dispensary Weed Delivery",
   alternateName: STORE.name,
-  description: SHOW_CIGARETTES
-    ? "24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."
-    : visibleCopy("24-hour walk-in cannabis dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas, with fast discreet local delivery or a visit to the dispensary. Flower tiers, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes."),
+  description: STORE_DESCRIPTION,
   url: STORE.origin,
   telephone: STORE.phoneTel,
   image: "https://www.gasjunctioncannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
@@ -141,14 +162,43 @@ const cannabisStoreJsonLd = {
 };
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [cigaretteSnapshot, fleet] = await Promise.all([getCigaretteSnapshot(), getFleetContent()]);
+  const cigarettes = toPublicCigaretteState(cigaretteSnapshot);
+  const storeJsonLd = {
+    ...cannabisStoreJsonLd,
+    description: scrubCigaretteCopy(STORE_DESCRIPTION, cigarettes.web),
+    ...(fleet.active
+      ? {
+          name: fleet.nap.schemaName,
+          alternateName: fleet.nap.name,
+          telephone: fleet.nap.phoneTel,
+          url: fleet.nap.website,
+          hasMap: fleet.nap.mapsSearchUrl,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: fleet.nap.street,
+            addressLocality: fleet.nap.city,
+            addressRegion: fleet.nap.province,
+            postalCode: fleet.nap.postalCode,
+            addressCountry: "CA",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: Number(fleet.nap.lat),
+            longitude: Number(fleet.nap.lng),
+          },
+        }
+      : {}),
+  };
   return (
     <html lang="en">
       <head>
+        <meta name="fleet-content-version" content={fleet.version} />
         <meta name="geo.region" content="CA-ON" />
         <meta name="geo.placename" content="The Junction, Toronto" />
         <meta name="geo.position" content="43.66517;-79.46306" />
@@ -161,7 +211,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(cannabisStoreJsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd).replace(/</g, "\\u003c") }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BF78FQ8EC"></script>
         <script
@@ -185,12 +235,16 @@ export default function RootLayout({
         </Link>
         <noscript>
           <p>
-            Gas Junction Cannabis · 2813 Dundas St W, Toronto, ON M6P 1Y6 · +1 (437) 291-0948 · Open 24 Hours Daily · The Junction, Keele &amp; Dundas
+            {`${fleet.nap.name} · ${fleet.nap.street}, ${fleet.nap.cityLine} · ${fleet.nap.phoneDisplay} · ${fleet.nap.hours} · ${fleet.nap.area}, ${fleet.nap.intersection}`}
           </p>
         </noscript>
-        {children}
-        <FullNameNap />
-        <PinnedNavClearance />
+        <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap }}>
+          <CigaretteStateProvider value={cigarettes}>
+            {children}
+            <FullNameNap />
+            <PinnedNavClearance />
+          </CigaretteStateProvider>
+        </FleetContentProvider>
       </body>
     </html>
   );

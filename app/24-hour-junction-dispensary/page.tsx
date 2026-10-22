@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import styles from "../visit/visit.module.css";
 
 export const metadata: Metadata = {
@@ -67,7 +67,8 @@ const faqJsonLd = {
   })),
 };
 
-export default function TwentyFourHourJunctionPage() {
+export default async function TwentyFourHourJunctionPage() {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
   return (
     <main className={styles.main}>
       <script
@@ -85,7 +86,7 @@ export default function TwentyFourHourJunctionPage() {
             The Keele &amp; Dundas walk-in does not close for the night — after Dundas West
             restaurants shut, for shift workers coming off the strip, and for anyone already in
             Junction Triangle or High Park North searching 24h near me. This is the open-now /
-            overnight owner for The Junction. The weed dispensary, cannabis delivery{SHOW_CIGARETTES ? ", Native cigarettes," : ","} and nicotine vape pages sit beside it — not a Toronto-wide 24-hour directory.
+            overnight owner for The Junction. The weed dispensary, cannabis delivery{showCigarettes ? ", Native cigarettes," : ","} and nicotine vape pages sit beside it — not a Toronto-wide 24-hour directory.
           </p>
 
           <dl className={styles.napBar}>
@@ -133,7 +134,7 @@ export default function TwentyFourHourJunctionPage() {
             <Link className={styles.secondary} href="/cannabis-delivery-junction">
               Junction delivery
             </Link>
-            {SHOW_CIGARETTES ? (
+            {showCigarettes ? (
               <Link className={styles.secondary} href="/native-cigarettes-junction">
                 Native cigarettes
               </Link>
@@ -211,7 +212,7 @@ export default function TwentyFourHourJunctionPage() {
             <Link href="/cannabis-delivery-junction">cannabis delivery in The Junction</Link>{" "}
             for the High Park / Bloor West Village radius, then the{" "}
             <Link href="/delivery">delivery menu</Link>.{" "}
-            {SHOW_CIGARETTES ? (
+            {showCigarettes ? (
               <>
                 Cigarettes and nicotine vapes are
                 walk-in categories — see{" "}

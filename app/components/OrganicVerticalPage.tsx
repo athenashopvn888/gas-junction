@@ -4,32 +4,35 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import LocalSeoMesh from "./LocalSeoMesh";
 import { STORE } from "../lib/store";
-import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import CigaretteUnavailable from "./CigaretteUnavailable";
+import { isCigaretteHref, isCigarettePublicPath, scrubCigaretteCopy } from "../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import type { OrganicVerticalPageData } from "../lib/organicVerticalPages";
 import styles from "../visit/visit.module.css";
 import VapeActionPanel from "./VapeActionPanel";
 
-function presentedPage(page: OrganicVerticalPageData): OrganicVerticalPageData {
-  if (SHOW_CIGARETTES) return page;
+function presentedPage(page: OrganicVerticalPageData, showCigarettes: boolean): OrganicVerticalPageData {
+  if (showCigarettes) return page;
+  const copy = (text: string) => scrubCigaretteCopy(text, false);
   return {
     ...page,
-    kicker: visibleCopy(page.kicker),
-    h1: visibleCopy(page.h1),
-    lede: visibleCopy(page.lede),
-    warning: page.warning ? visibleCopy(page.warning) : page.warning,
+    kicker: copy(page.kicker),
+    h1: copy(page.h1),
+    lede: copy(page.lede),
+    warning: page.warning ? copy(page.warning) : page.warning,
     extraActions: (page.extraActions ?? []).filter((action) => !isCigaretteHref(action.href)),
-    panels: page.panels.map((panel) => ({ ...panel, heading: visibleCopy(panel.heading), body: visibleCopy(panel.body) })),
-    sections: page.sections.map((section) => ({ ...section, heading: visibleCopy(section.heading), body: visibleCopy(section.body) })),
+    panels: page.panels.map((panel) => ({ ...panel, heading: copy(panel.heading), body: copy(panel.body) })),
+    sections: page.sections.map((section) => ({ ...section, heading: copy(section.heading), body: copy(section.body) })),
     faqs: page.faqs
-      .map((faq) => ({ q: visibleCopy(faq.q), a: visibleCopy(faq.a) }))
+      .map((faq) => ({ q: copy(faq.q), a: copy(faq.a) }))
       .filter((faq) => faq.q && faq.a && !/\b(cigarette|tobacco)\b/i.test(`${faq.q} ${faq.a}`)),
-    faqHeading: visibleCopy(page.faqHeading),
+    faqHeading: copy(page.faqHeading),
   } as unknown as OrganicVerticalPageData;
 }
 
-export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPageData }) {
-  const view = presentedPage(page);
+export default async function OrganicVerticalPage({ page }: { page: OrganicVerticalPageData }) {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const view = presentedPage(page, showCigarettes);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -47,7 +50,8 @@ export default function OrganicVerticalPage({ page }: { page: OrganicVerticalPag
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <Navbar />
-      {view.path.includes("native-cigarettes") && SHOW_CIGARETTES ? <CigaretteSeasonalNotice sticky /> : null}
+      {isCigarettePublicPath(view.path) && !showCigarettes ? <CigaretteUnavailable /> : null}
+      {view.path.includes("native-cigarettes") && showCigarettes ? <CigaretteSeasonalNotice sticky /> : null}
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>

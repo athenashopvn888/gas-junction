@@ -4,9 +4,10 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { STORE } from "../lib/store";
+import { getFleetContent } from "../lib/fleetContent";
 import styles from "./contact.module.css";
 
-export const metadata: Metadata = {
+const CONTACT_METADATA: Metadata = {
   title: "Contact Us — Gas Junction Cannabis | 2813 Dundas St W, The Junction",
   description:
     "Visit Gas Junction Cannabis at 2813 Dundas St W, Toronto, ON M6P 1Y6 in The Junction. Open 24 hours daily. Walk-ins welcome.",
@@ -20,7 +21,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return CONTACT_METADATA;
+  const page = fleet.pages.Contact;
+  const description = page?.metaDescription || "";
+  const title = page?.metaTitle || "";
+  if (!description && !title) return CONTACT_METADATA;
+  return {
+    ...CONTACT_METADATA,
+    ...(description && description !== CONTACT_METADATA.description ? { description } : {}),
+    ...(title ? { title: { absolute: title } } : {}),
+  };
+}
+
+export default async function ContactPage() {
+  const fleet = await getFleetContent();
+  const street = fleet.active ? fleet.nap.street : "2813 Dundas St W";
+  const cityLine = fleet.active ? fleet.nap.cityLine : "Toronto, ON M6P 1Y6";
+  const areaLine = fleet.active ? fleet.nap.areaLine : "Keele & Dundas, The Junction";
+  const phoneDisplay = fleet.active ? fleet.nap.phoneDisplay : STORE.phoneDisplay;
+  const phoneTel = fleet.active ? fleet.nap.phoneTel : STORE.phoneTel;
+  const mapSrc = fleet.active ? fleet.nap.mapsEmbedUrl : STORE.mapsEmbedUrl;
   return (
     <main className={styles.main}>
       <Navbar />
@@ -42,14 +64,14 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>📍</div>
               <h2 className={styles.infoTitle}>Location</h2>
               <p className={styles.infoText}>
-                2813 Dundas St W
+                {street}
                 <br />
-                Toronto, ON M6P 1Y6
+                {cityLine}
                 <br />
-                <span className={styles.infoMuted}>Keele &amp; Dundas, The Junction</span>
+                <span className={styles.infoMuted}>{areaLine}</span>
               </p>
               <p className={styles.infoText}>
-                <a className={styles.infoBtn} href={`tel:${STORE.phoneTel}`}>{STORE.phoneDisplay}</a>
+                <a className={styles.infoBtn} href={`tel:${phoneTel}`}>{phoneDisplay}</a>
               </p>
               <p className={styles.infoText}>
                 <Link href="/visit">How to get here</Link>
@@ -111,7 +133,7 @@ export default function ContactPage() {
           <div className={styles.mapSection}>
             <iframe
               title="Map of Gas Junction Cannabis at 2813 Dundas St W in The Junction"
-              src={STORE.mapsEmbedUrl}
+              src={mapSrc}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               style={{ width: "100%", height: "360px", border: 0, display: "block" }}

@@ -5,15 +5,16 @@ import Footer from "../components/Footer";
 import styles from "./resources.module.css";
 import { inlinePlainText, parseArticleMarkdown, type ArticleBlock, type InlineNode } from "./articleMarkdown";
 import type { ResourcePage, ResourceSection } from "./resourceData";
-import { isCigaretteHref, visibleCopy } from "../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { isCigaretteHref, scrubCigaretteCopy } from "../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 
 type ResourceViewProps = {
   page: ResourcePage;
 };
 
-function presentedResource(page: ResourcePage): ResourcePage {
-  if (SHOW_CIGARETTES) return page;
+function presentedResource(page: ResourcePage, showCigarettes: boolean): ResourcePage {
+  if (showCigarettes) return page;
+  const visibleCopy = (text: string) => scrubCigaretteCopy(text, false);
   const sections: ResourceSection[] = page.sections
     .map((section) => {
       const body = Array.isArray(section.body) ? section.body.map(visibleCopy).filter(Boolean) : visibleCopy(section.body);
@@ -165,8 +166,9 @@ function MarkdownResource({ page }: ResourceViewProps) {
   );
 }
 
-export default function ResourceView({ page }: ResourceViewProps) {
-  const view = presentedResource(page);
+export default async function ResourceView({ page }: ResourceViewProps) {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const view = presentedResource(page, showCigarettes);
   if (view.markdown) return <MarkdownResource page={view} />;
   return (
     <main className={styles.main}>

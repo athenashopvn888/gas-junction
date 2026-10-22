@@ -9,8 +9,8 @@ import Footer from "../../components/Footer";
 import { SEO_PAGES, getLegacySeoRedirect, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import { STORE } from "../../lib/store";
-import { visibleCopy } from "../../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../../lib/siteConfig";
+import { scrubCigaretteCopy } from "../../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 import LocalSeoMesh from "../../components/LocalSeoMesh";
 import styles from "./seo.module.css";
 
@@ -29,6 +29,8 @@ export async function generateMetadata({
   const replacementSlug = getLegacySeoRedirect(slug);
   const page = getSeoPageBySlug(replacementSlug || slug);
   if (!page) return {};
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const visibleCopy = (text: string) => scrubCigaretteCopy(text, showCigarettes);
 
   return {
     title: page.absoluteTitle ? { absolute: page.title } : page.title,
@@ -60,13 +62,15 @@ export default async function SeoLandingPage({
 
   const page = getSeoPageBySlug(slug);
   if (!page) notFound();
-  const menuFallback = SHOW_CIGARETTES ? "/items/cigarettes" : "/items/vapes";
-  const sections = SHOW_CIGARETTES
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const visibleCopy = (text: string) => scrubCigaretteCopy(text, showCigarettes);
+  const menuFallback = showCigarettes ? "/items/cigarettes" : "/items/vapes";
+  const sections = showCigarettes
     ? page.sections
     : page.sections
         .map((section) => ({ ...section, heading: visibleCopy(section.heading), body: visibleCopy(section.body) }))
         .filter((section) => section.heading && section.body);
-  const faqs = SHOW_CIGARETTES
+  const faqs = showCigarettes
     ? page.faqs
     : page.faqs
         .map((faq) => ({ ...faq, q: visibleCopy(faq.q), a: visibleCopy(faq.a) }))
@@ -122,7 +126,7 @@ export default async function SeoLandingPage({
               <h1>{visibleCopy(page.h1)}</h1>
               <p>{visibleCopy(heroPreview.intro)}</p>
               <div className={styles.productHeroActions}>
-                <Link href={heroPreview.menuHref ?? menuFallback} className={styles.productHeroPrimary}>{heroPreview.primaryLabel ?? (SHOW_CIGARETTES ? "Check the cigarette menu" : "Check the vape menu")}</Link>
+                <Link href={heroPreview.menuHref ?? menuFallback} className={styles.productHeroPrimary}>{heroPreview.primaryLabel ?? (showCigarettes ? "Check the cigarette menu" : "Check the vape menu")}</Link>
                 <Link href={heroPreview.secondaryHref ?? heroPreview.menuHref ?? menuFallback} className={styles.productHeroSecondary}>{heroPreview.secondaryLabel ?? "See the current selection"}</Link>
               </div>
               {heroPreview.identityStrip && <p className={styles.productHeroIdentity}>{heroPreview.identityStrip}</p>}

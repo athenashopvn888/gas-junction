@@ -1,6 +1,7 @@
-import { SHOW_CIGARETTES } from "./siteConfig";
-import { DELIVERY_GUIDE_REGISTRY } from "./deliveryGuideRegistry";
-import itemsJson from "./items.json";
+import { isKeptSmokeName, isRealCigaretteItem } from "./cigMarkers.ts";
+import { SHOW_CIGARETTES } from "./siteConfig.ts";
+import { DELIVERY_GUIDE_REGISTRY } from "./deliveryGuideRegistry.ts";
+import itemsJson from "./items.json" with { type: "json" };
 
 export const VAPE_PAGE_PATH = "/items/vapes";
 
@@ -10,8 +11,6 @@ const shelfItems = itemsJson as ShelfItem[];
 
 /** Rolling papers, Backwoods, and cigarillos stay visible. */
 const EXEMPT_SMOKE = /\b(backwoods|cigarillos?|rolling papers?|raw papers?)\b/i;
-/** Nicotine pouches and nicotine vapes are not cigarette or tobacco items. */
-const KEEP_NON_TOBACCO = /\b(pouches?|zyn|zpods?|nvape)\b/i;
 
 const STATIC_CIGARETTE_PATHS = new Set([
   "/cigarettes",
@@ -62,14 +61,11 @@ function normalizePath(pathname: string): string {
 }
 
 export function isExemptSmokeItem(item: ShelfItem): boolean {
-  return EXEMPT_SMOKE.test(`${item.name || ""} ${item.slug || ""}`);
+  return isKeptSmokeName(item.name, item.slug) || EXEMPT_SMOKE.test(`${item.name || ""} ${item.slug || ""}`);
 }
 
 export function isCigaretteItem(item: ShelfItem): boolean {
-  const blob = `${item.name || ""} ${item.slug || ""}`;
-  if (isExemptSmokeItem(item) || KEEP_NON_TOBACCO.test(blob)) return false;
-  if ((item.category || "").toUpperCase() === "CIGARETTES") return true;
-  return /\b(cigarettes?|tobacco|marlboro|belmont)\b/i.test(blob);
+  return isRealCigaretteItem(item);
 }
 
 /** Non-cigarette products that currently live on the cigarette shelf (Backwoods, pouches, nicotine devices). */
@@ -108,8 +104,9 @@ export function isCigaretteHref(href: string): boolean {
   return isCigarettePublicPath(href);
 }
 
-export function cigaretteRedirectPath(pathname: string): string | null {
-  return isCigarettePublicPath(pathname) ? VAPE_PAGE_PATH : null;
+/** Cigarette URLs stay on their own path. Nothing redirects them. */
+export function cigaretteRedirectPath(_pathname: string): string | null {
+  return null;
 }
 
 export function isCigaretteSitemapUrl(url: string): boolean {

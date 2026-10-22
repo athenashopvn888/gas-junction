@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./Footer.module.css";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { useCigaretteState } from "./CigaretteStateProvider";
+import { useFleetContent } from "./FleetContentProvider";
 
 export default function Footer() {
+  const showCigarettes = useCigaretteState().web;
+  const nap = useFleetContent().nap;
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -26,17 +31,17 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Contact Info</h3>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Address:</span>
-              <span>2813 Dundas St W</span>
-              <span>Toronto, ON M6P 1Y6</span>
+              <span>{nap.street}</span>
+              <span>{nap.cityLine}</span>
               <span>Canada</span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Phone:</span>
-              <span><a href="tel:+14372910948" style={{color: "inherit"}}>+1 (437) 291-0948</a></span>
+              <span><a href={`tel:${nap.phoneTel}`} style={{color: "inherit"}}>{nap.phoneDisplay}</a></span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Hours:</span>
-              <span className={styles.highlight}>Open 24 Hours Daily</span>
+              <span className={styles.highlight}>{nap.hours}</span>
             </div>
           </div>
 
@@ -51,11 +56,11 @@ export default function Footer() {
               <Link href="/aa-weed">AA Weed</Link>
               <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
-              {SHOW_CIGARETTES ? <Link href="/items/cigarettes">Cigarettes</Link> : null}
+              {showCigarettes ? <Link href="/items/cigarettes">Cigarettes</Link> : null}
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/24-hour-junction-dispensary">Open Now — 24-Hour Junction Dispensary</Link>
               <Link href="/cannabis-delivery-junction">Cannabis Delivery in The Junction</Link>
-              {SHOW_CIGARETTES ? <Link href="/native-cigarettes-junction">Native Cigarettes in The Junction</Link> : null}
+              {showCigarettes ? <Link href="/native-cigarettes-junction">Native Cigarettes in The Junction</Link> : null}
               <Link href="/nicotine-vape-junction">Nicotine Vape in The Junction</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/guides">Guides</Link>
@@ -66,7 +71,7 @@ export default function Footer() {
               <Link href="/weed-dispensary-junction">Weed Dispensary in The Junction</Link>
               <Link href="/contact">Contact Us</Link>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=2813+Dundas+St+W%2C+Toronto%2C+ON+M6P+1Y6"
+                href={nap.mapsSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >

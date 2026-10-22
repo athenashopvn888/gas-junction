@@ -5,7 +5,7 @@ import LocalSeoMesh from "./LocalSeoMesh";
 import styles from "./GBPLandingPage.module.css";
 import { weedOwner as store } from "../lib/weedDiscovery";
 import { isCigaretteHref } from "../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import { STORE } from "../lib/store";
 
 const storeSchema = {
@@ -19,7 +19,9 @@ const storeSchema = {
   ...(store.openingHours ? { openingHours: store.openingHours } : {}),
 };
 
-export function GBPLandingPage() {
+export async function GBPLandingPage() {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const discoveryLinks = showCigarettes ? store.discoveryLinks : store.discoveryLinks.filter((item) => !isCigaretteHref(item.href));
   return (
     <>
       <Navbar />
@@ -40,7 +42,7 @@ export function GBPLandingPage() {
         <section className={styles.section} id="find-your-weed">
           <p className={styles.kicker}>{store.findTitle}</p>
           <h2>Explore Verified Starting Points</h2>
-          <div className={styles.cardGrid}>{(SHOW_CIGARETTES ? store.discoveryLinks : store.discoveryLinks.filter((item) => !isCigaretteHref(item.href))).map((item) => <Link href={item.href} className={styles.card} key={item.href}><span>{item.label}</span><small>{item.description}</small></Link>)}</div>
+          <div className={styles.cardGrid}>{discoveryLinks.map((item) => <Link href={item.href} className={styles.card} key={item.href}><span>{item.label}</span><small>{item.description}</small></Link>)}</div>
           <p className={styles.note}>These links do not confirm current stock, pricing, deals or promotions. Call <a href={`tel:${store.phoneIntl}`}><strong>{store.phoneDisplay}</strong></a> before making a special trip for one specific item.</p>
         </section>
 

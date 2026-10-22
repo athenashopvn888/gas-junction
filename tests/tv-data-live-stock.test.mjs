@@ -6,6 +6,8 @@ import { beforeEach, test } from "node:test";
 const require = createRequire(import.meta.url);
 const {
   DEFAULT_APPS_SCRIPT_URL,
+  CIG_STOCK_CACHE_MS,
+  getCigaretteDataset,
   getTvData,
   postprocessFlowers,
   postprocessItems,
@@ -278,6 +280,55 @@ test("HTTP 200 HTML, 429, and throws serve last-good with reason and cooldown", 
     await getTvData({ type: "flowers", staticFlowers, staticItems, fetchImpl: failure.fetchImpl, now });
     assert.equal(failure.calls.length, 2);
   }
+});
+
+test("cigarette dataset keeps cig on a live read and reuses it when a later read errors", async () => {
+  assert.equal(CIG_STOCK_CACHE_MS, 60_000);
+  const flowers = list(staticFlowers.length, (index) => flower(`F${index}`));
+  const items = list(staticItems.length, (index) => item(`I${index}`));
+  const cig = { on: true, tvOn: true, webOn: false, wording: { wrapsTitle: "WRAPS" } };
+  const live = mockFetch({ flowers, items, stockDate: "2026-10-22", cig });
+
+  const first = await getCigaretteDataset({
+    staticFlowers,
+    staticItems,
+    fetchImpl: live.fetchImpl,
+    now: 5_000,
+  });
+  assert.equal(first.source, "live");
+  assert.equal(first.cig.webOn, false);
+  assert.equal(first.cig.tvOn, true);
+  assert.equal(live.calls.length, 1);
+  assert.equal(live.calls[0].opts.next.revalidate, 60);
+
+  const cached = await getCigaretteDataset({
+    staticFlowers,
+    staticItems,
+    fetchImpl: live.fetchImpl,
+    now: 5_000 + 59_000,
+  });
+  assert.equal(cached.cig, first.cig);
+  assert.equal(live.calls.length, 1);
+
+  const kept = await getCigaretteDataset({
+    staticFlowers,
+    staticItems,
+    fetchImpl: mockFetch(null, { throwError: new Error("network down") }).fetchImpl,
+    now: 5_000 + 61_000,
+  });
+  assert.notEqual(kept.source, "live");
+  assert.equal(kept.cig.tvOn, true);
+  assert.equal(kept.cig.webOn, false);
+
+  resetTvStockCache();
+  const failed = await getCigaretteDataset({
+    staticFlowers,
+    staticItems,
+    fetchImpl: mockFetch(null, { throwError: new Error("network down") }).fetchImpl,
+    now: 9_000,
+  });
+  assert.equal(failed.source, "static-fallback");
+  assert.equal(failed.cig, null);
 });
 
 test("prebuild uses the shared post-processor", () => {

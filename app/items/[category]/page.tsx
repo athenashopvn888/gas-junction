@@ -9,8 +9,9 @@ import CategoryCoreBanners, { cigaretteCategoryImage } from "../../components/Ca
 import Footer from "../../components/Footer";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
-import { keptCigaretteShelfItems } from "../../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../../lib/siteConfig";
+import CigaretteUnavailable from "../../components/CigaretteUnavailable";
+import { isCigaretteItem, isKeptCigaretteShelfItem } from "../../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 import {
   getCategoryFromSlug,
   CATEGORY_CONFIG,
@@ -79,9 +80,14 @@ export default async function ItemsCategoryPage({
     const uniqueAccessories = accessories.filter(a => !existingIds.has(a.sku));
     items = [...items, ...uniqueAccessories];
   }
-  if (!SHOW_CIGARETTES && catSlug === "add-ons") {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const cigClosed = catSlug === "cigarettes" && !showCigarettes;
+  if (cigClosed) {
+    items = items.filter((item) => !isCigaretteItem(item));
+  }
+  if (!showCigarettes && catSlug === "add-ons") {
     const existingIds = new Set(items.map((item) => item.sku));
-    items = [...items, ...keptCigaretteShelfItems(menuItems).filter((item) => !existingIds.has(item.sku))];
+    items = [...items, ...menuItems.filter((item) => isKeptCigaretteShelfItem(item) && !existingIds.has(item.sku))];
   }
   const { config } = catInfo;
   const categoryH1 = CATEGORY_H1[catSlug];
@@ -95,11 +101,14 @@ export default async function ItemsCategoryPage({
   return (
     <main className={styles.main}>
       <Navbar />
-      {catSlug === "cigarettes" && <CigaretteSeasonalNotice sticky />}
+      {catSlug === "cigarettes" && showCigarettes ? <CigaretteSeasonalNotice sticky /> : null}
+      {cigClosed ? <CigaretteUnavailable /> : null}
 
       {/* Hero Banner */}
       <section style={{ width: "100%", overflow: "hidden", marginTop: "92px", marginBottom: "24px" }}>
-        {config.banner && bannerExists ? (
+        {cigClosed ? (
+          <div data-fleet-text-banner="" style={{ background: "#111827", color: "#ffffff", fontWeight: 800, fontSize: "clamp(28px, 4vw, 48px)", padding: "48px 24px", textAlign: "center" }}>Cigarettes</div>
+        ) : config.banner && bannerExists ? (
           <img
             src={config.banner}
             alt={catSlug === "cigarettes" ? cigaretteCategoryImage.alt : config.name}
@@ -118,7 +127,7 @@ export default async function ItemsCategoryPage({
       </section>
 
       {(catSlug === "vapes" || catSlug === "vape-disposables") && <CategoryCoreBanners kind="vapes" />}
-      {catSlug === "cigarettes" && <CategoryCoreBanners kind="cigarettes" />}
+      {catSlug === "cigarettes" && showCigarettes ? <CategoryCoreBanners kind="cigarettes" /> : null}
 
       {(catSlug === "vapes" || catSlug === "vape-disposables") && <VapeActionPanel compact />}
 
@@ -161,7 +170,7 @@ export default async function ItemsCategoryPage({
           <p className={styles.seoBody}>{config.seoDescription}</p>
 
           {/* FAQ */}
-          {config.faqs.length > 0 && (
+          {config.faqs.length > 0 && !cigClosed && (
             <div className={styles.faqBlock}>
               <h3 className={styles.faqTitle}>Frequently Asked Questions</h3>
               {config.faqs.map((faq, i) => (

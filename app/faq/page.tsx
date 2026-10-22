@@ -4,19 +4,22 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LocalSeoMesh from "../components/LocalSeoMesh";
 import { STORE } from "../lib/store";
-import { visibleCopy } from "../lib/cigaretteVisibility";
-import { SHOW_CIGARETTES } from "../lib/siteConfig";
+import { scrubCigaretteCopy } from "../lib/cigaretteVisibility";
+import { getCigaretteSnapshot } from "../lib/cigaretteFeed";
 import styles from "./faq.module.css";
 
-export const metadata: Metadata = {
-  title: { absolute: "FAQ — The Junction | Gas Junction Cannabis" },
-  description: SHOW_CIGARETTES
-    ? "Junction FAQ for Gas Junction Cannabis at 2813 Dundas St W: weed dispensary, 24-hour open-now hours, neighbourhood delivery, Native cigarettes, nicotine vape, and walk-in notes. Adults 19+."
-    : visibleCopy("Junction FAQ for Gas Junction Cannabis at 2813 Dundas St W: weed dispensary, 24-hour open-now hours, neighbourhood delivery, Native cigarettes, nicotine vape, and walk-in notes. Adults 19+."),
-  alternates: {
-    canonical: `${STORE.origin}/faq`,
-  },
-};
+const FAQ_DESCRIPTION = "Junction FAQ for Gas Junction Cannabis at 2813 Dundas St W: weed dispensary, 24-hour open-now hours, neighbourhood delivery, Native cigarettes, nicotine vape, and walk-in notes. Adults 19+.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  return {
+    title: { absolute: "FAQ — The Junction | Gas Junction Cannabis" },
+    description: scrubCigaretteCopy(FAQ_DESCRIPTION, showCigarettes),
+    alternates: {
+      canonical: `${STORE.origin}/faq`,
+    },
+  };
+}
 
 const FAQ_CATEGORIES = [
   {
@@ -72,14 +75,15 @@ const FAQ_CATEGORIES = [
   },
 ];
 
-export default function FAQPage() {
-  const categories = SHOW_CIGARETTES
+export default async function FAQPage() {
+  const showCigarettes = (await getCigaretteSnapshot()).web.show;
+  const categories = showCigarettes
     ? FAQ_CATEGORIES
     : FAQ_CATEGORIES.map((cat) => ({
         ...cat,
         faqs: cat.faqs
           .filter((faq) => !/\bnative cigarettes\?/i.test(faq.q))
-          .map((faq) => ({ q: visibleCopy(faq.q), a: visibleCopy(faq.a) })),
+          .map((faq) => ({ q: scrubCigaretteCopy(faq.q, false), a: scrubCigaretteCopy(faq.a, false) })),
       }));
   // JSON-LD for FAQ page
   const jsonLd = {
@@ -118,7 +122,7 @@ export default function FAQPage() {
         <div className={styles.content}>
           <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
           <p className={styles.pageSubtitle}>
-            {visibleCopy("Hours, weed dispensary, delivery, cigarettes, nicotine vape, and walk-in notes for Gas Junction Cannabis at 2813 Dundas St W in The Junction. Adults 19+.")}
+            {scrubCigaretteCopy("Hours, weed dispensary, delivery, cigarettes, nicotine vape, and walk-in notes for Gas Junction Cannabis at 2813 Dundas St W in The Junction. Adults 19+.", showCigarettes)}
           </p>
 
           {categories.map((cat) => (
@@ -144,7 +148,7 @@ export default function FAQPage() {
               <Link className={styles.ctaLink} href="/24-hour-junction-dispensary">Open now — 24 hours</Link>
               <Link className={styles.ctaLink} href="/weed-dispensary-junction">Junction weed dispensary</Link>
               <Link className={styles.ctaLink} href="/cannabis-delivery-junction">Junction delivery</Link>
-              {SHOW_CIGARETTES ? <Link className={styles.ctaLink} href="/native-cigarettes-junction">Native cigarettes</Link> : null}
+              {showCigarettes ? <Link className={styles.ctaLink} href="/native-cigarettes-junction">Native cigarettes</Link> : null}
               <Link className={styles.ctaLink} href="/nicotine-vape-junction">Nicotine vape</Link>
             </div>
           </div>
