@@ -1,5 +1,5 @@
 import {
-  FLEET_DOMAIN,
+  FLEET_DOMAINS,
   FLEET_MAX_BUNDLE_BYTES,
   FLEET_SCHEMA_VERSION,
   FLEET_STORE_CODE,
@@ -30,7 +30,7 @@ function hasIdentity(record: Record<string, unknown>, keys: readonly string[]): 
 
 function domainMatches(domain: string): boolean {
   const host = domain.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
-  return host === FLEET_DOMAIN || host === "gasjunctioncannabis.com";
+  return (FLEET_DOMAINS as readonly string[]).includes(host);
 }
 
 function versionOrder(bundle: ContentBundle, previous: ContentBundle | null): RejectReason | null {

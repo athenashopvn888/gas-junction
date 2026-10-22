@@ -1,6 +1,9 @@
+import { resetFleetArticleCache } from "./articles.ts";
 import { CODED_NAP, CODED_PAGES, fleetVersion } from "./coded.ts";
+import { defaultManifestUrl } from "./config.ts";
 import { resolveBanners, resolveNap, resolvePages } from "./resolve.ts";
-import { FLEET_STORE_CODE, type ContentBundle, type ContentManifest, type FleetState } from "./types.ts";
+import { resolveFullscreenPromos, resolveTvCards } from "./tv.ts";
+import { FLEET_STORE_CODE, type ContentBundle, type ContentManifest, type FleetState, type TvFullscreenPromo, type TvCardSlot } from "./types.ts";
 import { parseBundle, parseManifest, rejectHttp } from "./validate.ts";
 
 export const FLEET_MANIFEST_ENV = "FLEET_CONTENT_MANIFEST_URL";
@@ -14,9 +17,14 @@ type Accepted = {
 };
 
 let accepted: Accepted | null = null;
+let manifestMissUrl = "";
+let manifestMissUntil = 0;
 
 export function resetFleetContentCache(): void {
   accepted = null;
+  manifestMissUrl = "";
+  manifestMissUntil = 0;
+  resetFleetArticleCache();
 }
 
 export function codedFleetState(renderedAt = new Date().toISOString()): FleetState {
@@ -29,6 +37,8 @@ export function codedFleetState(renderedAt = new Date().toISOString()): FleetSta
     nap: CODED_NAP,
     banners: [],
     pages: CODED_PAGES,
+    tvCards: {},
+    fullscreenPromos: [],
   };
 }
 
@@ -42,7 +52,22 @@ function stateFrom(bundle: ContentBundle, manifest: ContentManifest, renderedAt:
     nap: resolveNap(bundle),
     banners: resolveBanners(bundle),
     pages: resolvePages(bundle),
+    tvCards: resolveTvCards(bundle, new Date(renderedAt)),
+    fullscreenPromos: resolveFullscreenPromos(bundle, new Date(renderedAt)),
   };
+}
+
+function noteManifestMiss(url: string): void {
+  if (accepted) return;
+  manifestMissUrl = url;
+  manifestMissUntil = Date.now() + 60_000;
+}
+
+function manifestUrlFrom(explicit: string | null | undefined): string {
+  if (explicit !== undefined) return explicit || "";
+  const fromEnv = process.env[FLEET_MANIFEST_ENV]?.trim();
+  if (fromEnv) return fromEnv;
+  return defaultManifestUrl();
 }
 
 export async function readEmergencyCoded(fetchImpl: typeof fetch = fetch): Promise<boolean> {
@@ -74,23 +99,24 @@ export async function readFleetContent(options: {
   const renderedAt = options.renderedAt ?? new Date().toISOString();
   const emergency = options.emergencyCoded ?? await readEmergencyCoded(options.fetchImpl);
   if (emergency) return codedFleetState(renderedAt);
-  const manifestUrl = options.manifestUrl === undefined
-    ? process.env[FLEET_MANIFEST_ENV]?.trim() || ""
-    : options.manifestUrl || "";
+  const manifestUrl = manifestUrlFrom(options.manifestUrl);
   if (!manifestUrl) return codedFleetState(renderedAt);
+  if (!accepted && manifestMissUrl === manifestUrl && Date.now() < manifestMissUntil) return codedFleetState(renderedAt);
 
   const fetchImpl = options.fetchImpl ?? fetch;
   const manifestHeaders: Record<string, string> = {};
   if (accepted?.etag) manifestHeaders["if-none-match"] = accepted.etag;
   let manifestResponse: Response;
   try {
-    manifestResponse = await fetchImpl(manifestUrl, { cache: "no-store", headers: manifestHeaders });
+    manifestResponse = await fetchImpl(manifestUrl, { cache: "no-store", headers: manifestHeaders, signal: AbortSignal.timeout(2500) });
   } catch {
+    if (!accepted) noteManifestMiss(manifestUrl);
     return accepted ? stateFrom(accepted.bundle, accepted.manifest, renderedAt) : codedFleetState(renderedAt);
   }
   const httpProblem = rejectHttp(manifestResponse.status);
   if (manifestResponse.status === 304 && accepted) return stateFrom(accepted.bundle, accepted.manifest, renderedAt);
   if (httpProblem || manifestResponse.status === 304) {
+    if (!accepted) noteManifestMiss(manifestUrl);
     return accepted ? stateFrom(accepted.bundle, accepted.manifest, renderedAt) : codedFleetState(renderedAt);
   }
   const manifestRaw = await manifestResponse.text();
@@ -124,12 +150,19 @@ export function manifestEtag(version: number | null): string {
   return version == null ? `"${FLEET_STORE_CODE}-coded"` : `"${FLEET_STORE_CODE}-${version}"`;
 }
 
-export function tvManifestBody(state: FleetState): ContentManifest {
+export type TvManifestPayload = ContentManifest & {
+  tvCards: Record<string, TvCardSlot>;
+  fullscreenPromos: TvFullscreenPromo[];
+};
+
+export function tvManifestBody(state: FleetState): TvManifestPayload {
   return {
     storeCode: FLEET_STORE_CODE,
     contentVersion: state.contentVersion ?? 0,
     bundleUrl: state.bundleUrl,
     publishedAt: state.renderedAt,
     jobId: state.active ? "published" : "coded",
+    tvCards: state.tvCards,
+    fullscreenPromos: state.fullscreenPromos,
   };
 }
