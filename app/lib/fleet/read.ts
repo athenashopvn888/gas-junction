@@ -17,13 +17,9 @@ type Accepted = {
 };
 
 let accepted: Accepted | null = null;
-let manifestMissUrl = "";
-let manifestMissUntil = 0;
 
 export function resetFleetContentCache(): void {
   accepted = null;
-  manifestMissUrl = "";
-  manifestMissUntil = 0;
   resetFleetArticleCache();
 }
 
@@ -55,12 +51,6 @@ function stateFrom(bundle: ContentBundle, manifest: ContentManifest, renderedAt:
     tvCards: resolveTvCards(bundle, new Date(renderedAt)),
     fullscreenPromos: resolveFullscreenPromos(bundle, new Date(renderedAt)),
   };
-}
-
-function noteManifestMiss(url: string): void {
-  if (accepted) return;
-  manifestMissUrl = url;
-  manifestMissUntil = Date.now() + 60_000;
 }
 
 function manifestUrlFrom(explicit: string | null | undefined): string {
@@ -101,22 +91,19 @@ export async function readFleetContent(options: {
   if (emergency) return codedFleetState(renderedAt);
   const manifestUrl = manifestUrlFrom(options.manifestUrl);
   if (!manifestUrl) return codedFleetState(renderedAt);
-  if (!accepted && manifestMissUrl === manifestUrl && Date.now() < manifestMissUntil) return codedFleetState(renderedAt);
 
   const fetchImpl = options.fetchImpl ?? fetch;
   const manifestHeaders: Record<string, string> = {};
   if (accepted?.etag) manifestHeaders["if-none-match"] = accepted.etag;
   let manifestResponse: Response;
   try {
-    manifestResponse = await fetchImpl(manifestUrl, { cache: "no-store", headers: manifestHeaders, signal: AbortSignal.timeout(2500) });
+    manifestResponse = await fetchImpl(manifestUrl, { cache: "no-store", headers: manifestHeaders });
   } catch {
-    if (!accepted) noteManifestMiss(manifestUrl);
     return accepted ? stateFrom(accepted.bundle, accepted.manifest, renderedAt) : codedFleetState(renderedAt);
   }
   const httpProblem = rejectHttp(manifestResponse.status);
   if (manifestResponse.status === 304 && accepted) return stateFrom(accepted.bundle, accepted.manifest, renderedAt);
   if (httpProblem || manifestResponse.status === 304) {
-    if (!accepted) noteManifestMiss(manifestUrl);
     return accepted ? stateFrom(accepted.bundle, accepted.manifest, renderedAt) : codedFleetState(renderedAt);
   }
   const manifestRaw = await manifestResponse.text();

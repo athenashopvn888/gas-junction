@@ -7,6 +7,8 @@ import { STORE } from "../lib/store";
 import { getFleetContent } from "../lib/fleetContent";
 import styles from "./contact.module.css";
 
+export const dynamic = "force-dynamic";
+
 const CONTACT_METADATA: Metadata = {
   title: "Contact Us — Gas Junction Cannabis | 2813 Dundas St W, The Junction",
   description:

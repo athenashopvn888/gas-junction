@@ -12,7 +12,7 @@ export const FLEET_DOMAINS = ["www.gasjunctioncannabis.com", "gasjunctioncannabi
 export const FLEET_ORIGIN = "https://www.gasjunctioncannabis.com";
 
 /** Public blob origin. Objects live at /{storeCode}/manifest.json and /{storeCode}/articles/. */
-export const FLEET_BLOB_ORIGIN = "https://fleet.public.blob.vercel-storage.com";
+export const FLEET_BLOB_ORIGIN = "https://dhaah0upvlpukv56.public.blob.vercel-storage.com";
 
 export const FLEET_COLORS = {
   banner: "#111827",

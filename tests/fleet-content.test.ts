@@ -305,18 +305,56 @@ test("TV2 card slots and fullscreen promos stay empty unless a Custom row is ins
   assert.match(readFileSync(new URL("../app/api/tv-manifest/route.ts", import.meta.url), "utf8"), /"Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=300"/);
 });
 
-test("an unset manifest URL uses the store-code blob path and a 404 stays coded", async () => {
+test("the page meta version equals the manifest version, and the env URL still wins", async () => {
   const previous = process.env.FLEET_CONTENT_MANIFEST_URL;
+  const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  assert.match(layout, /<meta name="fleet-content-version" content=\{fleet\.version\} \/>/);
+  assert.match(readFileSync(new URL("../app/contact/page.tsx", import.meta.url), "utf8"), /export const dynamic = "force-dynamic"/);
+  assert.match(readFileSync(new URL("../app/tv/layout.tsx", import.meta.url), "utf8"), /export const dynamic = "force-dynamic"/);
+  assert.match(readFileSync(new URL("../app/tv2/layout.tsx", import.meta.url), "utf8"), /export const dynamic = "force-dynamic"/);
+  assert.equal(defaultManifestUrl(), "https://dhaah0upvlpukv56.public.blob.vercel-storage.com/GJC01/manifest.json");
+
   delete process.env.FLEET_CONTENT_MANIFEST_URL;
   resetFleetContentCache();
-  const { fetchImpl, calls } = fetchServing({});
+  const blobUrl = defaultManifestUrl();
+  const served = fetchServing({
+    [blobUrl]: { body: JSON.stringify(manifest), headers: { etag: '"GJC01-1"' } },
+    [BUNDLE_URL]: { body: JSON.stringify(bundle) },
+  });
   try {
-    const state = await readFleetContent({ fetchImpl, emergencyCoded: false, renderedAt: "2026-10-22T00:00:00.000Z" });
-    assert.equal(defaultManifestUrl(), "https://fleet.public.blob.vercel-storage.com/GJC01/manifest.json");
-    assert.deepEqual(calls, [defaultManifestUrl()]);
-    assert.equal(state.active, false);
-    assert.deepEqual(state.tvCards, {});
-    assert.deepEqual(state.fullscreenPromos, []);
+    const state = await readFleetContent({
+      fetchImpl: served.fetchImpl,
+      emergencyCoded: false,
+      renderedAt: "2026-10-22T12:00:01.000Z",
+    });
+    assert.deepEqual(served.calls, [blobUrl, BUNDLE_URL]);
+    assert.equal(state.active, true);
+    assert.equal(state.contentVersion, manifest.contentVersion);
+    assert.equal(state.version, `GJC01:${manifest.contentVersion}`);
+
+    const missing = fetchServing({});
+    resetFleetContentCache();
+    const coded = await readFleetContent({
+      fetchImpl: missing.fetchImpl,
+      emergencyCoded: false,
+      renderedAt: "2026-10-22T00:00:00.000Z",
+    });
+    assert.deepEqual(missing.calls, [blobUrl]);
+    assert.equal(coded.version, "GJC01:coded");
+
+    resetFleetContentCache();
+    process.env.FLEET_CONTENT_MANIFEST_URL = MANIFEST_URL;
+    const fromEnv = fetchServing({
+      [MANIFEST_URL]: { body: JSON.stringify(manifest), headers: { etag: '"GJC01-1"' } },
+      [BUNDLE_URL]: { body: JSON.stringify(bundle) },
+    });
+    const envState = await readFleetContent({
+      fetchImpl: fromEnv.fetchImpl,
+      emergencyCoded: false,
+      renderedAt: "2026-10-22T12:00:01.000Z",
+    });
+    assert.deepEqual(fromEnv.calls, [MANIFEST_URL, BUNDLE_URL]);
+    assert.equal(envState.version, `GJC01:${manifest.contentVersion}`);
   } finally {
     if (previous == null) delete process.env.FLEET_CONTENT_MANIFEST_URL;
     else process.env.FLEET_CONTENT_MANIFEST_URL = previous;
