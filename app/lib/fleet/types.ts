@@ -125,6 +125,8 @@ export type ResolvedBanner = {
   hidden: boolean;
   render: "image" | "text";
   image: string;
+  /** Slot default. Used when a sheet image fails in the browser. */
+  codedImage: string;
   imageWidth?: number;
   imageHeight?: number;
   alt: string;
