@@ -121,16 +121,32 @@ test("a blank cell keeps coded copy and a missing image becomes the bold categor
   const banners = resolveBanners(broken);
   assert.equal(banners[0].render, "text");
   assert.equal(banners[0].image, "");
+  assert.equal(banners[0].codedImage, CODED_BANNERS[0].image);
   assert.equal(banners[0].categoryName, "Exotic Weed");
   assert.equal(banners[0].textBar, "Sheet weed text bar");
+  assert.equal(banners[0].alt, "Sheet weed alt");
+  assert.equal(banners[0].title, "Sheet weed title");
+  assert.equal(banners[0].caption, "Sheet weed caption");
 
   broken.slots![0].image = "https://example.blob.vercel-storage.com/weed.webp";
   const kept = resolveBanners(broken);
   assert.equal(kept[0].render, "image");
   assert.equal(kept[0].image, "https://example.blob.vercel-storage.com/weed.webp");
+  assert.equal(kept[0].codedImage, CODED_BANNERS[0].image);
+  assert.equal(kept[0].alt, "Sheet weed alt");
+  assert.equal(kept[0].title, "Sheet weed title");
+  assert.equal(kept[0].textBar, "Sheet weed text bar");
+  assert.equal(kept[0].caption, "Sheet weed caption");
   const bannerSource = readFileSync(new URL("../app/components/FleetAnnouncementBanner.tsx", import.meta.url), "utf8");
-  assert.match(bannerSource, /onError=\{\(\) => setImageFailed\(true\)\}/);
+  assert.match(bannerSource, /banner\.codedImage && src !== banner\.codedImage/);
+  assert.match(bannerSource, /setSrc\(banner\.codedImage\)/);
+  assert.match(bannerSource, /setImageFailed\(true\)/);
+  assert.match(bannerSource, /naturalWidth === 0/);
+  assert.match(bannerSource, /onError=\{useCodedFallback\}/);
   assert.match(bannerSource, /data-fleet-text-banner/);
+  assert.match(bannerSource, /alt=\{banner\.alt\}/);
+  assert.match(bannerSource, /title=\{banner\.title\}/);
+  assert.match(bannerSource, /\{banner\.textBar\}/);
 });
 
 test("Follow ALL, Custom, Coded and Hidden each resolve on their own", () => {

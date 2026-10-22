@@ -95,6 +95,7 @@ export function resolveBanners(bundle: ContentBundle | null): ResolvedBanner[] {
       hidden: false,
       render: missing ? "text" : "image",
       image: missing ? "" : imageValue,
+      codedImage: coded.image,
       imageWidth: source?.imageWidth,
       imageHeight: source?.imageHeight,
       alt,

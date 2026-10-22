@@ -35,14 +35,22 @@ const linkStyle = { display: "block", width: "100%" } as const;
 const captionStyle = { margin: 0, padding: "10px 14px", background: "#111827", color: "#ffffff", textAlign: "center" as const, fontWeight: 800, lineHeight: 1.35 };
 
 function BannerFigure({ banner }: { banner: ResolvedBanner }) {
+  const [src, setSrc] = useState(banner.image);
   const [imageFailed, setImageFailed] = useState(false);
-  const showText = banner.render === "text" || imageFailed;
+  const showText = banner.render === "text" || imageFailed || !src;
+  const useCodedFallback = () => {
+    if (banner.codedImage && src !== banner.codedImage) {
+      setSrc(banner.codedImage);
+      return;
+    }
+    setImageFailed(true);
+  };
   return (
     <figure data-core-banner={banner.id} style={figureStyle}>
       {showText ? (
         <div data-fleet-text-banner="" style={{ ...imageStyle, minHeight: banner.imageHeight || 180, display: "flex", alignItems: "center", justifyContent: "center", background: "#111827", color: "#ffffff", fontWeight: 800, fontSize: "clamp(28px, 4vw, 48px)" }}>{banner.categoryName}</div>
       ) : (
-        <Link href={banner.href} style={linkStyle}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={banner.image} alt={banner.alt} title={banner.title} width={banner.imageWidth} height={banner.imageHeight} style={imageStyle} onError={() => setImageFailed(true)} /></Link>
+        <Link href={banner.href} style={linkStyle}>{/* eslint-disable-next-line @next/next/no-img-element */}<img key={src} src={src} alt={banner.alt} title={banner.title} width={banner.imageWidth} height={banner.imageHeight} style={imageStyle} ref={(node) => { if (node?.complete && node.naturalWidth === 0) useCodedFallback(); }} onError={useCodedFallback} /></Link>
       )}
       <figcaption style={captionStyle}>{banner.textBar}</figcaption>
     </figure>
