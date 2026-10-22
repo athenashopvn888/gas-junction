@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFleetContent, codedFleetState, readEmergencyCoded, resetFleetContentCache } from "../app/lib/fleet/read.ts";
 import { resolveTvCards, resolveFullscreenPromos, pickTv2Sheet } from "../app/lib/fleet/tv.ts";
 import { CODED_BANNERS, CODED_NAP, CODED_PAGES } from "../app/lib/fleet/config.ts";
+import type { ContentBundle } from "../app/lib/fleet/types.ts";
 
 const now = new Date("2026-10-22T12:00:00Z");
 const base = { schemaVersion: 1, storeCode: "GJC01", domain: "www.gasjunctioncannabis.com", contentVersion: 9, publishedAt: "2026-10-22T10:00:00Z", sourceHash: "x", jobId: "j" };
@@ -25,6 +26,21 @@ test("K1 empty bundle (no rows) == coded state", async () => {
 test("K1 Coded-mode rows also == coded", () => {
   const b: any = { ...base, slots: ["VAPES", "CIGARETTES"].map((spot) => ({ page: "TV2", spot, mode: "Coded", image: "/a.webp", offImage: "/b.webp", promoStart: "2026-01-01", promoEnd: "2027-01-01" })).concat([{ page: "TV", spot: "Fullscreen promo 1", mode: "Coded", image: "/a.webp", promoStart: "2026-01-01", promoEnd: "2027-01-01" } as any]) };
   assert.deepEqual(resolveTvCards(b, now), {}); assert.deepEqual(resolveFullscreenPromos(b, now), []);
+});
+test("K hidden TV2 card is removed and Coded or Custom stay", () => {
+  const board: ContentBundle = { ...base, slots: [
+    { page: "TV2", spot: "VAPES", mode: "Hidden", image: "/a.webp", offImage: "/b.webp", promoStart: "2026-01-01", promoEnd: "2027-01-01" },
+    { page: "TV2", spot: "EDIBLES", mode: "Custom", image: "/p.webp", offImage: "/o.webp", alt: "Edible", promoStart: "2026-01-01", promoEnd: "2027-01-01" },
+    { page: "TV2", spot: "MAGIC", mode: "Coded", image: "/a.webp", offImage: "/b.webp", promoStart: "2026-01-01", promoEnd: "2027-01-01" },
+  ]};
+  const cards = resolveTvCards(board, now);
+  const state = { categoryOff: false, noItems: false, promoBroken: false, offBroken: false };
+  assert.equal(cards.VAPES.hidden, true);
+  assert.equal(pickTv2Sheet(cards.VAPES, state)?.kind, "hidden");
+  assert.equal(cards.MAGIC, undefined);
+  assert.equal(pickTv2Sheet(cards.MAGIC, state), null);
+  assert.equal("hidden" in cards.EDIBLES, false);
+  assert.equal(pickTv2Sheet(cards.EDIBLES, state)?.kind, "promo");
 });
 test("K4 broken promo/off image -> normal card", () => {
   const slot = { card: "VAPES", promoImage: "/p.webp", promoAlt: "a", offImage: "/o.webp", offAlt: "a" };

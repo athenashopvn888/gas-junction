@@ -10,7 +10,7 @@ import {
 } from "../app/lib/fleet/read.ts";
 import { defaultManifestUrl, TV2_CARDS, TV_FULLSCREEN_SPOTS } from "../app/lib/fleet/config.ts";
 import { phoneToTel, resolveBanners, resolveModeValue, resolveNap, resolvePages } from "../app/lib/fleet/resolve.ts";
-import { inPromoWindow, pickTv2Sheet, resolveFullscreenPromos, resolveTvCards } from "../app/lib/fleet/tv.ts";
+import { inPromoWindow, parseFleetTvManifest, pickTv2Sheet, resolveFullscreenPromos, resolveTvCards } from "../app/lib/fleet/tv.ts";
 import { revalidateAuthorized } from "../app/lib/fleet/secret.ts";
 import { FLEET_AFFECTED_PATHS } from "../app/lib/fleet/routes.ts";
 import { FLEET_MAX_BUNDLE_BYTES, type ContentBundle } from "../app/lib/fleet/types.ts";
@@ -303,6 +303,73 @@ test("TV2 card slots and fullscreen promos stay empty unless a Custom row is ins
   assert.match(tv, /FleetTvTakeover/);
   assert.match(readFileSync(new URL("../app/components/fleet/TvPromoTakeover.tsx", import.meta.url), "utf8"), /TV_PROMO_INITIAL_DELAY_MS/);
   assert.match(readFileSync(new URL("../app/api/tv-manifest/route.ts", import.meta.url), "utf8"), /"Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=300"/);
+});
+
+test("Hidden TV2 rows drop that card and Coded or Custom rows stay on their own path", () => {
+  const ready = { categoryOff: false, noItems: false, promoBroken: false, offBroken: false };
+  const withTv = structuredClone(bundle);
+  withTv.all = {
+    slots: [
+      { page: "TV2", spot: "PREROLLS_ADDONS", mode: "Custom", image: "/all-pre.webp", offImage: "/all-pre-off.webp", alt: "All pre", promoStart: "2026-10-22T12:00:00.000Z", promoEnd: "2026-10-22T13:00:00.000Z" },
+      { page: "TV2", spot: "CONCENTRATES", mode: "Hidden", image: "/all-hidden.webp", offImage: "/all-hidden-off.webp", promoStart: "2026-10-22T12:00:00.000Z", promoEnd: "2026-10-22T13:00:00.000Z" },
+    ],
+  };
+  withTv.slots!.push(
+    { page: "TV2", spot: "VAPES", mode: "Hidden", image: "/secret.webp", offImage: "/secret-off.webp", alt: "Nope", promoStart: "2026-10-22T12:00:00.000Z", promoEnd: "2026-10-22T13:00:00.000Z" },
+    { page: "TV2", spot: "EDIBLES", mode: "Custom", image: "/edible.webp", offImage: "/edible-off.webp", alt: "Edible", promoStart: "2026-10-22T12:00:00.000Z", promoEnd: "2026-10-22T13:00:00.000Z" },
+    { page: "TV2", spot: "MAGIC", mode: "Coded", image: "/magic.webp", offImage: "/magic-off.webp", promoStart: "2026-10-22T12:00:00.000Z", promoEnd: "2026-10-22T13:00:00.000Z" },
+    { page: "TV2", spot: "PREROLLS_ADDONS", mode: "Follow ALL", image: "/ignore.webp" },
+    { page: "TV2", spot: "CONCENTRATES", mode: "Follow ALL", image: "/ignore-conc.webp" },
+  );
+
+  const now = new Date("2026-10-22T12:30:00.000Z");
+  const cards = resolveTvCards(withTv, now);
+  assert.deepEqual(cards.VAPES, { card: "VAPES", hidden: true, promoImage: null, promoAlt: "VAPES", offImage: null, offAlt: "VAPES" });
+  assert.deepEqual(pickTv2Sheet(cards.VAPES, ready), { kind: "hidden" });
+  assert.deepEqual(pickTv2Sheet(cards.VAPES, { categoryOff: true, noItems: true, promoBroken: true, offBroken: true }), { kind: "hidden" });
+  assert.equal(cards.MAGIC, undefined);
+  assert.equal(pickTv2Sheet(undefined, ready), null);
+  assert.equal("hidden" in cards.EDIBLES, false);
+  assert.deepEqual(cards.EDIBLES, { card: "EDIBLES", promoImage: "/edible.webp", promoAlt: "Edible", offImage: "/edible-off.webp", offAlt: "Edible" });
+  assert.deepEqual(pickTv2Sheet(cards.EDIBLES, ready), { kind: "promo", image: "/edible.webp", alt: "Edible" });
+  assert.deepEqual(pickTv2Sheet(cards.EDIBLES, { ...ready, categoryOff: true }), { kind: "off", image: "/edible-off.webp", alt: "Edible" });
+  assert.equal("hidden" in cards.PREROLLS_ADDONS, false);
+  assert.equal(cards.PREROLLS_ADDONS.promoImage, "/all-pre.webp");
+  assert.equal(cards.CONCENTRATES, undefined);
+
+  const outside = resolveTvCards(withTv, new Date("2026-10-22T14:00:00.000Z"));
+  assert.equal(outside.VAPES.hidden, true);
+  assert.equal("hidden" in outside.EDIBLES, false);
+  assert.equal(outside.EDIBLES.promoImage, null);
+  assert.equal(outside.EDIBLES.offImage, "/edible-off.webp");
+
+  const parsed = parseFleetTvManifest({
+    tvCards: {
+      VAPES: cards.VAPES,
+      EDIBLES: cards.EDIBLES,
+      MAGIC: { hidden: false, promoImage: "/nope.webp" },
+    },
+    fullscreenPromos: [],
+  });
+  assert.equal(parsed.cards.VAPES.hidden, true);
+  assert.equal(pickTv2Sheet(parsed.cards.VAPES, ready)?.kind, "hidden");
+  assert.equal("hidden" in parsed.cards.EDIBLES, false);
+  assert.deepEqual(parsed.cards.EDIBLES, cards.EDIBLES);
+  assert.equal("hidden" in parsed.cards.MAGIC, false);
+
+  const tv2 = readFileSync(new URL("../app/tv2/page.tsx", import.meta.url), "utf8");
+  const css = readFileSync(new URL("../app/tv2/tv2.module.css", import.meta.url), "utf8");
+  assert.match(tv2, /if \(sheet\?\.kind === "hidden"\) return null;/);
+  assert.match(tv2, /visibleBoard\.length === CARD_CONFIG\.length \? \{\} : \{ "data-fleet-tv-count": visibleBoard\.length \}/);
+  assert.match(tv2, /\.filter\(\(node\) => node != null\)/);
+  assert.match(tv2, /categoryOff: isCig && !tvCig\.show/);
+  assert.match(tv2, /isRealCigaretteItem/);
+  assert.match(css, /grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);\n  grid-template-rows: repeat\(2, minmax\(0, 1fr\)\);/);
+  for (const count of ["5", "4", "3", "2", "1", "0"]) {
+    assert.match(css, new RegExp(`data-fleet-tv-count="${count}"`));
+  }
+  assert.match(css, /grid-column: span 2;/);
+  assert.match(css, /grid-column: span 3;/);
 });
 
 test("the page meta version equals the manifest version, and the env URL still wins", async () => {

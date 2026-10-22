@@ -52,7 +52,7 @@ Page name: `TV2`. Spot name is the card name:
 }
 ```
 
-`image` replaces the whole card only when `mode` is `Custom` and the current time is inside `[promoStart, promoEnd)`. `offImage` shows when that category is switched off or the card has no items (cigarettes: `tvOn` false). `Follow ALL` uses the matching ALL row when that row is `Custom`. `Coded` and `Hidden` leave the coded card alone.
+`image` replaces the whole card only when `mode` is `Custom` and the current time is inside `[promoStart, promoEnd)`. `offImage` shows when that category is switched off or the card has no items (cigarettes: `tvOn` false). `Follow ALL` uses the matching ALL row when that row is `Custom`. `Coded` leaves the coded card alone. `Hidden` removes that card. The remaining cards reflow to fill the board, with no empty slot.
 
 An empty URL or an image `onError` (including a broken image that finishes with `naturalWidth === 0`) drops back to today's card. For an empty cigarette card that is the collage. Other cards return to the normal item card or the existing daytime promo.
 
@@ -135,5 +135,6 @@ Each fleet article emits `Article` and `BreadcrumbList` JSON-LD, plus `FAQPage` 
 - [ ] `POST /api/revalidate` with the secret returns 200, and a wrong secret returns 401.
 - [ ] `/api/tv-manifest` sends `Cache-Control: public, max-age=0, s-maxage=60, stale-while-revalidate=300` and honors `If-None-Match`.
 - [ ] A TV2 row outside the promo window does not change that card. A broken promo image returns to the coded card.
+- [ ] A TV2 row with mode Hidden removes that card. Coded and Custom rows stay as they are.
 - [ ] With no fullscreen rows, `/tv` and `/tv2` do not show a takeover.
 - [ ] With no article index, `/resources` URLs are unchanged and `/articles` is a 404.
