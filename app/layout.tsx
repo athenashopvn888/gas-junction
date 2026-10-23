@@ -4,6 +4,7 @@ import { getFleetContent } from "./lib/fleetContent";
 import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
+import { SHOW_CIGARETTES } from "./lib/siteConfig";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
@@ -239,7 +240,7 @@ export default async function RootLayout({
           </p>
         </noscript>
         <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap }}>
-          <CigaretteStateProvider value={cigarettes}>
+          <CigaretteStateProvider value={{ ...cigarettes, web: SHOW_CIGARETTES ? cigarettes.web : false }}>
             {children}
             <FullNameNap />
             <PinnedNavClearance />
