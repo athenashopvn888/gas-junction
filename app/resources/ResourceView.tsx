@@ -49,6 +49,26 @@ function presentedResource(page: ResourcePage, showCigarettes: boolean): Resourc
   };
 }
 
+const INTERNAL_LINK = /\[[^\]]+\]\(\/[^)\s]+\)/;
+
+function ArticleParagraph({ text }: { text: string }) {
+  if (!INTERNAL_LINK.test(text)) return <p>{text}</p>;
+  const blocks = parseArticleMarkdown(text);
+  return (
+    <>
+      {blocks.map((block, index) =>
+        block.kind === "p" ? (
+          <p key={`${index}-${inlinePlainText(block.inlines)}`}>
+            <InlineText inlines={block.inlines} />
+          </p>
+        ) : (
+          <p key={`${index}-${block.text}`}>{block.text}</p>
+        ),
+      )}
+    </>
+  );
+}
+
 function InlineText({ inlines }: { inlines: InlineNode[] }) {
   return (
     <>
@@ -199,7 +219,7 @@ export default async function ResourceView({ page }: ResourceViewProps) {
           <article key={section.heading} className={styles.section}>
             <h2>{section.heading}</h2>
             {(Array.isArray(section.body) ? section.body : [section.body]).map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <ArticleParagraph key={paragraph} text={paragraph} />
             ))}
             {section.bullets && (
               <ul>
