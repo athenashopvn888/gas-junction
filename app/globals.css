@@ -143,6 +143,12 @@ body {
   body {
     padding-bottom: var(--mobile-action-bar-height);
   }
+
+  /* /tv and /tv2 set this meta. Every other page keeps the padding above. */
+  html:has(meta[name="store-tv-board"]) body {
+    --mobile-action-bar-height: 0px;
+    padding-bottom: 0;
+  }
 }
 
 @media print {
