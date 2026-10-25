@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { hidesMobileBottomBar } from "../app/lib/mobileBottomBarPath.ts";
 import { STORE } from "../app/lib/store.ts";
 import { storeHoursStatus, type OpeningHoursSpec } from "../app/lib/storeHoursStatus.ts";
 
@@ -59,6 +60,41 @@ test("a split day uses the window that is actually open", () => {
   assert.equal(storeHoursStatus(new Date("2026-10-26T15:00:00.000Z"), hours).label, "Open now · until 12 p.m.");
   assert.equal(storeHoursStatus(new Date("2026-10-26T17:00:00.000Z"), hours).label, "Closed · opens 2 p.m.");
   assert.equal(storeHoursStatus(new Date("2026-10-26T19:30:00.000Z"), hours).label, "Open now · until 6 p.m.");
+});
+
+test("the bar stays off the in-store boards and on every other page", () => {
+  assert.equal(hidesMobileBottomBar("/tv"), true);
+  assert.equal(hidesMobileBottomBar("/tv/"), true);
+  assert.equal(hidesMobileBottomBar("/tv/extra"), true);
+  assert.equal(hidesMobileBottomBar("/tv2"), true);
+  assert.equal(hidesMobileBottomBar("/tv2/"), true);
+  assert.equal(hidesMobileBottomBar("/tv2/extra"), true);
+  for (const path of ["/", "/hours", "/delivery", "/exotic-weed", "/visit", "/fltv", "/fltv2", "/television", "/tv20", null, undefined]) {
+    assert.equal(hidesMobileBottomBar(path), false, String(path));
+  }
+
+  assert.match(bar, /usePathname\(\)/);
+  assert.match(bar, /hidesMobileBottomBar\(pathname\)/);
+  const hiddenReturn = bar.indexOf("if (hidden) return null");
+  const nav = bar.indexOf("<nav");
+  assert.ok(hiddenReturn !== -1 && nav !== -1 && hiddenReturn < nav);
+
+  const tvLayout = fs.readFileSync("app/tv/layout.tsx", "utf8");
+  const tv2Layout = fs.readFileSync("app/tv2/layout.tsx", "utf8");
+  assert.match(tvLayout, /other:\s*\{\s*"store-tv-board":\s*"1"\s*\}/);
+  assert.match(tv2Layout, /other:\s*\{\s*"store-tv-board":\s*"1"\s*\}/);
+  assert.doesNotMatch(fs.readFileSync("app/fltv/layout.tsx", "utf8"), /store-tv-board/);
+  assert.doesNotMatch(fs.readFileSync("app/fltv2/layout.tsx", "utf8"), /store-tv-board/);
+  assert.doesNotMatch(layout, /store-tv-board/);
+
+  assert.match(
+    globals,
+    /body\s*\{[^}]*padding-bottom:\s*var\(--mobile-action-bar-height\)/,
+  );
+  assert.match(
+    globals,
+    /html:has\(meta\[name="store-tv-board"\]\) body\s*\{[^}]*--mobile-action-bar-height:\s*0px;[^}]*padding-bottom:\s*0/,
+  );
 });
 
 test("the bar is mounted on every page and only pads the body on small screens", () => {
