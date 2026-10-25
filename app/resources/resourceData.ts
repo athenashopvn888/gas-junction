@@ -285,13 +285,17 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     sections: [
       {
         heading: "Address Anchor",
-        body:
+        body: [
           "Gas Junction Cannabis is listed at 2813 Dundas St W, Toronto, ON M6P 1Y6. Keep that address as the anchor, then use the menu categories to decide whether this trip is about flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes.",
+          "That listed counter is the [weed dispensary in the Junction](/weed-dispensary-junction).",
+        ],
       },
       {
         heading: "Neighborhood Shopping Notes",
-        body:
+        body: [
           "The Junction page should catch shoppers who describe the area in different ways. This guide naturally helps shoppers around Dundas St W, Keele, High Park North, Junction Triangle, Bloor West Village, Runnymede, and Annette Street without turning the page into a keyword wall.",
+          "When a walk-in is not the plan, [cannabis delivery in the Junction](/cannabis-delivery-junction) is the neighbourhood delivery page for this shop.",
+        ],
         bullets: [
           "The Junction and Dundas St W for the core local search.",
           "Keele and High Park North for nearby direction-based searches.",
@@ -300,8 +304,10 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       },
       {
         heading: "Best First Click",
-        body:
+        body: [
           "If you are not sure what to buy yet, do not start deep inside an item page. Start with the menu guide, then choose the shelf. If the visit is mostly about current store details, use the homepage or how-to-get-here page first.",
+          "Adults 19+ who want nicotine devices can start with the [vape shop in the Junction](/vape-shop-the-junction). Nicotine is addictive.",
+        ],
       },
     ],
   },
