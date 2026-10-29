@@ -61,8 +61,10 @@ function ArticleParagraph({ text }: { text: string }) {
           <p key={`${index}-${inlinePlainText(block.inlines)}`}>
             <InlineText inlines={block.inlines} />
           </p>
-        ) : (
+        ) : block.kind === "h1" || block.kind === "h2" ? (
           <p key={`${index}-${block.text}`}>{block.text}</p>
+        ) : (
+          <ArticleFlow key={`${block.kind}-${index}`} blocks={[block]} />
         ),
       )}
     </>
@@ -75,6 +77,7 @@ function InlineText({ inlines }: { inlines: InlineNode[] }) {
       {inlines.map((node, index) => {
         if (node.type === "break") return <br key={`br-${index}`} />;
         if (node.type === "bold") return <strong key={`b-${index}`}>{node.text}</strong>;
+        if (node.type === "italic") return <em key={`i-${index}`}>{node.text}</em>;
         if (node.type === "link") {
           return (
             <Link key={`a-${index}`} href={node.href} className={styles.inlineLink}>
@@ -88,19 +91,71 @@ function InlineText({ inlines }: { inlines: InlineNode[] }) {
   );
 }
 
+function ArticleFlow({ blocks }: { blocks: ArticleBlock[] }) {
+  return (
+    <>
+      {blocks.map((block, index) => {
+        if (block.kind === "h1" || block.kind === "h2") return null;
+        if (block.kind === "ul" || block.kind === "ol") {
+          const items = block.items.map((item, itemIndex) => (
+            <li key={itemIndex}>
+              <InlineText inlines={item} />
+            </li>
+          ));
+          if (block.kind === "ul") return <ul key={`ul-${index}`}>{items}</ul>;
+          return <ol key={`ol-${index}`}>{items}</ol>;
+        }
+        if (block.kind === "table") {
+          return (
+            <div key={`table-${index}`} className={styles.tableWrap}>
+              <table>
+                <thead>
+                  <tr>
+                    {block.headers.map((cell, cellIndex) => (
+                      <th key={cellIndex} scope="col">
+                        <InlineText inlines={cell} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {block.rows.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex}>
+                          <InlineText inlines={cell} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        return (
+          <p key={inlinePlainText(block.inlines)}>
+            <InlineText inlines={block.inlines} />
+          </p>
+        );
+      })}
+    </>
+  );
+}
+
 function MarkdownResource({ page }: ResourceViewProps) {
   const blocks = parseArticleMarkdown(page.markdown || "");
   const canonical = `https://www.gasjunctioncannabis.com/resources/${page.slug}`;
   const intro: ArticleBlock[] = [];
-  const sections: { heading: string; paragraphs: Extract<ArticleBlock, { kind: "p" }>[] }[] = [];
+  const sections: { heading: string; blocks: ArticleBlock[] }[] = [];
   let current: (typeof sections)[number] | null = null;
 
   for (const block of blocks) {
     if (block.kind === "h2") {
-      current = { heading: block.text, paragraphs: [] };
+      current = { heading: block.text, blocks: [] };
       sections.push(current);
     } else if (current) {
-      current.paragraphs.push(block);
+      current.blocks.push(block);
     } else {
       intro.push(block);
     }
@@ -173,11 +228,7 @@ function MarkdownResource({ page }: ResourceViewProps) {
         {sections.map((section) => (
           <article key={section.heading} className={styles.section}>
             <h2>{section.heading}</h2>
-            {section.paragraphs.map((paragraph) => (
-              <p key={inlinePlainText(paragraph.inlines)}>
-                <InlineText inlines={paragraph.inlines} />
-              </p>
-            ))}
+            <ArticleFlow blocks={section.blocks} />
           </article>
         ))}
       </section>
