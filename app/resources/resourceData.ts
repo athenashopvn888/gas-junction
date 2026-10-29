@@ -210,6 +210,75 @@ Gas Junction Cannabis is at 2813 Dundas St W, near Keele Street in the Junction.
 If a word on our concentrates list isn't in this glossary, ask at the counter and we'll explain it. Bring government-issued photo ID; you need to be 19 or older.
 `;
 
+export const GAS_WEED_TITLE = `Weed Gas, Decoded: What "Gas" Means in Weed Slang (and What It Can't Tell You)`;
+
+export const GAS_WEED_DESCRIPTION =
+  "Weed gas is a smell word: how people describe the nose on a jar of flower, nothing more official than that.";
+
+export const GAS_WEED_MARKDOWN = `# Weed Gas, Decoded: What "Gas" Means in Weed Slang (and What It Can't Tell You)
+
+Last checked: October 21, 2026
+
+Somebody leans on the counter, cracks a grin and asks the oldest question in the Junction: "Got anything gas?" Fair question. It's also a funny one to ask at a shop with the word right there in its name. So let's settle it. **Weed gas** is a smell word. It's how people describe the nose on a jar of flower, nothing more official than that. This guide is for adults 19 and over, and it sticks to two things: what the slang actually describes, and what the legal label can and can't back up.
+
+## What "gas" means in weed slang
+
+Strip away the swagger and "gas" is a nose report. When someone calls a jar gas, they're telling you the smell hits hard and sharp, the kind of aroma that reminds people of a fuel pump, fresh tires or a just-opened can of paint thinner. It's pungent, not sweet. You notice it before the lid is all the way off.
+
+That's the core of the **gas weed meaning**, but slang is loose by design. Some people use "gas" only for that sharp, petrol-style smell. Others stretch it to cover any bud with a big, room-filling aroma. Two customers can say the same word and mean slightly different jars.
+
+Where did the word come from? Honest answer: we haven't found a documented origin we can cite, and we're not going to invent one. What we can tell you is how it gets used on a shop floor today. It's descriptive talk, the same way people call a coffee "smoky" or a cheese "funky."
+
+## The neighbours: loud, dank and za
+
+"Gas" rarely travels alone. Here's how the words around it usually land, in plain terms:
+
+| Word | What people are usually describing | What it doesn't prove |
+|---|---|---|
+| Gas | A sharp, fuel-like, pungent nose | THC level, freshness, origin, grade |
+| Loud | How big the smell is; volume, not flavour | That the smell is pleasant, or anything about strength |
+| Dank | The old-school catch-all for heavy, sticky-smelling bud | Quality, age or how it was grown |
+| Za | Short for "zaza," a hype word people drop when they're excited about a jar | Anything at all on the label |
+
+Notice the pattern? Every one of these words describes the speaker's nose or mood. None of them is a measurement.
+
+## Weed gas vs. the label: what the package can actually confirm
+
+Here's where the slang runs out of road. Legal cannabis in Canada comes with a regulated label, and Health Canada's packaging and labelling guide spells out what has to be on it. For dried flower, that includes:
+
+- **The class of cannabis** (for example, dried cannabis)
+- **Total THC and total CBD**, in bold, on the main panel
+- **The packaging date**, the day the product was packed (Health Canada allows the printed date to be within seven days of the actual packing date)
+- **A lot number**, so a product can be traced or recalled
+- **Recommended storage conditions**
+- **The mandatory health warning and the standardized cannabis symbol** where the product contains THC above the threshold
+
+Notice what isn't on that list: the word "gas." No regulated field says "gas," "loud" or "dank." Producers *may* add optional information such as a terpene profile or a strain name, in plain type no bigger than the required label text, or point you to it through a QR code. Health Canada says any optional information must not be false, misleading or deceptive. Even then, a terpene list is chemistry, not a promise about how a jar smells to you on a given day.
+
+So when you hear weed gas at the counter, treat it as a tasting note from a person, then read the label for the facts.
+
+## What "gas" doesn't mean
+
+Let's clear the air, so to speak:
+
+- **It isn't a strength rating.** Aroma and THC are different things. The label's total THC figure is the only THC number that counts, and the word "gas" doesn't stand in for it.
+- **It isn't a grade.** There's no official Canadian category called "gas."
+- **It isn't a freshness stamp.** The packaging date tells you when the flower was packed. A sharp smell doesn't.
+- **It isn't a product name.** Some product names borrow the word. That's marketing, and it tells you nothing a label doesn't.
+
+## How to use the word without getting lost
+
+Slang is useful when it starts a conversation, not when it ends one. A quick routine for the Keele & Dundas walk-in:
+
+1. **Describe the smell you like** in your own words: sharp, earthy, fruity, piney. "Gas" is fine as shorthand.
+2. **Ask to see the label**, and check the class, total THC, total CBD and packaging date.
+3. **Remember that two jars with the same nickname can smell different.** Your nose is the final judge, not the word.
+4. **Bring government-issued photo ID** showing you're 19 or older.
+
+## Gas Junction Cannabis: a sign with a sense of humour
+
+Gas Junction Cannabis is the walk-in at 2813 Dundas St W, Toronto, near Keele St & Dundas St W. Come in, use whatever slang you like, and we'll point you to the label so you can read the facts for yourself. Weed gas is a great way to describe a smell. The packaging date and the THC and CBD lines are how you check the rest. Directions and walk-in notes are on our [visit page](/visit).`;
+
 export const RESOURCE_PAGES: ResourcePage[] = [
   {
     slug: "",
@@ -623,6 +692,18 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     sections: [],
     markdown: CONCENTRATES_GLOSSARY_MARKDOWN,
     dateModified: "2026-09-30",
+  },
+  {
+    slug: "what-does-gas-mean-weed",
+    title: GAS_WEED_TITLE,
+    seoTitle: GAS_WEED_TITLE,
+    description: GAS_WEED_DESCRIPTION,
+    eyebrow: "",
+    intro: GAS_WEED_DESCRIPTION,
+    cards: [],
+    sections: [],
+    markdown: GAS_WEED_MARKDOWN,
+    dateModified: "2026-10-29",
   },
 ];
 
