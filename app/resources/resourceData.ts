@@ -279,6 +279,121 @@ Slang is useful when it starts a conversation, not when it ends one. A quick rou
 
 Gas Junction Cannabis is the walk-in at 2813 Dundas St W, Toronto, near Keele St & Dundas St W. Come in, use whatever slang you like, and we'll point you to the label so you can read the facts for yourself. Weed gas is a great way to describe a smell. The packaging date and the THC and CBD lines are how you check the rest. Directions and walk-in notes are on our [visit page](/visit).`;
 
+export const THC_DIAMONDS_TITLE = "THC Diamonds: The Crystal Concentrate Everyone Asks About, Explained";
+
+export const THC_DIAMONDS_DESCRIPTION =
+  "Gas Junction Cannabis explains what THC diamonds are, what the sauce is, and how a legal label handles them.";
+
+export const THC_DIAMONDS_MARKDOWN = `# THC Diamonds: The Crystal Concentrate Everyone Asks About, Explained
+
+Last checked: October 25, 2026
+
+They look like rock candy or tiny quartz shards sitting in a puddle of golden sauce. They show up on concentrate menus with a lot of hype attached. Gas Junction Cannabis, at 2813 Dundas St W near Keele St and Dundas St W, cuts through it without a sales script: what **THC diamonds** are, what the "sauce" is, and how a legal label handles them. Adults 19+.
+
+## What are THC diamonds?
+
+THC diamonds are crystalline cannabis extracts. In the plant, THC mostly exists in its acid form, THCA. Under the right conditions in a lab, that acid can form solid crystals. Those crystals are what people call diamonds.
+
+So the name is slang for a shape. They aren't actual gemstones, and "diamond" isn't a grade.
+
+## THCA vs THC: why the acid matters
+
+Here's the label piece that trips people up. Raw cannabis contains THCA, which turns into THC when heated. That's why Canadian labels print **Total THC**: the figure accounts for the THCA in the product converting to THC.
+
+Diamonds are mostly THCA in crystal form. On a legal label, you'll see that captured in the Total THC line, not in the word "diamond".
+
+## Diamonds and sauce: the two-part look
+
+Many diamond products come as a mix:
+
+| Part | What it is |
+|---|---|
+| Diamonds | Solid THCA crystals |
+| Sauce | A runny, aromatic liquid around the crystals |
+
+The sauce is the leftover liquid portion from the same extraction, rich in aroma compounds. Some products sell diamonds on their own, some sell them in sauce, and some sell the sauce separately.
+
+## How they're made (the idea, not a recipe)
+
+Producers extract resin from cannabis, then let it rest under controlled conditions so the THCA separates and crystallises over time. The process uses solvents and lab equipment. We're explaining the concept so the menu word makes sense. Nobody should try extraction at home.
+
+## Where diamonds sit legally
+
+Health Canada's label guide places concentrates like shatter, wax, resin and rosin in the cannabis extract class. Crystalline extracts follow the same class rules. So a legal diamond product shows:
+
+1. Class: cannabis extract
+2. Net weight
+3. Total THC and Total CBD
+4. Ingredient list
+5. Lot number and packaging date
+6. Storage conditions
+7. The yellow health warning box and the standardized cannabis symbol
+
+Ontario counts concentrates at 0.25 g per 1 g dried toward the 30 g public possession limit. So 1 g of diamonds counts as 4 g of dried.
+
+## Diamonds vs other concentrates
+
+| Name | Texture | Legal class |
+|---|---|---|
+| Diamonds | Hard crystals | Extract |
+| Shatter | Glassy sheet | Extract |
+| Wax / budder | Soft, opaque | Extract |
+| Rosin | Pressed, solventless | Extract |
+| Distillate | Thick, clear oil | Extract |
+
+Texture changes. The class doesn't.
+
+## What the word "diamonds" doesn't tell you
+
+Plain and brisk:
+
+- Not a grade.
+- Not an effect.
+- Not a reason to skip the label.
+- Not a promise that two jars match.
+
+Confirm on the floor: read the Total THC and Total CBD lines, the net weight and the packaging date.
+
+## Storage
+
+Crystals and sauce both react to heat and light. Keep them in the original child-resistant package, sealed, cool and dark, and away from kids and pets.
+
+## Quick answers
+
+**Are diamonds the same as isolate?** Similar idea, purified compound in solid form, but "isolate" is usually used for CBD products. Different word, different product.
+
+**Why is some sauce darker?** Handling and age can change colour. Check the packaging date.
+
+**Can staff explain a diamond label?** Yes. Bring questions.
+
+## A brisk diamond glossary
+
+| Word | Meaning |
+|---|---|
+| Diamonds | THCA crystals |
+| Sauce | Aromatic liquid fraction |
+| HTFSE | Slang for the terpene-rich liquid portion |
+| Crystalline | Solid crystal form |
+| THCA | The acid form of THC in raw cannabis |
+
+These are product-description words. None of them replaces the label.
+
+## How to compare two diamond products
+
+1. Confirm both say cannabis extract.
+2. Compare net weight.
+3. Compare Total THC and Total CBD in the same units.
+4. Read the ingredient lists.
+5. Check packaging dates.
+
+That's it. Five lines, same order, every time. Confirm on the floor if anything on the label doesn't make sense.
+
+## Come by the Junction
+
+More explainers live in the [Gas Junction guides](/guides). Store details are on our [Junction weed dispensary](/weed-dispensary-junction) page, and the [visit page](/visit) has what you need before you walk over.
+
+THC diamonds: THCA crystals, sometimes in sauce, labelled as an extract. Gas Junction Cannabis is for adults 19 and over. Staff ask for ID from anyone who looks under 25.`;
+
 export const RESOURCE_PAGES: ResourcePage[] = [
   {
     slug: "",
@@ -704,6 +819,18 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     sections: [],
     markdown: GAS_WEED_MARKDOWN,
     dateModified: "2026-10-29",
+  },
+  {
+    slug: "what-are-thc-diamonds",
+    title: THC_DIAMONDS_TITLE,
+    seoTitle: THC_DIAMONDS_TITLE,
+    description: THC_DIAMONDS_DESCRIPTION,
+    eyebrow: "",
+    intro: THC_DIAMONDS_DESCRIPTION,
+    cards: [],
+    sections: [],
+    markdown: THC_DIAMONDS_MARKDOWN,
+    dateModified: "2026-11-12",
   },
 ];
 
