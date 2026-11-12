@@ -39,6 +39,14 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
       robots: { index: true, follow: true },
     };
   }
+  if (page.slug === "what-are-thc-diamonds") {
+    return {
+      title: { absolute: page.seoTitle },
+      description: page.description,
+      alternates: { canonical: "https://www.gasjunctioncannabis.com/resources/what-are-thc-diamonds" },
+      robots: { index: true, follow: true },
+    };
+  }
   return {
     title: page.slug === "weed-flower-guide" ? { absolute: visibleCopy(page.seoTitle) } : visibleCopy(page.seoTitle),
     description: visibleCopy(page.description),
