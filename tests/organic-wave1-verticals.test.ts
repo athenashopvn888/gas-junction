@@ -31,7 +31,8 @@ test("Junction neighbourhood LPs have unique titles, H1s, and FAQ questions", ()
   assert.match(verticals, /title: "Cannabis Delivery in The Junction \| Gas Junction Cannabis"/);
   assert.match(verticals, /title: "Native Cigarettes in The Junction \| Gas Junction Cannabis"/);
   assert.match(verticals, /title: "Nicotine Vape in The Junction \| Gas Junction Cannabis"/);
-  assert.match(verticals, /title: "Weed Dispensary in The Junction \| Gas Junction Cannabis"/);
+  assert.match(verticals, /title: "Weed Dispensary near me in The Junction \| Gas Junction Cannabis"/);
+  assert.match(readFileSync("app/weed-dispensary-junction/page.tsx", "utf8"), /title: \{ absolute: WEED_DISPENSARY_JUNCTION\.title \}/);
   assert.equal(h1s.filter(Boolean).length, h1s.length);
   assert.equal(new Set(h1s.map((match) => match?.[0])).size, h1s.length);
 

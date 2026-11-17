@@ -5,19 +5,30 @@ import {
   HOME_DELIVERY_CARDS,
   HOME_DELIVERY_FAQS,
   HOME_DELIVERY_PARAGRAPHS,
+  HOME_DOC_TITLE,
+  HOME_PAGE_TITLE,
   HOME_TITLE,
 } from "../app/lib/homeDelivery.ts";
 
 const page = fs.readFileSync("app/page.tsx", "utf8");
 const globals = fs.readFileSync("app/globals.css", "utf8");
 
-test("homepage title, Open Graph title, and H1 use the locked phrase", () => {
-  const locked = "Gas Junction Cannabis Dispensary - Weed Delivery in The Junction";
-  assert.equal(HOME_TITLE, locked);
-  assert.match(page, /\{HOME_TITLE\}/);
+test("homepage H1 stays locked and only the document title inserts near me", () => {
+  const h1 = "Gas Junction Cannabis Dispensary - Weed Delivery in The Junction";
+  const inherited = "Gas Junction Cannabis Dispensary Weed Delivery | The Junction";
+  const doc = "Gas Junction Cannabis Dispensary near me | Weed Delivery | The Junction";
+  assert.equal(HOME_TITLE, h1);
+  assert.equal(HOME_DOC_TITLE, inherited);
+  assert.equal(HOME_PAGE_TITLE, doc);
+  assert.match(fs.readFileSync("app/HomePageClient.tsx", "utf8"), /\{HOME_TITLE\}/);
+  assert.match(page, /title: \{ absolute: HOME_PAGE_TITLE \}/);
+  assert.match(page, /openGraph:[\s\S]*title: \{ absolute: HOME_PAGE_TITLE \}/);
+  assert.match(page, /twitter:[\s\S]*title: \{ absolute: HOME_PAGE_TITLE \}/);
   const layout = fs.readFileSync("app/layout.tsx", "utf8");
-  assert.match(layout, /default: HOME_TITLE/);
-  assert.match(layout, /openGraph:[\s\S]*title: HOME_TITLE/);
+  assert.match(layout, /default: HOME_DOC_TITLE/);
+  assert.match(layout, /openGraph:[\s\S]*title: HOME_DOC_TITLE/);
+  assert.match(layout, /twitter:[\s\S]*title: HOME_DOC_TITLE/);
+  assert.match(layout, /template: "%s \| Gas Junction Cannabis"/);
 });
 
 test("hero keeps the required store and delivery targets", () => {

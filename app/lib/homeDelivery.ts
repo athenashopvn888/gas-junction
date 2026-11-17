@@ -61,5 +61,10 @@ export const HOME_DELIVERY_FAQS = [
   },
 ] as const;
 
-// Document <title> only (exact Google name | area). H1 keeps HOME_TITLE.
+// Root <title> default plus root og:title and twitter:title. Routes that do not
+// set their own title still inherit this exact string. H1 keeps HOME_TITLE.
 export const HOME_DOC_TITLE = "Gas Junction Cannabis Dispensary Weed Delivery | The Junction";
+
+// Homepage document title only. Absolute in app/page.tsx so the root
+// "%s | Gas Junction Cannabis" template is not appended.
+export const HOME_PAGE_TITLE = "Gas Junction Cannabis Dispensary near me | Weed Delivery | The Junction";
