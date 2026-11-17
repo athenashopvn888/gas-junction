@@ -211,7 +211,7 @@ export const NICOTINE_VAPE_JUNCTION: OrganicVerticalPageData = {
 
 export const WEED_DISPENSARY_JUNCTION: OrganicVerticalPageData = {
   path: "/weed-dispensary-junction",
-  title: "Weed Dispensary in The Junction | Gas Junction Cannabis",
+  title: "Weed Dispensary near me in The Junction | Gas Junction Cannabis",
   description:
     "Gas Junction Cannabis is the weed dispensary at 2813 Dundas St W in The Junction, near Keele & Dundas. Walk-in flower tiers for Junction Triangle and High Park North — not a city-wide Toronto listing. Adults 19+.",
   ogDescription:
