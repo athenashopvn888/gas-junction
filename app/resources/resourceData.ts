@@ -394,6 +394,82 @@ More explainers live in the [Gas Junction guides](/guides). Store details are on
 
 THC diamonds: THCA crystals, sometimes in sauce, labelled as an extract. Gas Junction Cannabis is for adults 19 and over. Staff ask for ID from anyone who looks under 25.`;
 
+export const DEATH_VALLEY_TITLE = "Death Valley Strain, Explained: A Place Name With a Thin Paper Trail";
+
+export const DEATH_VALLEY_DESCRIPTION =
+  "The Death Valley strain sounds dramatic, but the name points at something pretty ordinary: a real place on a map.";
+
+export const DEATH_VALLEY_MARKDOWN = `# Death Valley Strain, Explained: A Place Name With a Thin Paper Trail
+
+Last checked: November 11, 2026
+
+Strain names don't come with footnotes, so somebody has to write them. Here's ours. The **Death Valley strain** sounds dramatic, but the name points at something pretty ordinary: a real place on a map. No drama required. What *is* interesting is how thin the public paper trail is behind that name, and why people keep tacking "Diesel" onto the search. Gas Junction Cannabis runs on reference tables and plain answers, so here's the glossary-style version: what the name is, what the record can and can't show, the flavour words attached to one listed cut, and how to read the label instead of the hype. Adults 19+ only.
+
+## What is the Death Valley strain?
+
+The Death Valley strain is a strain name whose lineage isn't well documented. No major strain database documents the parents, and Leafly has no page for it. That already tells you something: this is a name that lives more on menus than in the big strain encyclopedias.
+
+Listings that do use a nearby name usually call it **Death Valley OG**, not simply Death Valley. Whether a menu's "Death Valley" is the same cut as that "Death Valley OG" is an open question. The words on a board can't settle it.
+
+When a public record is this thin, unofficial write-ups tend to fill the gap. Once those write-ups get copied a few times, a guess can start to look like a settled family tree. It isn't. If a listing hands you a parent pair with full confidence and no source you can check, treat it as unverified and move on to the package in front of you.
+
+## Where does the name Death Valley come from?
+
+The name matches a real place: the U.S. National Park Service places Death Valley along the California–Nevada border. That's the factual part.
+
+What we couldn't find is a breeder's statement explaining *why* the strain got that name. So we'll stop at the fact and skip the backstory. If anyone tells you the "real" story, ask for a source.
+
+## Death Valley weed: why do people search "Death Valley Diesel strain"?
+
+People search "Death Valley Diesel strain" because "Diesel" is a common add-on word in strain naming, not because a separate strain by that name shows up in the public record. In strain names, "Diesel" usually points to a fuel-like aroma or a Diesel-family parent. For the full rundown on fuel-type aroma slang, see our guide to [what "gas" means in weed](/resources/what-does-gas-mean-weed).
+
+Bottom line: "Death Valley Diesel" isn't a separate strain we could find documented. It looks like search shorthand for the same name.
+
+## What does Death Valley weed smell like?
+
+Death Valley weed is described, in SeedFinder's breeder description for Death Valley OG, with the flavour profile **Skunky**, **Lemon Pine**, and **Hashy**.
+
+| Flavour word | What it usually means on a description |
+|---|---|
+| **Skunky** | Sharp, pungent, classic cannabis funk |
+| **Lemon pine** | Citrus and fresh-cut tree notes together |
+| **Hashy** | Earthy, resin-like, a little spicy |
+
+Two reminders from the Keele & Dundas walk-in:
+
+1. **A listing describes a listing.** The package on the board had its own grow and cure.
+2. **These notes belong to one listed cut.** They describe the Death Valley OG entry those words were written for, not every package that carries a Death Valley name.
+
+## How do you read a Death Valley label?
+
+You read a Death Valley label by skipping the name and going straight to the required lines, since Health Canada's consumer label guide lists the **strain name as optional**. A producer can print it, but nothing makes them. What's required:
+
+| Label line | Why it matters |
+|---|---|
+| **Product class** | Separates flower (dried cannabis) from extracts and the rest |
+| **Total THC, Total CBD** | Front panel, every time |
+| **Lot number + packaging date** | Lets you match the package to its batch |
+| **Brand** | Names the company responsible |
+| **Storage instructions** | Temperature, light or humidity guidance |
+
+If the strain name is the one line on the package that isn't required, it's also the one line you should lean on least. At this Junction shop, that's the useful habit for any name with a thin paper trail: trust the required lines on the jar in your hand, not a family tree you found online.
+
+## Looking for Death Valley on the menu?
+
+Glossary entries aren't inventory. Gas Junction Cannabis doesn't use articles to promise a strain, since the board turns over. Walk in, scan the board, and ask.
+
+## Quick answers
+
+**Is Death Valley the same as Death Valley OG?** Some listings use "Death Valley OG." Whether a menu's "Death Valley" is the same cut is an open question the name itself can't settle.
+
+**Is "Death Valley Diesel" a different strain?** We couldn't find it documented as one.
+
+**Does the name tell me what's in the package?** No. The label does.
+
+## Check the Death Valley strain on the label at Gas Junction Cannabis
+
+Curious about this one or any other name on the board? Gas Junction Cannabis is at 2813 Dundas St W in Toronto, near Keele St & Dundas St W. Ask to see a label and we'll read it with you, no sales script. Directions are on our [visit page](/visit). Adults 19+ only. Bring government-issued photo ID.`;
+
 export const RESOURCE_PAGES: ResourcePage[] = [
   {
     slug: "",
@@ -831,6 +907,18 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     sections: [],
     markdown: THC_DIAMONDS_MARKDOWN,
     dateModified: "2026-11-12",
+  },
+  {
+    slug: "death-valley-strain",
+    title: DEATH_VALLEY_TITLE,
+    seoTitle: DEATH_VALLEY_TITLE,
+    description: DEATH_VALLEY_DESCRIPTION,
+    eyebrow: "",
+    intro: DEATH_VALLEY_DESCRIPTION,
+    cards: [],
+    sections: [],
+    markdown: DEATH_VALLEY_MARKDOWN,
+    dateModified: "2026-11-19",
   },
 ];
 
